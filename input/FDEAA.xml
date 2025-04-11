@@ -387,7 +387,7 @@
 	<!-- Claims section? If no, you have to write a free-form section -->
 	<CClaimsInfo 
 		cc-version="cc-2022r1"         
-		cc-approach="standard"         
+		cc-approach="direct-rationale"         
 		display="yes">                 
 
 		<!-- Conformance for STs: exact, strict, or demonstrable -->
@@ -402,18 +402,9 @@
 		
 		<!-- Can be in a configuration with these PPs and Modules -->
 		<cc-pp-config-with>             
-	        <PP-cc-ref>Protection Profile for Mobile Device Management Version 4.0</PP-cc-ref>
-			<Mod-cc-ref>PP-Module for File Encryption, Version 1.0</Mod-cc-ref>
-			<Mod-cc-ref>PP-Module for File Encryption Enterprise Management, Version 1.0</Mod-cc-ref>
-			<Mod-cc-ref>PP-Module for VPN Clients, Version 2.2</Mod-cc-ref>
-			<Mod-cc-ref>PP-Module for VPN Clients, Version 2.3</Mod-cc-ref>
-			<Mod-cc-ref>PP-Module for VPN Clients, Version 2.4</Mod-cc-ref>
-			<Mod-cc-ref>PP-Module for Endpoint Detection and Response, Version 1.0</Mod-cc-ref>
-			<Mod-cc-ref>PP-Module for Host Agent, Version 1.0</Mod-cc-ref>
-			<Mod-cc-ref>PP-Module for Voice and Video over IP (VVoIP), Version 1.0</Mod-cc-ref>
-			<Mod-cc-ref>PP-Module for Email Clients, Version 1.0</Mod-cc-ref>
-			<Mod-cc-ref>PP-Module for Web Browsers, Version 1.0</Mod-cc-ref>
-			<Mod-cc-ref>PP-Module for Redaction Tools, Version 1.0</Mod-cc-ref>
+	        <PP-cc-ref/>
+			<Mod-cc-ref/>
+			
 		</cc-pp-config-with>
 
 		<!-- Package claims -->

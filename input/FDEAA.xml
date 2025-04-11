@@ -452,14 +452,10 @@
             network infrastructure. Attackers may engage in communications with applications and
             services running on or part of the OS with the intent of compromise. Engagement may
             consist of altering existing legitimate communications.</description>
-          <objective-refer ref="O.PROTECTED_COMMS">
-            <rationale>The threat T.NETWORK_ATTACK is countered by O.PROTECTED_COMMS as this
-              provides for integrity of transmitted data.</rationale>
-          </objective-refer>
-          <objective-refer ref="O.INTEGRITY">
-            <rationale>The threat T.NETWORK_ATTACK is countered by O.INTEGRITY as this provides for
-              integrity of software that is installed onto the system from the network.</rationale>
-          </objective-refer>
+          
+          <addressed-by>FPT_SBOP_EXT.1</addressed-by><rationale>For reasons </rationale>
+            <addressed-by>FPT_ASLR_EXT.1</addressed-by><rationale>ASLR For reasons </rationale>
+            <addressed-by>FPT_TUD_EXT.1</addressed-by><rationale>For reasons </rationale>
 
 		  <!-- For direct rationale, use the following format instead of <objective-refer> -->
 <!--          <addressed-by>FPT_SBOP_EXT.1</addressed-by><rationale>How the SFR addresses the threat.</rationale>
@@ -473,14 +469,11 @@
           <description> An attacker is positioned on a communications channel or elsewhere on the
             network infrastructure. Attackers may monitor and gain access to data exchanged between
             applications and services that are running on or part of the OS. </description>
-          <objective-refer ref="O.PROTECTED_COMMS">
-            <rationale>The threat T.NETWORK_EAVESDROP is countered by O.PROTECTED_COMMS as this
-              provides for confidentiality of transmitted data.</rationale>
-          </objective-refer>
-          <objective-refer ref="O.MANAGEMENT">
-            <rationale>The threat T.NETWORK_EAVESDROP is countered by O.MANAGEMENT as this provides
-              for the ability to configure the OS to protect the confidentiality of its transmitted
-              data.</rationale>
+         
+		  <addressed-by>FMT_MOF_EXT.1</addressed-by><rationale>For reasons </rationale>
+		  <addressed-by>FMT_SMF_EXT.1</addressed-by><rationale>For reasons </rationale>
+		  <addressed-by>FTA_TAB.1</addressed-by><rationale>For reasons </rationale>
+		  <addressed-by>FTP_TRP.1</addressed-by><rationale>For reasons </rationale>
           </objective-refer>
 		  
 <!--            <addressed-by>FCS_COP.1/HASH</addressed-by><rationale>How the SFR addresses the threat.</rationale>
@@ -528,10 +521,7 @@
           <description>If the OS is bound to a directory or management server, the configuration of
             the OS software must be capable of adhering to the enterprise security policies
             distributed by them.</description>
-          <objective-refer ref="O.MANAGEMENT">
-            <rationale>The organizational security policy P.ENTERPRISE is enforced through the
-              objective O.MANAGEMENT as this objective represents how the enterprise and user assert
-              management over the OS.</rationale>
+          
           </objective-refer>
         </OSP>
       </OSPs>
@@ -548,45 +538,10 @@
   
   <!-- This section is mandatory for standard approach documents.   -->
   <!-- It should be included in direct rationale documents if there are OE Objectives. -->
-  <section title="Security Objectives" id="sec-objectives">
+
   
 	<!-- This section is omitted for direct rationale documents -->
-    <section title="Security Objectives for the TOE" id="SecurityObjectivesTOE">
-      <SOs>
-        <SO name="O.ACCOUNTABILITY">
-          <description> Conformant OSes ensure that information exists that allows
-            administrators to discover unintentional issues with the configuration and operation of
-            the operating system and discover its cause.  Gathering event information and immediately
-            transmitting it to another system can also enable incident response in the event
-            of system compromise.</description>
-          <addressed-by>FAU_GEN.1</addressed-by><rationale>'cause FAU_GEN.1 is awesome</rationale>
-          <addressed-by>FTP_ITC_EXT.1</addressed-by><rationale>Cause FTP reasons </rationale>
-        </SO>
-        <SO name="O.INTEGRITY">
-          <description>Conformant OSes ensure the integrity of their update
-            packages. OSes are seldom if ever shipped without errors, and the
-            ability to deploy patches and updates with integrity is critical to enterprise network
-            security. Conformant OSes provide execution environment-based
-            mitigations that increase the cost to attackers by adding complexity to the task of
-            compromising systems. </description>
-            <addressed-by>FPT_SBOP_EXT.1</addressed-by><rationale>For reasons </rationale>
-            <addressed-by>FPT_ASLR_EXT.1</addressed-by><rationale>ASLR For reasons </rationale>
-            <addressed-by>FPT_TUD_EXT.1</addressed-by><rationale>For reasons </rationale>
-        </SO>
-        <SO name="O.MANAGEMENT">
-          <description> To facilitate management by users and the enterprise, conformant OSes
-	    provide consistent and supported interfaces for their
-            security-relevant configuration and maintenance. This includes the deployment of
-            applications and application updates through the use of platform-supported deployment
-            mechanisms and formats, as well as providing mechanisms for configuration and
-            application execution control. </description>
-            <addressed-by>FMT_MOF_EXT.1</addressed-by><rationale>For reasons </rationale>
-            <addressed-by>FMT_SMF_EXT.1</addressed-by><rationale>For reasons </rationale>
-            <addressed-by>FTA_TAB.1</addressed-by><rationale>For reasons </rationale>
-            <addressed-by>FTP_TRP.1</addressed-by><rationale>For reasons </rationale>
-        </SO>
-      </SOs>
-    </section>  <!-- Security Objectives for the TOE -->
+
 
 	<!-- This section is included in direct rationale documents if there are OE Objectives -->
     <section title="Security Objectives for the Operational Environment" id="sec-OEObjectives">

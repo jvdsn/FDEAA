@@ -476,7 +476,7 @@
 	<!-- OSPs refer to Objectives or OE Objectives in standard approach documents. -->
 	<!-- In direct rationale PPs, they should refer to OE Objectives -->
     <section title="Organizational Security Policies" id="sec-OSPs">
-      <OSPs>
+     
 		<!-- 
         <OSP name="P.ENTERPRISE">
           <description>If the OS is bound to a directory or management server, the configuration of
@@ -484,8 +484,8 @@
             distributed by them.</description>
         </OSP>
 		-->
-		<OSP/>
-      </OSPs>
+		
+      <OSPs/>
     </section>   <!-- OSPs -->
 	
 	<!-- If there are no OSPs, then this: -->
@@ -509,9 +509,9 @@
 	  security functionality. These track with the assumptions about the environment. 
 	  <SOEs>
 		
-		  </SOE>
+		  
 		  <SOE name="OE.">
-			  <description> </description>
+			  <description>cccc </description>
 		  </SOE>
 	  </SOEs>
   </section>

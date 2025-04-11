@@ -23,4 +23,21 @@
     boilerplate="yes"
     short="Wid"
 >
+<PPReference>
+    <ReferenceTable>
+        <PPTitle>DRAFT Protection Profile for Full Drive Encryption – Authorization Acquisition DRAFT</PPTitle>
+        <PPVersion>2.0</PPVersion>
+        <PPAuthor>National Information Assurance Partnership</PPAuthor>
+        <PPPubDate>2025-04-11</PPPubDate>
+        <Keywords>Full Drive Encryption – Authorization Acquisition</Keywords>
+    </ReferenceTable>
+</PPReference>
+
+<RevisionHistory>
+    <entry>
+        <version>2</version>
+        <date>2025-4-11</date>
+        <subject>Started CC2022 Draft</subject>
+    </entry>
+</RevisionHistory>
 </PP>

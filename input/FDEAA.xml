@@ -42,6 +42,8 @@
 </RevisionHistory>
 <pp-preferences/>
 <sec:Introduction>
-    
+    <section title="Overview" id="ppoverview"></section>
+    <section title="TOE Overview" id="TOEdescription"></section>
+    <section title="Use Cases" id="usecases"></section>
 </sec:Introduction>
 </PP>

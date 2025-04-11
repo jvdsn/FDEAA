@@ -23,7 +23,7 @@
     boilerplate="yes"
     short="Wid"
 >
-
+<cPP/>
 <!--    <cPP/>    -->                                 <!-- This empty element must be included here if this is a cPP. It must not be here if it is not.  -->
 
 <!-- for FP -->
@@ -49,11 +49,11 @@
   <!-- PPReference (all documents) -->
   <PPReference>
     <ReferenceTable>
-      <PPTitle>Protection Profile for QQQQ</PPTitle>
+      <PPTitle>collaborative Protection Profile for Full Drive Encryption – Encryption Engine</PPTitle>
       <PPVersion>2.0</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2024-03-28</PPPubDate>
-      <Keywords>QQQQ</Keywords>               <!-- This field is unused and optional -->
+      <PPPubDate>2025-04-11</PPPubDate>
+      <Keywords>Full Drive Encryption – Encryption Engine</Keywords>               <!-- This field is unused and optional -->
     </ReferenceTable>
   </PPReference>
 
@@ -74,48 +74,15 @@
       <date>2024-03-28</date>
       <subject>Updated for CC:2022, or whatever</subject>
     </entry>
+    <entry>
+        <version>2.0</version>
+        <date>2025-04-11</date>
+        <subject>Updated for CC:2022, reviewing and applying modifications to the PP</subject>
+      </entry>
   </RevisionHistory>
 
-<!-- Included Packages (all documents) (optional) -->
-<!-- One entry for each package -->
-    <include-pkg id="tls">
-      <git>
-	    <url>https://github.com/commoncriteria/tls</url>  <!-- url of github repo -->
-	    <branch>release-1.1</branch>                      <!-- github branch of published version -->
-      </git>
-      <url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439</url>  <!-- url of published document on NIAP site -->
-      <depends on="pizza"/>     <!-- If package inclusion is dependent on something. Absent if package inclusion is mandatory -->
-	</include-pkg>
-	    
-	<include-pkg id="ssh">
-	  <git>
-	    <url>https://github.com/commoncriteria/ssh</url>
-	    <branch>release-1.0</branch>
-	  </git>
-	  <url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=389&amp;id=389</url>
-   </include-pkg>	
 
-<!-- Modules (optional). A properly constructed PP does not need this section. -->
-<!-- It is abomination that PPs refer to Modules. This should never happen. -->
-<!-- But this is how it is done. But don't do it.  -->
-<!--
-   <modules required="yes">
-      <module id="client-virt">
-		<git>
-			<url>https://github.com/commoncriteria/clientvirtualization</url>
-			<branch>master</branch>
-		</git>
-        <url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=409&amp;id=409</url> 
-	  </module>
-      <module id="server-virt">
-		<git>
-			<url>https://github.com/commoncriteria/servervirtualization</url>
-			<branch>master</branch>
-		</git>
-		<url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=410&amp;id=410</url>
-	  </module>
-   </modules>
--->
+   <include-pkg/>	
 
 <!-- PP Preferences (all documents) -->
 <pp-preferences>
@@ -141,12 +108,21 @@
     <!-- PP or TOE Overview -->
 
     <section title="PP Overview" id="sec-ppoverview">
+        <h:p>
+		The purpose of the first set of Collaborative Protection Profiles (cPPs) for Full Drive Encryption (FDE): Authorization Acquisition (AA) and Encryption Engine (EE) is to provide requirements for Data-at-Rest protection for a lost device that contains storage. These cPPs allow FDE solutions based in software and/or hardware to meet the requirements. The form factor for a storage device may vary, but could include: system hard drives/solid state drives in servers, workstations, laptops, mobile devices, tablets, and external media. A hardware solution could be a Self-Encrypting Drive or other hardware-based solutions; the interface (USB, SATA, etc.) used to connect the storage device to the host machine is outside the scope of this cPP.
+        </h:p><h:p>
+        Full Drive Encryption encrypts all data (with certain exceptions) on the storage device and permits access to the data only after successful authorization to the FDE solution. The exceptions include the necessity to leave a portion of the storage device (the size may vary based on implementation) unencrypted for such things as the Master Boot Record (MBR) or other AA/EE pre-authentication software. These FDE cPPs interpret the term “full drive encryption” to allow FDE solutions to leave a portion of the storage device unencrypted so long as it contains plaintext user or plaintext authorization data.
+        </h:p><h:p>
+        Since the FDE cPPs support a variety of solutions, two cPPs describe the requirements for the FDE components shown in Figure 1.  
+        </h:p>
+        
+        <h:p><figure entity="images/fde-components.png" title="FDE Components" id="toe"/></h:p>
 
-		<!-- ...the PP overview briefly describes the usage of the TOE and its major security features,
-    	identifies the TOE type, and identifies any major non-TOE hardware/software/firmware available
-		to the TOE.
-		-->   
-
+        <h:p>The FDE cPP - Authorization Acquisition describes the requirements for the Authorization Acquisition piece and details the security requirements and assurance activities necessary to interact with a user and result in the availability of sending a Border Encryption Value (BEV)to the Encryption Engine.</h:p>
+        <h:p>The FDE cPP - Encryption Engine describes the requirements for the Encryption Engine piece and details the necessary security requirements and assurance activities for the actual encryption/decryption of the data by the DEK. Each cPP will also have a set of core requirements for management functions, proper handling of cryptographic keys, updates performed in a trusted manner, audit and self-tests. </h:p>
+        <h:p>This TOE description defines the scope and functionality of the Authorization Acquisition, and
+            the Security Problem Definition describes the assumptions made about the operating
+            environment and the threats to the AA that the cPP requirements address</h:p>
 	</section>  <!-- PP Overview -->
 	
 	<!-- CC and Tech terms.  -->
@@ -156,14 +132,61 @@
 	<tech-terms>
 	  <!-- To remove an irrlevant CC term from the document, use the <suppress> element -->
       <suppress>Distributed TOE</suppress>   
-
-      <term abbr='AES' full="Advanced Encryption Standard"/>
-      <term abbr='API' full="Application Programming Interface"/>
+      <term abbr='AA' full="Authorization Acquisition"></term>
       <term full="Address Space Layout Randomization" abbr="ASLR">
 		An anti-exploitation feature which loads memory mappings into unpredictable
 		locations. ASLR makes it more difficult for an attacker to redirect control to code
 		that they have introduced into the address space of a process.
       </term>
+      <term abbr='BEV' full="Border Encryption Valu"></term>
+      <term abbr='BIOS' full="Basic Input Output System"></term>
+      <term abbr='CBC' full="Cipher Block Chaining"></term>
+      <term abbr='CC' full="Common Criteria"></term>
+      <term abbr='CCM' full="Counter with CBC-Message Authentication Code"></term>
+      <term abbr='CEM' full="Common Evaluation Methodology"></term>
+      <term abbr='CPP' full="Collaborative Protection Profile"></term>
+      <term abbr='DEK' full="Data Encryption Key"></term>
+      <term abbr='DRBG' full="Deterministic Random Bit Generator"></term>
+      <term abbr='DSS' full="Digital Signature Standard"></term>
+      <term abbr='ECC' full="Elliptic Curve Cryptography"></term>
+      <term abbr='ECDSA' full="Elliptic Curve Digital Signature Algorithm"></term>
+      <term abbr='EE' full="Encryption Engine"></term>
+      <term abbr='EEPROM' full="Electrically Erasable Programmable Read-Only Memory"></term>
+      <term abbr='FIPS' full="Federal Information Processing Standards"></term>
+      <term abbr='FDE' full="Full Drive Encryption"></term>
+      <term abbr='FFC' full="Finite Field Cryptography"></term>
+      <term abbr='GCM' full="Galois Counter Mode"></term>
+      <term abbr='HMAC' full="Keyed-Hash Message Authentication Code"></term>
+      <term abbr='HW' full="Hardware"></term>
+      <term abbr='IEEE' full="Institute of Electrical and Electronics Engineers"></term>
+      <term abbr='IT' full="Information Technology"></term>
+      <term abbr='ITSEF' full="IT Security Evaluation Facility"></term>
+      <term abbr='ISO/IEC' full="International Organization for Standardization / International Electrotechnical Commission"></term>
+      <term abbr='IV' full="Initialization Vector"></term>
+      <term abbr='KEK' full="Key Encryption Key"></term>
+      <term abbr='KMD' full="Key Management Description"></term>
+      <term abbr='KRK' full="Key Release Key"></term>
+      <term abbr='MBR' full="Master Boot Record"></term>
+      <term abbr='NIST' full="National Institute of Standards and Technology"></term>
+      <term abbr='' full=""></term>
+      <term abbr='' full=""></term>
+      <term abbr='' full=""></term>
+      <term abbr='' full=""></term>
+      <term abbr='' full=""></term>
+      <term abbr='' full=""></term>
+      <term abbr='' full=""></term>
+      <term abbr='' full=""></term>
+      <term abbr='' full=""></term>
+      <term abbr='' full=""></term>
+      <term abbr='' full=""></term>
+      <term abbr='' full=""></term>
+      <term abbr='' full=""></term>
+      <term abbr='' full=""></term>
+      <term abbr='' full=""></term>
+      <term abbr='' full=""></term>
+      <term abbr='AES' full="Advanced Encryption Standard"/>
+      <term abbr='API' full="Application Programming Interface"/>
+      
       <term full="Administrator">
 		An administrator is responsible for management activities, including setting policies that are 
 		applied by the enterprise on the operating system.

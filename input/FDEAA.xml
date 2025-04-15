@@ -514,11 +514,13 @@
 
 
   
-<sec:secreq title="Security Requirements">
-  
+<sec:Security_Requirements>  
 	  
 	<!--   5.1 Security Functional Requirements -->
-    <sec:SFRs title="Security Functional Requirements">
+  <sec:SFRs title="Security Functional Requirements">
+    <section id="ss-audit-table" title="Auditable Events for Mandatory SFRs">
+			<audit-table id="t-audit-mandatory" table="mandatory"/>
+		</section>
       <section title="Cryptographic Support (FCS)" id="fcs">
 	  
 
@@ -527,7 +529,7 @@
             <f-component cc-id="fcs_ckm_ext.1" name="Cryptographic Key Generation Services">
               
               
-          <f-element id="fel-asym-key-gen">
+          <f-element id="x.x.1">
             <title>
               The application shall .
             </title>
@@ -545,7 +547,7 @@
       </section>
 	</sec:SFRs>
 
-</sec:secreq>	    
+</sec:Security_Requirements>   
 <!-- Appendix A includes optional, objective, and implementation-dependent requirements -->
 <!-- Appendix B is selection-based requirements -->
 <!-- Appendix C: Extended Component Definitions -->

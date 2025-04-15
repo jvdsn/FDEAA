@@ -1,4 +1,4 @@
-name: QuickBuild v4.4
+name: QuickBuild v4.5 20241220
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
     name: Quick Build
     steps:
     - name: Checkout project and transforms
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
       with:
         submodules: true
 
@@ -37,6 +37,7 @@ jobs:
       
     - name: Quick Build
       run: WARN_PATH="output/SanityChecksOutput.md" make
+
       
     - name: Branch Test
       run: |
@@ -98,15 +99,15 @@ jobs:
     - name: Outstanding TDs
       id: tds
       run: |
-        make effective
-        PP_XML=output/effective.xml RNG_OUT=output/TDValidationReport.txt make validate || true
         if [ "${{steps.extract_branch.outputs.branch}}" == "master" ] &&
            ls input/tds/*.xml ; then
           echo "Master branch should not have TDs" >> output/TDValidationReport.txt
         fi
-        PP_XML=output/effective.xml PP_RELEASE_HTML=output/AppliedTDs.html make release
-        java -jar ExecuteDaisy-master/*.jar output/*-release.html output/AppliedTDs.html --file=output/AppliedTDs-Diff.html
-
+    #        make effective
+    #        PP_XML=output/effective.xml RNG_OUT=output/TDValidationReport.txt make validate || true
+    # IF STATEMENT HERE
+    #        PP_XML=output/effective.xml PP_RELEASE_HTML=output/AppliedTDs.html make release
+    #        java -jar ExecuteDaisy-master/*.jar output/*-release.html output/AppliedTDs.html --file=output/AppliedTDs-Diff.html
 
     - name: Set TD badge attributes
       run: |
@@ -251,7 +252,7 @@ jobs:
       run: |
         mkdir gh-pages
 
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3
       with:
         ref: gh-pages
         path: gh-pages

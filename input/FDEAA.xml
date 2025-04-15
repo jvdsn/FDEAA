@@ -529,7 +529,7 @@
             <f-component cc-id="fcs_ckm_ext.1" name="Cryptographic Key Generation Services">
               
               
-          <f-element id="x.x.1">
+          <f-element id="x-x-1">
             <title>
               The application shall .
             </title>

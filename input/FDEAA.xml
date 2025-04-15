@@ -545,7 +545,12 @@
             </f-component>
       </section>
 	</sec:SFRs>
-  <section title="Security Assurance Requirements" id="SARs"/>
+  <section title="Security Assurance Requirements" id="SARs">
+    <section title="Class ASE: Security Target" id="ase">
+			As per ASE activities defined in <xref to="bibCEM"/>.
+		</section>
+
+  </section>
 </sec:Security_Requirements>   
 <!-- Appendix A includes optional, objective, and implementation-dependent requirements -->
 <!-- Appendix B is selection-based requirements -->

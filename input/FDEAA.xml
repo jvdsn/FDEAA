@@ -514,7 +514,7 @@
 
 
   
-<sec:Security_Requirements>
+<sec:secreq title="Security Requirements">
   
 	  
 	<!--   5.1 Security Functional Requirements -->
@@ -523,17 +523,13 @@
 	  
 
         <!-- FCS_CKM_EXT.1 -->
-        <ext-comp-def fam-id="FCS_CKM_EXT" title="Cryptographic Key Management">
-          <fam-behavior>This family defines requirements for management of cryptographic keys that are not addressed by FCS_CKM in CC Part 2.
-          </fam-behavior>
-        </ext-comp-def>
         
             <f-component cc-id="fcs_ckm_ext.1" name="Cryptographic Key Generation Services">
               
               
           <f-element id="fel-asym-key-gen">
             <title>
-              The application shall >.
+              The application shall .
             </title>
             <note role="application">cc
             </note>
@@ -549,9 +545,7 @@
       </section>
 	</sec:SFRs>
 
-</sec:Security_Requirements>
-
-	    
+<</sec:secreq>	    
 <!-- Appendix A includes optional, objective, and implementation-dependent requirements -->
 <!-- Appendix B is selection-based requirements -->
 <!-- Appendix C: Extended Component Definitions -->

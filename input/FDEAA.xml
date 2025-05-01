@@ -640,7 +640,7 @@
           18 storage device is connected) is free of malware that could interfere with the correct operation
           19 of the product.</h:p><h:p>Rationale: A platform free of malware [A.PLATFORM_STATE] prevents an attack vector that could potentially interfere with the correct operation of the product.</h:p> </description>
 		  </SOE>
-      <SOE name="OE.PLATFORM_I&A;">
+      <SOE name="OE.PLATFORM_I&amp;A">
 			  <description><h:p>The Operational Environment will provide individual user identification and authentication mechanisms that operate independently of the authorization factors used by the TOE.</h:p><h:p>Rationale: While the product may provide authorization factors to the Operating system's login interface, it must not change or degrade the functionality of the actual interface. A.PLATFORM_I&A requires that the product not interfere or change the normal platform I&A functionality.</h:p></description>
 		  </SOE>
       <SOE name="OE.PHYSICAL">

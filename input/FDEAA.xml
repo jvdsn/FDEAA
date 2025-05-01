@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="..\transforms\pp2html.xsl"?>
+<?xml-stylesheet type="text/xsl" href="../transforms/pp2html.xsl"?>
+<?xml-model href="https://github.com/commoncriteria/transforms/raw/master/schemas/CCProtectionProfile.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 
-<!-- for a PP or Functional Package -->
-<?xml-model href="https://raw.githubusercontent.com/commoncriteria/transforms/master/schemas/CCProtectionProfile.rng" 
-	type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 
 <!-- for a PP-module -->
 <!-- <?xml-model href="../transforms/schemas/CCModule.rng" type="application/xml" 
@@ -15,16 +13,13 @@
 <!-- Plural name of the TOE product (optional)  -->
 <!-- Whether to use boilerplate text by default (can be disabled in sections) -->
 <!-- A short name for the PP (e.g. App or MDF) -->
-<PP xmlns="https://niap-ccevs.org/cc/v1"
-    xmlns:h="http://www.w3.org/1999/xhtml"
+<PP target-product="Full Drive Encryption - AA" 
+    xmlns="https://niap-ccevs.org/cc/v1"
+    xmlns:cc="https://niap-ccevs.org/cc/v1"
     xmlns:sec="https://niap-ccevs.org/cc/v1/section"
-    target-product="Widget" 
-    target-products="Widgets" 
-    boilerplate="yes"
-    short="Wid"
->
+    xmlns:h="http://www.w3.org/1999/xhtml" 
+    boilerplate='yes'>
 <cPP/>
-<!--    <cPP/>    -->                                 <!-- This empty element must be included here if this is a cPP. It must not be here if it is not.  -->
 
 <!-- for FP -->
 <!--

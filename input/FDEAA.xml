@@ -1090,9 +1090,9 @@
                                 </h:ul></h:p>
                                 <h:p>The Key generation specifies 2 ways to generate the private key x:</h:p>
                                 <h:p>Private Key:<h:ul>
-                                  <h:li>len(q) bit output of RBG where 1 <=x <= q-1</h:li>
+                                  <h:li>len(q) bit output of RBG where 1 &lt;=x &lt;= q-1</h:li>
                                   <h:li>len(q) + 64 bit output of RBG, followed by a mod q-1 operation and +1
-                                    operation where 1<= x<=q-1.</h:li>
+                                    operation where 1&lt;= x&lt;=q-1.</h:li>
                                 </h:ul></h:p>
                                 <h:p>The security strength of the RBG must be at least that of the security offered by the
                                   FFC parameter set.</h:p>

@@ -641,7 +641,7 @@
           19 of the product.</h:p><h:p>Rationale: A platform free of malware [A.PLATFORM_STATE] prevents an attack vector that could potentially interfere with the correct operation of the product.</h:p> </description>
 		  </SOE>
       <SOE name="OE.PLATFORM_IA">
-			  <description><h:p>The Operational Environment will provide individual user identification and authentication mechanisms that operate independently of the authorization factors used by the TOE.</h:p><h:p>Rationale: While the product may provide authorization factors to the Operating system's login interface, it must not change or degrade the functionality of the actual interface. A.PLATFORM_I&A requires that the product not interfere or change the normal platform I&A functionality.</h:p></description>
+			  <description><h:p>The Operational Environment will provide individual user identification and authentication mechanisms that operate independently of the authorization factors used by the TOE.</h:p><h:p>Rationale: While the product may provide authorization factors to the Operating system's login interface, it must not change or degrade the functionality of the actual interface. A.PLATFORM_IA requires that the product not interfere or change the normal platform I&amp;A functionality.</h:p></description>
 		  </SOE>
       <SOE name="OE.PHYSICAL">
 			  <description><h:p>The Operational Environment will provide a secure physical computing space such than an adversary is not able to make modifications to the environment or to the TOE itself.</h:p><h:p>Rationale: As stated in section 1.6, the use case for this cPP is to protect data at rest on a device where the adversary receives it in a powered off state and has no prior access.</h:p> </description>
@@ -773,6 +773,8 @@
               </Tests>
             </aactivity>
           </f-element>
+          <audit-event/>
+          <audit-event/>
             </f-component>
             <f-component cc-id="fcs_afa_ext.2" name="Timing of Authorization Factor Acquisition" id="fcs-afa-ext-2">
               <consistency-rationale/>
@@ -799,7 +801,9 @@
                       </h:ul>
                 </aactivity>
               </f-element>
+              <audit-event/>
             </f-component>
+            
             <f-component cc-id="fcs_ckm.4(a)" name="Cryptographic Key Destruction (Power Management)" id="fcs-ckm-4-a">
               <f-element id="fcs_ckm-4-1-a">
                 <title>
@@ -821,7 +825,7 @@
                   <Tests>There are no test evaluation activities for this SFR.</Tests>
                 </aactivity>
               </f-element>
-
+              <audit-event/>
             </f-component>
             <f-component cc-id="fcs_ckm.4(d)" name="Cryptographic Key Destruction (Software TOE, 3rd 27 Party Storage)" id="fcs-ckm-4-d">
               <f-element id="fcs_ckm-4-1-d">
@@ -981,7 +985,7 @@
                     </Tests>
                 </aactivity>
               </f-element>
-
+              <audit-event/>
             </f-component>
             <f-component cc-id="fcs_ckm.1(a)" name="Cryptographic Key Generation (Asymmetric Keys)" id="fcs-ckm-1-a" status="sel-based">
               <f-element id="fcs_ckm-1-1-a"><titel>
@@ -1107,6 +1111,7 @@
                           </Tests>
                 </aactivity>
               </f-element>
+              <audit-event/>
             </f-component>
             <f-component cc-id="fcs_ckm.1(b)" name="Cryptographic Key Generation (Symmetric Keys)" id="fcs-ckm-1-b" status="sel-based">
               <f-element id="fcs_ckm-1-1-b"><titel>
@@ -1128,6 +1133,7 @@
                     <Tests>There are no test evaluation activities for this SFR.</Tests>
                 </aactivity>
               </f-element>
+              <audit-event/>
             </f-component>
             <f-component cc-id="fcs_cop.1(a)" name="Cryptographic Operation (Signature Verification)" id="fcs-cop-1-a" status="sel-based">
               <f-element id="fcs_cop-1-1-a">
@@ -1209,6 +1215,7 @@
 
                   </aactivity>
               </f-element>
+              <audit-event/>
             </f-component>
             <f-component cc-id="fcs_cop.1(b)" name="Cryptographic Operation (Hash Algorithm)" id="fcs-cop-1-b" status="sel-based">
               <f-element id="fcs_cop-1-1-b">
@@ -1275,6 +1282,7 @@
                           result is produced when the messages are provided to the TSF.</h:p></Tests>
                 </aactivity>
               </f-element>
+              <audit-event/>
             </f-component>
             <f-component cc-id="fcs_cop.1(c)" name="Cryptographic Operation (Keyed Hash Algorithm)" id="fcs-cop-1-c" status="sel-based">
               <f-element id="fcs_cop-1-1-c">
@@ -1325,6 +1333,7 @@
                         tags with the same key using a known good implementation.</h:p>
                 </aactivity>
               </f-element>
+              <audit-event/>
             </f-component>
             <f-component cc-id="fcs_cop.1(d)" name="Cryptographic Operation (Key Wrapping)" id="fcs-cop-1-d" status="sel-based">
               <f-element id="fcs_cop-1-1-d">
@@ -1352,6 +1361,7 @@
                     <Tests>There are no test evaluation activities for this SFR.</Tests>
                 </aactivity>
               </f-element>
+              <audit-event/>
             </f-component>
             <f-component cc-id="fcs_cop.1(e)" name="Cryptographic Operation (Key Transport)" id="fcs-cop-1-e" status="sel-based">
               <f-element id="fcs_cop-1-1-e">
@@ -1460,6 +1470,7 @@
                           </testlist></h:p></Tests>
                 </aactivity>
               </f-element>
+              <audit-event/>
             </f-component>
             <f-component cc-id="fcs_cop.1(f)" name="Cryptographic Operation (AES Data Encryption/Decryption)" id="fcs-cop-1-f" status="sel-based">
               <f-element id="fcs_cop-1-1-f">
@@ -1623,6 +1634,7 @@
                     </Tests>
                 </aactivity>
               </f-element>
+              <audit-event/>
             </f-component>
             <f-component cc-id="fcs_cop.1(g)" name="Cryptographic Operation (Key Encryption)" id="fcs-cop-1-g" status="sel-based">
               <f-element id="fcs_cop-1-1-g">
@@ -1644,6 +1656,7 @@
                     Data Encryption/Decryption.</Tests>
                 </aactivity>
               </f-element>
+              <audit-event/>
             </f-component>
 
             <f-component cc-id="fcs_kdf_ext.1" name="Cryptographic Key Derivation" id="fcs-kdf-ext-1" status="sel-based">
@@ -1683,6 +1696,7 @@
                   <Tests>There are no test evaluation activities for this SFR.</Tests>
                 </aactivity>
               </f-element>
+              <audit-event/>
             </f-component>
           
 
@@ -1729,6 +1743,7 @@
                       </testlist></Tests>
                   </aactivity>
               </f-element>
+              <audit-event/>
             </f-component>
             <f-component cc-id="fcs_rbg_ext.1" name="Cryptographic Operation (Random Bit Generation)" id="fcs-rbg-ext-1">
               <consistency-rationale/>
@@ -1813,6 +1828,7 @@
                     </Tests>
                     </aactivity>
               </f-element>
+              <audit-event/>
             </f-component>
             <f-component cc-id="fcs_smc_ext.1" name="Submask Combining " id="fcs-smc-ext-1">
               <consistency-rationale/>
@@ -1842,6 +1858,7 @@
                       </testlist>
                   </aactivity>
               </f-element>
+              <audit-event/>
             </f-component>
             <f-component cc-id="fcs_val_ext.1" name="Validation " id="fcs-val-ext-1">
               <consistency-rationale/>
@@ -1939,6 +1956,7 @@
                   <h:p>The ST author may need to iterate this requirement if multiple authentication factors are used, and either different methods are used to validate, or in some cases one or more authentication factors may be validated, and one or more are not validated.</h:p>
                 </h:i></note>
               </f-element>
+              <audit-event/>
             </f-component>
 
             <f-component cc-id="fcs_ckm.4(d)" name="Cryptographic Key Destruction (Software TOE, 3rd 27 Party Storage)" id="fcs-ckm-4-d">
@@ -1985,6 +2003,7 @@
                 <h:p>Several selections allow assignment of a ‘value that does not contain any CSP’. This means that the TOE uses some other specified data not drawn from an RBG meeting FCS_RBG_EXT requirements, and not being any of the particular values listed as other selection options. The point of the phrase ‘does not contain any CSP’ is to ensure that the overwritten data is carefully selected, and not taken from a general ‘pool’ that might contain current or residual data that itself requires confidentiality protection.</h:p></h:i></note>
                   <aactivity><no-tests/></aactivity>
               </f-element>
+              <audit-event/>
             </f-component>
             <f-component cc-id="fcs_ckm_ext.4(a)" name="Cryptographic Key and Key Material Destruction (Destruction Timing)" id="fcs-ckm-ext-4-a">
               <f-element id="fcs_ckm-ext-4-1-a">
@@ -2006,6 +2025,7 @@
                       <Tests>There are no test evaluation activities for this SFR.</Tests>
                   </aactivity>
               </f-element>
+              <audit-event/>
             </f-component>
             <f-component cc-id="fcs_ckm_ext.4(b)" name="Cryptographic Key and Key Material Destruction (Power Management)" id="fcs-ckm-ext-4-b">
               <f-element id="fcs_ckm-ext-4-1-b">
@@ -2030,6 +2050,7 @@
                       <Tests>There are no test evaluation activities for this SFR.</Tests>
                   </aactivity>
               </f-element>
+              <audit-event/>
             </f-component>
             <f-component cc-id="fcs_kyc_ext.1" name="Key Chaining (Initiator)" id="fcs-kyc-ext-1">
               <consistency-rationale/>
@@ -2106,6 +2127,7 @@
                       <Tests>There are no test evaluation activities for this SFR.</Tests>
                   </aactivity>
               </f-element>
+              <audit-event/>
             </f-component>
             <f-component cc-id="fcs_sni_ext.1" name="Cryptographic Operation (Salt, Nonce, and Initialization Vector Generation)" id="fcs_sni_ext.1">
               <consistency-rationale/>
@@ -2143,6 +2165,7 @@
                     <Tests>There are no test evaluation activities for this SFR.</Tests>
                 </aactivity>
               </f-element>
+              <audit-event/>
             </f-component>
 
       </section>
@@ -2172,7 +2195,7 @@
               </aactivity>
           </f-element>
 
-
+          <audit-event/>
         </f-component>
         <f-component cc-id="fmt_smf.1" name="Specification of Management Functions" id="fmt-smf-1">
         <f-element id="fmt-smf-1">
@@ -2249,6 +2272,7 @@
                 </Tests>
             </aactivity>
         </f-element>
+        <audit-event/>
       </f-component>
       <f-component cc-id="fmt_smr.1" name="Security Roles" id="fmt-smr-1">
         <f-element id="fmt-smr-1-1">
@@ -2270,6 +2294,7 @@
                 as part of evaluating FMT_MOF.1 and FMT_SMF.1.</Tests>   
             </aactivity>
         </f-element>
+        <audit-event/>
       </f-component>
       </section>
       <section title="Protection of the TSF (FPT)" id="fpt">
@@ -2319,6 +2344,7 @@
             <note role="application"><h:i>Key Chaining is the method of using multiple layers of encryption keys to ultimately secure the protected data encrypted on the drive. The number of intermediate keys will vary – from one (e.g., using the BEV as a key encrypting key (KEK)) to many. This applies to all keys that contribute to the ultimate wrapping or derivation of the DEK; including those in areas of protected storage (e.g. TPM stored keys, comparison values). </h:i></note>
             <aactivity><no-tests/></aactivity>
           </f-element>
+          <audit-event/>
         </f-component>
         <f-component cc-id="fpt_kyp_ext.1" name="Protection of Key and Key Material " id="fpt-kyp-ext-1">
           <consistency-rationale/>
@@ -2382,6 +2408,7 @@
                   There are no test evaluation activities for this SFR.</Tests>
                 </aactivity>
           </f-element>
+          <audit-event/>
         </f-component>
         <f-component cc-id="fpt_pwr_ext.1" name="Power Saving States" id="fpt-pwr-ext-1">
           <consistency-rationale/>
@@ -2412,6 +2439,7 @@
               <Tests>The evaluator shall confirm that for each listed compliant state all key/key materials
                 are removed from volatile memory by using the test defined in FCS_CKM.4(d).</Tests>
           </f-element>
+          <audit-event/>
         </f-component>
         <f-component cc-id="fpt_pwr_ext.2" name="Timing of Power Saving States" id="fpt-pwr-ext-2-1">
           <consistency-rationale/>
@@ -2447,6 +2475,7 @@
                     FCS_CKM.4(d).</Tests>
               </aactivity>
           </f-element>
+          <audit-event/>
         </f-component>
         <f-component cc-id="fpt_tst_ext.1" name="TSF Testing" id="fpt-tst-ext-1" status="optional">
           <consistency-rationale/>
@@ -2492,6 +2521,7 @@
               <Tests>There are no test evaluation activities for this SFR.</Tests>
           </aactivity>
           </f-element>
+          <audit-event/>
         </f-component>
 
         <f-component cc-id="fpt_tud_ext.1" name="Trusted Update" id="fpt-tud-ext-1">
@@ -2560,6 +2590,7 @@
                     </testlist> </Tests>
               </aactivity>
           </f-element>
+          <audit-event/>
         </f-component>
 
       </section>

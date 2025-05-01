@@ -550,10 +550,10 @@
       <rationale>The operational environment objective OE.PASSPHRASE_STRENGTH is realized through A.PASSWORD_STRENGTH.</rationale>
     </objective-refer>
   </assumption>
-  <assumption name="A.PLATFORM_I&amp;A">
+  <assumption name="A.PLATFORM_IA">
     <description>The product does not interfere with or change the normal platform identification and authentication functionality such as the operating system login. It may provide authorization factors to the operating system's login interface, but it will not change or degrade the functionality of the actual interface.</description>
-    <objective-refer ref="OE.PLATFORM_I&amp;A;">
-      <rationale>The operational environment objective OE.PLATFORM_I&amp;A is realized through A.PLATFORM_I&amp;A.</rationale>
+    <objective-refer ref="OE.PLATFORM_IA;">
+      <rationale>The operational environment objective OE.PLATFORM_IA is realized through A.PLATFORM_IA.</rationale>
     </objective-refer>
   </assumption>
   <assumption name="A.STRONG_CRYPTO">
@@ -640,7 +640,7 @@
           18 storage device is connected) is free of malware that could interfere with the correct operation
           19 of the product.</h:p><h:p>Rationale: A platform free of malware [A.PLATFORM_STATE] prevents an attack vector that could potentially interfere with the correct operation of the product.</h:p> </description>
 		  </SOE>
-      <SOE name="OE.PLATFORM_I&amp;A">
+      <SOE name="OE.PLATFORM_IA">
 			  <description><h:p>The Operational Environment will provide individual user identification and authentication mechanisms that operate independently of the authorization factors used by the TOE.</h:p><h:p>Rationale: While the product may provide authorization factors to the Operating system's login interface, it must not change or degrade the functionality of the actual interface. A.PLATFORM_I&A requires that the product not interfere or change the normal platform I&A functionality.</h:p></description>
 		  </SOE>
       <SOE name="OE.PHYSICAL">

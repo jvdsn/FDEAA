@@ -474,7 +474,7 @@
 				<addressed-by>FCS_COP.1(a) (optional)</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
         <addressed-by>FMT_SMF.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
         <addressed-by>FPT_TUD_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <threat id="t-unauth_update" name="T.UNAUTHORIZED_UPDATE">
+        
 
 				
 			</threat>

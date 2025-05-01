@@ -1989,34 +1989,37 @@
                   <h:b>Refinement:</h:b> The TSF shall destroy cryptographic keys in accordance with a specified cryptographic key destruction method <selectables linebreak="yes"><h:b><h:u>
                     <selectable>For volatile memory, the destruction shall be executed by a
                       <selectables linebreak='yes'>
-                        <selectable>single overwrite consisting of <selectables linebreak="yes">
-                          <selectable>a pseudo-random pattern using the TSF’s RBG</selectable>
-                          <selectable>zeroes</selectable>
-                          <selectable>ones</selectable>
-                          <selectable>a new value of a key</selectable>
-                          <selectable><assignable>some value that does not contain any CSP</assignable></selectable>
-                        </selectables>
+                        <selectable>single overwrite consisting of 
+                          <selectables linebreak="yes">
+                            <selectable>a pseudo-random pattern using the TSF’s RBG</selectable>
+                            <selectable>zeroes</selectable>
+                            <selectable>ones</selectable>
+                            <selectable>a new value of a key</selectable>
+                            <selectable><assignable>some value that does not contain any CSP</assignable></selectable>
+                          </selectables>
                         </selectable>
                         <selectable>removal of power to the memory,</selectable>
                         <selectable>destruction of reference to the key directly followed by a request for garbage collection</selectable>
                       </selectables>
                     </selectable>
                     <selectable>For non-volatile storage that consists of the invocation of an interface provided by the underlying platform that
-                      <selectables linebreak='yes'>
-                        <selectable>logically addresses the storage location of the key and performs a <selectables>
-                          <selectable>single</selectable>
-                          <selectable><assignable>ST author defined multi-pass]] overwrite consisting of <selectable linebreak="yes">
-                            <selectble>a pseudo-random pattern using the TSF’s RBG</selectble>
-                            <selectble>zeroes</selectble>
-                            <selectble>ones</selectble>
-                            <selectble>a new value of a key</selectble>
+                        <selectables linebreak='yes'>
+                          <selectable>logically addresses the storage location of the key and performs a <selectables>
+                            <selectable>single</selectable>
+                            <selectable><assignable>ST author defined multi-pass</assignable></selectable></selectables> overwrite consisting of 
+                          <selectables linebreak="yes">
+                            <selectable>a pseudo-random pattern using the TSF’s RBG,</selectable>
+                            <selectable>zeroes,</selectable>
+                            <selectable>ones,</selectable>
+                            <selectable>a new value of a key,</selectable>
                             <selectable><assignable>some value that does not contain any CSP</assignable></selectable>
+                          </selectables>
+                        </selectable>
+                          <selectable>instructs the underlying platform to destroy the abstraction that represents the
+                              16 key</selectable>
+                        
+                          </selectables></selectable>
 
-                          </selectable></assignable></selectable>
-                          <selectable>instructs the underlying platform to destroy the abstraction that represents the key</selectable>
-                        </selectables></selectable>
-                      </selectables>
-                    </selectable>
              
                   </h:u></h:b>
                   </selectables>
@@ -2103,12 +2106,17 @@
                           <selectable>key transport as specified in FCS_COP.1(e),</selectable>
                           <selectable>key encryption as specified in FCS_COP.1(g)</selectable>
                       </selectables></selectable></selectables></h:u>
-                  while maintaining an effective strength of <h:u><selectables><selectable>128 bits<selectable>256 bits</selectable></selectable></selectables></h:u> for symmetric keys and an effective strength of <h:u><selectables>
-                    <selectable>not applicable</selectable>
-                    <selectable>112 bits</selectable>
-                    <selectable>128 bits</selectable>
-                    <selectable>192 bits</selectable>
-                    <selectable>256 bits</selectable>
+                  while maintaining an effective strength of <h:u>
+                    <selectables>
+                      <selectable>128 bits</selectable>
+                      <selectable>256 bits</selectable>
+                    </selectables></h:u> for symmetric keys and an effective strength of <h:u>
+                      <selectables>
+                      <selectable>not applicable</selectable>
+                      <selectable>112 bits</selectable>
+                      <selectable>128 bits</selectable>
+                      <selectable>192 bits</selectable>
+                      <selectable>256 bits</selectable>
                   </selectables></h:u> for asymmetric keys.
                 </title>
                 <note role='application'><h:i></h:i></note>
@@ -2174,8 +2182,8 @@
                         <selectable>DRBG as specified in FCS_RBG_EXT.1</selectable>
                         <selectable>DRBG provided by the host platform</selectable>
                       </selectables>
-                    </selectable>.
-                  </selectables></h:u>
+                    </selectable>
+                  </selectables></h:u>.
                 </title>
                   <aactivity><no-tests/></aactivity>
               </f-element>

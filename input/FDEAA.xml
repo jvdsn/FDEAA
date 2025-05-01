@@ -760,7 +760,7 @@
               used) that are able to be used by the TOE.</Guidance>
               <CustomEA name="KMD">
                 <h:p>The evaluator shall examine the Key Management Description to confirm that the initial authorization factors (submasks) directly contribute to the unwrapping of the BEV.</h:p>
-                <h:p>The evaluator shall verify the KMD describes how a submask is produced from the authorization factor (including any associated standards to which this process might conform), and verification is performed to ensure the length of the submask meets the required size (as specified in this requirement).</h:p>
+                <h:p>The evaluator shall verify the KMD describes how a submask is produced from the authorization factor (including any associated standards to which this process might conform), and verification is performed to ensure the length of the submask meets the required size (as specified in this requirement).</h:p></CustomEA>
               <Tests>
                 <h:p>The password authorization factor is tested in FCS_PCC_EXT.1.</h:p>
                 <h:p>The evaluator shall also perform the following tests:</h:p>
@@ -797,6 +797,7 @@
                         <h:li>Release an invalid authorization factor and verify that access to decrypted plaintext data is denied</h:li>
                         <h:li>Release a valid authorization factor and verify that access to decrypted plaintext data is granted.</h:li>
                       </h:ul>
+                    </Tests>
                 </aactivity>
               </f-element>
               <audit-event/>

@@ -1156,7 +1156,7 @@
                           <selectable>P-384</selectable>
                           <selectable>P-521</selectable></selectables>ISO/IEC 14888-3, Section 6.4, for ECDSA schemes
                         </selectable>
-                    </selectables>.
+                    </selectables></h:u></h:b>.
                   </title>
                   <note role='application'><h:i>The selection should be consistent with the overall strength of the algorithm used for FCS_COP.1(a) and quantum resistant recommendations. For example, SHA-256 should be chosen for 2048-bit RSA or ECC with P-256, SHA-384 should be chosen for 3072-bit RSA, 4096-bit RSA, or ECC with P-384, and SHA-512 should be chosen for ECC with P9 521. The selection of the standard is made based on the algorithms selected.</h:i></note>
                   <aactivity>
@@ -1216,7 +1216,7 @@
                             signatures. The TOE attempts to verify the signatures and returns success or failure.</h:p>
                             <h:p>The evaluator shall use these test vectors to emulate the signature verification test using
                               the corresponding parameters and verify that the TOE detects these errors.</h:p>
-
+                      </Tests>
                   </aactivity>
               </f-element>
               <audit-event/>
@@ -1334,7 +1334,7 @@
                         subkey generation and polynomial R_b are as defined in SP800-38E.) The
                         evaluator shall have the TSF generate CMAC tags for these sets of test data.
                         The resulting MAC tags shall be compared to the result of generating CMAC
-                        tags with the same key using a known good implementation.</h:p>
+                        tags with the same key using a known good implementation.</h:p></Tests>
                 </aactivity>
               </f-element>
               <audit-event/>
@@ -1585,7 +1585,7 @@
                               <h:br/>Output CT[1000]</h:p>
                       <h:p>
                         <h:br/>If KeySize == 128 { Key[i+1] = Key[i] xor CT[1000] }
-                        <h:br/>If KeySize == 256 { Key[i+1] = Key[i] xor ((CT[999] << 128) | CT[1000]) }
+                        <h:br/>If KeySize == 256 { Key[i+1] = Key[i] xor ((CT[999] &lt;&lt; 128) | CT[1000]) }
                       </h:p>
                       <h:p>
                         <h:br/>IV[i+1] = CT[1000]
@@ -1643,7 +1643,7 @@
             <f-component cc-id="fcs_cop.1(g)" name="Cryptographic Operation (Key Encryption)" id="fcs-cop-1-g" status="sel-based">
               <f-element id="fcs_cop-1-1-g">
                 <title>
-                  <h:b>Refinement:</h:b> The TSF shall perform [<h:i>key encryption and decryption</h:i>] in accordance with a specified cryptographic algorithm [<h:i>AES used in <h:b><h:u><selectables><selectable>CBC</selectable><selectable>GCM</selectable></selectables></h:u></h:b> mode</h:i>] and cryptographic key sizes <h:b><h:u><selectables><selectable>128 bits</selectable><selectable>256 bits</selectable></selectables></h:u></h:b> that meet the following: [<h:i>AES as specified in ISO /IEC 18033-3, <h:b><h:u><selectables><selectable>CBC as specified in ISO/IEC 10116</selectable><selectable>GCM as specified in ISO/IEC 19772</selectable></selectables></h:u></h:b>].
+                  <h:b>Refinement:</h:b> The TSF shall perform [<h:i>key encryption and decryption</h:i>] in accordance with a specified cryptographic algorithm [<h:i>AES used in <h:b><h:u><selectables><selectable>CBC</selectable><selectable>GCM</selectable></selectables></h:u></h:b> mode</h:i>] and cryptographic key sizes <h:b><h:u><selectables><selectable>128 bits</selectable><selectable>256 bits</selectable></selectables></h:u></h:b> that meet the following: [<h:i>AES as specified in ISO /IEC 18033-3,</h:i> <h:b><h:u><selectables><selectable>CBC as specified in ISO/IEC 10116</selectable><selectable>GCM as specified in ISO/IEC 19772</selectable></selectables></h:u></h:b>].
                 </title>
                 <note role='application'><h:i>
                   This requirement is used in the body of the ST if the ST author chooses to use AES encryption/decryption for protecting the keys as part of the key chaining approach that is specified in FCS_KYC_EXT.1.
@@ -1822,7 +1822,7 @@
                         <h:p>Entropy input: the length of the entropy input value must equal the seed length.</h:p>
                         <h:p>Nonce: If a nonce is supported (CTR_DRBG with no Derivation Function does not use
                           a nonce), the nonce bit length is one-half the seed length.</h:p>
-                        <h:p>Personalization string: The length of the personalization string must be <= seed length.
+                        <h:p>Personalization string: The length of the personalization string must be &lt;= seed length.
                         If the implementation only supports one personalization string length, then the same
                         length can be used for both values. If more than one string length is support, the
                         evaluator shall use personalization strings of two different lengths. If the
@@ -1859,7 +1859,7 @@
                       <Tests>The evaluator shall perform the following test:<testlist>
                         <test>(conditional): If there is more than one authorization factor, ensure that failure
                           to supply a required authorization factor does not result in access to the encrypted data.</test>
-                      </testlist>
+                      </testlist></Tests>
                   </aactivity>
               </f-element>
               <audit-event/>
@@ -1904,21 +1904,21 @@
                           validation.</h:p>
                         <h:p>The evaluator shall examine the TSS to review a high-level description if multiple
                           submasks are used within the TOE, how the submasks are validated (e.g., each submask
-                          validated before combining, once combined validation takes place).</h:p>
+                          validated before combining, once combined validation takes place).</h:p></TSS>
                       <Guidance>
                         <h:p>(conditional) If the validation functionality is configurable, the evaluator shall examine
                           the operational guidance to ensure it describes how to configure the TOE to ensure the
                           limits regarding validation attempts can be established.</h:p>
                         <h:p>(conditional) If the validation functionality is specified by the ST author, the evaluator
                           shall examine the operational guidance to ensure that it states the values that the TOE
-                          uses for limits regarding validation attempts.</h:p>
+                          uses for limits regarding validation attempts.</h:p></Guidance>
                       <CustomEA name="KMD">
                         <h:p>The evaluator shall examine the KMD to verify that it described the method the TOE
                           employs to limit the number of consecutively failed authorization attempts.</h:p>
                         <h:p>The evaluator shall examine the vendor’s KMD to ensure it describes how validation
                           is performed. The description of the validation process in the KMD provides detailed
                           information how the TOE validates the submasks. The KMD describes how the process
-                          works, such that it does not expose any material that might compromise the submask(s).</h:p>
+                          works, such that it does not expose any material that might compromise the submask(s).</h:p></CustomEA>
                       <Tests>
                         The evaluator shall perform the following tests:
                         <testlist>
@@ -1931,7 +1931,7 @@
                           <test>For each validated authorization factor, ensure that when the user provides an
                             incorrect authorization factor, the TOE prevents the BEV from being forwarded outside
                             the TOE (e.g., to the EE).</test>
-                        </testlist>
+                        </testlist></Tests>
                   </aactivity>
               </f-element>
               <f-element id="fcs-val-ext-1-2">
@@ -2072,15 +2072,17 @@
               </dependencies>
               <f-element id="fcs-kyc-ext-1-1">
                 <title>
-                  The TSF shall maintain a key chain of: <h:u><selectables linebreak="yes">
-                    <selectable>one, using a submask as the BEV;</selectable>
-                    <selectable>intermediate keys originating from one or more submask(s) to the BEV using the following method(s):<selectables linebreak="yes">
-                      <selectable>key derivation as specified in FCS_KDF_EXT.1</selectable>
-                      <selectable>key wrapping as specified in FCS_COP.1(d),</selectable>
-                      <selectable>key combining as specified in FCS_SMC_EXT.1,</selectable>
-                      <selectable>key transport as specified in FCS_COP.1(e),</selectable>
-                      <selectable>key encryption as specified in FCS_COP.1(g)</selectable>
-                  </selectables></h:u>
+                  The TSF shall maintain a key chain of: <h:u>
+                    <selectables linebreak="yes">
+                      <selectable>one, using a submask as the BEV;</selectable>
+                      <selectable>intermediate keys originating from one or more submask(s) to the BEV using the following method(s):
+                        <selectables linebreak="yes">
+                          <selectable>key derivation as specified in FCS_KDF_EXT.1</selectable>
+                          <selectable>key wrapping as specified in FCS_COP.1(d),</selectable>
+                          <selectable>key combining as specified in FCS_SMC_EXT.1,</selectable>
+                          <selectable>key transport as specified in FCS_COP.1(e),</selectable>
+                          <selectable>key encryption as specified in FCS_COP.1(g)</selectable>
+                      </selectables></selectable></selectables></h:u>
                   while maintaining an effective strength of <h:u><selectables><selectable>128 bits<selectable>256 bits</selectable></selectable></selectables></h:u> for symmetric keys and an effective strength of <h:u><selectables>
                     <selectable>not applicable</selectable>
                     <selectable>112 bits</selectable>
@@ -2343,7 +2345,7 @@
                 <selectable>256 bits</selectable>
               </selectables></h:u>
               while maintaining an effective strength of <h:u><selectables><selectable>128 bits</selectable>
-                <selectable>256 bits</selectable></selectables></h:u> for symmetric keys and an effective strength of <h:u><selectables><selectable>not applicable</selectable><selectable>112 bits</selectable><selectable>128 bits</selectable><selectable>192 bits</selectable><selectable>256 bits</selectable></selectables> for asymmetric keys.
+                <selectable>256 bits</selectable></selectables></h:u> for symmetric keys and an effective strength of <h:u><selectables><selectable>not applicable</selectable><selectable>112 bits</selectable><selectable>128 bits</selectable><selectable>192 bits</selectable><selectable>256 bits</selectable></selectables></h:u> for asymmetric keys.
             </title>
             <note role="application"><h:i>Key Chaining is the method of using multiple layers of encryption keys to ultimately secure the protected data encrypted on the drive. The number of intermediate keys will vary – from one (e.g., using the BEV as a key encrypting key (KEK)) to many. This applies to all keys that contribute to the ultimate wrapping or derivation of the DEK; including those in areas of protected storage (e.g. TPM stored keys, comparison values). </h:i></note>
             <aactivity><no-tests/></aactivity>
@@ -2425,7 +2427,7 @@
           <dependencies/>
           <f-element id="fpt-pwr-ext-1-1">
             <title>
-              The TSF shall define the following Compliant power saving states: <selectables><selectable choose-one-of="yes">
+              The TSF shall define the following Compliant power saving states: <selectables choose-one-of="yes">
                 <selectable>S3</selectable>
                 <selectable>S4</selectable>
                 <selectable>G2(S5)</selectable>
@@ -2544,13 +2546,23 @@
           <f-element id="fpt-tud-ext-1-1">
             <title>
               <h:b>Refinement:</h:b> The TSF shall provide [<h:i>authorized users</h:i>] the ability to
-              query the current version of the TOE <h:i><h:b><selectables><selectable>software</selectable><selectable>firmware</selectable></selectables></h:i></h:b> <h:s>software/firmware</h:s>.
+              query the current version of the TOE 
+              <h:i><h:b>
+                <selectables>
+                  <selectable>software</selectable>
+                  <selectable>firmware</selectable>
+                </selectables></h:b></h:i>
+                <h:s> software/firmware</h:s>.
             </title>
               <aactivity><no-tests/></aactivity>
           </f-element>
           <f-element id="fpt-tud-ext-1-2">
             <title>
-              <h:b>Refinement:</h:b> The TSF shall provide [<h:i>authorized users</h:i>] the ability to initiate updates to TOE <h:i><h:b><selectables><selectable>software</selectable><selectable>firmware</selectable></selectables></h:i></h:b> <h:s>software/firmware</h:s>.
+              <h:b>Refinement:</h:b> The TSF shall provide [<h:i>authorized users</h:i>] the ability to initiate updates to TOE <h:i><h:b>
+                <selectables>
+                  <selectable>software</selectable>
+                  <selectable>firmware</selectable>
+                </selectables></h:b></h:i> <h:s>software/firmware</h:s>.
             </title>
               <aactivity><no-tests/></aactivity>
           </f-element>
@@ -2598,7 +2610,7 @@
         </f-component>
 
       </section>
-      <section
+
 	</sec:SFRs>
   <section title="Security Assurance Requirements" id="SARs">
     <h:p>This cPP identifies the Security Assurance Requirements (SARs) to frame the extent to which the evaluator assesses the documentation applicable for the evaluation and performs independent testing. Individual Evaluation Activities to be performed are specified in <h:i>Supporting Document (Mandatory Technical Document) Full Drive Encryption: Authorization Acquisition, February 2019</h:i>.

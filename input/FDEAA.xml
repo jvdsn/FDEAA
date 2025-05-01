@@ -661,7 +661,7 @@
     <h:p>The individual security functional requirements are specified in the sections below. Based on selections made in these SFRs it will also be necessary to include some of the selection-based SFRs in Appendix B<comment>Verify reference</comment>. Additional optional SFRs may also be adopted from those listed in Appendix A<comment>Verify reference</comment> for those functions that are provided by the TOE instead of its Operational Environment.</h:p><h:p> The Evaluation Activities defined in [SD] describe actions that the evaluator will take in order to determine compliance of a particular TOE with the SFRs. The content of these Evaluation Activities will therefore provide more insight into deliverables required from TOE Developers.
   </h:p>
     <section id="ss-audit-table" title="Auditable Events for Mandatory SFRs">
-			<audit-table id="t-audit-mandatory" table="mandatory"/>
+			<!-- <audit-table id="t-audit-mandatory" table="mandatory"/>-->
 		</section>
       <section title="Cryptographic Support (FCS)" id="fcs">
 	  
@@ -740,7 +740,7 @@
             <note role="application"><h:i><h:p>This requirement specifies what authorization factors the TOE accepts from the user. A password entered by the user is one authorization factor that the TOE must be able to condition, as specified in FCS_PCC_EXT.1. Another option is a smartcard authorization factor, with the differentiating feature being how the value is generated – either by the TOE’s RBG or by the platform. An external USB token may also be used, with the submask value generated either by the TOE’s RBG or by the platform.</h:p>
               <h:p>The TOE may accept any number of authorization factors, and these are categorized as “submasks”. The ST author selects the authorization factors they support, and there may be multiple methods for a selection. </h:p>
               <h:p>
-                Use of multiple authorization factors is preferable&semi; if more than one authorization factor is used, the submasks produced must be combined using FCS_SMC_EXT.1 specified in Appendix A.</h:p></h:i>
+                Use of multiple authorization factors is preferable; if more than one authorization factor is used, the submasks produced must be combined using FCS_SMC_EXT.1 specified in Appendix A.</h:p></h:i>
             </note>
             <aactivity >
               <TSS><h:p>The evaluator shall first examine the TSS to ensure that the authorization factors

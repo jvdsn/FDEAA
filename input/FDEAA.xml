@@ -887,7 +887,7 @@
                         that may not strictly conform to the key destruction requirement. If the ST makes use
                         of the open assignment and fills in the type of pattern that is used, the evaluator
                         examines the TSS to ensure it describes how that pattern is obtained and used. The
-                        evaluator shall verify that the pattern does not contain any CSPs.</h:p>
+                        evaluator shall verify that the pattern does not contain any CSPs.</h:p></TSS>
                       
 
                     <Guidance>
@@ -917,7 +917,7 @@
                         recoverable data may remain in damaged areas of the drive.</h:p>
                       <h:p>Finally, it is assumed the keys are not stored using a method that would be inaccessible
                         to TRIM, such as being contained in a file less than 982 bytes which would be
-                        completely contained in the master file table.</h:p>
+                        completely contained in the master file table.</h:p></Guidance>
                     
                     <CustomEA name="KMD"> Refer to the TSS. KMD is combined with the TSS.</CustomEA>
                     <Tests>
@@ -987,7 +987,7 @@
               <audit-event/>
             </f-component>
             <f-component cc-id="fcs_ckm.1(a)" name="Cryptographic Key Generation (Asymmetric Keys)" id="fcs-ckm-1-a" status="sel-based">
-              <f-element id="fcs_ckm-1-1-a"><titel>
+              <f-element id="fcs_ckm-1-1-a"><title>
                 <h:b>Refinement:</h:b> The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a specified cryptographic key generation algorithm: <h:b><h:u><selectables linebreak='yes'>
                   <selectable>RSA schemes using cryptographic key sizes of <selectables>
                     <selectable>2048-bit</selectable>
@@ -999,13 +999,18 @@
                     <selectable>P-384</selectable>
                     <selectable>P-521</selectable>
                   </selectables>that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix  B.4</selectable>
-                  <selectable>FFC schemes using cryptographic key sizes of <selectables>
-                    <selectable>2048-bit</selectable>
-                    <selectable>3072-bit</selectable>
-                    <selectable>4096-bit</selectable>
-                  </selectables>that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.1</selectable>
-                </selectables></h:b></h:u><h:s>] and specified cryptographic key sizes <assignable>cryptographic key sizes</assignable> that meet the following: <assignable>list of standards<assignable>.</h:s>
-                </titel>
+                  <selectable>FFC schemes using cryptographic key sizes of 
+                    <selectables>
+                      <selectable>2048-bit</selectable>
+                      <selectable>3072-bit</selectable>
+                      <selectable>4096-bit</selectable>
+                    </selectables> that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.1</selectable>
+                  </selectables></h:u></h:b> 
+                  <h:s>and specified cryptographic key sizes 
+                    <assignable>cryptographic key sizes</assignable> 
+                    that meet the following: 
+                    <assignable>list of standards</assignable>.</h:s>
+                </title>
                 <note role='application'><h:i>
                   <h:p>Asymmetric keys may be used to “wrap” a key or submask. This SFR should be included by the ST author when making the appropriate selection in FCS_COP.</h:p>
                   <h:p>Asymmetric Keys may also be used for the key chain. Therefore, the ST author should select FCS_CKM.1(a), if Asymmetric key generation is used.</h:p>

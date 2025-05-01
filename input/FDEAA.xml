@@ -1118,9 +1118,9 @@
               <audit-event/>
             </f-component>
             <f-component cc-id="fcs_ckm.1(b)" name="Cryptographic Key Generation (Symmetric Keys)" id="fcs-ckm-1-b" status="sel-based">
-              <f-element id="fcs_ckm-1-1-b"><titel>
+              <f-element id="fcs_ckm-1-1-b"><title>
                 <h:b>Refinement:</h:b> The TSF shall generate symmetric cryptographic keys <h:b>using a Random Bit Generator as specified in FCS_RBG_EXT.1</h:b> and specified cryptographic key sizes <h:b><h:u><selectables><selectable>128 bit</selectable><selectable>256 bit</selectable></selectables></h:u></h:b> that meet the following: [<h:i>no standard</h:i>].
-                </titel>
+                </title>
                 <note role='application'><h:i>
                   Symmetric keys may be used to generate keys along the key chain. Therefore, the ST author should select FCS_CKM.1(b), if Symmetric key generation is used.
                 </h:i></note>
@@ -1141,7 +1141,7 @@
             </f-component>
             <f-component cc-id="fcs_cop.1(a)" name="Cryptographic Operation (Signature Verification)" id="fcs-cop-1-a" status="sel-based">
               <f-element id="fcs_cop-1-1-a">
-                  <titel><h:b>Refinement:</h:b> The TSF shall perform [<h:i>cryptographic signature services
+                  <title><h:b>Refinement:</h:b> The TSF shall perform [<h:i>cryptographic signature services
                     22 (verification)</h:i>] in accordance with a <h:b><h:u><selectables linebreak='yes'>
                       <selectable>RSA Digital Signature Algorithm with a key size (modulus) of <selectables><selectable>2048-bit</selectable><selectable>3072-bit</selectable><selectable>4096-bit</selectable></selectables></selectable>
                       <selectable>Elliptic Curve Digital Signature Algorithm with a key size of 256 bits or greater</selectable>
@@ -1157,7 +1157,7 @@
                           <selectable>P-521</selectable></selectables>ISO/IEC 14888-3, Section 6.4, for ECDSA schemes
                         </selectable>
                     </selectables>.
-                  </titel>
+                  </title>
                   <note role='application'><h:i>The selection should be consistent with the overall strength of the algorithm used for FCS_COP.1(a) and quantum resistant recommendations. For example, SHA-256 should be chosen for 2048-bit RSA or ECC with P-256, SHA-384 should be chosen for 3072-bit RSA, 4096-bit RSA, or ECC with P-384, and SHA-512 should be chosen for ECC with P9 521. The selection of the standard is made based on the algorithms selected.</h:i></note>
                   <aactivity>
                     <h:p>This requirement is used to verify digital signatures attached to updates from the TOE

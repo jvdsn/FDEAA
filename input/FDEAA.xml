@@ -2666,8 +2666,14 @@
     The general model for evaluation of TOEs against STs written to conform to this cPP is as follows: after the ST has been approved for evaluation, the ITSEF will obtain the TOE, supporting environmental IT (if required), and the administrative/user guides for the TOE. The ITSEF is expected to perform actions mandated by the Common Evaluation Methodology (CEM) for the ASE and ALC SARs. The ITSEF also performs the Evaluation Activities contained within the SD, which are intended to be an interpretation of the other CEM assurance requirements as they apply to the specific technology instantiated in the TOE. The Evaluation Activities that are captured in the SD also provide clarification as to what the developer needs to provide to demonstrate the TOE is compliant with the cPP.
   </h:p>
   <h:p>
-    <comment>need to insert table</comment>
+    
     <h:table>
+      <h:head><h:b><ctr ctr-type="Table" pre="Table" id="toe-sec">: TOE Security Assurance Requirements</ctr></h:b></h:head>
+      <h:tr>
+     <h:td><h:b>Functional Class</h:b></h:td>
+     <h:td><h:b>Functional Components</h:b></h:td>
+    
+    </h:tr>
     <h:tr>
      <h:td rowspan="7">Security Target (ASE)</h:td>
      <h:td>Conformance Claims (ASE_CCL.1)</h:td>
@@ -2697,22 +2703,27 @@
       <h:td>Basic Functional Specification (ADV_FSP.1)</h:td>
      </h:tr>
      <h:tr>
-      <h:td></h:td>
-      <h:td></h:td>
+      <h:td rowspan="2">Guidance Documents (AGD)</h:td>
+      <h:td>Operational User Guidance (AGD_OPE.1)</h:td>
      </h:tr>
      <h:tr>
-      <h:td></h:td>
-      <h:td></h:td>
+      <h:td>Preparative Procedures (AGD_PRE.1)</h:td>
      </h:tr>
      <h:tr>
-      <h:td></h:td>
-      <h:td></h:td>
+      <h:td rowspan="2">Life Cycle Support (ALC)</h:td>
+      <h:td>Labeling of the TOE (ALC_CMC.1)</h:td>
      </h:tr>
      <h:tr>
-      <h:td></h:td>
-      <h:td></h:td>
+      <h:td>TOE CM Coverage (ALC_CMS.1)</h:td>
      </h:tr>
-
+     <h:tr>
+      <h:td>Tests (ATE)</h:td>
+      <h:td>Independent Testing – Sample (ATE_IND.1)</h:td>
+     </h:tr>
+     <h:tr>
+      <h:td>Vulnerability Assessment (AVA)</h:td>
+      <h:td>Vulnerability Survey (AVA_VAN.1)</h:td>
+     </h:tr>
    </h:table>
   </h:p>
     <section title="ASE: Security Target" id="ase">

@@ -2290,10 +2290,10 @@
                       authorization factor values to a new one. Then he or she will verify that the TOE
                       denies access to the user’s encrypted data when he or she uses the old or original
                       authorization factor values to gain access.</test>
-                    xxx
+                    
                   </testlist>
                   </h:p>
-                  <h:p>yyy</h:p>
+                  <h:p><testlist><test>xx</test></testlist></h:p>
                   <h:p></h:p>
                   <h:p></h:p>
                   <h:p></h:p>

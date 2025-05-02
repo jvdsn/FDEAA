@@ -1986,8 +1986,8 @@
             <f-component cc-id="fcs_ckm.4(d)" name="Cryptographic Key Destruction (Software TOE, 3rd 27 Party Storage)" id="fcs-ckm-4-d">
               <f-element id="fcs_ckm-4-1-d">
                 <title>
-                  <h:b>Refinement:</h:b> The TSF shall destroy cryptographic keys in accordance with a specified cryptographic key destruction method <selectables linebreak="yes"><h:b><h:u>
-                    <selectable>For volatile memory, the destruction shall be executed by a
+                  <h:b>Refinement:</h:b> The TSF shall destroy cryptographic keys in accordance with a specified cryptographic key destruction method <h:b><h:u><selectables linebreak="yes">
+                    <selectable>For volatile memory, the destruction shall be executed by a 
                       <selectables linebreak='yes'>
                         <selectable>single overwrite consisting of 
                           <selectables linebreak="yes">
@@ -2006,7 +2006,8 @@
                         <selectables linebreak='yes'>
                           <selectable>logically addresses the storage location of the key and performs a <selectables>
                             <selectable>single</selectable>
-                            <selectable><assignable>ST author defined multi-pass</assignable></selectable></selectables> overwrite consisting of 
+                            <selectable><assignable>ST author defined multi-pass</assignable></selectable>
+                          </selectables> overwrite consisting of 
                           <selectables linebreak="yes">
                             <selectable>a pseudo-random pattern using the TSF’s RBG,</selectable>
                             <selectable>zeroes,</selectable>
@@ -2015,14 +2016,11 @@
                             <selectable><assignable>some value that does not contain any CSP</assignable></selectable>
                           </selectables>
                         </selectable>
-                          <selectable>instructs the underlying platform to destroy the abstraction that represents the
-                              16 key</selectable>
+                          <selectable>instructs the underlying platform to destroy the abstraction that represents the key</selectable>
                         
                           </selectables></selectable>
-
-             
-                  </h:u></h:b>
-                  </selectables>
+                  
+                  </selectables></h:u></h:b>
                   that meets the following: [<h:i>no standard</h:i>].
                 </title>
                 <note role='application'><h:i><h:p>This SFR is FCS_CKM.4(d), to align with the numbering in the FDE EE cPP.</h:p>

@@ -804,7 +804,7 @@
             
 
             <f-component cc-id="fcs_ckm.1" iteration="AKG" name="Cryptographic Key Generation (Asymmetric Keys)" id="fcs-ckm-1-akg" status="sel-based">
-              <depends on-sel="fcs-cop-1-KeyWrap"/>
+              <depends on-sel="fcs-cop-1-keywrap"/>
               <f-element id="fcs_ckm-1-1-akg"><title>
                 <h:b>Refinement:</h:b> The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a specified cryptographic key generation algorithm: <h:b><h:u><selectables linebreak='yes'>
                   <selectable>RSA schemes using cryptographic key sizes of <selectables>
@@ -1158,7 +1158,7 @@
               <audit-event/>
             </f-component>
             <f-component cc-id="fcs_cop.1" iteration="KeyWrap" name="Cryptographic Operation (Key Wrapping)" id="fcs-cop-1-KeyWrap" status="sel-based">
-              <f-element id="fcs_cop-1-1-KeyWrap">
+              <f-element id="fcs_cop-1-1-keywrap">
                 <title>
                   <h:b>Refinement:</h:b> The TSF shall perform [<h:i>key wrapping</h:i>] in accordance with a specified cryptographic algorithm [<h:i>AES</h:i>] <h:b>in the following modes <h:u><selectables>
                     <selectable>KW</selectable>

@@ -2276,12 +2276,12 @@
                 <Tests>
                   <comment>May need to revisit this writeup.</comment>
                   <h:p>
-                  If item a) and/or b) is selected in FMT_SMF.1.1: The evaluator shall verify that the
+                  If item a&#41; and/or b&#41; is selected in FMT_SMF.1.1: The evaluator shall verify that the
                   TOE has the functionality to forward a command to the EE to change and
                   cryptographically erase the DEK. The actual testing of the cryptographic erase will take
                   place in the EE.
                   </h:p>
-                  <h:p>If item c) is selected in FMT_SMF.1.1: The evaluator shall initialize the TOE such that
+                  <h:p>If item c&#41; is selected in FMT_SMF.1.1: The evaluator shall initialize the TOE such that
                     it requires the user to input an authorization factor in order to access encrypted data.</h:p>
                   <h:p>
                     <testlist><test>The evaluator shall first provision user authorization factors, and then verify
@@ -2293,14 +2293,33 @@
                     
                   </testlist>
                   </h:p>
-                  <h:p><testlist><test>xx</test></testlist></h:p>
-                  <h:p></h:p>
-                  <h:p></h:p>
-                  <h:p></h:p>
-                  <h:p></h:p>
-                 
-                  <h:p></h:p>
-                  <h:p></h:p>
+                  <h:p>If item d&#41; is selected in FMT_SMF.1.1: The evaluator shall verify that the TOE has the
+                    functionality to initiate TOE firmware/software updates.</h:p>
+                    <h:p>If item e&#41; is selected in FMT_SMF.1.1: If additional management functions are
+                      claimed, the evaluator shall verify that the additional features function as described. </h:p>
+                  <h:p><testlist>
+                    <test>(conditional): If the TOE provides default authorization factors, the
+                      evaluator shall change these factors in the course of taking ownership of the device
+                      as described in the operational guidance. The evaluator shall then confirm that the
+                      (old) authorization factors are no longer valid for data access.</test>
+                    <test>(conditional): If the TOE provides key recovery capability whose effects are
+                      visible at the TOE interface, then the evaluator shall devise a test that ensures that
+                      the key recovery capability has been or can be disabled following the guidance
+                      provided by the vendor.</test>
+                    <test>(conditional): If the TOE provides the ability to configure the power saving
+                      states that are entered by certain events, the evaluator shall devise a test that causes
+                      the TOE to enter a specific power saving state, configure the TSF so that this
+                      activity causes a different state to be entered, repeat the activity, and observe the
+                      new state is entered as configured.</test>
+                    <test>(conditional): If the TOE provides the ability to disable the use of one or
+                      more power saving states, the evaluator shall devise a test that enables all supported
+                      power saving states and demonstrates that the TOE can enter into each of these
+                      states. The evaluator shall then disable the supported power saving states one by
+                      one, repeating the same set of actions that were performed at the start of the test,
+                      and observe each time that when a power saving state is configured to no longer be
+                      used, none of the behavior causes the disabled state to be entered.</test>
+                  </testlist></h:p>
+
                 </Tests>
             </aactivity>
         </f-element>

@@ -1994,7 +1994,6 @@
               <f-element id="fcs-ckm-6-power-1">
                 <!--fcs_ckm-4-1-a -->
                 <title>
-                  <comment> update the id's before releasing </comment>
                   <h:b>Refinement:</h:b> The TSF shall <h:b><h:u><selectables>
                     <selectable>instruct the Operational Environment to clear</selectable>
                     <selectable>erase</selectable>
@@ -2409,7 +2408,7 @@
             <h:p>FCS_KYC_EXT.1 Key Chaining (Initiator),</h:p>
             <h:p>FCS_KYC_EXT.2 Key Chaining (Recipient)</h:p>
             <h:p>FCS_SMC_EXT.1 Submask Combining</h:p>
-            <comment> FCS_KYC_EXT.2 needs to be listed within the ECD but it is not listed in the requirements. </comment>
+            <comment> FCS_KYC_EXT.2 needs to be listed within the ECD but it does not seem to show up properly even thought the invisible status is being used. </comment>
           </dependencies>
           <f-element id="fpt-kyp-ext-1">
             <title>
@@ -2438,7 +2437,7 @@
                 </selectable>
                 
 
-              </selectables></h:u><comment>double check</comment>
+              </selectables></h:u>
             </title>
             <note role='application'><h:i>The plaintext key storage in non-volatile memory is allowed for several reasons. If the keys exist within protected memory that is not user accessible on the TOE or OE, the only methods that allow it to play a security relevant role for protecting the BEV or the DEK are if it is a key split or providing additional layers of wrapping or encryption on keys that have already been protected.</h:i></note>
              
@@ -2669,6 +2668,55 @@
   <h:p>
     <comment>need to insert table</comment>
 
+    <h:head><h:b><ctr ctr-type="Table" pre="Table" id="sec-assurance">: TOE Security Assurance Requirements</ctr></h:b></h:head>			
+    	    	
+<h:table border='1'>
+    <h:tr>
+     <h:td rowspan="7">Security Target (ASE)</h:td>
+     <h:td>Conformance Claims (ASE_CCL.1)</h:td>
+    
+    </h:tr>
+    <h:tr>
+     
+     <h:td>Extended Components Definition (ASE_ECD.1)</td>
+    </h:tr>
+    <h:tr>
+     <h:td>ST Introduction (ASE_INT.1)</h:td>
+    </h:tr>
+    <h:tr>
+      <h:td>Security Objectives for the Operational Environment (ASE_OBJ.1)</h:td>
+     </h:tr>
+     <h:tr>
+      <h:td>Stated Security Requirements (ASE_REQ.1)</h:td>
+     </h:tr>
+     <h:tr>
+      <h:td>Security Problem Definition (ASE_SPD.1)</h:td>
+     </h:tr>
+     <h:tr>
+      <h:td>TOE Summary Specification (ASE_TSS.1)</h:td>
+     </h:tr>
+     <h:tr>
+      <h:td>Development (ADV)</h:td>
+      <h:td>Basic Functional Specification (ADV_FSP.1)</h:td>
+     </h:tr>
+     <h:tr>
+      <h:td></h:td>
+      <h:td></h:td>
+     </h:tr>
+     <h:tr>
+      <h:td></h:td>
+      <h:td></h:td>
+     </h:tr>
+     <h:tr>
+      <h:td></h:td>
+      <h:td></h:td>
+     </h:tr>
+     <h:tr>
+      <h:td></h:td>
+      <h:td></h:td>
+     </h:tr>
+
+   </table>
   </h:p>
     <section title="ASE: Security Target" id="ase">
       <h:p>The ST is evaluated as per ASE activities defined in the CEM. In addition, there may be Evaluation Activities specified within the SD that call for necessary descriptions to be included in the TSS that are specific to the TOE technology type.</h:p>

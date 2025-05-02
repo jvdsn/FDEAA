@@ -552,7 +552,7 @@
   </assumption>
   <assumption name="A.PLATFORM_IA">
     <description>The product does not interfere with or change the normal platform identification and authentication functionality such as the operating system login. It may provide authorization factors to the operating system's login interface, but it will not change or degrade the functionality of the actual interface.</description>
-    <objective-refer ref="OE.PLATFORM_IA;">
+    <objective-refer ref="OE.PLATFORM_IA">
       <rationale>The operational environment objective OE.PLATFORM_IA is realized through A.PLATFORM_IA.</rationale>
     </objective-refer>
   </assumption>
@@ -805,7 +805,7 @@
             
             
 
-            <f-component cc-id="FCS_CKM.1" iteration="AKG" name="Cryptographic Key Generation (Asymmetric Keys)" id="fcs-ckm-1-akg" status="sel-based">
+            <f-component cc-id="fcs_ckm.1" iteration="AKG" name="Cryptographic Key Generation (Asymmetric Keys)" id="fcs-ckm-1-akg" status="sel-based">
               <f-element id="fcs_ckm-1-1-akg"><title>
                 <h:b>Refinement:</h:b> The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a specified cryptographic key generation algorithm: <h:b><h:u><selectables linebreak='yes'>
                   <selectable>RSA schemes using cryptographic key sizes of <selectables>
@@ -1186,7 +1186,7 @@
               </f-element>
               <audit-event/>
             </f-component>
-            <f-component cc-id="fcs_cop.1" Iteration="KeyEncap" name="Cryptographic Operation (Key Transport)" id="fcs-cop-1-keyencap" status="sel-based">
+            <f-component cc-id="fcs_cop.1" iteration="KeyEncap" name="Cryptographic Operation (Key Transport)" id="fcs-cop-1-keyencap" status="sel-based">
               <f-element id="fcs_cop-1-1-keyencap">
                 <title>
                   <h:b>Refinement:</h:b> The TSF shall perform [<h:i>key transport</h:i>] in accordance with a
@@ -1825,7 +1825,7 @@
               </f-element>
               <f-element id="fcs_ckm-4-1-d">
                 <title>
-                  <h:b>Refinement:</h:b> The TSF shall destroy cryptographic keys in accordance with a specified cryptographic key destruction method <h:u><h:b><selectables linerbeak="yes">
+                  <h:b>Refinement:</h:b> The TSF shall destroy cryptographic keys in accordance with a specified cryptographic key destruction method <h:u><h:b><selectables linebeak="yes">
                     <selectable>For volatile memory, the destruction shall be executed by a <selectables linebreak="yes">
                       <selectable>single overwrite consisting of <selectables linebreak="yes">
                         <selectable>a pseudo-random pattern using the TSF’s RBG,</selectable>

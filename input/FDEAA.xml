@@ -626,7 +626,7 @@
           35 other purpose than to store the external token authorization factor.</h:p><h:p>Rationale: Users are properly trained [A.TRAINED_USER] to use external token authorization factors as intended and for no other purpose.</h:p> </description>
 		  </SOE>
       <SOE name="OE.STRONG_ENVIRONMENT_CRYPTO">
-			  <description><h:p>The Operating Environment will provide a cryptographic function capability that is commensurate with the requirements and capabilities of the TOE and Appendix A.</h:p><h:p>Rationale: All cryptography implemented in the Operational Environment and used by
+			  <description><h:p>The Operating Environment will provide a cryptographic function capability that is commensurate with the requirements and capabilities of the TOE and Appendix A<comment>Should we get rid of the referenced Appendix since it does not exist?</comment>.</h:p><h:p>Rationale: All cryptography implemented in the Operational Environment and used by
           7 the product meets the requirements listed in this cPP [A.STRONG_CRYPTO].</h:p> </description>
 		  </SOE>
       <SOE name="OE.TRAINED_USERS">
@@ -656,7 +656,7 @@
 	  
 	<!--   5.1 Security Functional Requirements -->
   <sec:SFRs title="Security Functional Requirements">
-    <h:p>The individual security functional requirements are specified in the sections below. Based on selections made in these SFRs it will also be necessary to include some of the selection-based SFRs in Appendix B<comment>Verify reference</comment>. Additional optional SFRs may also be adopted from those listed in Appendix A<comment>Verify reference</comment> for those functions that are provided by the TOE instead of its Operational Environment.</h:p><h:p> The Evaluation Activities defined in [SD] describe actions that the evaluator will take in order to determine compliance of a particular TOE with the SFRs. The content of these Evaluation Activities will therefore provide more insight into deliverables required from TOE Developers.
+    <h:p>The individual security functional requirements are specified in the sections below. Based on selections made in these SFRs it will also be necessary to include some of the selection-based SFRs in Appendix B<comment>Should we get rid of the referenced Appendix since it does not exist?</comment>. Additional optional SFRs may also be adopted from those listed in Appendix A<comment>Should we get rid of the referenced Appendix since it does not exist?</comment> for those functions that are provided by the TOE instead of its Operational Environment.</h:p><h:p> The Evaluation Activities defined in [SD] describe actions that the evaluator will take in order to determine compliance of a particular TOE with the SFRs. The content of these Evaluation Activities will therefore provide more insight into deliverables required from TOE Developers.
   </h:p>
     <section id="ss-audit-table" title="Auditable Events for Mandatory SFRs">
 			<!-- <audit-table id="t-audit-mandatory" table="mandatory"/>-->
@@ -804,24 +804,25 @@
             
 
             <f-component cc-id="fcs_ckm.1" iteration="AKG" name="Cryptographic Key Generation (Asymmetric Keys)" id="fcs-ckm-1-akg" status="sel-based">
+              <depends on-sel="fcs-cop-1-KeyWrap"/>
               <f-element id="fcs_ckm-1-1-akg"><title>
                 <h:b>Refinement:</h:b> The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a specified cryptographic key generation algorithm: <h:b><h:u><selectables linebreak='yes'>
                   <selectable>RSA schemes using cryptographic key sizes of <selectables>
                     <selectable>2048-bit</selectable>
                     <selectable>3072-bit</selectable>
                     <selectable>4096-bit</selectable>
-                  </selectables>that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.3</selectable>
+                  </selectables>that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.3<comment>Should we get rid of the referenced Appendix since it does not exist?</comment></selectable>
                   <selectable>ECC schemes using “NIST curves” of <selectables>
                     <selectable>P-256</selectable>
                     <selectable>P-384</selectable>
                     <selectable>P-521</selectable>
-                  </selectables>that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix  B.4</selectable>
+                  </selectables>that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix  B.4<comment>Should we get rid of the referenced Appendix since it does not exist?</comment></selectable>
                   <selectable>FFC schemes using cryptographic key sizes of 
                     <selectables>
                       <selectable>2048-bit</selectable>
                       <selectable>3072-bit</selectable>
                       <selectable>4096-bit</selectable>
-                    </selectables> that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.1</selectable>
+                    </selectables> that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.1<comment>Should we get rid of the referenced Appendix since it does not exist?</comment></selectable>
                   </selectables></h:u></h:b> 
                   <h:s>and specified cryptographic key sizes 
                     <assignable>cryptographic key sizes</assignable> 
@@ -832,7 +833,7 @@
                   <h:p>Asymmetric keys may be used to “wrap” a key or submask. This SFR should be included by the ST author when making the appropriate selection in FCS_COP.</h:p>
                   <h:p>Asymmetric Keys may also be used for the key chain. Therefore, the ST author should select FCS_CKM.1/AKG, if Asymmetric key generation is used.</h:p>
                   <h:p>If the TOE acts as a receiver in the RSA key establishment scheme, the TOE does not need to implement RSA key generation.</h:p>
-                  <h:p>For all schemes (RSA schemes, ECC schemes, FFC schemes), an RBG is needed to a) generate seeds for RSA and to b) generate private keys directly for ECC and FFC. So FCS_RBG_EXT.1 is used together with this SFR. A hash algorithm is also required when the key pair generation algorithm is selected based on either Appendix B.3.2 or B.3.5 of FIPS 186-4. So in such case, FCS_COP.1/KeyWrap is used together with this SFR.</h:p>
+                  <h:p>For all schemes (RSA schemes, ECC schemes, FFC schemes), an RBG is needed to a) generate seeds for RSA and to b) generate private keys directly for ECC and FFC. So FCS_RBG_EXT.1 is used together with this SFR. A hash algorithm is also required when the key pair generation algorithm is selected based on either Appendix B.3.2 or B.3.5<comment>Should we get rid of the referenced Appendix since it does not exist?</comment> of FIPS 186-4. So in such case, FCS_COP.1/KeyWrap is used together with this SFR.</h:p>
                   <comment>See old version of the PP- FCS_VAL_EXT.1 </comment>
                 </h:i></note>
                 <aactivity>
@@ -2089,9 +2090,9 @@
               <h:p>The BEV is considered to be equivalent to keying material and therefore additional checksums or similar values are not the BEV, even if they are sent with the BEV. 
                 </h:p>
               <h:p>
-                Once the ST author has selected a method to create the chain (either by deriving keys or unwrapping them or encrypting keys or using RSA Key Transport), they pull the appropriate requirement out of Appendix B. It is allowable for an implementation to use any or all methods.
+                Once the ST author has selected a method to create the chain (either by deriving keys or unwrapping them or encrypting keys or using RSA Key Transport), they pull the appropriate requirement out of Appendix B<comment>Should we get rid of the referenced Appendix since it does not exist?</comment>. It is allowable for an implementation to use any or all methods.
               </h:p>
-            <h:p>For FCS_KYC_EXT.1.2, the validation process is defined in FCS_VAL_EXT.1, Appendix B. If that selection is made by the ST author, then FCS_VAL_EXT.1 is included in the body of the ST.</h:p>
+            <h:p>For FCS_KYC_EXT.1.2, the validation process is defined in FCS_VAL_EXT.1, Appendix B<comment>Should we get rid of the referenced Appendix since it does not exist?</comment>. If that selection is made by the ST author, then FCS_VAL_EXT.1 is included in the body of the ST.</h:p>
           <h:p>The method the TOE uses to chain keys and manage/protect them is described in the Key Management Description; see Appendix E for more information.</h:p></h:i></note>
                   <aactivity>
                       <TSS>The evaluator shall verify the TSS contains a high-level description of the BEV sizes
@@ -2659,7 +2660,7 @@
   <section id="class-ava" title="Class AVA: Vulnerability Assessment">
     For the current generation of this cPP, the iTC is expected to survey open sources to discover what vulnerabilities have been discovered in these types of products and provide that content into the AVA_VAN discussion. In most cases, these vulnerabilities will require sophistication beyond that of a basic attacker. This information will be used in the development of future Protection Profiles.
     <a-component cc-id="ava_van.1" name="Vulnerability Survey (AVA_VAN.1)">
-      Appendix A<comment>Verify reference</comment> in the companion Supporting Document provides a guide to the evaluator in performing a vulnerability analysis.
+      Appendix A<comment>Should we get rid of the referenced Appendix since it does not exist?</comment> in the companion Supporting Document provides a guide to the evaluator in performing a vulnerability analysis.
     </a-component>
   </section>
   </section>

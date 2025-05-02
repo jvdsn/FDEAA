@@ -2667,10 +2667,7 @@
   </h:p>
   <h:p>
     <comment>need to insert table</comment>
-
-    <h:head><h:b><ctr ctr-type="Table" pre="Table" id="sec-assurance">: TOE Security Assurance Requirements</ctr></h:b></h:head>			
-    	    	
-<h:table border='1'>
+    <h:table>
     <h:tr>
      <h:td rowspan="7">Security Target (ASE)</h:td>
      <h:td>Conformance Claims (ASE_CCL.1)</h:td>
@@ -2678,7 +2675,7 @@
     </h:tr>
     <h:tr>
      
-     <h:td>Extended Components Definition (ASE_ECD.1)</td>
+     <h:td>Extended Components Definition (ASE_ECD.1)</h:td>
     </h:tr>
     <h:tr>
      <h:td>ST Introduction (ASE_INT.1)</h:td>
@@ -2716,7 +2713,7 @@
       <h:td></h:td>
      </h:tr>
 
-   </table>
+   </h:table>
   </h:p>
     <section title="ASE: Security Target" id="ase">
       <h:p>The ST is evaluated as per ASE activities defined in the CEM. In addition, there may be Evaluation Activities specified within the SD that call for necessary descriptions to be included in the TSS that are specific to the TOE technology type.</h:p>

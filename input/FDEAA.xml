@@ -936,6 +936,7 @@
               <audit-event/>
             </f-component>
             <f-component cc-id="fcs_ckm.1" iteration="SKG" name="Cryptographic Key Generation (Symmetric Keys)" id="fcs-ckm-1-b" status="sel-based">
+              <depends on-sel="fpt-kyp-ext-2-2-sel-2"/>
               <f-element id="fcs_ckm-1-1-skg"><title>
                 <h:b>Refinement:</h:b> The TSF shall generate symmetric cryptographic keys <h:b>using a Random Bit Generator as specified in FCS_RBG_EXT.1</h:b> and specified cryptographic key sizes <h:b><h:u><selectables><selectable>128 bit</selectable><selectable>256 bit</selectable></selectables></h:u></h:b> that meet the following: [<h:i>no standard</h:i>].
                 </title>
@@ -958,6 +959,7 @@
               <audit-event/>
             </f-component>
             <f-component cc-id="fcs_cop.1" iteration="SigVer" name="Cryptographic Operation (Signature Verification)" id="fcs-cop-1-sigver" status="sel-based">
+              <depends on="fpt-tud-ext-1-3"/>
               <f-element id="fcs_cop-1-1-sigver">
                   <title><h:b>Refinement:</h:b> The TSF shall perform [<h:i>cryptographic signature services
                     22 (verification)</h:i>] in accordance with a <h:b><h:u><selectables linebreak='yes'>
@@ -2333,7 +2335,7 @@
             <title>
               The TSF shall maintain a chain of intermediary keys originating from the BEV to the DEK using the following method(s): <h:u><selectables linebreak="yes">
                 <selectable>asymmetric key generation as specified in FCS_CKM.1/AKG</selectable>
-                <selectable>symmetric key generation as specified in FCS_CKM.1/SKG</selectable>
+                <selectable id="fpt-kyp-ext-2-2-sel-2">symmetric key generation as specified in FCS_CKM.1/SKG</selectable>
                 <selectable>key derivation as specified in FCS_KDF_EXT.1,</selectable>
                 <selectable>key wrapping as specified in FCS_COP.1/KeyWrap,</selectable>
                 <selectable>key transport as specified in FCS_COP.1/KeyEncap,</selectable>
@@ -2567,7 +2569,7 @@
           </f-element>
           <f-element id="fpt-tud-ext-1-3">
             <title>
-              <h:b>Refinement:</h:b> The TSF shall verify updates to the TOE software using a [<h:u>digital signature <h:b>as specified in FCS_COP.1/SigVer</h:b></h:u>] by the manufacturer prior to installing those updates.
+              <h:b>Refinement:</h:b> The TSF shall verify updates to the TOE software using a [<h:i><h:u>digital signature <h:b>as specified in FCS_COP.1/SigVer</h:b></h:u></h:i>] by the manufacturer prior to installing those updates.
             </title>
             <note role='application'><h:i>While this component requires the TOE to implement the update functionality itself, it is acceptable to perform the cryptographic checks using functionality available in the Operational Environment.</h:i></note>
               <aactivity>

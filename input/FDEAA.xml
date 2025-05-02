@@ -400,10 +400,10 @@
 				<description>The cPP addresses the primary threat of unauthorized disclosure of protected data stored on a storage device. If an adversary obtains a lost or stolen storage device (e.g., a storage device contained in a laptop or a portable external storage device), they may attempt to connect a targeted storage device to a host of which they have complete control and have raw access to the storage device (e.g., to specified disk sectors, to specified blocks).
 				</description>
 				<addressed-by>FCS_AFA_EXT.2</addressed-by><rationale>This SFR mitigates this threat by requiring authentication to be re-entered upon return from a compliant power state. </rationale>
-        <addressed-by>FMT_MOF.1</addressed-by><rationale>This SFR mitigates this threat by restricting the ablitiy to modified compliant power states to authorized users.</rationale>
+        <addressed-by>FMT_MOF.1</addressed-by><rationale>This SFR mitigates this threat by restricting the ability to modified compliant power states to authorized users.</rationale>
 				<addressed-by>FMT_SMF.1</addressed-by><rationale>This SFR mitigates this threat by ensuring the TSF provides the functions necessary to manage important aspects of the TOE including requests to change and erase the DEK.</rationale>
         
-        <addressed-by>FMT_SMR.1</addressed-by><rationale>This SFR mitigates this threat by assigning users with the proper acount permissions and privileges. This can be used with FMT_MOF.1 to restrict users to be able to modify certain power states covered in FMT_MOF.1.</rationale>
+        <addressed-by>FMT_SMR.1</addressed-by><rationale>This SFR mitigates this threat by assigning users with the proper account permissions and privileges. This can be used with FMT_MOF.1 to restrict users to be able to modify certain power states covered in FMT_MOF.1.</rationale>
         <addressed-by>FPT_PWR_EXT.1</addressed-by><rationale>This SFR mitigates this threat by defining what power states are compliant for the TOE.</rationale>
         <addressed-by>FPT_PWR_EXT.2</addressed-by><rationale>This SFR mitigates this threat by defining conditions in which the TOE will enter a compliant power state. These requirements ensure the device is secure if lost in a compliant power state.</rationale>
         <addressed-by> FCS_VAL_EXT.1</addressed-by><rationale>This SFR mitigates this threat by verifying the correct authentication and limits attempts to decrypt the data.</rationale>
@@ -422,7 +422,7 @@
         <addressed-by>FCS_KYC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring chaining of keys to produce a BEV.</rationale>
         <addressed-by>FMT_MOF.1</addressed-by><rationale>This SFR mitigates this threat by restricting the ablitiy to modified compliant power states to authorized users.</rationale>
         <addressed-by>FMT_SMF.1</addressed-by><rationale>This SFR mitigates this threat by ensuring the TSF provides the functions necessary to manage important aspects of the TOE including generating</rationale>
-        <addressed-by>FMT_SMR.1</addressed-by><rationale>This SFR mititagates this threat by assigning users with the proper acount permissions and privileges.</rationale>
+        <addressed-by>FMT_SMR.1</addressed-by><rationale>This SFR mitigates this threat by assigning users with the proper acount permissions and privileges.</rationale>
         <addressed-by>FPT_KYP_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring unwrapped key material is not stored in non-volatile memory.</rationale>
         <addressed-by>FPT_PWR_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring the TOE to meet a compliant power saving state that protects and/or destroys key materials.</rationale>
         <addressed-by>FPT_PWR_EXT.2</addressed-by><rationale>This SFR mitigates this threat by requiring the TOE to enter into a safe state based on each condition. </rationale>
@@ -441,11 +441,11 @@
         <addressed-by>FCS_PCC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
         <addressed-by>FCS_RBG_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
         <addressed-by>FCS_SMC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>XXXXX</addressed-by><rationale>This SFR mitigates this threat by requiring</rationale>
+       
 				
 			</threat><threat id="t-auth-guessing" name="T.AUTHORIZATION_GUESSING">
 				<description>
-          Threat agents may exercise host software to repeatedly guess authorization factors, such as passwords and PINs. Successful guessing of the authorization factors may cause the TOE to release BEV or otherwise put it in a state in which it discloses protected data to unauthorized users. <comment>Please see B.1 of the old PP. B.1 states that this threats need to be included in the ST even though it was already part of the mandatory theat list.</comment>
+          Threat agents may exercise host software to repeatedly guess authorization factors, such as passwords and PINs. Successful guessing of the authorization factors may cause the TOE to release BEV or otherwise put it in a state in which it discloses protected data to unauthorized users. <comment>Please see B.1 of the old PP. B.1 states that this threats need to be included in the ST even though it was already part of the mandatory threat list.</comment>
 				</description>
         <addressed-by>FCS_AFA_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring a set of authorization factors that will be difficult to guess.</rationale>
 

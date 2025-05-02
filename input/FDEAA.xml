@@ -936,7 +936,7 @@
               <audit-event/>
             </f-component>
             <f-component cc-id="fcs_ckm.1" iteration="SKG" name="Cryptographic Key Generation (Symmetric Keys)" id="fcs-ckm-1-b" status="sel-based">
-              <depends on-sel="fpt-kyp-ext-2-2-sel-2"/>
+              <depends on-sel="fpt-kyc-ext-2-2-sel-2"/>
               <f-element id="fcs_ckm-1-1-skg"><title>
                 <h:b>Refinement:</h:b> The TSF shall generate symmetric cryptographic keys <h:b>using a Random Bit Generator as specified in FCS_RBG_EXT.1</h:b> and specified cryptographic key sizes <h:b><h:u><selectables><selectable>128 bit</selectable><selectable>256 bit</selectable></selectables></h:u></h:b> that meet the following: [<h:i>no standard</h:i>].
                 </title>
@@ -2274,7 +2274,7 @@
                 </Guidance>
                 <CustomEA name="KMD">There are no KMD evaluation activities for this SFR</CustomEA>
                 <Tests>
-                  <comment>May need to revisit this writeup.</comment>
+                  
                   <h:p>
                   If item a&#41; and/or b&#41; is selected in FMT_SMF.1.1: The evaluator shall verify that the
                   TOE has the functionality to forward a command to the EE to change and
@@ -2365,22 +2365,22 @@
           <fam-behavior>Components in this family address the requirements for updating the TOE firmware and/or software.
             </fam-behavior>
         </ext-comp-def>
-        <f-component cc-id="fpt_kyp_ext.2" name="Key Chaining (Recipient) " id="fpt-kyp-ext-2" status="invisible">
+        <f-component cc-id="fpt_kyc_ext.2" name="Key Chaining (Recipient) " id="fpt-kyc-ext-2" status="invisible">
           <consistency-rationale/>
           <comp-lev><h:p>requires the TSF to be able to accept a BEV that is then chained to a DEK used by the TSF through some method.</h:p>
           <h:p> Note that this cPP does not include FCS_KYC_EXT.2; it is only included here to provide a complete definition of the FCS_KYC_EXT family.</h:p></comp-lev>
           <management/>
           <audit/>
           <dependencies/>
-          <f-element id="fpt-kyp-ext-2-1">
+          <f-element id="fpt-kyc-ext-2-1">
             <title>The TSF shall accept a BEV of at least <h:u><selectables><selectable>128 bits</selectable><selectable>256 bits</selectable></selectables></h:u> from <assignable>one or more external entities</assignable>.</title>
             <aactivity><no-tests/></aactivity>
           </f-element>
-          <f-element id="fpt-kyp-ext-2-2">
+          <f-element id="fpt-kyc-ext-2-2">
             <title>
               The TSF shall maintain a chain of intermediary keys originating from the BEV to the DEK using the following method(s): <h:u><selectables linebreak="yes">
                 <selectable>asymmetric key generation as specified in FCS_CKM.1/AKG</selectable>
-                <selectable id="fpt-kyp-ext-2-2-sel-2">symmetric key generation as specified in FCS_CKM.1/SKG</selectable>
+                <selectable id="fpt-kyc-ext-2-2-sel-2">symmetric key generation as specified in FCS_CKM.1/SKG</selectable>
                 <selectable>key derivation as specified in FCS_KDF_EXT.1,</selectable>
                 <selectable>key wrapping as specified in FCS_COP.1/KeyWrap,</selectable>
                 <selectable>key transport as specified in FCS_COP.1/KeyEncap,</selectable>

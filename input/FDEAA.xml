@@ -1158,8 +1158,9 @@
               <audit-event/>
             </f-component>
             <f-component cc-id="fcs_cop.1" iteration="KeyWrap" name="Cryptographic Operation (Key Wrapping)" id="fcs-cop-1-keywrap" status="sel-based">
+              <depends on-sel="sel-fcs-kyc-ext-1-1-sel-2"/>
               <f-element id="fcs_cop-1-1-keywrap">
-                <depends on-sel="sel-fcs-kyc-ext-1-1-sel-2"/>
+                
                 <title>
                   <h:b>Refinement:</h:b> The TSF shall perform [<h:i>key wrapping</h:i>] in accordance with a specified cryptographic algorithm [<h:i>AES</h:i>] <h:b>in the following modes <h:u><selectables>
                     <selectable>KW</selectable>

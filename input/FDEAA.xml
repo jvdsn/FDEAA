@@ -1040,6 +1040,7 @@
               <audit-event/>
             </f-component>
             <f-component cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hash Algorithm)" id="fcs-cop-1-hash" status="sel-based">
+              <depends on-sel="fcs-val-ext-1-1-hash"/>
               <f-element id="fcs_cop-1-1-hash">
                 <title>
                   <h:b>Refinement:</h:b> The TSF shall perform [<h:i>cryptographic hashing services</h:i>] in accordance with a specified cryptographic algorithm <h:b><h:u><selectables>
@@ -1107,8 +1108,10 @@
               <audit-event/>
             </f-component>
             <f-component cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation (Keyed Hash Algorithm)" id="fcs-cop-1-keyhash" status="sel-based">
+              <depends on-sel='fcs-val-ext-1-1-keyhash'/>
               <f-element id="fcs_cop-1-1-keyhash">
                 <title>
+                  <comment> App notes do not specify which claim is requires this sfr. Made an educated guess to map it too </comment>
                   <h:b>Refinement:</h:b> The TSF shall perform cryptographic [<h:i>keyed-hash message authentication</h:i>] in accordance with a specified cryptographic algorithm <h:b><selectables>
                     <selectable>HMAC-SHA-256</selectable>
                     <selectable>HMAC-SHA-384</selectable>
@@ -1188,6 +1191,7 @@
               <audit-event/>
             </f-component>
             <f-component cc-id="fcs_cop.1" iteration="KeyEncap" name="Cryptographic Operation (Key Transport)" id="fcs-cop-1-keyencap" status="sel-based">
+              <depends on-sel="sel-fcs-kyc-ext-1-1-sel-4"/>
               <f-element id="fcs_cop-1-1-keyencap">
                 <title>
                   <h:b>Refinement:</h:b> The TSF shall perform [<h:i>key transport</h:i>] in accordance with a specified cryptographic algorithm [<h:i>RSA in the following modes [<h:b><h:u><selectables><selectable>KTS-OAEP</selectable><selectable>KTS6 KEM-KWS</selectable></selectables></h:u></h:b></h:i>] and the cryptographic key size <h:b><h:i><selectables>
@@ -1714,7 +1718,6 @@
                 <h:p>FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm),</h:p>
                 <h:p>FCS_COP.1/KeyWrap Cryptographic Operation (Key Wrapping),</h:p>
                 <h:p>FCS_COP.1/SKC Cryptographic Operation (AES Data Encryption/Decryption)</h:p>
-              
               </dependencies>
               <f-element id="fcs-val-ext-1-1">
                 <title>
@@ -1731,8 +1734,8 @@
                       <selectable>BEV</selectable>
                     </selectables>
                     as specified in <selectables>
-                      <selectable>FCS_COP.1/Hash</selectable>
-                      <selectable>FCS_COP.1/KeyedHash</selectable>
+                      <selectable id="fcs-val-ext-1-1-hash">FCS_COP.1/Hash</selectable>
+                      <selectable id="fcs-val-ext-1-1-keyhash">FCS_COP.1/KeyedHash</selectable>
                     </selectables> and compare it to a stored hashed <selectables><selectable>submask</selectable><selectable> intermediate key</selectable><selectable>BEV</selectable></selectables>;</selectable>
                     <selectable id="fcs-val-ext-1-1-decr">decrypt a known value using the <selectables><selectable>submask</selectable><selectable>intermediate key</selectable><selectable>BEV</selectable></selectables> specified in FCS_COP.1/SKC and compare it against a stored known value </selectable>
                   </selectables></h:u>.
@@ -2056,8 +2059,8 @@
                         <selectables linebreak="yes">
                           <selectable id="sel-fcs-kyc-ext-1-1-sel-1">key derivation as specified in FCS_KDF_EXT.1</selectable>
                           <selectable id="sel-fcs-kyc-ext-1-1-sel-2">key wrapping as specified in FCS_COP.1/KeyWrap,</selectable>
-                          <selectable>key combining as specified in FCS_SMC_EXT.1,</selectable>
-                          <selectable>key transport as specified in FCS_COP.1/KeyEncap,</selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-3">key combining as specified in FCS_SMC_EXT.1,</selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-4">key transport as specified in FCS_COP.1/KeyEncap,</selectable>
                           <selectable id="sel-fcs-kyc-ext-1-1-sel-5">key encryption as specified in FCS_COP.1/KeyEnc</selectable>
                       </selectables></selectable></selectables></h:u>
                   while maintaining an effective strength of <h:u>

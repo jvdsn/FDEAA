@@ -1159,6 +1159,7 @@
             </f-component>
             <f-component cc-id="fcs_cop.1" iteration="KeyWrap" name="Cryptographic Operation (Key Wrapping)" id="fcs-cop-1-keywrap" status="sel-based">
               <f-element id="fcs_cop-1-1-keywrap">
+                <depends on-sel="sel-fcs-kyc-ext-1-1-sel-2"/>
                 <title>
                   <h:b>Refinement:</h:b> The TSF shall perform [<h:i>key wrapping</h:i>] in accordance with a specified cryptographic algorithm [<h:i>AES</h:i>] <h:b>in the following modes <h:u><selectables>
                     <selectable>KW</selectable>
@@ -2049,7 +2050,7 @@
                       <selectable>intermediate keys originating from one or more submask(s) to the BEV using the following method(s):
                         <selectables linebreak="yes">
                           <selectable>key derivation as specified in FCS_KDF_EXT.1</selectable>
-                          <selectable>key wrapping as specified in FCS_COP.1/KeyWrap,</selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-2">key wrapping as specified in FCS_COP.1/KeyWrap,</selectable>
                           <selectable>key combining as specified in FCS_SMC_EXT.1,</selectable>
                           <selectable>key transport as specified in FCS_COP.1/KeyEncap,</selectable>
                           <selectable>key encryption as specified in FCS_COP.1/KeyEnc</selectable>

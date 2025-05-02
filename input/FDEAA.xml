@@ -414,22 +414,21 @@
 			<threat id="t-keying_material_compromise" name="T.KEYING_MATERIAL_COMPROMISE">
 				<description>Possession of any of the keys, authorization factors, submasks, and random numbers or any other values that contribute to the creation of keys or authorization factors could allow an unauthorized user to defeat the encryption. The cPP considers possession of key material of equal importance to the data itself. Threat agents may look for key material in unencrypted sectors of the storage device and on other peripherals in the operating environment (OE), e.g. BIOS configuration, SPI flash.
 				</description>
-        <addressed-by>FCS_AFA_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
+        <addressed-by>FCS_AFA_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring the authorization factors to be accepted by the TOE.</rationale>
         <addressed-by>FCS_AFA_EXT.2</addressed-by><rationale>This SFR mitigates this threat by requiring a valid authorization to decrypte the protected material.</rationale>
-        <addressed-by>FCS_CKM.4(a)</addressed-by><rationale>This SFR mitigates this threat by ensuring proper key material destruction.<comment>review</comment></rationale>
-        <addressed-by>FCS_CKM.4(b)</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FCS_CKM_EXT.4(a)</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FCS_CKM_EXT.4(b)</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FCS_KYC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
+        <addressed-by>FCS_CKM.6/Power</addressed-by><rationale>This SFR mitigates this threat by ensuring proper key material destruction.</rationale>
+        <addressed-by>FCS_CKM.6</addressed-by><rationale>This SFR mitigates this threat by ensuring proper key material destruction.</rationale>
+       
+        <addressed-by>FCS_KYC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring chaining of keys to produce a BEV.</rationale>
         <addressed-by>FMT_MOF.1</addressed-by><rationale>This SFR mitigates this threat by retricting the ablitiy to modified compliant power states to authorized users.</rationale>
         <addressed-by>FMT_SMF.1</addressed-by><rationale>This SFR mitigates this threat by ensuring the TSF provides the functions necessary to manage important aspects of the TOE including generating</rationale>
         <addressed-by>FMT_SMR.1</addressed-by><rationale>This SFR mititagates this threat by assigning users with the proper acount permissisions and privildges.</rationale>
-        <addressed-by>FPT_KYP_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FPT_PWR_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FPT_PWR_EXT.2</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FCS_SNI_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FCS_VAL_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FPT_TST_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
+        <addressed-by>FPT_KYP_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring unwrapped key material is not stored in non-volatile memory.</rationale>
+        <addressed-by>FPT_PWR_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring the TOE to meet a compliant power saving state that protects and/or destroys key materials.</rationale>
+        <addressed-by>FPT_PWR_EXT.2</addressed-by><rationale>This SFR mitigates this threat by requiring the TOE to enter into a safe state based on each condition. </rationale>
+        <addressed-by>FCS_SNI_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring addtional obfuscation to the protected key material by introducing IV's and salting.</rationale>
+        <addressed-by>FCS_VAL_EXT.1</addressed-by><rationale>This SFR mitigates this threat by defining defines methods for validation of keying material such as hashing, keyed-hash message authentication, and decrypting a known value with the keying material.<comment>TBD</comment></rationale>
+        <addressed-by>FPT_TST_EXT.1</addressed-by><rationale>This SFR mitigates this threat by verify the cryptographic functionality through the self testing functionality.<comment>TBD</comment></rationale>
         <addressed-by>FCS_CKM.1/AKG</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
         <addressed-by>FCS_CKM.1/SKG</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
         <addressed-by>FCS_COP.1/Hash</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
@@ -448,19 +447,19 @@
 				<description>
           Threat agents may exercise host software to repeatedly guess authorization factors, such as passwords and PINs. Successful guessing of the authorization factors may cause the TOE to release BEV or otherwise put it in a state in which it discloses protected data to unauthorized users. <comment>Please see B.1 of the old PP. B.1 states that this threats need to be included in the ST eventhough it was already part of the mandatory theat list.</comment>
 				</description>
-        <addressed-by>FCS_AFA_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
+        <addressed-by>FCS_AFA_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring a set of authorization factors that will be difficult to guess.</rationale>
 
-        <addressed-by>FCS_PCC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FCS_SMC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FCS_SNI_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FCS_VAL_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
+        <addressed-by>FCS_PCC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring user provides factors are conditioned to increase the cost of repeatedly guessing a user provided value.</rationale>
+        <addressed-by>FCS_SMC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring multifactor authentication options, further increasing the difficulty of guessing a authentication factor.</rationale>
+        <addressed-by>FCS_SNI_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring  proper salts, which will prevent pre-computed attacks.</rationale>
+        <addressed-by>FCS_VAL_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring several options for enforcing validation, such as key sanitization of the DEK or when a configurable number of failed validation attempts is reached within a 24 hour period. This mitigates brute force attacks against authorization factors such as passwords and pins.</rationale>
        
 				
 			</threat>
       <threat id="t-keyspace-exhaust" name="T.KEYSPACE_EXHAUST">
 				<description>Threat agents may perform a cryptographic exhaust against the  key space. Poorly chosen encryption algorithms and/or parameters allow attackers to exhaust the key space through brute force and give them unauthorized access to the data. 
 				</description>
-				<addressed-by>FCS_KYC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
+				<addressed-by>FCS_KYC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by ensuring ensures all keys protecting the BEV are of the same strength.</rationale>
         <addressed-by>FCS_CKM.1/AKG</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
         <addressed-by>FCS_CKM.1/SKG</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
         <addressed-by>FCS_RBG_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
@@ -470,9 +469,9 @@
       <threat id="t-unauth_update" name="T.UNAUTHORIZED_UPDATE">
 				<description>Threat agents may attempt to perform an update of the product which compromises the security features of the TOE. Poorly chosen update protocols, signature generation and verification algorithms, and parameters may allow attackers to install software and/or firmware that bypasses the intended security features and provides them unauthorized access to data.
 				</description>
-				<addressed-by>FCS_COP.1/SigVer (optional)</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FMT_SMF.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FPT_TUD_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
+				<addressed-by>FCS_COP.1/SigVer (optional)</addressed-by><rationale>This SFR mitigates this threat by defining the signature function that is used to verify updates.</rationale>
+        <addressed-by>FMT_SMF.1</addressed-by><rationale>This SFR mitigates this threat by ensuring the TSF provides the functions necessary to manage important behavior of the TOE which includes the initiation of system firmware/software updates.</rationale>
+        <addressed-by>FPT_TUD_EXT.1</addressed-by><rationale>This SFR mitigates this threat by provideing authorized users the ability to query the current version of the TOE software/firmware, initiate updates, and verify updates prior to installation using a manufacturer digital signature.</rationale>
         
 
 				

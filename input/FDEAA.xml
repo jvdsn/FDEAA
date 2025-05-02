@@ -1190,8 +1190,7 @@
             <f-component cc-id="fcs_cop.1" iteration="KeyEncap" name="Cryptographic Operation (Key Transport)" id="fcs-cop-1-keyencap" status="sel-based">
               <f-element id="fcs_cop-1-1-keyencap">
                 <title>
-                  <h:b>Refinement:</h:b> The TSF shall perform [<h:i>key transport</h:i>] in accordance with a
-                  5 specified cryptographic algorithm [<h:i>RSA in the following modes [<h:b><h:u><selectables><selectable>KTS-OAEP</selectable><selectable>KTS6 KEM-KWS</selectable></selectables></h:u></h:b></h:i>] and the cryptographic key size <h:b><h:i><selectables>
+                  <h:b>Refinement:</h:b> The TSF shall perform [<h:i>key transport</h:i>] in accordance with a specified cryptographic algorithm [<h:i>RSA in the following modes [<h:b><h:u><selectables><selectable>KTS-OAEP</selectable><selectable>KTS6 KEM-KWS</selectable></selectables></h:u></h:b></h:i>] and the cryptographic key size <h:b><h:i><selectables>
                     <selectable>2048 bits</selectable>
                     <selectable>3072 bits</selectable>
                   </selectables></h:i></h:b> that meet the following: [<h:i>NIST SP 800-56B, Revision 1</h:i>].
@@ -1297,6 +1296,9 @@
               <audit-event/>
             </f-component>
             <f-component cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation (AES Data Encryption/Decryption)" id="fcs-cop-1-skc" status="sel-based">
+              <depends on-sel="fcs-val-ext-1-1-decr"/>
+              <depends on-sel="sel-fcs-kyc-ext-1-1-sel-5"/>
+
               <f-element id="fcs_cop-1-1-skc">
                 <title>
                   <h:b>Refinement:</h:b> The TSF shall perform [<h:i>data encryption and decryption</h:i>] in accordance with a specified cryptographic algorithm [<h:i>AES used in 
@@ -1477,6 +1479,7 @@
               <audit-event/>
             </f-component>
             <f-component cc-id="fcs_cop.1" iteration="KeyEnc" name="Cryptographic Operation (Key Encryption)" id="fcs-cop-1-kE" status="sel-based">
+             <depends on-sel="sel-fcs-kyc-ext-1-1-sel-5"/>
               <f-element id="fcs_cop-1-1-kE">
                 <title>
                   <h:b>Refinement:</h:b> The TSF shall perform [<h:i>key encryption and decryption</h:i>] in accordance with a specified cryptographic algorithm [<h:i>AES used in <h:b><h:u><selectables><selectable>CBC</selectable><selectable>GCM</selectable></selectables></h:u></h:b> mode</h:i>] and cryptographic key sizes <h:b><h:u><selectables><selectable>128 bits</selectable><selectable>256 bits</selectable></selectables></h:u></h:b> that meet the following: [<h:i>AES as specified in ISO /IEC 18033-3,</h:i> <h:b><h:u><selectables><selectable>CBC as specified in ISO/IEC 10116</selectable><selectable>GCM as specified in ISO/IEC 19772</selectable></selectables></h:u></h:b>].
@@ -1505,6 +1508,7 @@
               <management/>
               <audit/>
               <dependencies>FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)</dependencies>
+              <depends on-sel="sel-fcs-kyc-ext-1-1-sel-1"/>
               <f-element id="fcs-kdf-ext-1">
                 <title>
                   The TSF shall accept <h:u><selectables>
@@ -1598,7 +1602,7 @@
               </dependencies>
               <f-element id="fcs-rbg-ext-1-1">
                 <title>
-                  The TSF shall perform all deterministic random bit generation services in accordance with <h:u><selectables><selectable>ISO/IEC 18031:2011</selectable><selectable>[NIST SP 800-90A]</selectable></selectables></h:u> using <h:u><selectables><selectable>Hash_DRBG (any)</selectable><selectable>HMAC_DRBG (any)</selectable><selectable>CTR_DRBG (AES)</selectable></selectables></h:u>.
+                  The TSF shall perform all deterministic random bit generation services in accordance with <h:u><selectables><selectable>ISO/IEC 18031:2011</selectable><selectable id='fcs-rbg-ext-1-1-nist'>[NIST SP 800-90A]</selectable></selectables></h:u> using <h:u><selectables><selectable>Hash_DRBG (any)</selectable><selectable>HMAC_DRBG (any)</selectable><selectable>CTR_DRBG (AES)</selectable></selectables></h:u>.
                 </title>
                   <aactivity><no-tests/></aactivity>
               </f-element>
@@ -1730,7 +1734,7 @@
                       <selectable>FCS_COP.1/Hash</selectable>
                       <selectable>FCS_COP.1/KeyedHash</selectable>
                     </selectables> and compare it to a stored hashed <selectables><selectable>submask</selectable><selectable> intermediate key</selectable><selectable>BEV</selectable></selectables>;</selectable>
-                    <selectable>decrypt a known value using the <selectables><selectable>submask</selectable><selectable>intermediate key</selectable><selectable>BEV</selectable></selectables> specified in FCS_COP.1/SKC and compare it against a stored known value </selectable>
+                    <selectable id="fcs-val-ext-1-1-decr">decrypt a known value using the <selectables><selectable>submask</selectable><selectable>intermediate key</selectable><selectable>BEV</selectable></selectables> specified in FCS_COP.1/SKC and compare it against a stored known value </selectable>
                   </selectables></h:u>.
                 </title>
                 
@@ -2050,11 +2054,11 @@
                       <selectable>one, using a submask as the BEV;</selectable>
                       <selectable>intermediate keys originating from one or more submask(s) to the BEV using the following method(s):
                         <selectables linebreak="yes">
-                          <selectable>key derivation as specified in FCS_KDF_EXT.1</selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-1">key derivation as specified in FCS_KDF_EXT.1</selectable>
                           <selectable id="sel-fcs-kyc-ext-1-1-sel-2">key wrapping as specified in FCS_COP.1/KeyWrap,</selectable>
                           <selectable>key combining as specified in FCS_SMC_EXT.1,</selectable>
                           <selectable>key transport as specified in FCS_COP.1/KeyEncap,</selectable>
-                          <selectable>key encryption as specified in FCS_COP.1/KeyEnc</selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-5">key encryption as specified in FCS_COP.1/KeyEnc</selectable>
                       </selectables></selectable></selectables></h:u>
                   while maintaining an effective strength of <h:u>
                     <selectables>
@@ -2483,7 +2487,7 @@
             <h:li>Indication that TSF self-test was completed</h:li>
           </h:ul></audit>
           <dependencies/>
-	
+          <depends on-sel="fcs-rbg-ext-1-1-nist"/>
           <f-element id="fpt-tst-ext-1-1">
             <title>The TSF shall run a suite of the following self-tests <h:s><selectables><selectable>during initial start-up (on power on)</selectable><selectable>at the conditions [before the function is first invoked]</selectable></selectables></h:s> to demonstrate the correct operation of the TSF: <assignable> list of self-tests run by the TSF</assignable>.</title>
             <note role='application'><h:i><h:p>The tests regarding cryptographic functions implemented in the TOE can be deferred, as long as the tests are performed before the function is invoked.</h:p>

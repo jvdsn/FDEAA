@@ -1673,7 +1673,7 @@
                       shall be a non-zero integer multiple of 128 bits, if supported. One AAD length shall
                       not be an integer multiple of 128 bits, if supported.</h:p>
                       <h:p><h:b>   Two IV lengths.</h:b> If 96 bit IV is supported, 96 bits shall be one of the two IV lengths
-                      tested.</h:p>
+                      tested.</h:p>   
                       <h:p>The evaluator shall test the encrypt functionality using a set of 10 key, plaintext, AAD,
                         and IV tuples for each combination of parameter lengths above and obtain the
                         ciphertext value and tag that results from AES-GCM authenticated encrypt. Each
@@ -1813,7 +1813,7 @@
                   </selectables> for asymmetric keys.
                 </title>
                 <note role='application'><h:i></h:i></note>
-                  <aactivity><no-tests/></aactivity>
+                  
               </f-element>
               <f-element id="fcs-kyc-ext-1-2">
                 <title>
@@ -1839,9 +1839,8 @@
               </h:p>
             <h:p>For FCS_KYC_EXT.1.2, the validation process is defined in FCS_VAL_EXT.1, Appendix B. If that selection is made by the ST author, then FCS_VAL_EXT.1 is included in the body of the ST.</h:p>
           <h:p>The method the TOE uses to chain keys and manage/protect them is described in the Key Management Description; see Appendix E for more information.</h:p></h:i></note>
-                  <aactivity >
-                      <TSS>The evaluator shall verify the TSS contains a high-level description of the BEV sizes
-                        – that it supports BEV outputs of no fewer 128 bits for products that support only AES128, and no fewer than 256 bits for products that support AES-256.</TSS>
+                  <aactivity ><comment>Auto generated text theat needs to be removed "TODO: You need to explain the lack of EAs for this component!!!!"</comment>
+                      <TSS>The evaluator shall verify the TSS contains a high-level description of the BEV sizes– that it supports BEV outputs of no fewer 128 bits for products that support only AES128, and no fewer than 256 bits for products that support AES-256.</TSS>
                       <Guidance>There are no AGD evaluation activities for this SFR.</Guidance>
                       <CustomEA name="KMD">
                         <h:p>The evaluator shall examine the KMD describes a high level description of the key hierarchy for all authorizations methods selected in FCS_AFA_EXT.1 that are used to protect the BEV. The evaluator shall examine the KMD to ensure it describes the key chain in detail. The description of the key chain shall be reviewed to ensure it maintains a chain of keys using key wrap or key derivation methods that meet FCS_COP.1/KeyWrap and FCS_KDF_EXT.1.</h:p>
@@ -1880,7 +1879,7 @@
                   </selectables> that meet the following: [<h:i>NIST SP 800-132</h:i>].
                 </title>
                 <note role='application'><h:i>The password is represented on the host machine as a sequence of characters whose encoding depends on the TOE and the underlying OS. This sequence must be conditioned into a string of bits that forms the submask to be used as input into the key chain. Conditioning can be performed using one of the identified hash functions or the process described in NIST SP 800-132; the method used is selected by the ST author. If 800-132 conditioning is specified, then the ST author fills in the number of iterations that are performed. 800-132 also requires the use of a pseudo-random function (PRF) consisting of HMAC with an approved hash function. The ST author selects the hash function used which also includes the appropriate requirements for HMAC.</h:i></note>
-                  <aactivity>
+                  <aactivity><comment>Auto generated text theat needs to be removed "TODO: You need to explain the lack of EAs for this component!!!!"</comment>
                     <TSS>The evaluator shall ensure the TSS describes the manner in which the TOE enforces
                       the construction of passwords, including the length, and requirements on characters
                       (number and type). The evaluator also verifies that the TSS provides a description of
@@ -1926,7 +1925,7 @@
                 <title>
                   The TSF shall perform all deterministic random bit generation services in accordance with <selectables><selectable>ISO/IEC 18031:2011</selectable><selectable id='fcs-rbg-ext-1-1-nist'>[NIST SP 800-90A]</selectable></selectables> using <selectables><selectable>Hash_DRBG (any)</selectable><selectable>HMAC_DRBG (any)</selectable><selectable>CTR_DRBG (AES)</selectable></selectables>.
                 </title>
-                  <aactivity><no-tests/></aactivity>
+                  
               </f-element>
               <f-element id="fcs-rbg-ext-1-2">
                 <title>
@@ -2044,7 +2043,7 @@
                     </selectable>
                   </selectables>.
                 </title>
-                  <aactivity><no-tests/></aactivity>
+                  
               </f-element>
               <f-element id="fcs-sni-ext-1-2">
                 <title>The TSF shall use 
@@ -2052,7 +2051,7 @@
                     <selectable>no nonces</selectable>
                     <selectable>unique nonces with a minimum size of [<h:i>64</h:i>] bits</selectable>
                   </selectables>.</title>
-                <aactivity><no-tests/></aactivity>
+               
               </f-element>
               <f-element id="fcs-sni-ext-1-3">
                 <title>The TSF shall 
@@ -2151,7 +2150,7 @@
                 <title>
                   The TSF shall require validation of the [<h:i>BEV</h:i>] prior to [<h:i>forwarding the BEV to the EE</h:i>].
                 </title>
-                <aactivity level="element"><no-tests/></aactivity>
+                
               </f-element>
               <f-element id="fcs-val-ext-1-3">
                 <title>The TSF shall 
@@ -2339,7 +2338,7 @@
           <title>
             The TSF shall maintain the roles [<h:i>authorized user</h:i>].
           </title>
-            <aactivity><no-tests/></aactivity>
+           
         </f-element>
         <f-element id="fmt-smr-1-2">
           <title>
@@ -2383,7 +2382,7 @@
           <dependencies/>
           <f-element id="fpt-kyc-ext-2-1">
             <title>The TSF shall accept a BEV of at least <selectables><selectable>128 bits</selectable><selectable>256 bits</selectable></selectables> from <assignable>one or more external entities</assignable>.</title>
-            <aactivity><no-tests/></aactivity>
+            
           </f-element>
           <f-element id="fpt-kyc-ext-2-2">
             <title>
@@ -2608,7 +2607,7 @@
                 </selectables></h:b></h:i>
                 <h:s> software/firmware</h:s>.
             </title>
-              <aactivity><no-tests/></aactivity>
+              
           </f-element>
           <f-element id="fpt-tud-ext-1-2">
             <title>
@@ -2618,7 +2617,7 @@
                   <selectable>firmware</selectable>
                 </selectables></h:b></h:i> <h:s>software/firmware</h:s>.
             </title>
-              <aactivity><no-tests/></aactivity>
+              
           </f-element>
           <f-element id="fpt-tud-ext-1-3">
             <title>

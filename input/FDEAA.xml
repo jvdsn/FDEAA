@@ -1216,7 +1216,7 @@
               <audit-event/>
             </f-component>
             <f-component cc-id="fcs_ckm.6" iteration="Power" name="Cryptographic Key and Key Material Destruction (Power Management)" id="fcs-ckm-6-power">
-              <f-element id="fcs-ckm-6-power-1">
+              <f-element id="fcs-ckm-6e1">
                 <!--fcs_ckm-4-1-a -->
                 <title>
                   <h:b>Refinement:</h:b> The TSF shall <h:b><selectables>
@@ -1237,7 +1237,7 @@
                   <Tests>There are no test evaluation activities for this SFR.</Tests>
                 </aactivity>
               </f-element>
-              <f-element id="fcs-ckm-6-power-2">
+              <f-element id="fcs-ckm-6e2">
                 <!-- fcs_ckm-ext-4-1-b-->
                 <title>
                   <h:b>Refinement:</h:b> The TSF shall destroy all <h:b>key material, BEV, and authentication factors stored in plaintext</h:b> when <h:b>transitioning to a Compliant power saving state as defined by FPT_PWR_EXT.1</h:b>.

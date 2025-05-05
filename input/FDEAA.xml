@@ -1216,7 +1216,7 @@
               <audit-event/>
             </f-component>
             <f-component cc-id="fcs_ckm.6" iteration="Power" name="Cryptographic Key and Key Material Destruction (Power Management)" id="fcs-ckm-6-power">
-              <f-element id="fcs-ckm-6e1">
+              <f-element id="fcs-ckm-6e1-pwr">
                 <!--fcs_ckm-4-1-a -->
                 <title>
                   <h:b>Refinement:</h:b> The TSF shall <h:b><selectables>
@@ -1225,7 +1225,7 @@
                   </selectables> cryptographic keys and key material from volatile memory when transitioning to a Compliant power saving state as defined by FPT_PWR_EXT.1</h:b> that meets the following: [<h:i>a key destruction method specified in FCS_CKM.6</h:i>].
                 </title>
                 <note role="application"><h:i>In some cases, erasure of keys from volatile memory is only supported by the Operational Environment, in which case the Operational Environment must expose a well26 documented mechanism or interface to invoke the memory clearing operation.</h:i></note>
-                <aactivity>
+                <aactivity level="fcs-ckm-6e1-pwr">
                   <TSS>
                     The evaluator shall verify the TSS provides a high level description of how keys stored in volatile memory are destroyed. The valuator to verify that TSS outlines: <h:ul>
                       <h:li>if and when the TSF or the Operational Environment is used to destroy keys from volatile memory;</h:li>
@@ -1237,13 +1237,13 @@
                   <Tests>There are no test evaluation activities for this SFR.</Tests>
                 </aactivity>
               </f-element>
-              <f-element id="fcs-ckm-6e2">
+              <f-element id="fcs-ckm-6e2-pwr">
                 <!-- fcs_ckm-ext-4-1-b-->
                 <title>
                   <h:b>Refinement:</h:b> The TSF shall destroy all <h:b>key material, BEV, and authentication factors stored in plaintext</h:b> when <h:b>transitioning to a Compliant power saving state as defined by FPT_PWR_EXT.1</h:b>.
                 </title>
                 <note role='application'><h:i>The TOE may end up in a non-Compliant power saving state indistinguishable from a Compliant power state (e.g. as result of sudden and/or unexpected power loss). For those scenarios, the TOE or the Operational Environment guidance documentation must provide procedure(s) to support destruction of key material (e.g. automated reboot with memory clearing in early stages of the system’s power-on sequence).</h:i></note>
-                  <aactivity>
+                  <aactivity level="fcs-ckm-6e2-pwr">
                     <TSS>The evaluator shall verify the TSS provides a description of what keys and key material
                       are destroyed when entering any Compliant power saving state.</TSS>
                       <Guidance>The evaluator shall validate that guidance documentation contains clear warnings and

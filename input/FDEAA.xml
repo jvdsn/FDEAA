@@ -1020,7 +1020,7 @@
                             the evaluator shall generate a set of 10 1024-bit message, public key and signature
                             tuples and modify one of the values (message, public key or signature) in five of the 10
                             tuples. The evaluator shall obtain in response a set of 10 PASS/FAIL values.</h:p>
-                          <h:p><h:i>RSA Signature Algorithm Tests</h:i></h:p>
+                          <h:p><h:u>RSA Signature Algorithm Tests</h:u></h:p>
                           <h:p><h:b>Signature Verification Test</h:b></h:p>
                           <h:p>The evaluator shall perform the Signature Verification test to verify the ability of the
                             TOE to recognize another party’s authentic and unauthentic signatures. The evaluator
@@ -1035,13 +1035,14 @@
               <audit-event/>
             </f-component>
             <f-component cc-id="fcs_ckm.6" name="Cryptographic Key and Key Material Destruction (Destruction Timing)" id="fcs-ckm-6">
-              <f-element id="fcs-ckm-6-1">
+              <f-element id="fcs-ckm-6e1">
                 <!-- fcs_ckm-ext-4-1-a-->
                 <title>
                   The TSF shall destroy all keys and key material when no longer needed.
+                  <comment>elmemnts aren't being divided within the AActivity section.</comment>
                 </title>
                 <note role='application'><h:i><h:p>Keys, including intermediate keys and key material that are no longer needed are destroyed by using an approved method, FCS_CKM.6. Examples of keys are </h:p><h:p>intermediate keys, submasks, and BEV. There may be instances where keys or key material that are contained in persistent storage are no longer needed and require destruction. Based on their implementation, vendors will explain when certain keys are no longer needed. There are multiple situations in which key material is no longer necessary, for example, a wrapped key may need to be destroyed when a password is changed. However, there are instances when keys are allowed to remain in memory, for example, a device identification key. If a PIN was used for a smartcard, the TSF should ensure that the PIN was properly destroyed.</h:p></h:i></note>
-                  <aactivity>
+                  <aactivity level="element">
                       <TSS>The evaluator shall verify the TSS provides a high level description of what it means for keys and key material to be no longer needed and when then should be expected to be destroyed.</TSS>
                       <Guidance>There are no AGD evaluation activities for this SFR.</Guidance>
                       <CustomEA name="KMD">
@@ -1055,7 +1056,7 @@
                       <Tests>There are no test evaluation activities for this SFR.</Tests>
                   </aactivity>
               </f-element>
-              <f-element id="fcs-ckm-6-2">
+              <f-element id="fcs-ckm-6e2">
                 <!-- fcs_ckm-4-1-d-->
                 <title>
                   <h:b>Refinement:</h:b> The TSF shall destroy cryptographic keys in accordance with a specified cryptographic key destruction method <h:b><selectables linebreak="yes">
@@ -1098,7 +1099,7 @@
                   <h:p>Several selections allow assignment of a ‘value that does not contain any CSP’. This means that the TOE uses some other specified data not drawn from an RBG meeting FCS_RBG_EXT requirements, and not being any of the particular values listed as other selection options. The point of the phrase ‘does not contain any CSP’ is to ensure that the overwritten data is carefully selected, and not taken from a general ‘pool’ that might contain current or residual data that itself requires confidentiality protection.</h:p>
                   
                 </h:i></note>
-                <aactivity>
+                <aactivity level="element">
                     <TSS>
                       <h:p>The evaluator examines the TSS to ensure it describes how the keys are managed in
                         volatile memory. This description includes details of how each identified key is
@@ -1219,13 +1220,14 @@
               <f-element id="fcs-ckm-6e1-pwr">
                 <!--fcs_ckm-4-1-a -->
                 <title>
+                  <comment>elmemnts aren't being divided within the AActivity section.</comment>
                   <h:b>Refinement:</h:b> The TSF shall <h:b><selectables>
                     <selectable>instruct the Operational Environment to clear</selectable>
                     <selectable>erase</selectable>
                   </selectables> cryptographic keys and key material from volatile memory when transitioning to a Compliant power saving state as defined by FPT_PWR_EXT.1</h:b> that meets the following: [<h:i>a key destruction method specified in FCS_CKM.6</h:i>].
                 </title>
                 <note role="application"><h:i>In some cases, erasure of keys from volatile memory is only supported by the Operational Environment, in which case the Operational Environment must expose a well26 documented mechanism or interface to invoke the memory clearing operation.</h:i></note>
-                <aactivity level="fcs-ckm-6e1-pwr">
+                <aactivity level="element">
                   <TSS>
                     The evaluator shall verify the TSS provides a high level description of how keys stored in volatile memory are destroyed. The valuator to verify that TSS outlines: <h:ul>
                       <h:li>if and when the TSF or the Operational Environment is used to destroy keys from volatile memory;</h:li>
@@ -1243,7 +1245,7 @@
                   <h:b>Refinement:</h:b> The TSF shall destroy all <h:b>key material, BEV, and authentication factors stored in plaintext</h:b> when <h:b>transitioning to a Compliant power saving state as defined by FPT_PWR_EXT.1</h:b>.
                 </title>
                 <note role='application'><h:i>The TOE may end up in a non-Compliant power saving state indistinguishable from a Compliant power state (e.g. as result of sudden and/or unexpected power loss). For those scenarios, the TOE or the Operational Environment guidance documentation must provide procedure(s) to support destruction of key material (e.g. automated reboot with memory clearing in early stages of the system’s power-on sequence).</h:i></note>
-                  <aactivity level="fcs-ckm-6e2-pwr">
+                  <aactivity level="element">
                     <TSS>The evaluator shall verify the TSS provides a description of what keys and key material
                       are destroyed when entering any Compliant power saving state.</TSS>
                       <Guidance>The evaluator shall validate that guidance documentation contains clear warnings and
@@ -1836,7 +1838,7 @@
               </h:p>
             <h:p>For FCS_KYC_EXT.1.2, the validation process is defined in FCS_VAL_EXT.1, Appendix B. If that selection is made by the ST author, then FCS_VAL_EXT.1 is included in the body of the ST.</h:p>
           <h:p>The method the TOE uses to chain keys and manage/protect them is described in the Key Management Description; see Appendix E for more information.</h:p></h:i></note>
-                  <aactivity>
+                  <aactivity >
                       <TSS>The evaluator shall verify the TSS contains a high-level description of the BEV sizes
                         – that it supports BEV outputs of no fewer 128 bits for products that support only AES128, and no fewer than 256 bits for products that support AES-256.</TSS>
                       <Guidance>There are no AGD evaluation activities for this SFR.</Guidance>
@@ -2108,7 +2110,7 @@
                   </selectables>.
                 </title>
                 
-                  <aactivity>
+                  <aactivity level="element">
                       <TSS>
                         <h:p>The evaluator shall examine the TSS to determine which authorization factors support
                           validation.</h:p>
@@ -2148,7 +2150,7 @@
                 <title>
                   The TSF shall require validation of the [<h:i>BEV</h:i>] prior to [<h:i>forwarding the BEV to the EE</h:i>].
                 </title>
-                <aactivity><no-tests/></aactivity>
+                <aactivity level="element"><no-tests/></aactivity>
               </f-element>
               <f-element id="fcs-val-ext-1-3">
                 <title>The TSF shall 

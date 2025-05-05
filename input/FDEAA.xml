@@ -1839,7 +1839,7 @@
               </h:p>
             <h:p>For FCS_KYC_EXT.1.2, the validation process is defined in FCS_VAL_EXT.1, Appendix B. If that selection is made by the ST author, then FCS_VAL_EXT.1 is included in the body of the ST.</h:p>
           <h:p>The method the TOE uses to chain keys and manage/protect them is described in the Key Management Description; see Appendix E for more information.</h:p></h:i></note>
-                  <aactivity ><comment>Auto generated text theat needs to be removed "TODO: You need to explain the lack of EAs for this component!!!!"</comment>
+                  <aactivity >
                       <TSS>The evaluator shall verify the TSS contains a high-level description of the BEV sizes– that it supports BEV outputs of no fewer 128 bits for products that support only AES128, and no fewer than 256 bits for products that support AES-256.</TSS>
                       <Guidance>There are no AGD evaluation activities for this SFR.</Guidance>
                       <CustomEA name="KMD">
@@ -1879,7 +1879,7 @@
                   </selectables> that meet the following: [<h:i>NIST SP 800-132</h:i>].
                 </title>
                 <note role='application'><h:i>The password is represented on the host machine as a sequence of characters whose encoding depends on the TOE and the underlying OS. This sequence must be conditioned into a string of bits that forms the submask to be used as input into the key chain. Conditioning can be performed using one of the identified hash functions or the process described in NIST SP 800-132; the method used is selected by the ST author. If 800-132 conditioning is specified, then the ST author fills in the number of iterations that are performed. 800-132 also requires the use of a pseudo-random function (PRF) consisting of HMAC with an approved hash function. The ST author selects the hash function used which also includes the appropriate requirements for HMAC.</h:i></note>
-                  <aactivity><comment>Auto generated text theat needs to be removed "TODO: You need to explain the lack of EAs for this component!!!!"</comment>
+                  <aactivity>
                     <TSS>The evaluator shall ensure the TSS describes the manner in which the TOE enforces
                       the construction of passwords, including the length, and requirements on characters
                       (number and type). The evaluator also verifies that the TSS provides a description of
@@ -2215,7 +2215,7 @@
         <f-element id="fmt-smf-1">
           <title>
           <h:b>Refinement:</h:b> The TSF shall be capable of performing the following management functions: [
-            <h:i><h:lo type='a'>
+            <h:i><h:ol type='a'>
               <h:li>forwarding requests to change the DEK to the EE</h:li>
               <h:li>forwarding requests to cryptographically erase the DEK to the EE</h:li>
               <h:li>allowing authorized users to change authorization values or set of authorization values used within the supported authorization method,</h:li>
@@ -2233,7 +2233,7 @@
                 <selectable>configure the corrective behavior to issue in the event of an excessive number of failed validation attempts</selectable>
                 <selectable><assignable>other management functions provided by the TSF</assignable></selectable>
               </selectables></h:b></h:li>
-            </h:lo></h:i> 
+            </h:ol></h:i> 
             
           </title>
           <note role='application'><h:i>

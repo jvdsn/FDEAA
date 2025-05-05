@@ -1639,24 +1639,24 @@
                         <h:br/>IV[0] = IV
                         <h:br/>PT[0] = PT</h:p>
                       <h:p>for i = 1 to 100 {
-                        <h:br/>Output Key[i], IV[i], PT[0]
-                        <h:br/>for j = 1 to 1000 {
-                          <h:br/>if j == 1 {
-                            <h:br/>CT[1] = AES-CBC-Encrypt(Key[i], IV[i], PT[1])
-                            <h:br/>PT[2] = IV[i]
-                            <h:br/>} else {
-                              <h:br/>CT[j] = AES-CBC-Encrypt(Key[i], PT[j])
-                              <h:br/>PT[j+1] = CT[j-1]
+                        <h:br/>&nbsp;&nbsp;Output Key[i], IV[i], PT[0]
+                        <h:br/>&nbsp;&nbsp;for j = 1 to 1000 {
+                          <h:br/>&nbsp;&nbsp;if j == 1 {
+                            <h:br/>&nbsp;&nbsp;&nbsp;&nbsp;CT[1] = AES-CBC-Encrypt(Key[i], IV[i], PT[1])
+                            <h:br/>&nbsp;&nbsp;&nbsp;&nbsp;PT[2] = IV[i]
+                            <h:br/>&nbsp;&nbsp;} else {
+                              <h:br/>&nbsp;&nbsp;&nbsp;&nbsp;CT[j] = AES-CBC-Encrypt(Key[i], PT[j])
+                              <h:br/>&nbsp;&nbsp;&nbsp;&nbsp;PT[j+1] = CT[j-1]
+                              <h:br/>&nbsp;&nbsp;}
                               <h:br/>}
-                              <h:br/>}
-                              <h:br/>Output CT[1000]</h:p>
+                              <h:br/>&nbsp;&nbsp;Output CT[1000]</h:p>
                       <h:p>
-                        <h:br/>If KeySize == 128 { Key[i+1] = Key[i] xor CT[1000] }
-                        <h:br/>If KeySize == 256 { Key[i+1] = Key[i] xor ((CT[999] &lt;&lt; 128) | CT[1000]) }
+                        <h:br/>&nbsp;&nbsp;If KeySize == 128 { Key[i+1] = Key[i] xor CT[1000] }
+                        <h:br/>&nbsp;&nbsp;If KeySize == 256 { Key[i+1] = Key[i] xor ((CT[999] &lt;&lt; 128) | CT[1000]) }
                       </h:p>
                       <h:p>
-                        <h:br/>IV[i+1] = CT[1000]
-                        <h:br/>PT[0] = CT[999]
+                        <h:br/>&nbsp;&nbsp;IV[i+1] = CT[1000]
+                        <h:br/>&nbsp;&nbsp;PT[0] = CT[999]
                          }</h:p>
                       <h:p>The ciphertext computed in the 1000th iteration (CT[1000]) is the result for each of the
                         100 3-tuples for each selected key size. This result shall be compared to the result of

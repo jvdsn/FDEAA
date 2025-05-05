@@ -683,12 +683,7 @@
           <fam-behavior>Components in this family address the ability for the TOE to accept a variety of authorization factors. 
             </fam-behavior>
         </ext-comp-def>
-        <ext-comp-def title="Cryptographic Key Management" fam-id="FCS_CKM_EXT">
-          <fam-behavior><h:p>
-            Cryptographic keys must be managed throughout their life cycle. This family is intended to support that lifecycle and consequently defines requirements for the following activities: cryptographic key generation, cryptographic key distribution, cryptographic key access and cryptographic key destruction. This family should be included whenever there are functional requirements for the management of cryptographic keys.</h:p>
-            <h:p>The creation of this family is necessary because CC Part 2 provides the ability to specify the method of key destruction but does not define SFRs for the timing of key destruction or the ability to implement multiple key destruction methods.</h:p>
-            </fam-behavior>
-        </ext-comp-def>
+        
         
         <ext-comp-def title="Cryptographic Key Derivation" fam-id="FCS_KDF_EXT">
           <fam-behavior>This family specifies the means by which an intermediate key is derived from a specified set of submasks.

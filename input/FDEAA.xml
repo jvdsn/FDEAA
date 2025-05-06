@@ -371,7 +371,7 @@
 		
 		<!-- Can be in a configuration with these PPs and Modules -->
 		<cc-pp-config-with>             
-	        <PP-cc-ref/>
+	        
           <Mod-cc-ref>PP-Module for File Encryption Enterprise Management Version 1.0</Mod-cc-ref>
 			
 		</cc-pp-config-with>
@@ -408,7 +408,7 @@
         <addressed-by>FPT_PWR_EXT.1</addressed-by><rationale>This SFR mitigates this threat by defining what power states are compliant for the TOE.</rationale>
         <addressed-by>FPT_PWR_EXT.2</addressed-by><rationale>This SFR mitigates this threat by defining conditions in which the TOE will enter a compliant power state. These requirements ensure the device is secure if lost in a compliant power state.</rationale>
         
-        <addressed-by>FPT_TST_EXT.1</addressed-by><rationale>This SFR mitigates this threat by testing the behavior of the cryptographic functions through the use of the self-tests.</rationale>
+        <addressed-by>FPT_TST.1/AA</addressed-by><rationale>This SFR mitigates this threat by testing the behavior of the cryptographic functions through the use of the self-tests.</rationale>
 
 
 			</threat>
@@ -423,7 +423,7 @@
        <addressed-by>FCS_KYC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring chaining of keys to produce a BEV.</rationale>
        <addressed-by>FCS_PCC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD- Is this a system password or a user password?</comment></rationale>
        
-       <addressed-by>FCS_RBG_EXT.1</addressed-by><rationale>This SFR mitigates this threat by randomizing the generated keys inorder to reduce the likelihood of guessing the future keys.</rationale>
+       <addressed-by>FCS_RBG.1</addressed-by><rationale>This SFR mitigates this threat by randomizing the generated keys inorder to reduce the likelihood of guessing the future keys.</rationale>
        <addressed-by>FCS_SMC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by obscuring the submasks via a XOR or hashing operation..</rationale>
        <addressed-by>FCS_SNI_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring additional obfuscation to the protected key material by introducing IV's and salting.</rationale>
         
@@ -438,7 +438,7 @@
         <addressed-by>FPT_PWR_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring the TOE to meet a compliant power saving state that protects and/or destroys key materials.</rationale>
         <addressed-by>FPT_PWR_EXT.2</addressed-by><rationale>This SFR mitigates this threat by requiring the TOE to enter into a safe state based on each condition. </rationale>
        
-        <addressed-by>FPT_TST_EXT.1</addressed-by><rationale>This SFR mitigates this threat by verify the cryptographic functionality through the self testing functionality.<comment>TBD</comment></rationale>
+        <addressed-by>FPT_TST.1/AA</addressed-by><rationale>This SFR mitigates this threat by verify the cryptographic functionality through the self testing functionality.<comment>TBD</comment></rationale>
 
         <addressed-by>FCS_CKM.1/AKG</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
         <addressed-by>FCS_CKM.1/SKG</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
@@ -474,7 +474,7 @@
 				<description>Threat agents may perform a cryptographic exhaust against the  key space. Poorly chosen encryption algorithms and/or parameters allow attackers to exhaust the key space through brute force and give them unauthorized access to the data. 
 				</description>
 				<addressed-by>FCS_KYC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by ensuring ensures all keys protecting the BEV are of the same strength.</rationale>
-        <addressed-by>FCS_RBG_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
+        <addressed-by>FCS_RBG.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
         <addressed-by>FCS_CKM.1/AKG</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
         <addressed-by>FCS_CKM.1/SKG</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
         
@@ -695,9 +695,7 @@
         <ext-comp-def title="Cryptographic Password Construction and Conditioning" fam-id="FCS_PCC_EXT">
           <fam-behavior>This family ensures that passwords used to produce the BEV are robust (in terms of their composition) and are conditioned to provide an appropriate-length bit string.</fam-behavior>
         </ext-comp-def>
-        <ext-comp-def title="Random Bit Generation" fam-id="FCS_RBG_EXT">
-          <fam-behavior>Components in this family address the requirements for random bit/number generation. This is a new family defined for the FCS class.</fam-behavior>
-        </ext-comp-def>
+        
         <ext-comp-def title="Submask Combining" fam-id="FCS_SMC_EXT">
           <fam-behavior>This family specifies the means by which submasks are combined, if the TOE supports more than one submask being used to derive or protect the BEV.</fam-behavior>
         </ext-comp-def>
@@ -727,7 +725,7 @@
                   <selectables><selectable>2048 bits</selectable><selectable>3072 bits</selectable><selectable>4096 bits</selectable></selectables> with user presence proved by presentation of the smartcard and <selectables><selectable>none</selectable><selectable>an OE defined PIN</selectable><selectable>a configurable PIN</selectable></selectables>
                   </selectable>
           
-                <selectable>an external USB token factor that is at least the same security strength as the BEV, and is providing a submask generated by the TOE, using the RBG as specified in FCS_RBG_EXT.1,</selectable>
+                <selectable>an external USB token factor that is at least the same security strength as the BEV, and is providing a submask generated by the TOE, using the RBG as specified in FCS_RBG.1,</selectable>
                 <selectable>an external USB token factor that is at least the same security strength as the BEV, and is providing a submask generated by the Host Platform</selectable>
               </selectables>
         
@@ -830,7 +828,7 @@
                   <h:p>Asymmetric keys may be used to “wrap” a key or submask. This SFR should be included by the ST author when making the appropriate selection in FCS_COP.</h:p>
                   <h:p>Asymmetric Keys may also be used for the key chain. Therefore, the ST author should select FCS_CKM.1/AKG, if Asymmetric key generation is used.</h:p>
                   <h:p>If the TOE acts as a receiver in the RSA key establishment scheme, the TOE does not need to implement RSA key generation.</h:p>
-                  <h:p>For all schemes (RSA schemes, ECC schemes, FFC schemes), an RBG is needed to a) generate seeds for RSA and to b) generate private keys directly for ECC and FFC. So FCS_RBG_EXT.1 is used together with this SFR. A hash algorithm is also required when the key pair generation algorithm is selected based on either Appendix B.3.2 or B.3.5<comment>Should we get rid of the referenced Appendix since it does not exist?</comment> of FIPS 186-4. So in such case, FCS_COP.1/KeyWrap is used together with this SFR.</h:p>
+                  <h:p>For all schemes (RSA schemes, ECC schemes, FFC schemes), an RBG is needed to a) generate seeds for RSA and to b) generate private keys directly for ECC and FFC. So FCS_RBG.1 is used together with this SFR. A hash algorithm is also required when the key pair generation algorithm is selected based on either Appendix B.3.2 or B.3.5<comment>Should we get rid of the referenced Appendix since it does not exist?</comment> of FIPS 186-4. So in such case, FCS_COP.1/KeyWrap is used together with this SFR.</h:p>
                   <comment>See old version of the PP- FCS_VAL_EXT.1 </comment>
                 </h:i></note>
                 <aactivity>
@@ -935,7 +933,7 @@
             <f-component cc-id="fcs_ckm.1" iteration="SKG" name="Cryptographic Key Generation (Symmetric Keys)" id="fcs-ckm-1-b" status="sel-based">
               <depends on-sel="fpt-kyc-ext-2-2-sel-2"/>
               <f-element id="fcs_ckm-1-1-skg"><title>
-                <h:b>Refinement:</h:b> The TSF shall generate symmetric cryptographic keys <h:b>using a Random Bit Generator as specified in FCS_RBG_EXT.1</h:b> and specified cryptographic key sizes <h:b><selectables><selectable>128 bit</selectable><selectable>256 bit</selectable></selectables></h:b> that meet the following: [<h:i>no standard</h:i>].
+                <h:b>Refinement:</h:b> The TSF shall generate symmetric cryptographic keys <h:b>using a Random Bit Generator as specified in FCS_RBG.1</h:b> and specified cryptographic key sizes <h:b><selectables><selectable>128 bit</selectable><selectable>256 bit</selectable></selectables></h:b> that meet the following: [<h:i>no standard</h:i>].
                 </title>
                 <note role='application'><h:i>
                   Symmetric keys may be used to generate keys along the key chain. Therefore, the ST author should select FCS_CKM.1/SKG, if Symmetric key generation is used.
@@ -1034,12 +1032,12 @@
               </f-element>
               <audit-event/>
             </f-component>
-            <f-component cc-id="fcs_ckm.6" name="Cryptographic Key and Key Material Destruction (Destruction Timing)" id="fcs-ckm-6">
+            <f-component cc-id="fcs_ckm.6" name="Cryptographic Key and Key Material Destruction (Destruction Timing/Method)" id="fcs-ckm-6">
               <f-element id="fcs-ckm-6e1">
                 <!-- fcs_ckm-ext-4-1-a-->
                 <title>
                   The TSF shall destroy all keys and key material when no longer needed.
-                  <comment>elmemnts aren't being divided within the AActivity section.</comment>
+            
                 </title>
                 <note role='application'><h:i><h:p>Keys, including intermediate keys and key material that are no longer needed are destroyed by using an approved method, FCS_CKM.6. Examples of keys are </h:p><h:p>intermediate keys, submasks, and BEV. There may be instances where keys or key material that are contained in persistent storage are no longer needed and require destruction. Based on their implementation, vendors will explain when certain keys are no longer needed. There are multiple situations in which key material is no longer necessary, for example, a wrapped key may need to be destroyed when a password is changed. However, there are instances when keys are allowed to remain in memory, for example, a device identification key. If a PIN was used for a smartcard, the TSF should ensure that the PIN was properly destroyed.</h:p></h:i></note>
                   <aactivity level="element">
@@ -1096,7 +1094,7 @@
                 <note role="application"><h:i>
                   <h:p>This SFR is FCS_CKM.6, to align with the numbering in the FDE EE cPP.</h:p>
                   <h:p>The interface referenced in the requirement could take different forms, the most likely of which is an application programming interface to an OS kernel. There may be various levels of abstraction visible. For instance, in a given implementation the application may have access to the file system details and may be able to logically address specific memory locations. In another implementation the application may simply have a handle to a resource and can only ask the platform to delete the resource. The level of detail to which the TOE has access will be reflected in the TSS section of the ST.</h:p>
-                  <h:p>Several selections allow assignment of a ‘value that does not contain any CSP’. This means that the TOE uses some other specified data not drawn from an RBG meeting FCS_RBG_EXT requirements, and not being any of the particular values listed as other selection options. The point of the phrase ‘does not contain any CSP’ is to ensure that the overwritten data is carefully selected, and not taken from a general ‘pool’ that might contain current or residual data that itself requires confidentiality protection.</h:p>
+                  <h:p>Several selections allow assignment of a ‘value that does not contain any CSP’. This means that the TOE uses some other specified data not drawn from an RBG meeting FCS_RBG.1 requirements, and not being any of the particular values listed as other selection options. The point of the phrase ‘does not contain any CSP’ is to ensure that the overwritten data is carefully selected, and not taken from a general ‘pool’ that might contain current or residual data that itself requires confidentiality protection.</h:p>
                   
                 </h:i></note>
                 <aactivity level="element">
@@ -1742,7 +1740,7 @@
               <f-element id="fcs-kdf-ext-1">
                 <title>
                   The TSF shall accept <selectables>
-                    <selectable>a RNG generated submask as specified in FCS_RBG_EXT.1</selectable>
+                    <selectable>a RNG generated submask as specified in FCS_RBG.1</selectable>
                     <selectable>a conditioned password submask</selectable>
                     <selectable>imported submask</selectable>
                   </selectables> to derive an intermediate key, as defined in <selectables linebreak='yes'>
@@ -1910,20 +1908,11 @@
               </f-element>
               <audit-event/>
             </f-component>
-            <f-component cc-id="fcs_rbg_ext.1" name="Cryptographic Operation (Random Bit Generation)" id="fcs-rbg-ext-1">
-              <consistency-rationale/>
-              <comp-lev>requires random bit generation to be performed in accordance with selected standards and seeded by an entropy source.</comp-lev>
-              <management/>
-              <audit>The following actions should be auditable if FAU_GEN Security audit data generation is included in the PP/ST:
-                <h:ul><h:li>Failure of the randomization process</h:li></h:ul>
-              </audit>
-              <dependencies>
-                <h:p>FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm),</h:p>
-                <h:p>FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)</h:p>
-              </dependencies>
-              <f-element id="fcs-rbg-ext-1-1">
+            <f-component cc-id="fcs_rbg.1" name="Cryptographic Operation (Random Bit Generation)" id="fcs-rbg-1">
+              
+              <f-element id="fcs-rbg-1-1">
                 <title>
-                  The TSF shall perform all deterministic random bit generation services in accordance with <selectables><selectable>ISO/IEC 18031:2011</selectable><selectable id='fcs-rbg-ext-1-1-nist'>[NIST SP 800-90A]</selectable></selectables> using <selectables><selectable>Hash_DRBG (any)</selectable><selectable>HMAC_DRBG (any)</selectable><selectable>CTR_DRBG (AES)</selectable></selectables>.
+                  The TSF shall perform all deterministic random bit generation services in accordance with <selectables><selectable>ISO/IEC 18031:2011</selectable><selectable id='fcs-rbg-1-1-nist'>[NIST SP 800-90A]</selectable></selectables> using <selectables><selectable>Hash_DRBG (any)</selectable><selectable>HMAC_DRBG (any)</selectable><selectable>CTR_DRBG (AES)</selectable></selectables>.
                 </title>
                   
               </f-element>
@@ -1936,9 +1925,9 @@
                 </title>
                 <note role="application"><h:i>
                   <h:p>ISO/IEC 18031:2011 contains different methods of generating random numbers; each of these, in turn, depends on underlying cryptographic primitives (hash functions/ciphers). The ST author will select the function used and include the specific underlying cryptographic primitives used in the requirement. While any of the identified hash functions (SHA-256, SHA-384, SHA-512) are allowed for Hash_DRBG or HMAC_DRBG, only AES-based implementations for CTR_DRBG are allowed. Table C.2 in ISO/IEC 18031:2011 provides an identification of Security strengths, Entropy and Seed length requirements for the AES-128 and 256 Block Cipher.</h:p>
-                  <h:p>The CTR_DRBG in ISO/IEC 18031:2011 requires using derivation function, whereas NIST SP 800-90A does not. Either model is acceptable. In the first selection in FCS_RBG_EXT.1.1, the ST author choses the standard to which the TSF is compliant.</h:p>
-                  <h:p>In the first selection in FCS_RBG_EXT.1.2 the ST author fills in how many entropy sources are used for each type of entropy source they employ. It should be noted that a combination of hardware and software based noise sources is acceptable.</h:p>
-                  <h:p>It should be noted that the entropy source is considered to be a part of the DRBG and if the DRBG is included in the TOE, the developer is required to provide the entropy description outlined in Appendix D. The documentation *and tests* required in the Evaluation Activity for this element necessarily cover each source indicated in FCS_RBG_EXT.1.2. Individual contributions to the entropy pool may be combined to provide the minimum amount of entropy as long as the Entropy Documentation demonstrates that entropy from each of these individual sources is generated independently.</h:p>
+                  <h:p>The CTR_DRBG in ISO/IEC 18031:2011 requires using derivation function, whereas NIST SP 800-90A does not. Either model is acceptable. In the first selection in FCS_RBG.1.1, the ST author choses the standard to which the TSF is compliant.</h:p>
+                  <h:p>In the first selection in FCS_RBG.1.2 the ST author fills in how many entropy sources are used for each type of entropy source they employ. It should be noted that a combination of hardware and software based noise sources is acceptable.</h:p>
+                  <h:p>It should be noted that the entropy source is considered to be a part of the DRBG and if the DRBG is included in the TOE, the developer is required to provide the entropy description outlined in Appendix D. The documentation *and tests* required in the Evaluation Activity for this element necessarily cover each source indicated in FCS_RBG.1.2. Individual contributions to the entropy pool may be combined to provide the minimum amount of entropy as long as the Entropy Documentation demonstrates that entropy from each of these individual sources is generated independently.</h:p>
                    </h:i></note>
                   <aactivity>
                     <TSS>
@@ -1946,7 +1935,7 @@
                       includes a statement about the expected amount of entropy received from such a source,
                       and a full description of the processing of the output of the third-party source. The
                       evaluator shall verify that this statement is consistent with the selection made in
-                      FCS_RBG_EXT.1.2 for the seeding of the DRBG. If the ST specifies more than one
+                      FCS_RBG.1.2 for the seeding of the DRBG. If the ST specifies more than one
                       DRBG, the evaluator shall examine the TSS to verify that it identifies the usage of each
                       DRBG mechanism.</TSS>
                     <Guidance>
@@ -1995,6 +1984,52 @@
               </f-element>
               <audit-event/>
             </f-component>
+            <f-component cc-id="fcs_rbg.2" name="" id="fcs-rbg-2">
+              <f-element id="fcs-rbg-2-1">
+                <title>
+                  The TSF shall be able to accept a minimum input of <assignable>minimum input length greater than zero</assignable> from a TSF interface for the purpose of seeding.
+                </title>
+                  <audit-event/>
+                  <audit-event/>
+              </f-element>
+             
+              <audit-event/>
+            </f-component>
+            <f-component cc-id="fcs_rbg.3" name="" id="fcs-rbg-3">
+              <f-element id="fcs-rbg-3-1">
+                <title>
+                  The TSF shall be able to seed the RBG using a <selectables choose-one-of="yes"><selectable>TSF software-based
+                    noise source</selectable><selectable>TSF hardware-based noise source</selectable></selectables><assignable>name of noise source</assignable> with a minimum of <assignable>number of bits</assignable> bits of min-entropy.
+                </title>
+                  <aactivity><no-test/></aactivity>
+                  <audit-event/>
+              </f-element>
+             
+              <audit-event/>
+            </f-component>
+            <f-component cc-id="fcs_rbg.4" name="" id="fcs-rbg-4">
+              <f-element id="fcs-rbg-4-1">
+                <title>
+                  The TSF shall be able to seed the RBG using <selectables><selectable><assignable>number</assignable> TSF softwarebased noise source(s)</selectable><selectable><assignable> number</assignable> TSF hardware-based noise source(s)</selectable></selectables>.
+                </title>
+                  <aactivity><no-test/></aactivity>
+                  <audit-event/>
+              </f-element>
+             
+              <audit-event/>
+            </f-component>
+            <f-component cc-id="fcs_rbg.5" name="" id="fcs-rbg-5">
+              <f-element id="fcs-rbg-5-1">
+                <title>
+                  The TSF shall <assignable> combining operation</assignable> <selectables><selectable>output from TSF noise source(s)</selectable><selectable> input from TSF interface(s) for seeding)</selectable></selectables> to create the entropy input into the derivation function as defined in <assignable> list of standards</assignable>, resulting in a minimum of <assignable> number of bits</assignable> bits of min-entropy.
+
+                </title>
+                  <aactivity><no-test/></aactivity>
+                  <audit-event/>
+              </f-element>
+             
+              <audit-event/>
+            </f-component>
             <f-component cc-id="fcs_smc_ext.1" name="Submask Combining " id="fcs-smc-ext-1">
               <consistency-rationale/>
               <comp-lev>requires the TSF to combine the submasks in a predictable fashion.</comp-lev>
@@ -2030,14 +2065,14 @@
               <comp-lev>requires the generation of salts, nonces, and IVs to be used by the cryptographic components of the TOE to be performed in the specified manner. </comp-lev>
               <management/>
               <audit/>
-              <dependencies>FCS_RBG_EXT.1 Cryptographic Operation (Random Bit Generation)</dependencies>
+              <dependencies>FCS_RBG.1 Cryptographic Operation (Random Bit Generation)</dependencies>
               <f-element id="fcs-sni-ext-1-1">
                 <title>
                   The TSF shall <selectables>
                     <selectable>use no salts</selectable>
                     <selectable>use salts that are generated by a 
                       <selectables>
-                        <selectable>DRBG as specified in FCS_RBG_EXT.1</selectable>
+                        <selectable>DRBG as specified in FCS_RBG.1</selectable>
                         <selectable>DRBG provided by the host platform</selectable>
                       </selectables>
                     </selectable>
@@ -2068,7 +2103,7 @@
                 <note role='application'><h:i>This requirement covers several important factors – the salt must be random, but the nonces only have to be unique. FCS_SNI_EXT.1.3 specifies how the IV should be handled for each encryption mode. CBC, XTS, and GCM are allowed for AES encryption of the data. AES-CCM is an allowed mode for Key Wrapping.</h:i></note>
                 <aactivity>
                     <TSS>
-                      <h:p>If salts are used, the evaluator shall ensure the TSS describes how salts are generated. The evaluator shall confirm that the salt is generating using an RBG described in FCS_RBG_EXT.1 or by the Operational Environment. If external function is used for this purpose, the TSS should include the specific API that is called with inputs.</h:p>
+                      <h:p>If salts are used, the evaluator shall ensure the TSS describes how salts are generated. The evaluator shall confirm that the salt is generating using an RBG described in FCS_RBG.1 or by the Operational Environment. If external function is used for this purpose, the TSS should include the specific API that is called with inputs.</h:p>
                       <h:p>If IVs or nonces are used, the evaluator shall ensure the TSS describes how nonces are created uniquely and how IVs and tweaks are handled (based on the AES mode). The evaluator shall confirm that the nonces are unique and the IVs and tweaks meet the stated requirements.</h:p></TSS>
                     <Guidance>There are no AGD evaluation activities for this SFR.</Guidance>
                     <CustomEA name="KMD">There are no KMD evaluation activities for this SFR.</CustomEA>
@@ -2365,10 +2400,7 @@
           <fam-behavior>This family defines secure behavior of the TSF when the TOE supports multiple power saving states. The use of Compliant power saving states (i.e. power saving states that purge security relevant data upon entry) is essential for ensuring that state transitions cannot be used as attack vectors to bypass TOE self-protection mechanisms.
             </fam-behavior>
         </ext-comp-def>
-        <ext-comp-def title="TSF Testing" fam-id="FPT_TST_EXT">
-          <fam-behavior>Components in this family address the requirements for self-testing the TSF for selected correct operation.
-            </fam-behavior>
-        </ext-comp-def>
+        
         <ext-comp-def title="Trusted Update" fam-id="FPT_TUD_EXT">
           <fam-behavior>Components in this family address the requirements for updating the TOE firmware and/or software.
             </fam-behavior>
@@ -2535,7 +2567,7 @@
           </f-element>
           <audit-event/>
         </f-component>
-        <f-component cc-id="fpt_tst_ext.1" name="TSF Testing" id="fpt-tst-ext-1" status="optional">
+        <f-component cc-id="fpt_tst.1" name="TSF Testing" id="fpt-tst-1" status="optional" iterate="AA">
           <consistency-rationale/>
           <comp-lev>requires a suite of self-tests to be run during initial start-up in order to demonstrate correct operation of the TSF.</comp-lev>
           <management/>
@@ -2548,7 +2580,7 @@
           <f-element id="fpt-tst-ext-1-1">
             <title>The TSF shall run a suite of the following self-tests <h:s><selectables><selectable>during initial start-up (on power on)</selectable><selectable>at the conditions [before the function is first invoked]</selectable></selectables></h:s> to demonstrate the correct operation of the TSF: <assignable> list of self-tests run by the TSF</assignable>.</title>
             <note role='application'><h:i><h:p>The tests regarding cryptographic functions implemented in the TOE can be deferred, as long as the tests are performed before the function is invoked.</h:p>
-            <h:p>If FCS_RBG_EXT.1 is implemented by the TOE and according to NIST SP 800-90, the evaluator should verify that the TSS describes health tests that are consistent with section 11.3 of NIST SP 800-90.</h:p>
+            <h:p>If FCS_RBG.1 is implemented by the TOE and according to NIST SP 800-90, the evaluator should verify that the TSS describes health tests that are consistent with section 11.3 of NIST SP 800-90.</h:p>
             <h:p>If any FCS_COP functions are implemented by the TOE, the TSS should describe the known answer self-tests for those functions.</h:p>
             <h:p>The evaluator is expected to verify that the TSS describes, for some set of non-cryptographic functions affecting the correct operation of the TSF, the method by which those functions are tested. The TSS will describe, for each of these functions, the method by which correct operation of the function/component is verified. The evaluator should determine that all of the identified functions/components are adequately tested on start-up.</h:p>
           </h:i></note>
@@ -2564,7 +2596,7 @@
                   example, more than blocks are tested for AES in CBC mode, output of AES in GCM
                   mode is tested without truncation, or 512-bit key is used for testing HMAC-SHA-512.
                   </h:p>
-                <h:p>If FCS_RBG_EXT.1 is implemented by the TOE and according to NIST SP 800-90,
+                <h:p>If FCS_RBG.1 is implemented by the TOE and according to NIST SP 800-90,
                   the evaluator shall verify that the TSS describes health tests that are consistent with
                   section 11.3 of NIST SP 800-90. </h:p>
                 <h:p>If any FCS_COP functions are implemented by the TOE, the TSS shall describe the
@@ -2790,7 +2822,7 @@
 <!-- Appendix B is selection-based requirements -->
 <!-- Appendix C: Extended Component Definitions -->
 <appendix id="apndx-entropy" title="Entropy Documentation and Assessment">
-  <h:p><h:i>This is an optional appendix in the cPP, and only applies if the TOE is providing deterministic random bit generation services, e.g. the ST claims FCS_RBG_EXT.1.</h:i></h:p>
+  <h:p><h:i>This is an optional appendix in the cPP, and only applies if the TOE is providing deterministic random bit generation services, e.g. the ST claims FCS_RBG.1.</h:i></h:p>
   <h:p>This appendix describes the required supplementary information for each entropy source used by the TOE.</h:p>
   <h:p>The documentation of the entropy source(s) should be detailed enough that, after reading, the evaluator will thoroughly understand the entropy source and why it can be relied upon to provide sufficient entropy. This documentation should include multiple detailed sections: design description, entropy justification, operating conditions, and health testing. This documentation is not required to be part of the TSS in the public facing ST. 
     </h:p>
@@ -2851,14 +2883,16 @@
 
 <bibliography>
 <!--	  <cc-entry/>   -->
-      <entry id="bibOMB">
-        <tag>OMB</tag>
-        <description>
-          <h:a href="http://www.whitehouse.gov/sites/default/files/omb/memoranda/fy2006/m06-19.pdf"
-            >Reporting Incidents Involving Personally Identifiable Information and Incorporating the
-            Cost for Security in Agency Information Technology Investments</h:a>, OMB M-06-19, July
-          12, 2006. </description>
-      </entry>
+<cc-entry/>
+<entry id="bibfdeiee">
+    <tag>FDE–EE</tag>
+    
+    <description>
+        <!-- todo: update hyperlink when PP published -->
+        <h:a href="https://commoncriteria.github.io/FDEEE/master/FDEEE-release.html">collaborative Protection Profile for Full Drive Encryption – Encryption Engine, Version 2.1 , MMMM DD, 2025
+        <comment>URL/Date needs to be updated. Also, fde-ee was reference as "ee" throughout this document. further input is needed on how the PP should be referenced. </comment></h:a>
+    </description>
+</entry>
  </bibliography>
 
 </PP>

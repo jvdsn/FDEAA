@@ -45,9 +45,9 @@
   <PPReference>
     <ReferenceTable>
       <PPTitle>collaborative Protection Profile for Full Drive Encryption – Authorization Acquisition</PPTitle>
-      <PPVersion>2.1</PPVersion>
+      <PPVersion>3.0</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2025-05-01</PPPubDate>
+      <PPPubDate>2025-05-23</PPPubDate>
       <Keywords>Full Drive Encryption – Authorization Acquisition</Keywords>               <!-- This field is unused and optional -->
     </ReferenceTable>
   </PPReference>
@@ -70,8 +70,8 @@
       <subject>Updated for CC:2022, or whatever</subject>
     </entry>
     <entry>
-        <version>2.0</version>
-        <date>2025-04-11</date>
+        <version>3.0</version>
+        <date>2025-05-23</date>
         <subject>Updated for CC:2022, reviewing and applying modifications to the PP</subject>
       </entry>
   </RevisionHistory>
@@ -562,10 +562,10 @@
       <rationale>The operational environment objective OE.PASSPHRASE_STRENGTH is realized through A.PASSWORD_STRENGTH.</rationale>
     </objective-refer>
   </assumption>
-  <assumption name="A.PLATFORM_IandA">
-    <description><comment>cannot have the &amp; symbol in the name field.</comment> The product does not interfere with or change the normal platform identification and authentication functionality such as the operating system login. It may provide authorization factors to the operating system's login interface, but it will not change or degrade the functionality of the actual interface.</description>
-    <objective-refer ref="OE.PLATFORM_IandA">
-      <rationale><comment>cannot have the &amp; symbol in the ref field.</comment>The operational environment objective OE.PLATFORM_I&amp;A is realized through A.PLATFORM_I&amp;A.</rationale>
+  <assumption name="A.PLATFORM_IA">
+    <description>The product does not interfere with or change the normal platform identification and authentication functionality such as the operating system login. It may provide authorization factors to the operating system's login interface, but it will not change or degrade the functionality of the actual interface.</description>
+    <objective-refer ref="OE.PLATFORM_IA">
+      <rationale>The operational environment objective OE.PLATFORM_I&amp;A is realized through A.PLATFORM_I&amp;A.</rationale>
     </objective-refer>
   </assumption>
   <assumption name="A.STRONG_CRYPTO">
@@ -652,8 +652,8 @@
           18 storage device is connected) is free of malware that could interfere with the correct operation
           19 of the product.</h:p><h:p>Rationale: A platform free of malware [A.PLATFORM_STATE] prevents an attack vector that could potentially interfere with the correct operation of the product.</h:p> </description>
 		  </SOE>
-      <SOE name="OE.PLATFORM_IandA">
-			  <description><h:p><comment>cannot have the &amp; symbol in the name field.</comment>The Operational Environment will provide individual user identification and authentication mechanisms that operate independently of the authorization factors used by the TOE.</h:p><h:p>Rationale: While the product may provide authorization factors to the Operating system's login interface, it must not change or degrade the functionality of the actual interface. A.PLATFORM_I&amp;A requires that the product not interfere or change the normal platform I&amp;A functionality.</h:p></description>
+      <SOE name="OE.PLATFORM_IA">
+			  <description><h:p>The Operational Environment will provide individual user identification and authentication mechanisms that operate independently of the authorization factors used by the TOE.</h:p><h:p>Rationale: While the product may provide authorization factors to the Operating system's login interface, it must not change or degrade the functionality of the actual interface. A.PLATFORM_I&amp;A requires that the product not interfere or change the normal platform I&amp;A functionality.</h:p></description>
 		  </SOE>
       <SOE name="OE.PHYSICAL">
 			  <description><h:p>The Operational Environment will provide a secure physical computing space such than an adversary is not able to make modifications to the environment or to the TOE itself.</h:p><h:p>Rationale: As stated in section 1.6, the use case for this cPP is to protect data at rest on a device where the adversary receives it in a powered off state and has no prior access.</h:p> </description>
@@ -721,16 +721,35 @@
             <title>
               The TSF shall accept the following authorization factors: <selectables linebreak='yes'>
                 <selectable>a submask derived from a password authorization factor conditioned as defined in FCS_PCC_EXT.1,</selectable>
-                <selectable>an external Smartcard factor that is protecting a submask that is 
-                  <selectables><selectable>2048 bits</selectable><selectable>3072 bits</selectable><selectable>4096 bits</selectable></selectables> with user presence proved by presentation of the smartcard and <selectables><selectable>none</selectable><selectable>an OE defined PIN</selectable><selectable>a configurable PIN</selectable></selectables>
+                <selectable>an external smart card factor that is protecting a submask that is 
+                  <selectables>
+                    <selectable>generated by the TOE (using the RBG as specified in FCS_RBG.1)</selectable>
+                    <selectable>generated by the Host Platform</selectable>
+                  </selectables>
+                  protected using <selectables>
+                    <selectable>RSA with key size<selectables>
+                    <selectable>2048 bits</selectable>
+                    <selectable>3072 bits</selectable>
+                    <selectable>4096 bits</selectable>
+                    </selectables></selectable>
+                    <selectable> ECC schemes using "NIST curves" of<selectables>
+                      <selectable>P-256</selectable>
+                      <selectable>P-384</selectable>
+                      <selectable>P-521</selectable>
+                    </selectables></selectable>                    
+                  </selectables>
+                   with user presence proved by presentation of the smart card and<selectables>
+                    <selectable>none</selectable>
+                    <selectable>an OE defined PIN</selectable>
+                    <selectable>a configurable PIN</selectable>
+                  </selectables>
                   </selectable>
-          
-                <selectable>an external USB token factor that is at least the same security strength as the BEV, and is providing a submask generated by the TOE, using the RBG as specified in FCS_RBG.1,</selectable>
+                 <selectable>an external USB token factor that is at least the same security strength as the BEV, and is providing a submask generated by the TOE, using the RBG as specified in FCS_RBG.1,</selectable>
                 <selectable>an external USB token factor that is at least the same security strength as the BEV, and is providing a submask generated by the Host Platform</selectable>
               </selectables>
-        
             </title>
-            <note role="application"><h:i><h:p>This requirement specifies what authorization factors the TOE accepts from the user. A password entered by the user is one authorization factor that the TOE must be able to condition, as specified in FCS_PCC_EXT.1. Another option is a smartcard authorization factor, with the differentiating feature being how the value is generated – either by the TOE’s RBG or by the platform. An external USB token may also be used, with the submask value generated either by the TOE’s RBG or by the platform.</h:p>
+            <note role="application"><h:i><h:p>This requirement specifies what authorization factors
+              the TOE accepts from the user. A password entered by the user is one authorization factor that the TOE must be able to condition, as specified in FCS_PCC_EXT.1. Another option is a smart card authorization factor, with the differentiating feature being how the value is generated – either by the TOE’s RBG or by the platform. An external USB token may also be used, with the submask value generated either by the TOE’s RBG or by the platform.</h:p>
               <h:p>The TOE may accept any number of authorization factors, and these are categorized as “submasks”. The ST author selects the authorization factors they support, and there may be multiple methods for a selection. </h:p>
               <h:p>
                 Use of multiple authorization factors is preferable; if more than one authorization factor is used, the submasks produced must be combined using FCS_SMC_EXT.1 specified in Appendix A.</h:p></h:i>
@@ -1039,7 +1058,8 @@
                   The TSF shall destroy all keys and key material when no longer needed.
             
                 </title>
-                <note role='application'><h:i><h:p>Keys, including intermediate keys and key material that are no longer needed are destroyed by using an approved method, FCS_CKM.6. Examples of keys are </h:p><h:p>intermediate keys, submasks, and BEV. There may be instances where keys or key material that are contained in persistent storage are no longer needed and require destruction. Based on their implementation, vendors will explain when certain keys are no longer needed. There are multiple situations in which key material is no longer necessary, for example, a wrapped key may need to be destroyed when a password is changed. However, there are instances when keys are allowed to remain in memory, for example, a device identification key. If a PIN was used for a smartcard, the TSF should ensure that the PIN was properly destroyed.</h:p></h:i></note>
+                <note role='application'><h:i><h:p>Keys, including intermediate keys and key
+                  material that are no longer needed are destroyed by using an approved method, FCS_CKM.6. Examples of keys are </h:p><h:p>intermediate keys, submasks, and BEV. There may be instances where keys or key material that are contained in persistent storage are no longer needed and require destruction. Based on their implementation, vendors will explain when certain keys are no longer needed. There are multiple situations in which key material is no longer necessary, for example, a wrapped key may need to be destroyed when a password is changed. However, there are instances when keys are allowed to remain in memory, for example, a device identification key. If a PIN was used for a smart card, the TSF should ensure that the PIN was properly destroyed.</h:p></h:i></note>
                   <aactivity level="element">
                       <TSS>The evaluator shall verify the TSS provides a high level description of what it means for keys and key material to be no longer needed and when then should be expected to be destroyed.</TSS>
                       <Guidance>There are no AGD evaluation activities for this SFR.</Guidance>

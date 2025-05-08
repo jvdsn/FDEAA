@@ -263,25 +263,26 @@
       </h:tr>
           <h:tr>
           
-        <h:th>Host</h:th>
-        <h:th>AA</h:th>
-        <h:th>Host software provides the interface to a self-encrypting drive</h:th>
+        <h:td>Host</h:td>
+        <h:td>AA</h:td>
+        <h:td>Host software provides the interface to a self-encrypting drive</h:td>
       </h:tr>
       <h:tr>
-        <h:th>Self-Encrypting Drive (SED)</h:th>
-        <h:th>EE</h:th>
-        <h:th>A self-encrypting drive used in combination with separate host
-          software</h:th>
+        <h:td>Self-Encrypting Drive (SED)</h:td>
+        <h:td>EE</h:td>
+        <h:td>A self-encrypting drive used in combination with separate host
+          software</h:td>
       </h:tr>
       <h:tr>
-        <h:th>Software FDE</h:th>
-        <h:th>AA + EE</h:th>
-        <h:th>A software full drive encryption solution</h:th>
+        <h:td>Software FDE</h:td>
+        <h:td>AA + EE</h:td>
+        <h:td>A software full drive encryption solution</h:td>
       </h:tr>
       <h:tr>
-        <h:th>Hybrid</h:th>
-        <h:th>AA + EE</h:th>
-        <h:th>A single vendor’s combination of hardware (e.g. hardware encryption engine, cryptographic co-processor) and software</h:th>
+        <h:td>Hybrid</h:td>
+        <h:td>AA + EE</h:td>
+        <h:td>A single vendor’s combination of hardware (e.g. hardware encryption engine,
+          cryptographic co-processor) and software</h:td>
       </h:tr>
   </h:table>
 
@@ -296,13 +297,8 @@
      <section title="Authorization Acquisition Introduction" id="sec-TOEauthorization-acquisition-introduction">
       <h:p>
       The Authorization Acquisition sends a Border Encryption Value (BEV), which could be a Key Encryption Key (KEK), a Key Releasing Key (KRK), or some other type of key to the Encryption Engine. The EE does not have to use this value directly as the key to decrypt or release the DEK. It may use it as part of a scheme that uses other intermediate keys to eventually protect the DEK. A KEK wraps other keys, notably the DEK or other intermediary keys which chain to the DEK. Key Releasing Keys (KRKs) authorize the EE to release either the DEK or other intermediary keys which chain to the DEK. Figure 2 illustrates the components within AA and its relationship with EE.
-    </h:p>
-    <h:p>
-      Authorization factors may be unique to individual users or may be used by a group of individuals. In other words, the EE requires authorization factors from the AA to establish that the possessor of the authorization factor belongs to the community of users authorized to access information stored on the storage device (and does not require specific user authorization). Examples of authorization factors include, but are not limited to, passwords, passphrases, or randomly generated values stored on USB tokens or a pin to release a key on hardware storage media such as a Trusted Platform Module (TPM).
-    </h:p>
-    <section title="TOE Boundary" id="TOEboundary">
-      <figure entity="images/fde-authorization_acquisition.png" title="Authorization Acquisition Details" id="toe"/>
-    </section>
+    </h:p>        
+      <figure entity="images/fde-authorization_acquisition.png" title="Authorization Acquisition Details" id="toe"/>    
     <h:p>
       Authorization factors may be unique to individual users or may be used by a group of individuals. In other words, the EE requires authorization factors from the AA to establish that the possessor of the authorization factor belongs to the community of users authorized to access information stored on the storage device (and does not require specific user authorization). Examples of authorization factors include, but are not limited to, passwords, passphrases, or randomly generated values stored on USB tokens or a pin to release a key on hardware storage media such as a Trusted Platform Module (TPM).
     </h:p>
@@ -670,8 +666,8 @@
 	  
 	<!--   5.1 Security Functional Requirements -->
   <sec:SFRs title="Security Functional Requirements">
-    <h:p>The individual security functional requirements are specified in the sections below. Based on selections made in these SFRs it will also be necessary to include some of the selection-based SFRs in Appendix B<comment>Should we get rid of the referenced Appendix since it does not exist?</comment>. Additional optional SFRs may also be adopted from those listed in Appendix A<comment>Should we get rid of the referenced Appendix since it does not exist?</comment> for those functions that are provided by the TOE instead of its Operational Environment.</h:p><h:p> The Evaluation Activities defined in [SD] describe actions that the evaluator will take in order to determine compliance of a particular TOE with the SFRs. The content of these Evaluation Activities will therefore provide more insight into deliverables required from TOE Developers.
-  </h:p>
+    <h:p>The individual security functional requirements are specified in the sections below.</h:p>
+    
     <section id="ss-audit-table" title="Auditable Events for Mandatory SFRs">
 			<!-- <audit-table id="t-audit-mandatory" table="mandatory"/>-->
 		</section>
@@ -716,7 +712,7 @@
       <h:li>Generate external authorization factors using the TSF DRBG</h:li>
     </h:ul></management>
 	<audit/>
-	<dependencies/>
+	<dependencies>No dependencies</dependencies>
           <f-element id="fcs-afa-ext-1-1">
             <title>
               The TSF shall accept the following authorization factors: <selectables linebreak='yes'>
@@ -795,7 +791,8 @@
                 <h:p>FPT_PWR_EXT.1 Power Saving States</h:p> 
               </dependencies>
               <f-element id="fcs-afa-ext-2-1">
-                <title>The TSF shall reacquire the authorization factor(s) specified in FCS_AFA_EXT.1 upon transition from any Compliant power saving state specified in FPT_PWR_EXT.1 prior to permitting access to plaintext data.</title>
+                <title>The TSF shall reacquire the authorization factors specified in FCS_AFA_EXT.1
+                  upon transition from any compliant power saving state specified in FPT_PWR_EXT.1 prior to permitting access to plaintext data.</title>
                 <note role='application'><h:i>This should be accomplished by clearing keys that are no longer needed so that keys must be derived or decrypted again.</h:i></note>
                 <aactivity>
                   <TSS>The evaluator shall examine the TSS for a description of authorization factors and which of the factors are used to gain access to user data after the TOE entered a Compliant power saving state. The TSS is inspected to ensure it describes that each authorization factor satisfies the requirements of FCS_AFA_EXT.1.1.</TSS>
@@ -820,23 +817,23 @@
             <f-component cc-id="fcs_ckm.1" iteration="AKG" name="Cryptographic Key Generation (Asymmetric Keys)" id="fcs-ckm-1-akg" status="sel-based">
               <depends on-sel="fcs-cop-1-keywrap"/>
               <f-element id="fcs_ckm-1-1-akg"><title>
-                <h:b>Refinement:</h:b> The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a specified cryptographic key generation algorithm: <h:b><selectables linebreak='yes'>
+                The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a specified cryptographic key generation algorithm: <h:b><selectables linebreak='yes'>
                   <selectable>RSA schemes using cryptographic key sizes of <selectables>
                     <selectable>2048-bit</selectable>
                     <selectable>3072-bit</selectable>
                     <selectable>4096-bit</selectable>
-                  </selectables>that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.3<comment>Should we get rid of the referenced Appendix since it does not exist?</comment></selectable>
+                  </selectables>that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.3</selectable>
                   <selectable>ECC schemes using “NIST curves” of <selectables>
                     <selectable>P-256</selectable>
                     <selectable>P-384</selectable>
                     <selectable>P-521</selectable>
-                  </selectables>that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix  B.4<comment>Should we get rid of the referenced Appendix since it does not exist?</comment></selectable>
+                  </selectables>that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix  B.4</selectable>
                   <selectable>FFC schemes using cryptographic key sizes of 
                     <selectables>
                       <selectable>2048-bit</selectable>
                       <selectable>3072-bit</selectable>
                       <selectable>4096-bit</selectable>
-                    </selectables> that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.1<comment>Should we get rid of the referenced Appendix since it does not exist?</comment></selectable>
+                    </selectables> that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.1</selectable>
                   </selectables></h:b> 
                   <h:s>and specified cryptographic key sizes 
                     <assignable>cryptographic key sizes</assignable> 
@@ -847,8 +844,7 @@
                   <h:p>Asymmetric keys may be used to “wrap” a key or submask. This SFR should be included by the ST author when making the appropriate selection in FCS_COP.</h:p>
                   <h:p>Asymmetric Keys may also be used for the key chain. Therefore, the ST author should select FCS_CKM.1/AKG, if Asymmetric key generation is used.</h:p>
                   <h:p>If the TOE acts as a receiver in the RSA key establishment scheme, the TOE does not need to implement RSA key generation.</h:p>
-                  <h:p>For all schemes (RSA schemes, ECC schemes, FFC schemes), an RBG is needed to a) generate seeds for RSA and to b) generate private keys directly for ECC and FFC. So FCS_RBG.1 is used together with this SFR. A hash algorithm is also required when the key pair generation algorithm is selected based on either Appendix B.3.2 or B.3.5<comment>Should we get rid of the referenced Appendix since it does not exist?</comment> of FIPS 186-4. So in such case, FCS_COP.1/KeyWrap is used together with this SFR.</h:p>
-                  <comment>See old version of the PP- FCS_VAL_EXT.1 </comment>
+                  <h:p>For all schemes (RSA schemes, ECC schemes, FFC schemes), an RBG is needed to a) generate seeds for RSA and to b) generate private keys directly for ECC and FFC. So FCS_RBG.1 is used together with this SFR. A hash algorithm is also required when the key pair generation algorithm is selected based on either Appendix B.3.2 or B.3.5<comment>Should we get rid of the referenced Appendix since it does not exist?</comment> of FIPS 186-4. So in such case, FCS_COP.1/KeyWrap is used together with this SFR.</h:p>                  
                 </h:i></note>
                 <aactivity>
                     <TSS>The evaluator shall ensure that the TSS identifies the key sizes supported by the TOE.
@@ -949,10 +945,11 @@
               </f-element>
               <audit-event/>
             </f-component>
+        
             <f-component cc-id="fcs_ckm.1" iteration="SKG" name="Cryptographic Key Generation (Symmetric Keys)" id="fcs-ckm-1-b" status="sel-based">
               <depends on-sel="fpt-kyc-ext-2-2-sel-2"/>
               <f-element id="fcs_ckm-1-1-skg"><title>
-                <h:b>Refinement:</h:b> The TSF shall generate symmetric cryptographic keys <h:b>using a Random Bit Generator as specified in FCS_RBG.1</h:b> and specified cryptographic key sizes <h:b><selectables><selectable>128 bit</selectable><selectable>256 bit</selectable></selectables></h:b> that meet the following: [<h:i>no standard</h:i>].
+                The TSF shall generate symmetric cryptographic keys <h:b>using a Random Bit Generator as specified in FCS_RBG.1</h:b> and specified cryptographic key sizes <h:b><selectables><selectable>128 bit</selectable><selectable>256 bit</selectable></selectables></h:b> that meet the following: [<h:i>no standard</h:i>].
                 </title>
                 <note role='application'><h:i>
                   Symmetric keys may be used to generate keys along the key chain. Therefore, the ST author should select FCS_CKM.1/SKG, if Symmetric key generation is used.
@@ -972,94 +969,27 @@
               </f-element>
               <audit-event/>
             </f-component>
-            <f-component cc-id="fcs_cop.1" iteration="SigVer" name="Cryptographic Operation (Signature Verification)" id="fcs-cop-1-sigver" status='sel-based' >
-              
-              <f-element id="fcs_cop-1-1-sigver">
-                  <title><comment>Justin, the refinement from TUD.1.3 forces fcs_cop.1/Sigver to be claimed. Should this be updated to mandatory?</comment><h:b>Refinement:</h:b> The TSF shall perform [<h:i>cryptographic signature services (verification)</h:i>] in accordance with a <h:b><selectables linebreak='yes'>
-                      <selectable>RSA Digital Signature Algorithm with a key size (modulus) of <selectables><selectable>2048-bit</selectable><selectable>3072-bit</selectable><selectable>4096-bit</selectable></selectables></selectable>
-                      <selectable>Elliptic Curve Digital Signature Algorithm with a key size of 256 bits or greater</selectable>
-                    </selectables></h:b> 
-                    that meet the following: <h:b><selectables linebreak='yes'>
-                      <selectable>FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Section 5.5, using PKCS #1 v2.1 Signature Schemes RSASSA-PSS and/or RSASSA-PKCS1-v1_5; ISO/IEC 9796-2, Digital signature scheme 2 or Digital Signature scheme 3, for RSA schemes</selectable>
-                      <selectable>FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Section 6 and Appendix D, Implementing “NIST curves” <selectables>
-                          <selectable>P-256</selectable>
-                          <selectable>P-384</selectable>
-                          <selectable>P-521</selectable></selectables>ISO/IEC 14888-3, Section 6.4, for ECDSA schemes
-                        </selectable>
-                    </selectables></h:b>.
-                  </title>
-                  <note role='application'><h:i>The selection should be consistent with the overall strength of the algorithm used for FCS_COP.1/SigVer and quantum resistant recommendations. For example, SHA-256 should be chosen for 2048-bit RSA or ECC with P-256, SHA-384 should be chosen for 3072-bit RSA, 4096-bit RSA, or ECC with P-384, and SHA-512 should be chosen for ECC with P9 521. The selection of the standard is made based on the algorithms selected.</h:i></note>
-                  <aactivity>
-                    <h:p>This requirement is used to verify digital signatures attached to updates from the TOE
-                    manufacturer before installing those updates on the TOE. Because this component is to
-                    be used in the update function, additional Evaluation Activities to those listed below
-                    are covered in other evaluation activities sections in this document. The following
-                    activities deal only with the implementation for the digital signature algorithm; the
-                    evaluator performs the testing appropriate for the algorithm(s) selected in the
-                    component.
-                    </h:p>
-                    <h:p>Hash functions and/or random number generation required by these algorithms must
-                      be specified in the ST; therefore the Evaluation Activities associated with those
-                      functions are contained in the associated Cryptographic Hashing and Random Bit
-                      Generation sections. Additionally, the only function required by the TOE is the
-                      verification of digital signatures. If the TOE generates digital signatures to support the
-                      implementation of any functionality required by this cPP, then the applicable
-                      evaluation and validation scheme must be consulted to determine the required
-                      evaluation activities.</h:p>
-                      <TSS>The evaluator shall check the TSS to ensure that it describes the overall flow of the
-                        signature verification. This should at least include identification of the format and
-                        general location (e.g., "firmware on the hard drive device" rather than “memory
-                        location 0x00007A4B") of the data to be used in verifying the digital signature; how
-                        the data received from the operational environment are brought on to the device; and
-                        any processing that is performed that is not part of the digital signature algorithm (for
-                        instance, checking of certificate revocation lists).</TSS>
-                      <Guidance>There are no AGD evaluation activities for this SFR.</Guidance>
-                      <CustomEA name="KMD">There are no KMD evaluation activities for this SFR.</CustomEA>
-                      <Tests>
-                        <h:p>Each section below contains the tests the evaluators must perform for each type of
-                        digital signature scheme. Based on the assignments and selections in the requirement,
-                        the evaluators choose the specific activities that correspond to those selections.</h:p>
-                        <h:p>It should be noted that for the schemes given below, there are no key generation/domain
-                          parameter generation testing requirements. This is because it is not anticipated that this
-                          functionality would be needed in the end device, since the functionality is limited to
-                          checking digital signatures in delivered updates. This means that the domain
-                          parameters should have already been generated and encapsulated in the hard drive
-                          firmware or on-board non-volatile storage. If key generation/domain parameter
-                          generation is required, the evaluation and validation scheme must be consulted to
-                          ensure the correct specification of the required evaluation activities and any additional
-                          components.</h:p>
-                          <h:p>The following tests are conditional based upon the selections made within the SFR.</h:p>
-                          <h:p>The following tests may require the developer to provide access to a test platform that
-                            provides the evaluator with tools that are typically not found on factory products.</h:p>
-                          <h:p><h:u>ECDSA Algorithm Tests</h:u></h:p>
-                          <h:p><h:b>ECDSA FIPS 186-4 Signature Verification Test</h:b></h:p>
-                          <h:p>For each supported NIST curve (i.e., P-256, P-384 and P-521) and SHA function pair,
-                            the evaluator shall generate a set of 10 1024-bit message, public key and signature
-                            tuples and modify one of the values (message, public key or signature) in five of the 10
-                            tuples. The evaluator shall obtain in response a set of 10 PASS/FAIL values.</h:p>
-                          <h:p><h:u>RSA Signature Algorithm Tests</h:u></h:p>
-                          <h:p><h:b>Signature Verification Test</h:b></h:p>
-                          <h:p>The evaluator shall perform the Signature Verification test to verify the ability of the
-                            TOE to recognize another party’s authentic and unauthentic signatures. The evaluator
-                            shall inject errors into the test vectors produced during the Signature Verification Test
-                            by introducing errors in some of the public keys e, messages, IR format, and/or
-                            signatures. The TOE attempts to verify the signatures and returns success or failure.</h:p>
-                            <h:p>The evaluator shall use these test vectors to emulate the signature verification test using
-                              the corresponding parameters and verify that the TOE detects these errors.</h:p>
-                      </Tests>
-                  </aactivity>
-              </f-element>
-              <audit-event/>
-            </f-component>
-            <f-component cc-id="fcs_ckm.6" name="Cryptographic Key and Key Material Destruction (Destruction Timing/Method)" id="fcs-ckm-6">
+        
+        <f-component cc-id="fcs_ckm.6" name="Cryptographic Key and Key Material Destruction (Destruction Timing/Method)" id="fcs-ckm-6">
               <f-element id="fcs-ckm-6e1">
                 <!-- fcs_ckm-ext-4-1-a-->
                 <title>
-                  The TSF shall destroy all keys and key material when no longer needed.
-            
+                  The TSF shall destroy [<h:i>all keys and key material</h:i>] when [<h:i>no longer
+                    needed</h:i>].            
                 </title>
-                <note role='application'><h:i><h:p>Keys, including intermediate keys and key
-                  material that are no longer needed are destroyed by using an approved method, FCS_CKM.6. Examples of keys are </h:p><h:p>intermediate keys, submasks, and BEV. There may be instances where keys or key material that are contained in persistent storage are no longer needed and require destruction. Based on their implementation, vendors will explain when certain keys are no longer needed. There are multiple situations in which key material is no longer necessary, for example, a wrapped key may need to be destroyed when a password is changed. However, there are instances when keys are allowed to remain in memory, for example, a device identification key. If a PIN was used for a smart card, the TSF should ensure that the PIN was properly destroyed.</h:p></h:i></note>
+                
+                <ext-comp-def-title>
+                  <title>The TSF shall destroy <assignable>list of cryptographic keys (including keying
+                    material)</assignable> when <selectables>
+                      <selectable>no longer needed</selectable>
+                      <selectable><assignable>other circumstances for key or keying material
+                        destruction</assignable></selectable>
+                    </selectables>
+                  </title>
+                </ext-comp-def-title>
+                
+                <note role='application'><h:p>Keys, including intermediate keys and key
+                  material that are no longer needed are destroyed by using an approved method, FCS_CKM.6. Examples of keys are </h:p><h:p>intermediate keys, submasks, and BEV. There may be instances where keys or key material that are contained in persistent storage are no longer needed and require destruction. Based on their implementation, vendors will explain when certain keys are no longer needed. There are multiple situations in which key material is no longer necessary, for example, a wrapped key may need to be destroyed when a password is changed. However, there are instances when keys are allowed to remain in memory, for example, a device identification key. If a PIN was used for a smart card, the TSF should ensure that the PIN was properly destroyed.</h:p></note>
                   <aactivity level="element">
                       <TSS>The evaluator shall verify the TSS provides a high level description of what it means for keys and key material to be no longer needed and when then should be expected to be destroyed.</TSS>
                       <Guidance>There are no AGD evaluation activities for this SFR.</Guidance>
@@ -1077,7 +1007,8 @@
               <f-element id="fcs-ckm-6e2">
                 <!-- fcs_ckm-4-1-d-->
                 <title>
-                  <h:b>Refinement:</h:b> The TSF shall destroy cryptographic keys in accordance with a specified cryptographic key destruction method <h:b><selectables linebreak="yes">
+                  The TSF shall destroy cryptographic keys and keying material specified by
+                  FCS_CKM.6.1 in accordance with a specified cryptographic key destruction method <selectables linebreak="yes">
                     <selectable>For volatile memory, the destruction shall be executed by a <selectables linebreak="yes">
                       <selectable>single overwrite consisting of <selectables linebreak="yes">
                         <selectable>a pseudo-random pattern using the TSF’s RBG,</selectable>
@@ -1085,9 +1016,7 @@
                         <selectable>ones,</selectable> 
                         <selectable>a new value of a key,</selectable>
                         <selectable><assignable>some value that does not contain any CSP</assignable></selectable>
-                        
-
-                      </selectables>.
+                      </selectables>
                       </selectable>
                       <selectable>removal of power to the memory,</selectable>
                       <selectable>destruction of reference to the key directly followed by a request for garbage collection</selectable>
@@ -1098,7 +1027,7 @@
                         <selectable>logically addresses the storage location of the key and performs a <selectables>
                           <selectable>single</selectable>
                           <selectable><assignable>ST author defined multi-pass</assignable></selectable>
-                        </selectables>overwrite consisting of <selectables linebreak="yes">
+                        </selectables> overwrite consisting of <selectables linebreak="yes">
                           <selectable>a pseudo-random pattern using the TSF’s RBG,</selectable>
                           <selectable>zeroes,</selectable>
                           <selectable>ones,</selectable>
@@ -1108,8 +1037,8 @@
                         <selectable>instructs the underlying platform to destroy the abstraction that represents the key</selectable>
                       </selectables>
                     </selectable>
-          
-                  </selectables></h:b> that meets the following: [<h:i>no standard</h:i>]
+                  </selectables>
+                  that meets the following: [<h:i>no standard</h:i>]
                 </title>
                 <note role="application"><h:i>
                   <h:p>This SFR is FCS_CKM.6, to align with the numbering in the FDE EE cPP.</h:p>
@@ -1234,15 +1163,16 @@
               </f-element>
               <audit-event/>
             </f-component>
+        
             <f-component cc-id="fcs_ckm.6" iteration="Power" name="Cryptographic Key and Key Material Destruction (Power Management)" id="fcs-ckm-6-power">
               <f-element id="fcs-ckm-6e1-pwr">
                 <!--fcs_ckm-4-1-a -->
-                <title>
-                  <comment>elmemnts aren't being divided within the AActivity section.</comment>
-                  <h:b>Refinement:</h:b> The TSF shall <h:b><selectables>
+                <title>                  
+                  The TSF shall <selectables>
                     <selectable>instruct the Operational Environment to clear</selectable>
                     <selectable>erase</selectable>
-                  </selectables> cryptographic keys and key material from volatile memory when transitioning to a Compliant power saving state as defined by FPT_PWR_EXT.1</h:b> that meets the following: [<h:i>a key destruction method specified in FCS_CKM.6</h:i>].
+                  </selectables> [<h:i>cryptographic keys and key material from volatile
+                    memory</h:i>] when [<h:i>transitioning to a compliant power saving state as defined by FPT_PWR_EXT.1 that meets the key destruction method specified in FCS_CKM.6</h:i>].
                 </title>
                 <note role="application"><h:i>In some cases, erasure of keys from volatile memory is only supported by the Operational Environment, in which case the Operational Environment must expose a well26 documented mechanism or interface to invoke the memory clearing operation.</h:i></note>
                 <aactivity level="element">
@@ -1260,7 +1190,9 @@
               <f-element id="fcs-ckm-6e2-pwr">
                 <!-- fcs_ckm-ext-4-1-b-->
                 <title>
-                  <h:b>Refinement:</h:b> The TSF shall destroy all <h:b>key material, BEV, and authentication factors stored in plaintext</h:b> when <h:b>transitioning to a Compliant power saving state as defined by FPT_PWR_EXT.1</h:b>.
+                  The TSF shall destroy [<h:i>all key material, BEV, and authentication factors
+                    stored in plaintext</h:i>] when [<h:i>transitioning to a Compliant power saving
+                      state as defined by FPT_PWR_EXT.1</h:i>].
                 </title>
                 <note role='application'><h:i>The TOE may end up in a non-Compliant power saving state indistinguishable from a Compliant power state (e.g. as result of sudden and/or unexpected power loss). For those scenarios, the TOE or the Operational Environment guidance documentation must provide procedure(s) to support destruction of key material (e.g. automated reboot with memory clearing in early stages of the system’s power-on sequence).</h:i></note>
                   <aactivity level="element">
@@ -1282,6 +1214,7 @@
               </f-element>
               <audit-event/>
             </f-component>
+        
             <f-component cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hash Algorithm)" id="fcs-cop-1-hash" status="sel-based">
               <depends on-sel="fcs-val-ext-1-1-hash"/>
               <f-element id="fcs_cop-1-1-hash">
@@ -1290,7 +1223,7 @@
                     <selectable>SHA-256</selectable>
                     <selectable>SHA-384</selectable>
                     <selectable>SHA-512</selectable>
-                  </selectables></h:b> and cryptographic key sizes <assignable>cryptographic key sizes</assignable> that meet the following: [<h:i>ISO/IEC 10118-3:2004</h:i>]
+                  </selectables></h:b> <h:s>and cryptographic key sizes <assignable>cryptographic key sizes</assignable></h:s> that meet the following: [<h:i>ISO/IEC 10118-3:2004</h:i>]
                 </title>
                 <note role='application'><h:i>The selection should be consistent with the overall strength of the algorithm used for FCS_COP.1/SigVer and quantum resistant recommendations. For example, SHA-256 should be chosen for 2048-bit RSA or ECC with P-256, SHA-384 should be chosen for 3072-bit RSA, 4096-bit RSA, or ECC with P-384, and SHA-512 should be chosen for ECC with P-521. The selection of the standard is made based on the algorithms selected.</h:i></note>
                 <aactivity>
@@ -1350,65 +1283,202 @@
               </f-element>
               <audit-event/>
             </f-component>
-            <f-component cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation (Keyed Hash Algorithm)" id="fcs-cop-1-keyhash" status="sel-based">
-              <depends on-sel='fcs-val-ext-1-1-keyhash'/>
-              <f-element id="fcs_cop-1-1-keyhash">
-                <title>
-                  <comment> Justin, App notes do not specify which claim is requires this sfr. made an educated guess.</comment>
-                  <h:b>Refinement:</h:b> The TSF shall perform cryptographic [<h:i>keyed-hash message authentication</h:i>] in accordance with a specified cryptographic algorithm <h:b><selectables>
-                    <selectable>HMAC-SHA-256</selectable>
-                    <selectable>HMAC-SHA-384</selectable>
-                    <selectable>HMAC-SHA-512</selectable>
-                  </selectables></h:b> and cryptographic key sizes <assignable>key size (in bits) used in HMAC</assignable> that meet the following: [<h:i>ISO/IEC 9797-2:2011, Section 7 “MAC Algorithm 2”</h:i>].
-                </title>
-                <note role='application'><h:i>The key size [k] in the assignment falls into a range between L1 and L2 (defined in ISO/IEC 10118 for the appropriate hash function for example for SHA-256 L1 = 512, L2 =256) where L2 ≤ k ≤ L1.</h:i></note>
-                <aactivity>
-                  <TSS>
-                    <h:p>
-                      If HMAC was selected:
-                    </h:p>
-                    <h:p>
-                      The evaluator shall examine the TSS to ensure that it specifies the following values
-                      used by the HMAC function: key length, hash function used, block size, and output
-                      MAC length used.
-                    </h:p>
-                    <h:p>If CMAC was selected: </h:p>
-                    <h:p>The evaluator shall examine the TSS to ensure that it specifies the following
-                      values used by the CMAC function: key length, block cipher used, block size
-                      (of the cipher), and output MAC length used.</h:p></TSS>
-                    <Guidance>There are no AGD evaluation activities for this SFR.</Guidance>
-                    <CustomEA name="KMD">There are no KMD evaluation activities for this SFR.</CustomEA>
-                    <Tests>
-                      <h:p>If HMAC was selected:</h:p>
-                      <h:p>For each of the supported parameter sets, the evaluator shall compose 15 sets of test
-                        data. Each set shall consist of a key and message data. The evaluator shall have the TSF
-                        generate HMAC tags for these sets of test data. The resulting MAC tags shall be
-                        compared to the result of generating HMAC tags with the same key using a known
-                        good implementation.</h:p>
-                      <h:p>
-                        If CMAC was selected: 
-                      </h:p>
-                      <h:p>For each of the supported parameter sets, the evaluator shall compose at least
-                        15 sets of test data. Each set shall consist of a key and message data. The test
-                        data shall include messages of different lengths, some with partial blocks as the
-                        last block and some with full blocks as the last block. The test data keys shall
-                        include cases for which subkey K1 is generated both with and without using the
-                        irreducible polynomial R_b, as well as cases for which subkey K2 is generated
-                        from K1 both with and without using the irreducible polynomial R_b. (The
-                        subkey generation and polynomial R_b are as defined in SP800-38E.) The
-                        evaluator shall have the TSF generate CMAC tags for these sets of test data.
-                        The resulting MAC tags shall be compared to the result of generating CMAC
-                        tags with the same key using a known good implementation.</h:p></Tests>
-                </aactivity>
-              </f-element>
-              <audit-event/>
-            </f-component>
+        
+        <f-component cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation (Keyed Hash Algorithm)" id="fcs-cop-1-keyhash" status="sel-based">
+          <depends on-sel='fcs-val-ext-1-1-keyhash'/>
+          <f-element id="fcs_cop-1-1-keyhash">
+            <title>
+              <comment> Justin, App notes do not specify which claim is requires this sfr. made an educated guess.</comment>
+              <h:b>Refinement:</h:b> The TSF shall perform cryptographic [<h:i>keyed-hash message authentication</h:i>] in accordance with a specified cryptographic algorithm <h:b><selectables>
+                <selectable>HMAC-SHA-256</selectable>
+                <selectable>HMAC-SHA-384</selectable>
+                <selectable>HMAC-SHA-512</selectable>
+              </selectables></h:b> and cryptographic key sizes <assignable>key size (in bits) used in HMAC</assignable> that meet the following: [<h:i>ISO/IEC 9797-2:2011, Section 7 “MAC Algorithm 2”</h:i>].
+            </title>
+            <note role='application'><h:i>The key size [k] in the assignment falls into a range between L1 and L2 (defined in ISO/IEC 10118 for the appropriate hash function for example for SHA-256 L1 = 512, L2 =256) where L2 ≤ k ≤ L1.</h:i></note>
+            <aactivity>
+              <TSS>
+                <h:p>
+                  If HMAC was selected:
+                </h:p>
+                <h:p>
+                  The evaluator shall examine the TSS to ensure that it specifies the following values
+                  used by the HMAC function: key length, hash function used, block size, and output
+                  MAC length used.
+                </h:p>
+                <h:p>If CMAC was selected: </h:p>
+                <h:p>The evaluator shall examine the TSS to ensure that it specifies the following
+                  values used by the CMAC function: key length, block cipher used, block size
+                  (of the cipher), and output MAC length used.</h:p></TSS>
+              <Guidance>There are no AGD evaluation activities for this SFR.</Guidance>
+              <CustomEA name="KMD">There are no KMD evaluation activities for this SFR.</CustomEA>
+              <Tests>
+                <h:p>If HMAC was selected:</h:p>
+                <h:p>For each of the supported parameter sets, the evaluator shall compose 15 sets of test
+                  data. Each set shall consist of a key and message data. The evaluator shall have the TSF
+                  generate HMAC tags for these sets of test data. The resulting MAC tags shall be
+                  compared to the result of generating HMAC tags with the same key using a known
+                  good implementation.</h:p>
+                <h:p>
+                  If CMAC was selected: 
+                </h:p>
+                <h:p>For each of the supported parameter sets, the evaluator shall compose at least
+                  15 sets of test data. Each set shall consist of a key and message data. The test
+                  data shall include messages of different lengths, some with partial blocks as the
+                  last block and some with full blocks as the last block. The test data keys shall
+                  include cases for which subkey K1 is generated both with and without using the
+                  irreducible polynomial R_b, as well as cases for which subkey K2 is generated
+                  from K1 both with and without using the irreducible polynomial R_b. (The
+                  subkey generation and polynomial R_b are as defined in SP800-38E.) The
+                  evaluator shall have the TSF generate CMAC tags for these sets of test data.
+                  The resulting MAC tags shall be compared to the result of generating CMAC
+                  tags with the same key using a known good implementation.</h:p></Tests>
+            </aactivity>
+          </f-element>
+          <audit-event/>
+        </f-component>
+        
+        <f-component cc-id="fcs_cop.1" iteration="KeyEnc" name="Cryptographic Operation (Key Encryption)" id="fcs-cop-1-kE" status="sel-based">
+          <depends on-sel="sel-fcs-kyc-ext-1-1-sel-5"/>
+          <f-element id="fcs_cop-1-1-kE">
+            <title>
+              <h:b>Refinement:</h:b> The TSF shall perform [<h:i>key encryption and decryption</h:i>] in accordance with a specified cryptographic algorithm [<h:i>AES used in <h:b><selectables><selectable>CBC</selectable><selectable>GCM</selectable></selectables></h:b> mode</h:i>] and cryptographic key sizes <h:b><selectables><selectable>128 bits</selectable><selectable>256 bits</selectable></selectables></h:b> that meet the following: [<h:i>AES as specified in ISO /IEC 18033-3,</h:i> <h:b><selectables><selectable>CBC as specified in ISO/IEC 10116</selectable><selectable>GCM as specified in ISO/IEC 19772</selectable></selectables></h:b>].
+            </title>
+            <note role='application'><h:i>
+              This requirement is used in the body of the ST if the ST author chooses to use AES encryption/decryption for protecting the keys as part of the key chaining approach that is specified in FCS_KYC_EXT.1.
+            </h:i></note>
+            <aactivity>
+              <TSS>The evaluator shall verify the TSS includes a description of the key size used for
+                encryption and the mode used for the key encryption.</TSS>
+              <Guidance>If multiple key encryption modes are supported, the evaluator examines the guidance
+                documentation to determine that the method of choosing a specific mode/key size by
+                the end user is described.</Guidance>
+              <CustomEA name="KMD">The evaluator shall examine the vendor’s KMD to verify that it includes a description
+                of how key encryption will be used as part of the key chain.</CustomEA>
+              <Tests>The AES test should be followed in FCS_COP.1/SKC Cryptographic Operation (AES
+                Data Encryption/Decryption.</Tests>
+            </aactivity>
+          </f-element>
+          <audit-event/>
+        </f-component>
+        
+        <f-component cc-id="fcs_cop.1" iteration="KeyEncap" name="Cryptographic Operation (Key Transport)" id="fcs-cop-1-keyencap" status="sel-based">
+          <depends on-sel="sel-fcs-kyc-ext-1-1-sel-4"/>
+          <f-element id="fcs_cop-1-1-keyencap">
+            <title>
+              The TSF shall perform [<h:i>key transport</h:i>] in accordance with a specified cryptographic algorithm [<h:i>RSA in the following modes [<h:b><selectables><selectable>KTS-OAEP</selectable><selectable>KTS6 KEM-KWS</selectable></selectables></h:b></h:i>] and the cryptographic key size <h:b><h:i><selectables>
+                <selectable>2048 bits</selectable>
+                <selectable>3072 bits</selectable>
+              </selectables></h:i></h:b> that meet the following: [<h:i>NIST SP 800-56B, Revision 1</h:i>].
+            </title>
+            <note role='application'><h:i>This requirement is used in the body of the ST if the ST author chooses to use key transport in the key chaining approach that is specified in FCS_KYC_EXT.1.</h:i></note>
+            <aactivity>
+              <TSS>
+                <h:p>The evaluator shall verify the TSS provides a high level description of the RSA scheme
+                  and the cryptographic key size that is being used, and that the asymmetric algorithm
+                  being used for key transport is RSA. If more than one scheme/key size are allowed,
+                  then the evaluator shall make sure and test all combinations of scheme and key size.
+                  There may be more than one key size to specify – an RSA modulus size (and/or
+                  encryption exponent size), an AES key size, hash sizes, MAC key/MAC tag size.</h:p>
+                <h:p>If the KTS-OAEP scheme was selected, the evaluator shall verify that the TSS
+                  identifies the hash function, the mask generating function, the random bit generator,
+                  the encryption primitive and decryption primitive.</h:p>
+                <h:p>If the KTS-KEM-KWS scheme was selected, the evaluator shall verify that the TSS
+                  identifies the key derivation method, the AES-based key wrapping method, the secret
+                  value encapsulation technique, and the random number generator.</h:p></TSS>
+              <Guidance>There are no AGD evaluation activities for this SFR.</Guidance>
+              <CustomEA name="KMD">There are no KMD evaluation activities for this SFR.</CustomEA>
+              <Tests>
+                <h:p>For each supported key transport schema, the evaluator shall initiate at least 25 sessions
+                  that require key transport with an independently developed remote instance of a key
+                  transport entity, using known RSA key-pairs. The evaluator shall observe traffic passed
+                  from the sender-side and to the receiver-side of the TOE, and shall perform the
+                  following tests, specific to which key transport scheme was employed.</h:p>
+                <h:p>
+                  If the KTS-OAEP scheme was selected, the evaluator shall perform the following tests:<testlist>
+                    <test>The evaluator shall inspect each cipher text, C, produced by the RSA-OAEP
+                      encryption operation of the TOE and make sure it is the correct length, either 256
+                      or 384 bytes depending on RSA key size. The evaluator shall also feed into the
+                      TOE’s RSA-OEAP decryption operation some cipher texts that are the wrong
+                      length and verify that the erroneous input is detected and that the decryption
+                      operation exits with an error code.</test>
+                    <test>The evaluator shall convert each cipher text, C, produced by the RSA-OAEP
+                      encryption operation of the TOE to the correct cipher text integer, c, and use the
+                      decryption primitive to compute em = RSADP((n,d),c) and convert em to the
+                      encoded message EM. The evaluator shall then check that the first byte of EM is
+                      0x00. The evaluator shall also feed into the TOE’s RSA-OEAP decryption
+                      operation some cipher texts where the first byte of EM was set to a value other
+                      than 0x00, and verify that the erroneous input is detected and that the decryption
+                      operation exits with an error code.</test>
+                    <test>The evaluator shall decrypt each cipher text, C, produced by the RSA-OAEP
+                      encryption operation of the TOE using RSADP, and perform the OAEP decoding
+                      operation (described in NIST SP 800-56B section 7.2.2.4) to recover HA’ || X. For
+                      each HA’, the evaluator shall take the corresponding A and the specified hash
+                      algorithm and verify that HA' = Hash(A). The evaluator shall also force the TOE
+                      to perform some RSA-OAEP decryptions where the A value is passed incorrectly,
+                      and the evaluator shall verify that an error is detected.</test>
+                    <test>The evaluator shall check the format of the ‘X’ string recovered in OAEP.Test.3
+                      to ensure that the format is of the form PS || 01 || K, where PS consists of zero or
+                      more consecutive 0x00 bytes and K is the transported keying material. The
+                      evaluator shall also feed into the TOE’s RSA-OEAP decryption operation some
+                      cipher texts for which the resulting ‘X’ strings do not have the correct format (i.e.,
+                      the leftmost non-zero byte is not 0x01). These incorrectly formatted ‘X’ variables
+                      shall be detected by the RSA-OEAP decrypt function.
+                    </test>
+                    <test>The evaluator shall trigger all detectable decryption errors and validate that the
+                      returned error codes are the same and that no information is given back to the
+                      sender on which type of error occurred. The evaluator shall also validate that no
+                      intermediate results from the TOE’s receiver-side operations are revealed to the
+                      sender.</test>
+                  </testlist>
+                </h:p>
+                <h:p>If the KTS-KEM-KWS scheme was selected, the evaluator shall perform the following
+                  tests:<testlist>
+                    <test>The evaluator shall inspect each cipher text, C, produced by RSA-KEM-KWS
+                      encryption operation of the TOE and make sure the length (in bytes) of the cipher
+                      text, cLen, is greater than nLen (the length, in bytes, of the modulus of the RSA
+                      public key) and that cLen - nLen is consistent with the byte lengths supported by
+                      the key wrapping algorithm. The evaluator shall feed into the RSA-KEM-KWS
+                      decryption operation a cipher text of unsupported length and verify that an error
+                      is detected and that the decryption process stops.</test>
+                    <test>The evaluator shall separate the cipher text, C, produced by the sender-side of the
+                      TOE into its C0 and C1 components and use the RSA decryption primitive to
+                      recover the secret value, Z, from C0. The evaluator shall check that the unsigned
+                      integer represented by Z is greater than 1 and less than n-1, where n is the modulus
+                      of the RSA public key. The evaluator shall construct examples where the cipher
+                      text is created with a secret value Z = 1 and make sure the RSA-KEM-KWS
+                      decryption process detects the error. Similarly, the evaluator shall construct
+                      examples where the cipher text is created with a secret value Z = n – 1 and make
+                      sure the RSA-KEM-KWS decryption process detects the error.</test>
+                    <test>The evaluator shall attempt to successfully recover the secret value Z, derive the
+                      key wrapping key, KWK, and unwrap the KWA-cipher text following the RSAKEM-KWS decryption process given in NISP SP 800-56B section 7.2.3.4. If the
+                      key-wrapping algorithm is AES-CCM, the evaluator shall verify that the value of
+                      any (unwrapped) associated data, A, that was passed with the wrapped keying
+                      material is correct The evaluator shall feed into the TOE’s RSA-KEM-KWS
+                      decryption operation examples of incorrect cipher text and verify that a decryption
+                      error is detected. If the key-wrapping algorithm is AES-CCM, the evaluator shall
+                      attempt at least one decryption where the wrong value of A is given to the RSAKEM-KWS decryption operation and verify that a decryption error is detected.
+                      Similarly, if the key-wrapping algorithm is AES-CCM, the evaluator shall attempt
+                      at least one decryption where the wrong nonce is given to the RSA-KEM-KWS
+                      decryption operation and verify that a decryption error is detected.</test>
+                    <test>The evaluator shall trigger all detectable decryption errors and validate that the
+                      resulting error codes are the same and that no information is given back to the
+                      sender on which type of error occurred. The evaluator shall also validate that no
+                      intermediate results from the TOE’s receiver-side operations (in particular, no Z
+                      values) are revealed to the sender.</test>
+                  </testlist></h:p></Tests>
+            </aactivity>
+          </f-element>
+          <audit-event/>
+        </f-component>
+        
+            
             <f-component cc-id="fcs_cop.1" iteration="KeyWrap" name="Cryptographic Operation (Key Wrapping)" id="fcs-cop-1-keywrap" status="sel-based">
               <depends on-sel="sel-fcs-kyc-ext-1-1-sel-2"/>
               <f-element id="fcs_cop-1-1-keywrap">
                 
                 <title>
-                  <h:b>Refinement:</h:b> The TSF shall perform [<h:i>key wrapping</h:i>] in accordance with a specified cryptographic algorithm [<h:i>AES</h:i>] <h:b>in the following modes <selectables>
+                  The TSF shall perform [<h:i>key wrapping</h:i>] in accordance with a specified cryptographic algorithm [<h:i>AES</h:i>] <h:b>in the following modes <selectables>
                     <selectable>KW</selectable>
                     <selectable>KWP</selectable>
                     <selectable>GCM</selectable>
@@ -1433,122 +1503,95 @@
               </f-element>
               <audit-event/>
             </f-component>
-            <f-component cc-id="fcs_cop.1" iteration="KeyEncap" name="Cryptographic Operation (Key Transport)" id="fcs-cop-1-keyencap" status="sel-based">
-              <depends on-sel="sel-fcs-kyc-ext-1-1-sel-4"/>
-              <f-element id="fcs_cop-1-1-keyencap">
-                <title>
-                  <h:b>Refinement:</h:b> The TSF shall perform [<h:i>key transport</h:i>] in accordance with a specified cryptographic algorithm [<h:i>RSA in the following modes [<h:b><selectables><selectable>KTS-OAEP</selectable><selectable>KTS6 KEM-KWS</selectable></selectables></h:b></h:i>] and the cryptographic key size <h:b><h:i><selectables>
-                    <selectable>2048 bits</selectable>
-                    <selectable>3072 bits</selectable>
-                  </selectables></h:i></h:b> that meet the following: [<h:i>NIST SP 800-56B, Revision 1</h:i>].
-                </title>
-                <note role='application'><h:i>This requirement is used in the body of the ST if the ST author chooses to use key transport in the key chaining approach that is specified in FCS_KYC_EXT.1.</h:i></note>
-                <aactivity>
-                    <TSS>
-                      <h:p>The evaluator shall verify the TSS provides a high level description of the RSA scheme
-                        and the cryptographic key size that is being used, and that the asymmetric algorithm
-                        being used for key transport is RSA. If more than one scheme/key size are allowed,
-                        then the evaluator shall make sure and test all combinations of scheme and key size.
-                        There may be more than one key size to specify – an RSA modulus size (and/or
-                        encryption exponent size), an AES key size, hash sizes, MAC key/MAC tag size.</h:p>
-                      <h:p>If the KTS-OAEP scheme was selected, the evaluator shall verify that the TSS
-                        identifies the hash function, the mask generating function, the random bit generator,
-                        the encryption primitive and decryption primitive.</h:p>
-                      <h:p>If the KTS-KEM-KWS scheme was selected, the evaluator shall verify that the TSS
-                        identifies the key derivation method, the AES-based key wrapping method, the secret
-                        value encapsulation technique, and the random number generator.</h:p></TSS>
-                    <Guidance>There are no AGD evaluation activities for this SFR.</Guidance>
-                    <CustomEA name="KMD">There are no KMD evaluation activities for this SFR.</CustomEA>
-                    <Tests>
-                      <h:p>For each supported key transport schema, the evaluator shall initiate at least 25 sessions
-                        that require key transport with an independently developed remote instance of a key
-                        transport entity, using known RSA key-pairs. The evaluator shall observe traffic passed
-                        from the sender-side and to the receiver-side of the TOE, and shall perform the
-                        following tests, specific to which key transport scheme was employed.</h:p>
-                        <h:p>
-                          If the KTS-OAEP scheme was selected, the evaluator shall perform the following tests:<testlist>
-                            <test>The evaluator shall inspect each cipher text, C, produced by the RSA-OAEP
-                              encryption operation of the TOE and make sure it is the correct length, either 256
-                              or 384 bytes depending on RSA key size. The evaluator shall also feed into the
-                              TOE’s RSA-OEAP decryption operation some cipher texts that are the wrong
-                              length and verify that the erroneous input is detected and that the decryption
-                              operation exits with an error code.</test>
-                            <test>The evaluator shall convert each cipher text, C, produced by the RSA-OAEP
-                              encryption operation of the TOE to the correct cipher text integer, c, and use the
-                              decryption primitive to compute em = RSADP((n,d),c) and convert em to the
-                              encoded message EM. The evaluator shall then check that the first byte of EM is
-                              0x00. The evaluator shall also feed into the TOE’s RSA-OEAP decryption
-                              operation some cipher texts where the first byte of EM was set to a value other
-                              than 0x00, and verify that the erroneous input is detected and that the decryption
-                              operation exits with an error code.</test>
-                            <test>The evaluator shall decrypt each cipher text, C, produced by the RSA-OAEP
-                              encryption operation of the TOE using RSADP, and perform the OAEP decoding
-                              operation (described in NIST SP 800-56B section 7.2.2.4) to recover HA’ || X. For
-                              each HA’, the evaluator shall take the corresponding A and the specified hash
-                              algorithm and verify that HA' = Hash(A). The evaluator shall also force the TOE
-                              to perform some RSA-OAEP decryptions where the A value is passed incorrectly,
-                              and the evaluator shall verify that an error is detected.</test>
-                            <test>The evaluator shall check the format of the ‘X’ string recovered in OAEP.Test.3
-                              to ensure that the format is of the form PS || 01 || K, where PS consists of zero or
-                              more consecutive 0x00 bytes and K is the transported keying material. The
-                              evaluator shall also feed into the TOE’s RSA-OEAP decryption operation some
-                              cipher texts for which the resulting ‘X’ strings do not have the correct format (i.e.,
-                              the leftmost non-zero byte is not 0x01). These incorrectly formatted ‘X’ variables
-                              shall be detected by the RSA-OEAP decrypt function.
-                              </test>
-                            <test>The evaluator shall trigger all detectable decryption errors and validate that the
-                              returned error codes are the same and that no information is given back to the
-                              sender on which type of error occurred. The evaluator shall also validate that no
-                              intermediate results from the TOE’s receiver-side operations are revealed to the
-                              sender.</test>
-                          </testlist>
-                        </h:p>
-                        <h:p>If the KTS-KEM-KWS scheme was selected, the evaluator shall perform the following
-                          tests:<testlist>
-                            <test>The evaluator shall inspect each cipher text, C, produced by RSA-KEM-KWS
-                              encryption operation of the TOE and make sure the length (in bytes) of the cipher
-                              text, cLen, is greater than nLen (the length, in bytes, of the modulus of the RSA
-                              public key) and that cLen - nLen is consistent with the byte lengths supported by
-                              the key wrapping algorithm. The evaluator shall feed into the RSA-KEM-KWS
-                              decryption operation a cipher text of unsupported length and verify that an error
-                              is detected and that the decryption process stops.</test>
-                            <test>The evaluator shall separate the cipher text, C, produced by the sender-side of the
-                              TOE into its C0 and C1 components and use the RSA decryption primitive to
-                              recover the secret value, Z, from C0. The evaluator shall check that the unsigned
-                              integer represented by Z is greater than 1 and less than n-1, where n is the modulus
-                              of the RSA public key. The evaluator shall construct examples where the cipher
-                              text is created with a secret value Z = 1 and make sure the RSA-KEM-KWS
-                              decryption process detects the error. Similarly, the evaluator shall construct
-                              examples where the cipher text is created with a secret value Z = n – 1 and make
-                              sure the RSA-KEM-KWS decryption process detects the error.</test>
-                            <test>The evaluator shall attempt to successfully recover the secret value Z, derive the
-                              key wrapping key, KWK, and unwrap the KWA-cipher text following the RSAKEM-KWS decryption process given in NISP SP 800-56B section 7.2.3.4. If the
-                              key-wrapping algorithm is AES-CCM, the evaluator shall verify that the value of
-                              any (unwrapped) associated data, A, that was passed with the wrapped keying
-                              material is correct The evaluator shall feed into the TOE’s RSA-KEM-KWS
-                              decryption operation examples of incorrect cipher text and verify that a decryption
-                              error is detected. If the key-wrapping algorithm is AES-CCM, the evaluator shall
-                              attempt at least one decryption where the wrong value of A is given to the RSAKEM-KWS decryption operation and verify that a decryption error is detected.
-                              Similarly, if the key-wrapping algorithm is AES-CCM, the evaluator shall attempt
-                              at least one decryption where the wrong nonce is given to the RSA-KEM-KWS
-                              decryption operation and verify that a decryption error is detected.</test>
-                            <test>The evaluator shall trigger all detectable decryption errors and validate that the
-                              resulting error codes are the same and that no information is given back to the
-                              sender on which type of error occurred. The evaluator shall also validate that no
-                              intermediate results from the TOE’s receiver-side operations (in particular, no Z
-                              values) are revealed to the sender.</test>
-                          </testlist></h:p></Tests>
-                </aactivity>
-              </f-element>
-              <audit-event/>
-            </f-component>
-            <f-component cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation (AES Data Encryption/Decryption)" id="fcs-cop-1-skc" status="sel-based">
+            
+           
+        <f-component cc-id="fcs_cop.1" iteration="SigVer" name="Cryptographic Operation (Signature Verification)" id="fcs-cop-1-sigver">
+          
+          <f-element id="fcs_cop-1-1-sigver">
+            <title>The TSF shall perform [<h:i>cryptographic signature services (verification)</h:i>] in accordance with a <h:b><selectables linebreak='yes'>
+              <selectable>RSA Digital Signature Algorithm with a key size (modulus) of <selectables><selectable>2048-bit</selectable><selectable>3072-bit</selectable><selectable>4096-bit</selectable></selectables></selectable>
+              <selectable>Elliptic Curve Digital Signature Algorithm with a key size of 256 bits or greater</selectable>
+            </selectables></h:b> 
+              that meet the following: <h:b><selectables linebreak='yes'>
+                <selectable>FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Section 5.5, using PKCS #1 v2.1 Signature Schemes RSASSA-PSS and/or RSASSA-PKCS1-v1_5; ISO/IEC 9796-2, Digital signature scheme 2 or Digital Signature scheme 3, for RSA schemes</selectable>
+                <selectable>FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Section 6 and Appendix D, Implementing “NIST curves” <selectables>
+                  <selectable>P-256</selectable>
+                  <selectable>P-384</selectable>
+                  <selectable>P-521</selectable></selectables>ISO/IEC 14888-3, Section 6.4, for ECDSA schemes
+                </selectable>
+              </selectables></h:b>.
+            </title>
+            <note role='application'><h:i>The selection should be consistent with the overall strength of the algorithm used for FCS_COP.1/SigVer and quantum resistant recommendations. For example, SHA-256 should be chosen for 2048-bit RSA or ECC with P-256, SHA-384 should be chosen for 3072-bit RSA, 4096-bit RSA, or ECC with P-384, and SHA-512 should be chosen for ECC with P9 521. The selection of the standard is made based on the algorithms selected.</h:i></note>
+            <aactivity>
+              <h:p>This requirement is used to verify digital signatures attached to updates from the TOE
+                manufacturer before installing those updates on the TOE. Because this component is to
+                be used in the update function, additional Evaluation Activities to those listed below
+                are covered in other evaluation activities sections in this document. The following
+                activities deal only with the implementation for the digital signature algorithm; the
+                evaluator performs the testing appropriate for the algorithm(s) selected in the
+                component.
+              </h:p>
+              <h:p>Hash functions and/or random number generation required by these algorithms must
+                be specified in the ST; therefore the Evaluation Activities associated with those
+                functions are contained in the associated Cryptographic Hashing and Random Bit
+                Generation sections. Additionally, the only function required by the TOE is the
+                verification of digital signatures. If the TOE generates digital signatures to support the
+                implementation of any functionality required by this cPP, then the applicable
+                evaluation and validation scheme must be consulted to determine the required
+                evaluation activities.</h:p>
+              <TSS>The evaluator shall check the TSS to ensure that it describes the overall flow of the
+                signature verification. This should at least include identification of the format and
+                general location (e.g., "firmware on the hard drive device" rather than “memory
+                location 0x00007A4B") of the data to be used in verifying the digital signature; how
+                the data received from the operational environment are brought on to the device; and
+                any processing that is performed that is not part of the digital signature algorithm (for
+                instance, checking of certificate revocation lists).</TSS>
+              <Guidance>There are no AGD evaluation activities for this SFR.</Guidance>
+              <CustomEA name="KMD">There are no KMD evaluation activities for this SFR.</CustomEA>
+              <Tests>
+                <h:p>Each section below contains the tests the evaluators must perform for each type of
+                  digital signature scheme. Based on the assignments and selections in the requirement,
+                  the evaluators choose the specific activities that correspond to those selections.</h:p>
+                <h:p>It should be noted that for the schemes given below, there are no key generation/domain
+                  parameter generation testing requirements. This is because it is not anticipated that this
+                  functionality would be needed in the end device, since the functionality is limited to
+                  checking digital signatures in delivered updates. This means that the domain
+                  parameters should have already been generated and encapsulated in the hard drive
+                  firmware or on-board non-volatile storage. If key generation/domain parameter
+                  generation is required, the evaluation and validation scheme must be consulted to
+                  ensure the correct specification of the required evaluation activities and any additional
+                  components.</h:p>
+                <h:p>The following tests are conditional based upon the selections made within the SFR.</h:p>
+                <h:p>The following tests may require the developer to provide access to a test platform that
+                  provides the evaluator with tools that are typically not found on factory products.</h:p>
+                <h:p><h:u>ECDSA Algorithm Tests</h:u></h:p>
+                <h:p><h:b>ECDSA FIPS 186-4 Signature Verification Test</h:b></h:p>
+                <h:p>For each supported NIST curve (i.e., P-256, P-384 and P-521) and SHA function pair,
+                  the evaluator shall generate a set of 10 1024-bit message, public key and signature
+                  tuples and modify one of the values (message, public key or signature) in five of the 10
+                  tuples. The evaluator shall obtain in response a set of 10 PASS/FAIL values.</h:p>
+                <h:p><h:u>RSA Signature Algorithm Tests</h:u></h:p>
+                <h:p><h:b>Signature Verification Test</h:b></h:p>
+                <h:p>The evaluator shall perform the Signature Verification test to verify the ability of the
+                  TOE to recognize another party’s authentic and unauthentic signatures. The evaluator
+                  shall inject errors into the test vectors produced during the Signature Verification Test
+                  by introducing errors in some of the public keys e, messages, IR format, and/or
+                  signatures. The TOE attempts to verify the signatures and returns success or failure.</h:p>
+                <h:p>The evaluator shall use these test vectors to emulate the signature verification test using
+                  the corresponding parameters and verify that the TOE detects these errors.</h:p>
+              </Tests>
+            </aactivity>
+          </f-element>
+          <audit-event/>
+        </f-component>
+        
+        <f-component cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation (AES Data Encryption/Decryption)" id="fcs-cop-1-skc" status="sel-based">
               <depends on-sel="fcs-val-ext-1-1-decr"/>
               <depends on-sel="sel-fcs-kyc-ext-1-1-sel-5"/>
 
               <f-element id="fcs_cop-1-1-skc">
                 <title>
-                  <h:b>Refinement:</h:b> The TSF shall perform [<h:i>data encryption and decryption</h:i>] in accordance with a specified cryptographic algorithm [<h:i>AES used in 
+                  The TSF shall perform [<h:i>data encryption and decryption</h:i>] in accordance with a specified cryptographic algorithm [<h:i>AES used in 
                     <h:b>
                       <selectables>
                         <selectable>CBC</selectable>
@@ -1732,41 +1775,20 @@
               </f-element>
               <audit-event/>
             </f-component>
-            <f-component cc-id="fcs_cop.1" iteration="KeyEnc" name="Cryptographic Operation (Key Encryption)" id="fcs-cop-1-kE" status="sel-based">
-             <depends on-sel="sel-fcs-kyc-ext-1-1-sel-5"/>
-              <f-element id="fcs_cop-1-1-kE">
-                <title>
-                  <h:b>Refinement:</h:b> The TSF shall perform [<h:i>key encryption and decryption</h:i>] in accordance with a specified cryptographic algorithm [<h:i>AES used in <h:b><selectables><selectable>CBC</selectable><selectable>GCM</selectable></selectables></h:b> mode</h:i>] and cryptographic key sizes <h:b><selectables><selectable>128 bits</selectable><selectable>256 bits</selectable></selectables></h:b> that meet the following: [<h:i>AES as specified in ISO /IEC 18033-3,</h:i> <h:b><selectables><selectable>CBC as specified in ISO/IEC 10116</selectable><selectable>GCM as specified in ISO/IEC 19772</selectable></selectables></h:b>].
-                </title>
-                <note role='application'><h:i>
-                  This requirement is used in the body of the ST if the ST author chooses to use AES encryption/decryption for protecting the keys as part of the key chaining approach that is specified in FCS_KYC_EXT.1.
-                </h:i></note>
-                <aactivity>
-                  <TSS>The evaluator shall verify the TSS includes a description of the key size used for
-                    encryption and the mode used for the key encryption.</TSS>
-                  <Guidance>If multiple key encryption modes are supported, the evaluator examines the guidance
-                    documentation to determine that the method of choosing a specific mode/key size by
-                    the end user is described.</Guidance>
-                  <CustomEA name="KMD">The evaluator shall examine the vendor’s KMD to verify that it includes a description
-                    of how key encryption will be used as part of the key chain.</CustomEA>
-                  <Tests>The AES test should be followed in FCS_COP.1/SKC Cryptographic Operation (AES
-                    Data Encryption/Decryption.</Tests>
-                </aactivity>
-              </f-element>
-              <audit-event/>
-            </f-component>
+            
 
             <f-component cc-id="fcs_kdf_ext.1" name="Cryptographic Key Derivation" id="fcs-kdf-ext-1" status="sel-based">
+              <depends on="fcs-kyc-ext-1-1-sel-1"/>
               <consistency-rationale/>
               <comp-lev>requires the TSF to derive intermediate keys from submasks using the specified hash functions.</comp-lev>
               <management/>
               <audit/>
               <dependencies>FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)</dependencies>
-              <depends on-sel="sel-fcs-kyc-ext-1-1-sel-1"/>
+              
               <f-element id="fcs-kdf-ext-1">
                 <title>
                   The TSF shall accept <selectables>
-                    <selectable>a RNG generated submask as specified in FCS_RBG.1</selectable>
+                    <selectable>an RNG generated submask as specified in FCS_RBG.1</selectable>
                     <selectable>a conditioned password submask</selectable>
                     <selectable>imported submask</selectable>
                   </selectables> to derive an intermediate key, as defined in <selectables linebreak='yes'>
@@ -1776,9 +1798,26 @@
                       <selectable>KDF in Double-Pipeline Iteration Mode</selectable>
                     </selectables></selectable>
                     <selectable>NIST SP 800-132</selectable>
-                  </selectables>using the keyed-hash functions specified in FCS_COP.1/KeyedHash, such that the output is at least of equivalent security strength (in number of bits) to the BEV.
+                  </selectables> using the keyed-hash functions specified in FCS_COP.1<h:b>/KeyedHash</h:b>, such that the output is at least of equivalent security strength (in number of bits) to the BEV.
 
                 </title>
+                
+                <ext-comp-def-title>
+                  <title>The TSF shall accept <selectables>
+                    <selectable>an RNG generated submask as specified in FCS_RBG.1</selectable>
+                    <selectable>a conditioned password submask</selectable>
+                    <selectable>imported submask</selectable>
+                  </selectables> to derive an intermediate key, as defined in <selectables linebreak='yes'>
+                    <selectable>NIST SP 800-108 <selectables>
+                      <selectable>KDF in Counter Mode</selectable>
+                      <selectable>KDF in Feedback Mode</selectable>
+                      <selectable>KDF in Double-Pipeline Iteration Mode</selectable>
+                    </selectables></selectable>
+                    <selectable>NIST SP 800-132</selectable>
+                  </selectables>using the keyed-hash functions specified in FCS_COP.1, such that the output is at least of equivalent security strength (in number of bits) to the BEV.
+                    
+                  </title>
+                </ext-comp-def-title>
                 <note role='application'><h:i>
                   <h:p>This requirement is used in the body of the ST if the ST author chooses to use key derivation in the key chaining approach that is specified in FCS_KYC_EXT.1.</h:p>
                   <h:p>This requirement establishes acceptable methods for generating a new random key or an existing submask to create a new key along the key chain.</h:p>
@@ -1802,12 +1841,9 @@
               <management/>
               <audit/>
               <dependencies>
-                <h:p>FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys),</h:p>
-                <h:p>FCS_CKM.1/SKG Cryptographic Operation (Symmetric Keys),</h:p>
-                <h:p>FCS_COP.1/KeyWrap Cryptographic Operation (Key Wrapping),</h:p>
-                <h:p>FCS_COP.1/KeyEncap Cryptographic Operation (Key Transport),</h:p>
-                <h:p>FCS_COP.1/KeyEnc Cryptographic Operation (Key Encryption),</h:p>
-                <h:p>FCS_SMC_EXT.1 Submask Combining,</h:p>
+                <h:p>FCS_CKM.1 Cryptographic Key Generation</h:p>
+                <h:p>FCS_COP.1 Cryptographic Operation</h:p>
+                <h:p>FCS_SMC_EXT.1 Submask Combining</h:p>
                 <h:p>FCS_VAL_EXT.1 Validation</h:p>
               </dependencies>
               <f-element id="fcs-kyc-ext-1-1">
@@ -1815,13 +1851,13 @@
                   The TSF shall maintain a key chain of: 
                     <selectables linebreak="yes">
                       <selectable>one, using a submask as the BEV;</selectable>
-                      <selectable>intermediate keys originating from one or more submask(s) to the BEV using the following method(s):
+                      <selectable>intermediate keys originating from one or more submasks to the BEV using the following methods:
                         <selectables linebreak="yes">
                           <selectable id="sel-fcs-kyc-ext-1-1-sel-1">key derivation as specified in FCS_KDF_EXT.1</selectable>
-                          <selectable id="sel-fcs-kyc-ext-1-1-sel-2">key wrapping as specified in FCS_COP.1/KeyWrap,</selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-2">key wrapping as specified in FCS_COP.1<h:b>/KeyWrap</h:b>,</selectable>
                           <selectable id="sel-fcs-kyc-ext-1-1-sel-3">key combining as specified in FCS_SMC_EXT.1,</selectable>
-                          <selectable id="sel-fcs-kyc-ext-1-1-sel-4">key transport as specified in FCS_COP.1/KeyEncap,</selectable>
-                          <selectable id="sel-fcs-kyc-ext-1-1-sel-5">key encryption as specified in FCS_COP.1/KeyEnc</selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-4">key transport as specified in FCS_COP.1<h:b>/KeyEncap</h:b>,</selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-5">key encryption as specified in FCS_COP.1<h:b>/KeyEnc</h:b></selectable>
                       </selectables></selectable></selectables>
                   while maintaining an effective strength of 
                     <selectables>
@@ -1836,9 +1872,36 @@
                       <selectable>256 bits</selectable>
                   </selectables> for asymmetric keys.
                 </title>
-                <note role='application'><h:i></h:i></note>
-                  
+                
+                <ext-comp-def-title>
+                  <title>The TSF shall maintain a key chain of: 
+                    <selectables linebreak="yes">
+                      <selectable>one, using a submask as the BEV;</selectable>
+                      <selectable>intermediate keys originating from one or more submasks to the BEV using the following methods:
+                        <selectables linebreak="yes">
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-1">key derivation as specified in FCS_KDF_EXT.1</selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-2">key wrapping as specified in FCS_COP.1,</selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-3">key combining as specified in FCS_SMC_EXT.1,</selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-4">key transport as specified in FCS_COP.1,</selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-5">key encryption as specified in FCS_COP.1</selectable>
+                        </selectables></selectable></selectables>
+                    while maintaining an effective strength of 
+                    <selectables>
+                      <selectable>128 bits</selectable>
+                      <selectable>256 bits</selectable>
+                    </selectables> for symmetric keys and an effective strength of 
+                    <selectables>
+                      <selectable>not applicable</selectable>
+                      <selectable>112 bits</selectable>
+                      <selectable>128 bits</selectable>
+                      <selectable>192 bits</selectable>
+                      <selectable>256 bits</selectable>
+                    </selectables> for asymmetric keys.</title>
+                </ext-comp-def-title>
+                
+                <note/>                  
               </f-element>
+              
               <f-element id="fcs-kyc-ext-1-2">
                 <title>
                   The TSF shall provide at least a 
@@ -1889,20 +1952,38 @@
             <comp-lev> requires the TSF to accept passwords of a certain composition and condition them appropriately. </comp-lev>
             <management/>
             <audit/>
-            <dependencies>FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)</dependencies>
+            <dependencies>FCS_COP.1 Cryptographic Operation</dependencies>
               <f-element id="fcs-pcc-ext-1-1">
                 <title>
                   A password used by the TSF to generate a password authorization factor shall
                   enable at least <assignable>positive integer of 64 or more</assignable> characters in the set of {upper case characters, lower case characters, numbers, and <assignable> other supported special characters</assignable>} and shall perform Password-based Key Derivation Functions in accordance with a specified cryptographic algorithm HMAC-<selectables><selectable>SHA-256</selectable><selectable>SHA384</selectable><selectable>SHA-512</selectable></selectables>, with 
                   <selectables>
                     <selectable><assignable>positive integer of 1000 or more</assignable> iterations</selectable>
-                    <selectable><assignable>positive integer of 1 or more</assignable> and <assignable>positive integer of 10000 or more</assignable> subsequent rounds of AES operations with a device key and PBKDF2 output per FCS_COP.1/KeyEnc or FCS_COP.1/KeyEncap</selectable>
+                    <selectable><assignable>positive integer of one or more</assignable> and
+                      <assignable>positive integer of 10000 or more</assignable> subsequent rounds
+                      of AES operations with a device key and PBKDF2 output per FCS_COP.1<h:b>/KeyEnc</h:b> or
+                      FCS_COP.1<h:b>/KeyEncap</h:b></selectable>
                   </selectables> and output cryptographic key sizes 
                   <selectables>
                     <selectable>128 bits</selectable>
                     <selectable>256 bits</selectable>
                   </selectables> that meet the following: [<h:i>NIST SP 800-132</h:i>].
                 </title>
+                
+                <ext-comp-def-title>
+                  <title>A password used by the TSF to generate a password authorization factor shall
+                    enable at least <assignable>positive integer of 64 or more</assignable> characters in the set of {upper case characters, lower case characters, numbers, and <assignable> other supported special characters</assignable>} and shall perform Password-based Key Derivation Functions in accordance with a specified cryptographic algorithm HMAC-<selectables><selectable>SHA-256</selectable><selectable>SHA384</selectable><selectable>SHA-512</selectable></selectables>, with 
+                    <selectables>
+                      <selectable><assignable>positive integer of 1000 or more</assignable> iterations</selectable>
+                      <selectable><assignable>positive integer of one or more</assignable> and <assignable>positive integer of 10000 or more</assignable> subsequent rounds of AES operations with a device key and PBKDF2 output per FCS_COP.1 or FCS_COP.1</selectable>
+                    </selectables> and output cryptographic key sizes 
+                    <selectables>
+                      <selectable>128 bits</selectable>
+                      <selectable>256 bits</selectable>
+                    </selectables> that meet the following: <assignable>PBKDF recommendation or
+                      specification</assignable>.</title>
+                </ext-comp-def-title>
+                
                 <note role='application'><h:i>The password is represented on the host machine as a sequence of characters whose encoding depends on the TOE and the underlying OS. This sequence must be conditioned into a string of bits that forms the submask to be used as input into the key chain. Conditioning can be performed using one of the identified hash functions or the process described in NIST SP 800-132; the method used is selected by the ST author. If 800-132 conditioning is specified, then the ST author fills in the number of iterations that are performed. 800-132 also requires the use of a pseudo-random function (PRF) consisting of HMAC with an approved hash function. The ST author selects the hash function used which also includes the appropriate requirements for HMAC.</h:i></note>
                   <aactivity>
                     <TSS>The evaluator shall ensure the TSS describes the manner in which the TOE enforces
@@ -1939,16 +2020,83 @@
               
               <f-element id="fcs-rbg-1-1">
                 <title>
-                  The TSF shall perform all deterministic random bit generation services in accordance with <selectables><selectable>ISO/IEC 18031:2011</selectable><selectable id='fcs-rbg-1-1-nist'>[NIST SP 800-90A]</selectable></selectables> using <selectables><selectable>Hash_DRBG (any)</selectable><selectable>HMAC_DRBG (any)</selectable><selectable>CTR_DRBG (AES)</selectable></selectables>.
+                  The TSF shall perform deterministic random bit generation services using
+                  [<selectables>
+                    <selectable><h:i>Hash_DRBG (any)</h:i></selectable>
+                    <selectable><h:i>HMAC_DRBG (any)</h:i></selectable>
+                    <selectable><h:i>CTR_DRBG (AES)</h:i></selectable>
+                  </selectables>] in accordance with [<selectables>
+                    <selectable><h:i>ISO/IEC 18031:2011</h:i></selectable>
+                    <selectable id='fcs-rbg-1-1-nist'> <h:i>[NIST SP 800-90A]</h:i></selectable>
+                  </selectables> after initialization with a seed.
                 </title>
-                  
+                
+                <aactivity level="element">
+                  <TSS>The evaluator shall verify that the TSS identifies the DRBGs used by the TOE.</TSS>
+                  <Guidance>If the DRBG functionality is configurable, the evaluator shall verify that the operational guidance includes instructions on how to configure this behavior.</Guidance>
+                  <Tests>
+                    <h:p>
+                      The evaluator shall perform the following tests:
+                    </h:p><h:p>
+                      The evaluator shall perform 15 trials for the DRBG implementation. If the DRBG
+                      is configurable, the evaluator shall perform 15 trials for each configuration. The
+                      evaluator shall also confirm that the operational guidance contains appropriate
+                      instructions for configuring the DRBG functionality.
+                    </h:p><h:p>
+                      If the DRBG has  prediction resistance enabled, each trial consists of (1) instantiate DRBG, (2)
+                      generate the first block of random bits (3) generate a second block of random bits
+                      (4) uninstantiate. The evaluator verifies that the second block of random bits is
+                      the expected value. The evaluator shall generate eight input values for each
+                      trial. The first is a count (0 – 14). The next three are entropy input, nonce, and
+                      personalization string for the instantiate operation. The next two are additional
+                      input and entropy input for the first call to generate. The final two are
+                      additional input and entropy input for the second call to generate. These values
+                      are randomly generated. "generate one block of random bits" means to generate
+                      random bits with number of returned bits equal to the Output Block Length (as
+                      defined in NIST SP 800-90A).
+                    </h:p><h:p>
+                      If the DRBG does not have prediction resistance,
+                      each trial consists of (1) instantiate DRBG, (2) generate the first block of
+                      random bits (3) reseed, (4) generate a second block of random bits (5)
+                      uninstantiate. The evaluator verifies that the second block of random bits is the
+                      expected value. The evaluator shall generate eight input values for each trial.
+                      The first is a count (0 – 14). The next three are entropy input, nonce, and
+                      personalization string for the instantiate operation. The fifth value is
+                      additional input to the first call to generate. The sixth and seventh are
+                      additional input and entropy input to the call to reseed. The final value is
+                      additional input to the second generate call.
+                    </h:p><h:p>
+                      The following list contains more information on some of the input values to be generated/selected by the evaluator.
+                      <h:ul>
+                        <h:li> <h:b>Entropy input:</h:b> The length of the entropy input value must equal the seed
+                          length.</h:li>
+                        
+                        <h:li><h:b>Nonce:</h:b> If a nonce is supported (CTR_DRBG with no Derivation Function does
+                          not use a nonce), the nonce bit length is one-half the seed length. </h:li>
+                        <h:li><h:b>Personalization string:</h:b> The length of the personalization string must be
+                          less than or equal to seed length. If the implementation only supports one
+                          personalization string length, then the same length can be used for both values.
+                          If more than one string length is support, the evaluator shall use personalization
+                          strings of two different lengths. If the implementation does not use a
+                          personalization string, no value needs to be supplied. </h:li>
+                        <h:li><h:b>Additional input:</h:b> The additional input bit lengths have the same defaults
+                          and restrictions as the personalization string lengths.</h:li>
+                      </h:ul>
+                    </h:p>
+                  </Tests>
+                </aactivity>  
               </f-element>
               <f-element id="fcs-rbg-ext-1-2">
                 <title>
-                  The deterministic RBG shall be seeded by at least one entropy source that accumulates entropy from <selectables linebreak="yes">
+                  The deterministic RBG shall be seeded by at least one entropy source that accumulates entropy from
+                  <selectables linebreak="yes">
                     <selectable><assignable>number of software-based sources</assignable>software-based noise source(s)</selectable>
                     <selectable><assignable>number of hardware-based sources</assignable>hardware-based noise source(s)</selectable>
-                  </selectables> with a minimum of <selectables><selectable>128 bits</selectable><selectable>256 bits</selectable></selectables> of entropy at least equal to the greatest security strength, according to ISO/IEC 18031:2011 Table C.1 “Security Strength Table for Hash Functions”, of the keys and hashes that it will generate.
+                  </selectables> with a minimum of <selectables>
+                    <selectable>128 bits</selectable>
+                    <selectable>256 bits</selectable>
+                  </selectables> of entropy at least equal to the greatest security strength, according to ISO/IEC 18031:2011 Table C.1
+                  “Security Strength Table for Hash Functions”, of the keys and hashes that it will generate.
                 </title>
                 <note role="application"><h:i>
                   <h:p>ISO/IEC 18031:2011 contains different methods of generating random numbers; each of these, in turn, depends on underlying cryptographic primitives (hash functions/ciphers). The ST author will select the function used and include the specific underlying cryptographic primitives used in the requirement. While any of the identified hash functions (SHA-256, SHA-384, SHA-512) are allowed for Hash_DRBG or HMAC_DRBG, only AES-based implementations for CTR_DRBG are allowed. Table C.2 in ISO/IEC 18031:2011 provides an identification of Security strengths, Entropy and Seed length requirements for the AES-128 and 256 Block Cipher.</h:p>
@@ -2011,50 +2159,90 @@
               </f-element>
               <audit-event/>
             </f-component>
-            <f-component cc-id="fcs_rbg.2" name="" id="fcs-rbg-2">
+            <f-component cc-id="fcs_rbg.2" name="" id="fcs-rbg-2" status="sel-based">
               <f-element id="fcs-rbg-2-1">
                 <title>
                   The TSF shall be able to accept a minimum input of <assignable>minimum input length greater than zero</assignable> from a TSF interface for the purpose of seeding.
                 </title>
-                  <audit-event/>
-                  <audit-event/>
+                <note role="application">
+                  This requirement is claimed when a DRBG is seeded with entropy from one or more noise source that is outside the TOE
+                  boundary. Typically the entropy produced by an environmental noise source is conditioned such that the input length has
+                  full entropy and is therefore  usable as the seed. However, if this is not the case, it should be noted what the minimum
+                  entropy rate of the noise source is so that the TSF can collect a sufficiently large sample of noise data to be
+                  conditioned into a seed value.
+                </note>
+                <aactivity>
+                  <h:p>
+                    The evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it identifies, for each DRBG function implemented by the TOE, the TSF external interface used to seed the TOE's DRBG. The evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data such that it can be determined that sufficient entropy can be made available for the highest strength keys that the TSF can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the TOE estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the TSF applies to the output data to create a seed of sufficient size with full entropy.
+                  </h:p>
+                  <TSS/>
+                  <Guidance/>
+                  <Tests/>
+                </aactivity>
               </f-element>
-             
               <audit-event/>
+              
             </f-component>
-            <f-component cc-id="fcs_rbg.3" name="" id="fcs-rbg-3">
+        <f-component cc-id="fcs_rbg.3" name="" id="fcs-rbg-3" status="sel-based">
               <f-element id="fcs-rbg-3-1">
                 <title>
                   The TSF shall be able to seed the RBG using a <selectables choose-one-of="yes"><selectable>TSF software-based
                     noise source</selectable><selectable>TSF hardware-based noise source</selectable></selectables><assignable>name of noise source</assignable> with a minimum of <assignable>number of bits</assignable> bits of min-entropy.
                 </title>
-                  <aactivity><no-test/></aactivity>
-                  <audit-event/>
+                <note role="application">This requirement is claimed when a DRBG is seeded with entropy from a single noise source that is within the TOE boundary. Min-entropy should be expressed as a ratio of entropy bits to sampled bits so that the total amount of data needed to ensure full entropy is known, as well as the conditioning function by which that data is reduced in size to the seed.</note>
+                
+                <aactivity>
+                  <h:p>
+                    The evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it identifies, for each DRBG function implemented by the TOE, the TSF noise source used to seed the TOE's DRBG. The evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data such that it can be determined that sufficient entropy can be made available for the highest strength keys that the TSF can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the TOE estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the TSF applies to the output data to create a seed of sufficient size with full entropy.
+                  </h:p>
+                  <TSS/>
+                  <Guidance/>
+                  <Tests/>
+                </aactivity>                  
               </f-element>
-             
               <audit-event/>
             </f-component>
-            <f-component cc-id="fcs_rbg.4" name="" id="fcs-rbg-4">
+        
+        <f-component cc-id="fcs_rbg.4" name="" id="fcs-rbg-4" status="sel-based">
               <f-element id="fcs-rbg-4-1">
                 <title>
                   The TSF shall be able to seed the RBG using <selectables><selectable><assignable>number</assignable> TSF softwarebased noise source(s)</selectable><selectable><assignable> number</assignable> TSF hardware-based noise source(s)</selectable></selectables>.
                 </title>
-                  <aactivity><no-test/></aactivity>
-                  <audit-event/>
+                <note role="application">
+                  This requirement is claimed when a DRBG is seeded with entropy from multiple noise sources that are within the TOE boundary. 
+                  FCS_RBG.5 defines the mechanism by which these sources are combined to ensure sufficient minimum entropy.
+                </note>
+                <aactivity>
+                  <h:p>
+                    The evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it identifies, for each DRBG function implemented by the TOE, each TSF noise source used to seed the TOE's DRBG. The evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data from each data source.
+                  </h:p>
+                  <TSS/>
+                  <Guidance/>
+                  <Tests/>
+                </aactivity>                    
+                  
               </f-element>
-             
               <audit-event/>
             </f-component>
-            <f-component cc-id="fcs_rbg.5" name="" id="fcs-rbg-5">
+        <f-component cc-id="fcs_rbg.5" name="" id="fcs-rbg-5" status="sel-based">
               <f-element id="fcs-rbg-5-1">
                 <title>
                   The TSF shall <assignable> combining operation</assignable> <selectables><selectable>output from TSF noise source(s)</selectable><selectable> input from TSF interface(s) for seeding)</selectable></selectables> to create the entropy input into the derivation function as defined in <assignable> list of standards</assignable>, resulting in a minimum of <assignable> number of bits</assignable> bits of min-entropy.
 
                 </title>
-                  <aactivity><no-test/></aactivity>
-                  <audit-event/>
+                <note role="application">
+                  Examples of typical combining operations include, but are not limited to, XORing or hashing.
+                </note>
+                <aactivity>
+                  <h:p>
+                    Using the entropy sources specified in FCS_RBG.4, the evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it describes the method by which the various entropy sources are combined into a single seed. This should include an estimation of the rate at which each noise source outputs data and whether this is dependent on any system-specific factors so that each source's relative contribution to the overall entropy is understood. The evaluator shall verify that the resulting combination of sampled data and the min-entropy rate of the sampled data is described in sufficient detail to determine that sufficient entropy can be made available for the highest strength keys that the TSF can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the TOE estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the TSF applies to the output data to create a seed of sufficient size with full entropy.
+                  </h:p>
+                  <TSS/>
+                  <Guidance/>
+                  <Tests/>
+                </aactivity>
+                
               </f-element>
-             
               <audit-event/>
             </f-component>
             <f-component cc-id="fcs_smc_ext.1" name="Submask Combining " id="fcs-smc-ext-1">
@@ -2062,11 +2250,19 @@
               <comp-lev>requires the TSF to combine the submasks in a predictable fashion.</comp-lev>
               <management/>
               <audit/>
-              <dependencies>FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm)</dependencies>
+              <dependencies>FCS_COP.1 Cryptographic Operation</dependencies>
               <f-element id="fcs-smc-ext-1-1">
                 <title>
                   The TSF shall combine submasks using the following method <selectables><selectable>exclusive OR (XOR)</selectable><selectable>SHA-256</selectable><selectable>SHA-384</selectable><selectable>SHA-521</selectable></selectables> to generate an [<h:i>intermediary key or BEV</h:i>].
                 </title>
+                <ext-comp-def-title>
+                  <title>The TSF shall combine submasks using the following method <selectables>
+                    <selectable>exclusive OR (XOR)</selectable>
+                    <selectable>SHA-256</selectable>
+                    <selectable>SHA-384</selectable>
+                    <selectable>SHA-521</selectable>
+                  </selectables> to generate an <assignable>types of keys</assignable>.</title>
+                </ext-comp-def-title>
                 <note role='application'><h:i>
                   This requirement specifies the way that a product may combine the various submasks by using either an XOR or an approved SHA-hash. The approved hash functions are captured in FCS_COP.1/Hash.
                 </h:i></note>
@@ -2139,16 +2335,14 @@
               </f-element>
               <audit-event/>
             </f-component>
+        
             <f-component cc-id="fcs_val_ext.1" name="Validation " id="fcs-val-ext-1">
               <consistency-rationale/>
               <comp-lev>requires the TSF to validate submasks and BEVs by one or more of the specified methods.</comp-lev>
               <management/>
               <audit/>
               <dependencies>
-                <h:p>FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm),</h:p>
-                <h:p>FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm),</h:p>
-                <h:p>FCS_COP.1/KeyWrap Cryptographic Operation (Key Wrapping),</h:p>
-                <h:p>FCS_COP.1/SKC Cryptographic Operation (AES Data Encryption/Decryption)</h:p>
+                <h:p>FCS_COP.1 Cryptographic Operation</h:p>                
               </dependencies>
               <f-element id="fcs-val-ext-1-1">
                 <title>
@@ -2157,20 +2351,43 @@
                     <selectable>intermediate key</selectable>
                     <selectable>BEV</selectable>
                   </selectables>
-                  using the following method(s): <selectables linebreak="yes">
-                    <selectable>key wrap as specified in FCS_COP.1/KeyWrap;</selectable>
+                  using the following methods: <selectables linebreak="yes">
+                    <selectable>key wrap as specified in FCS_COP.1<h:b>/KeyWrap</h:b>;</selectable>
                     <selectable>hash the <selectables>
                       <selectable>submask</selectable>
                       <selectable>intermediate key</selectable>
                       <selectable>BEV</selectable>
                     </selectables>
                     as specified in <selectables>
-                      <selectable id="fcs-val-ext-1-1-hash">FCS_COP.1/Hash</selectable>
-                      <selectable id="fcs-val-ext-1-1-keyhash">FCS_COP.1/KeyedHash</selectable>
+                      <selectable id="fcs-val-ext-1-1-hash">FCS_COP.1<h:b>/Hash</h:b></selectable>
+                      <selectable id="fcs-val-ext-1-1-keyhash">FCS_COP.1<h:b>/KeyedHash</h:b></selectable>
                     </selectables> and compare it to a stored hashed <selectables><selectable>submask</selectable><selectable> intermediate key</selectable><selectable>BEV</selectable></selectables>;</selectable>
-                    <selectable id="fcs-val-ext-1-1-decr">decrypt a known value using the <selectables><selectable>submask</selectable><selectable>intermediate key</selectable><selectable>BEV</selectable></selectables> specified in FCS_COP.1/SKC and compare it against a stored known value </selectable>
+                    <selectable id="fcs-val-ext-1-1-decr">decrypt a known value using the <selectables><selectable>submask</selectable><selectable>intermediate key</selectable><selectable>BEV</selectable></selectables> specified in FCS_COP.1<h:b>/SKC</h:b> and compare it against a stored known value </selectable>
                   </selectables>.
                 </title>
+                
+                <ext-comp-def-title>
+                  <title>
+                    The TSF shall perform validation of the <selectables>
+                      <selectable>submask</selectable>
+                      <selectable>intermediate key</selectable>
+                      <selectable>BEV</selectable>
+                    </selectables>
+                    using the following methods: <selectables linebreak="yes">
+                      <selectable>key wrap as specified in FCS_COP.1;</selectable>
+                      <selectable>hash the <selectables>
+                        <selectable>submask</selectable>
+                        <selectable>intermediate key</selectable>
+                        <selectable>BEV</selectable>
+                      </selectables>
+                        as specified in <selectables>
+                          <selectable id="fcs-val-ext-1-1-hash">FCS_COP.1</selectable>
+                          <selectable id="fcs-val-ext-1-1-keyhash">FCS_COP.1</selectable>
+                        </selectables> and compare it to a stored hashed <selectables><selectable>submask</selectable><selectable> intermediate key</selectable><selectable>BEV</selectable></selectables>;</selectable>
+                      <selectable id="fcs-val-ext-1-1-decr">decrypt a known value using the <selectables><selectable>submask</selectable><selectable>intermediate key</selectable><selectable>BEV</selectable></selectables> specified in FCS_COP.1 and compare it against a stored known value </selectable>
+                    </selectables>.
+                  </title>
+                </ext-comp-def-title>
                 
                   <aactivity level="element">
                       <TSS>
@@ -2213,6 +2430,15 @@
                   The TSF shall require validation of the [<h:i>BEV</h:i>] prior to [<h:i>forwarding the BEV to the EE</h:i>].
                 </title>
                 
+                <ext-comp-def-title>
+                  <title>The TSF shall require validation of the <selectables>
+                    <selectable>submask</selectable>
+                    <selectable>intermediate key</selectable>
+                    <selectable>BEV</selectable>
+                  </selectables> prior to <assignable>activity requiring validation</assignable>.
+                  </title>
+                </ext-comp-def-title>
+                
               </f-element>
               <f-element id="fcs-val-ext-1-3">
                 <title>The TSF shall 
@@ -2226,7 +2452,7 @@
                     </selectable>
                     <selectable>institute a delay such that only <assignable>ST author specified number of attempts</assignable> can be made within a 24 hour period</selectable>
                     <selectable>block validation after <assignable>ST author specified number of attempts</assignable> of consecutive failed validation attempts</selectable>
-                    <selectable>require power cycle/reset the TOE after <assignable>ST author specified number of attempts</assignable> of consecutive failed validation attempts</selectable>
+                    <selectable>require power cycle or reset the TOE after <assignable>ST author specified number of attempts</assignable> of consecutive failed validation attempts</selectable>
                   </selectables></title>
                 <note role="application"><h:i>
                   <h:p>
@@ -2240,11 +2466,6 @@
               </f-element>
               <audit-event/>
             </f-component>
-
-            
-            
-            
-            
 
       </section>
       <section title="Security Management (FMT)" id="FMT">
@@ -2278,13 +2499,13 @@
         <f-component cc-id="fmt_smf.1" name="Specification of Management Functions" id="fmt-smf-1">
         <f-element id="fmt-smf-1">
           <title>
-          <h:b>Refinement:</h:b> The TSF shall be capable of performing the following management functions: [
+          The TSF shall be capable of performing the following management functions: [
             <h:i><h:ol type='a'>
               <h:li>forwarding requests to change the DEK to the EE</h:li>
               <h:li>forwarding requests to cryptographically erase the DEK to the EE</h:li>
               <h:li>allowing authorized users to change authorization values or set of authorization values used within the supported authorization method,</h:li>
               <h:li>initiate TOE firmware/software updates</h:li>
-              <h:li><h:b><selectables>
+              <h:li><selectables>
                 <selectable>no other functions</selectable>
                 <selectable>specify the power saving state properties</selectable>
                 <selectable> define the allowable power saving states</selectable>
@@ -2296,7 +2517,7 @@
                 <selectable>configure the number of failed validation attempts required to trigger corrective behavior</selectable>
                 <selectable>configure the corrective behavior to issue in the event of an excessive number of failed validation attempts</selectable>
                 <selectable><assignable>other management functions provided by the TSF</assignable></selectable>
-              </selectables></h:b></h:li>
+              </selectables>]</h:li>
             </h:ol></h:i> 
             
           </title>
@@ -2434,13 +2655,33 @@
           <fam-behavior>Components in this family address the requirements for updating the TOE firmware and/or software.
             </fam-behavior>
         </ext-comp-def>
+        
+        <f-component cc-id="fpt_fls.1" name="Failure with Preservation of Secure State">
+          <f-element id="fel-pres-sec-state">
+            <title>
+              The TSF shall preserve a secure state when the following types of failures occur: [<h:i>DRBG self-test failure</h:i>].              
+            </title>
+            <note role="application">The intent of this requirement is to ensure that cryptographic services requiring random bit generation cannot be performed if a failure of a self-test defined in FPT_TST.1 occurs.</note>
+            <aactivity>              
+              <TSS>
+                The evaluator shall verify that the TSF describes how the TOE enters an error state in the event of a DRBG self-test failure.
+              </TSS>
+              <Guidance>
+                The evaluator shall verify that the guidance documentation describes the error state that results from a DRBG self-test failure and the actions that a user or administrator should take in response to attempt to resolve the error state.
+              </Guidance>
+              <Tests/>
+            </aactivity>
+          </f-element>
+          <audit-event/>
+        </f-component>
+        
         <f-component cc-id="fpt_kyc_ext.2" name="Key Chaining (Recipient) " id="fpt-kyc-ext-2" status="invisible">
           <consistency-rationale/>
           <comp-lev><h:p>requires the TSF to be able to accept a BEV that is then chained to a DEK used by the TSF through some method.</h:p>
           <h:p> Note that this cPP does not include FCS_KYC_EXT.2; it is only included here to provide a complete definition of the FCS_KYC_EXT family.</h:p></comp-lev>
           <management/>
           <audit/>
-          <dependencies/>
+          <dependencies>No dependencies</dependencies>
           <f-element id="fpt-kyc-ext-2-1">
             <title>The TSF shall accept a BEV of at least <selectables><selectable>128 bits</selectable><selectable>256 bits</selectable></selectables> from <assignable>one or more external entities</assignable>.</title>
             
@@ -2466,49 +2707,77 @@
           </f-element>
           <audit-event/>
         </f-component>
+        
         <f-component cc-id="fpt_kyp_ext.1" name="Protection of Key and Key Material " id="fpt-kyp-ext-1">
           <consistency-rationale/>
           <comp-lev>requires the TSF to ensure that no plaintext key or key material are written to non-volatile storage.</comp-lev>
           <management/>
           <audit/>
           <dependencies>
-            <h:p>FCS_COP.1/KeyWrap Cryptographic Operation (Key Wrapping),</h:p>
-            <h:p>FCS_COP.1/KeyEncap Cryptographic Operation (Key Transport),</h:p>
-            <h:p>FCS_COP.1/KeyEnc Cryptographic Operation (Key Encryption),</h:p>
+            <h:p>FCS_COP.1 Cryptographic Operation,</h:p>
             <h:p>FCS_KYC_EXT.1 Key Chaining (Initiator),</h:p>
             <h:p>FCS_KYC_EXT.2 Key Chaining (Recipient)</h:p>
             <h:p>FCS_SMC_EXT.1 Submask Combining</h:p>
             <comment> FCS_KYC_EXT.2 needs to be listed within the ECD but it does not seem to show up properly even thought the invisible status is being used. </comment>
           </dependencies>
+          
           <f-element id="fpt-kyp-ext-1-1">
             <title>
               The TSF shall <selectables linebreak="yes">
                 <selectable>not store keys in non-volatile memory</selectable>
-                <selectable>only store keys in non-volatile memory when wrapped, as specified in FCS_COP.1/KeyWrap, or encrypted, as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyEncap</selectable>
+                <selectable>only store keys in non-volatile memory when wrapped, as specified in <h:b>FCS_COP.1/KeyWrap</h:b>, or encrypted, as specified in FCS_COP.1<h:b>/KeyEnc</h:b> or FCS_COP.1<h:b>/KeyEncap</h:b></selectable>
                 <selectable>only store plaintext keys that meet any one of the following criteria <selectables>
                   <selectable>the plaintext key is not part of the key chain as specified in FCS_KYC_EXT.1</selectable>
                   <selectable>the plaintext key will no longer provide access to the encrypted data after initial provisioning</selectable>
                   <selectable>the plaintext key is a key split that is combined as specified in FCS_SMC_EXT.1, and the other half of the key split is <selectables linebreak="yes">
-                    <selectable>wrapped as specified in FCS_COP.1/KeyWrap</selectable>
-                    <selectable>encrypted as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyEncap</selectable>
+                    <selectable>wrapped as specified in FCS_COP.1<h:b>/KeyWrap</h:b></selectable>
+                    <selectable>encrypted as specified in FCS_COP.1<h:b>/KeyEnc</h:b> or FCS_COP.1<h:b>/KeyEncap</h:b></selectable>
                     <selectable>derived and not stored in non-volatile memory</selectable>
                   </selectables></selectable>
                   <selectable>the non-volatile memory the key is stored on is located in an external storage device for use as an authorization factor</selectable>
                   <selectable>the plaintext key is <selectables linebreak="yes">
-                    <selectable>used to wrap a key as specified in FCS_COP.1/KeyWrap</selectable>
-                    <selectable>used to encrypt a key as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyEncap</selectable></selectables>
+                    <selectable>used to wrap a key as specified in FCS_COP.1<h:b>/KeyWrap</h:b></selectable>
+                    <selectable>used to encrypt a key as specified in FCS_COP.1<h:b>/KeyEnc</h:b> or FCS_COP.1<h:b>/KeyEncap</h:b></selectable></selectables>
                      that is <selectables linebreak='yes'>
-                      <selectable>already wrapped as specified in FCS_COP.1/KeyWrap,</selectable>
-                      <selectable>already encrypted as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyEncap,</selectable>
+                       <selectable>already wrapped as specified in FCS_COP.1<h:b>/KeyWrap</h:b>,</selectable>
+                       <selectable>already encrypted as specified in FCS_COP.1<h:b>/KeyEnc</h:b> or FCS_COP.1<h:b>/KeyEncap</h:b>,</selectable>
                       <selectable>derived and not stored in non-volatile memory</selectable>
                      </selectables>
                  </selectable>                  
                 </selectables>
                 </selectable>
-                
-
               </selectables>.
             </title>
+            
+            <ext-comp-def-title>
+              <title>The TSF shall <selectables linebreak="yes">
+                <selectable>not store keys in non-volatile memory</selectable>
+                <selectable>only store keys in non-volatile memory when wrapped, as specified in FCS_COP.1, or encrypted, as specified in FCS_COP.1</selectable>
+                <selectable>only store plaintext keys that meet any one of the following criteria <selectables>
+                  <selectable>the plaintext key is not part of the key chain as specified in FCS_KYC_EXT.1</selectable>
+                  <selectable>the plaintext key will no longer provide access to the encrypted data after initial provisioning</selectable>
+                  <selectable>the plaintext key is a key split that is combined as specified in FCS_SMC_EXT.1, and the other half of the key split is <selectables linebreak="yes">
+                    <selectable>wrapped as specified in FCS_COP.1</selectable>
+                    <selectable>encrypted as specified in FCS_COP.1 or FCS_COP.1</selectable>
+                    <selectable>derived and not stored in non-volatile memory</selectable>
+                  </selectables></selectable>
+                  <selectable>the non-volatile memory the key is stored on is located in an external storage device for use as an authorization factor</selectable>
+                  <selectable>the plaintext key is <selectables linebreak="yes">
+                    <selectable>used to wrap a key as specified in FCS_COP.1</selectable>
+                    <selectable>used to encrypt a key as specified in FCS_COP.1 or FCS_COP.1</selectable></selectables>
+                    that is <selectables linebreak='yes'>
+                      <selectable>already wrapped as specified in FCS_COP.1,</selectable>
+                      <selectable>already encrypted as specified in FCS_COP.1,</selectable>
+                      <selectable>derived and not stored in non-volatile memory</selectable>
+                    </selectables>
+                  </selectable>                  
+                </selectables>
+                </selectable>
+                
+              </selectables>.
+              </title>
+            </ext-comp-def-title>
+            
             <note role='application'><h:i>The plaintext key storage in non-volatile memory is allowed for several reasons. If the keys exist within protected memory that is not user accessible on the TOE or OE, the only methods that allow it to play a security relevant role for protecting the BEV or the DEK are if it is a key split or providing additional layers of wrapping or encryption on keys that have already been protected.</h:i></note>
              
 
@@ -2535,10 +2804,10 @@
             <h:li>Specify one or more power saving state configurations</h:li>
           </h:ul></management>
           <audit>There are no auditable events foreseen.</audit>
-          <dependencies/>
+          <dependencies>No dependencies</dependencies>
           <f-element id="fpt-pwr-ext-1-1">
             <title>
-              The TSF shall define the following Compliant power saving states: <selectables choose-one-of="yes">
+              The TSF shall define the following compliant power saving states: <selectables choose-one-of="yes">
                 <selectable>S3</selectable>
                 <selectable>S4</selectable>
                 <selectable>G2(S5)</selectable>
@@ -2561,7 +2830,7 @@
         </f-component>
         <f-component cc-id="fpt_pwr_ext.2" name="Timing of Power Saving States" id="fpt-pwr-ext-2-1">
           <consistency-rationale/>
-          <comp-lev>describes the situations that cause Compliant power saving states to be entered.</comp-lev>
+          <comp-lev>describes the situations that cause compliant power saving states to be entered.</comp-lev>
           <management/>
           <audit>The following actions should be auditable if FAU_GEN Security audit data generation is included in the PP/ST:<h:ul>
             <h:li>Transition of the TSF into different power saving states</h:li>
@@ -2569,7 +2838,8 @@
           <dependencies>FPT_PWR_EXT.1 Power Saving States</dependencies>
           <f-element id="fpt-pwr-ext-2-1">
             <title>
-              For each Compliant power saving state defined in FPT_PWR_EXT.1.1, the TSF shall enter the Compliant power saving state when the following conditions occur: user-initiated request, <selectables>
+              For each compliant power saving state defined in FPT_PWR_EXT.1.1, the TSF shall enter
+              the compliant power saving state when the following conditions occur: user-initiated request, <selectables>
                 <selectable>shutdown</selectable>
                 <selectable>user inactivity</selectable>
                 <selectable>request initiated by remote management system</selectable>
@@ -2595,50 +2865,62 @@
           </f-element>
           <audit-event/>
         </f-component>
-        <f-component cc-id="fpt_tst.1" name="TSF Testing" id="fpt-tst-1" status="optional" iterate="AA">
-          <consistency-rationale/>
-          <comp-lev>requires a suite of self-tests to be run during initial start-up in order to demonstrate correct operation of the TSF.</comp-lev>
-          <management/>
-          <audit>The following actions should be auditable if FAU_GEN Security audit data generation is included in the PP/ST:<h:ul>
-            <h:li>Indication that TSF self-test was completed</h:li>
-          </h:ul></audit>
-          <dependencies/>
-          <depends on-sel="fcs-rbg-ext-1-1-nist"/>
-
-          <f-element id="fpt-tst-ext-1-1">
-            <title>The TSF shall run a suite of the following self-tests <h:s><selectables><selectable>during initial start-up (on power on)</selectable><selectable>at the conditions [before the function is first invoked]</selectable></selectables></h:s> to demonstrate the correct operation of the TSF: <assignable> list of self-tests run by the TSF</assignable>.</title>
-            <note role='application'><h:i><h:p>The tests regarding cryptographic functions implemented in the TOE can be deferred, as long as the tests are performed before the function is invoked.</h:p>
-            <h:p>If FCS_RBG.1 is implemented by the TOE and according to NIST SP 800-90, the evaluator should verify that the TSS describes health tests that are consistent with section 11.3 of NIST SP 800-90.</h:p>
-            <h:p>If any FCS_COP functions are implemented by the TOE, the TSS should describe the known answer self-tests for those functions.</h:p>
-            <h:p>The evaluator is expected to verify that the TSS describes, for some set of non-cryptographic functions affecting the correct operation of the TSF, the method by which those functions are tested. The TSS will describe, for each of these functions, the method by which correct operation of the function/component is verified. The evaluator should determine that all of the identified functions/components are adequately tested on start-up.</h:p>
-          </h:i></note>
-          <aactivity>
+        
+        <f-component cc-id="fpt_tst.1" name="TSF Self-Testing" status="optional">
+          <f-element id="fel-tsf-self-test">
+            <title>
+              The TSF shall run a suite of the following self-tests <selectables>
+                <selectable>during initial start-up</selectable>
+                <selectable>periodically during normal operation</selectable>
+                <selectable>at the request of the authorized user</selectable>
+                <selectable>at the conditions <assignable>conditions under which self-test should occur</assignable></selectable>
+              </selectables>
+              to demonstrate the correct operation of <selectables>
+                <selectable><assignable>parts of  TSF</assignable></selectable>
+                <selectable>TSF data</selectable>
+              </selectables>.              
+            </title>
+          </f-element>
+          
+          <f-element id="fel-tsf-ver-int-data">
+            <title>
+              The TSF shall provide authorized users with the capability to verify the integrity of
+              <selectables>
+                <selectable><assignable>parts of TSF data</assignable></selectable>
+                <selectable>TSF data</selectable>
+              </selectables>.
+            </title>
+          </f-element>
+          
+          <f-element id="fel-tsf-ver-int">
+            <title>
+              The TSF shall provide authorized users with the capability to verify the integrity of <selectables>
+                <selectable><assignable>parts of TSF </assignable></selectable>
+                <selectable>TSF</selectable>
+              </selectables>.
+            </title>
+            <note role="application">This SFR is a required dependency of FCS_RBG.1. It is intended to require that any DRBG implemented by the TOE undergo health testing to ensure that the random bit generation functionality has not been degraded. If the TSF supports multiple DRBGs, this SFR should be iterated to describe the self-test behavior for each.</note>
+            <aactivity>
               <TSS>
-                <h:p>The evaluator shall verify that the TSS describes the known-answer self-tests for
-                  cryptographic functions.</h:p>
-                <h:p>The evaluator shall verify that the TSS describes, for some set of non-cryptographic
-                  functions affecting the correct operation of the TOE and the method by which the TOE
-                  tests those functions. The evaluator shall verify that the TSS includes each of these
-                  functions, the method by which the TOE verifies the correct operation of the function.
-                  The evaluator shall verify that the TSF data are appropriate for TSF Testing. For
-                  example, more than blocks are tested for AES in CBC mode, output of AES in GCM
-                  mode is tested without truncation, or 512-bit key is used for testing HMAC-SHA-512.
-                  </h:p>
-                <h:p>If FCS_RBG.1 is implemented by the TOE and according to NIST SP 800-90,
-                  the evaluator shall verify that the TSS describes health tests that are consistent with
-                  section 11.3 of NIST SP 800-90. </h:p>
-                <h:p>If any FCS_COP functions are implemented by the TOE, the TSS shall describe the
-                  known-answer self-tests for those functions.</h:p>
-                <h:p>The evaluator shall verify that the TSS describes, for some set of non-cryptographic
-                  functions affecting the correct operation of the TSF, the method by which those
-                  functions are tested. The TSS will describe, for each of these functions, the method by
-                  which correct operation of the function/component is verified. The evaluator shall
-                  determine that all of the identified functions/components are adequately tested on startup.</h:p>
+                <h:p>
+                  The	evaluator shall examine the TSS to ensure that it details the self-tests that are run by the TSF along with how they are run. This description should include an outline of what the tests are actually doing. The evaluator shall ensure that the TSS makes an argument that the tests are sufficient to demonstrate that the DRBG is operating correctly.
+                </h:p><h:p>
+                  Note that this information may also be placed in the entropy documentation specified by <xref to="entropyappendix"/>. 
+                </h:p>
               </TSS>
-              <Guidance>There are no AGD evaluation activities for this SFR.</Guidance>
-              <CustomEA name="KMD">There are no KMD evaluation activities for this SFR</CustomEA>
-              <Tests>There are no test evaluation activities for this SFR.</Tests>
-          </aactivity>
+              <Guidance>
+                <h:p>
+                  If a self-test can be executed at the request of an authorized user, the evaluator shall verify that the operational guidance provides instructions on how to execute that self-test.
+                </h:p>
+              </Guidance>
+              <Tests>
+                <h:p>
+                  For each self-test, the evaluator shall verify that evidence is produced that the self-test is executed when specified by FPT_TST.1.1.
+                </h:p><h:p>
+                  If a self-test can be executed at the request of an authorized user, the evaluator shall verify that following the steps documented in the operational guidance to perform the self-test will result in execution of the self-test.
+                </h:p>
+              </Tests>
+            </aactivity>
           </f-element>
           <audit-event/>
         </f-component>
@@ -2658,31 +2940,55 @@
           
           <f-element id="fpt-tud-ext-1-1">
             <title>
-              <h:b>Refinement:</h:b> The TSF shall provide [<h:i>authorized users</h:i>] the ability to
+             The TSF shall provide [<h:i>authorized users</h:i>] the ability to
               query the current version of the TOE 
-              <h:i><h:b>
                 <selectables>
                   <selectable>software</selectable>
                   <selectable>firmware</selectable>
-                </selectables></h:b></h:i>
-                <h:s> software/firmware</h:s>.
+                </selectables>.
             </title>
-              
+            
+            <ext-comp-def-title>
+              <title>The TSF shall provide <assignable>list of subjects</assignable> the ability to
+                query the current version of the TOE 
+                  <selectables>
+                    <selectable>software</selectable>
+                    <selectable>firmware</selectable>
+                  </selectables>.
+                </title>
+            </ext-comp-def-title>
+            
           </f-element>
           <f-element id="fpt-tud-ext-1-2">
             <title>
-              <h:b>Refinement:</h:b> The TSF shall provide [<h:i>authorized users</h:i>] the ability to initiate updates to TOE <h:i><h:b>
+              The TSF shall provide [<h:i>authorized users</h:i>] the ability to initiate updates to TOE 
                 <selectables>
                   <selectable>software</selectable>
                   <selectable>firmware</selectable>
-                </selectables></h:b></h:i> <h:s>software/firmware</h:s>.
+                </selectables>.
             </title>
-              
+            
+            <ext-comp-def-title>
+              <title>The TSF shall provide <assignable>list of subjects</assignable> the ability to initiate updates to TOE 
+                <selectables>
+                  <selectable>software</selectable>
+                  <selectable>firmware</selectable>
+                </selectables>.</title>
+            </ext-comp-def-title>
+            
           </f-element>
           <f-element id="fpt-tud-ext-1-3">
             <title>
-              <h:b>Refinement:</h:b> The TSF shall verify updates to the TOE software using a [<h:i>digital signature <h:b>as specified in FCS_COP.1/SigVer</h:b></h:i>] by the manufacturer prior to installing those updates.
+              The TSF shall verify updates to the TOE software using a [<h:i>digital signature <h:b>as specified in FCS_COP.1/SigVer</h:b></h:i>] by the manufacturer prior to installing those updates.
             </title>
+            
+            <ext-comp-def-title>
+              <title>The TSF shall verify updates to the TOE software using a <selectables>
+                <selectable>digital signature</selectable>
+                <selectable>published hash</selectable>
+              </selectables> by the manufacturer prior to installing those updates.</title>
+            </ext-comp-def-title>
+            
             <note role='application'><h:i>While this component requires the TOE to implement the update functionality itself, it is acceptable to perform the cryptographic checks using functionality available in the Operational Environment.</h:i></note>
               <aactivity>
                 <TSS>
@@ -2725,6 +3031,7 @@
       </section>
 
 	</sec:SFRs>
+  
   <section title="Security Assurance Requirements" id="SARs">
     <h:p>This cPP identifies the Security Assurance Requirements (SARs) to frame the extent to which the evaluator assesses the documentation applicable for the evaluation and performs independent testing. Individual Evaluation Activities to be performed are specified in <h:i>Supporting Document (Mandatory Technical Document) Full Drive Encryption: Authorization Acquisition, February 2019</h:i>.
   </h:p><h:p>
@@ -2793,21 +3100,22 @@
      </h:tr>
    </h:table>
   </h:p>
+    
     <section title="ASE: Security Target" id="ase">
       <h:p>The ST is evaluated as per ASE activities defined in the CEM. In addition, there may be Evaluation Activities specified within the SD that call for necessary descriptions to be included in the TSS that are specific to the TOE technology type.</h:p>
       <h:p>The SFRs in this cPP allow for conformant implementations to incorporate a wide range of acceptable key management approaches as long as basic principles are satisfied. Given the criticality of the key management scheme, this cPP requires the developer to provide a detailed description of their key management implementation. This information can be submitted as an appendix to the ST and marked proprietary, as this level of detailed information is not expected to be made publicly available. See Appendix E for details on the expectation of the developer’s Key Management Description</h:p><h:p>In addition, if the TOE includes a random bit generator Appendix D provides a description of the information expected to be provided regarding the quality of the entropy.</h:p>
-      <h:p>
-        <h:b>ASE_TSS.1.1C Refinement:</h:b> The TOE summary specification shall describe how the TOE meets each SFR, <h:b>including a proprietary Key Management Description (Appendix E), and <h:i>[selection: Entropy Essay, list of all of 3rd 9 party software libraries (including version numbers), 3rd 10 party hardware components (including model/version numbers), no other cPP specified proprietary documentation]</h:i>.</h:b>
-      
-    </h:p></section>
+      <h:p><h:b>ASE_TSS.1.1C Refinement:</h:b> The TOE summary specification shall describe how the TOE meets each SFR, <h:b>including a proprietary Key Management Description (Appendix E), and <h:i>[selection: Entropy Essay, list of all of 3rd 9 party software libraries (including version numbers), 3rd 10 party hardware components (including model/version numbers), no other cPP specified proprietary documentation]</h:i>.</h:b></h:p>
+    </section>
+
     <section title="ADV: Development" id="adv">
-      The design information about the TOE is contained in the guidance documentation available to the end user as well as the TSS portion of the ST, and any additional information required by this cPP that is not to be made public (e.g., Entropy Essay) .
+      <h:p>The design information about the TOE is contained in the guidance documentation available to the end user as well as the TSS portion of the ST, and any additional information required by this cPP that is not to be made public (e.g., Entropy Essay).</h:p>
    
-    <a-component cc-id="adv_fsp.1" name="Basic Functional Specification (ADV_FSP.1)">
+      <a-component cc-id="adv_fsp.1" name="Basic Functional Specification (ADV_FSP.1)">
       <h:p>The functional specification describes the TOE Security Functions Interfaces (TSFIs). It is not necessary to have a formal or complete specification of these interfaces. Additionally, because TOEs conforming to this cPP will may interfaces to the Operational Environment that are not directly invoked by TOE users, there is little point specifying that such interfaces be described in and of themselves since only indirect testing of such interfaces may be possible. For this cPP, the Evaluation Activities for this family focus on understanding the interfaces presented in the TSS in response to the functional requirements and the interfaces presented in the AGD documentation. No additional “functional specification” documentation is necessary to satisfy the Evaluation Activities specified in the SD.</h:p>
       <h:p>The Evaluation Activities in the SD are associated with the applicable SFRs; since these are directly associated with the SFRs, the tracing in element ADV_FSP.1.2D is implicitly already done and no additional documentation is necessary.</h:p>
     </a-component>
   </section>
+    
   <section title="AGD: Guidance Documentation" id="agd">
     <h:p>The guidance documents will be provided with the ST. Guidance must include a description of how the IT personnel verifies that the Operational Environment can fulfill its role for the security functionality. The documentation should be in an informal style and readable by the IT personnel.</h:p>
     <h:p>Guidance must be provided for every operational environment that the product supports as claimed in the ST. This guidance includes: <h:ul>

@@ -395,96 +395,81 @@
 			<threat id="t-unauth-data-access" name="T.UNAUTHORIZED_DATA_ACCESS">
 				<description>The cPP addresses the primary threat of unauthorized disclosure of protected data stored on a storage device. If an adversary obtains a lost or stolen storage device (e.g., a storage device contained in a laptop or a portable external storage device), they may attempt to connect a targeted storage device to a host of which they have complete control and have raw access to the storage device (e.g., to specified disk sectors, to specified blocks).
 				</description>
-				<addressed-by>FCS_AFA_EXT.2</addressed-by><rationale>This SFR mitigates this threat by requiring authentication to be re-entered upon return from a compliant power state. </rationale>
-        <addressed-by> FCS_VAL_EXT.1</addressed-by><rationale>This SFR mitigates this threat by verifying the correct authentication and limits attempts to decrypt the data.</rationale>
-        <addressed-by>FMT_MOF.1</addressed-by><rationale>This SFR mitigates this threat by restricting the ability to modified compliant power states to authorized users.</rationale>
-				<addressed-by>FMT_SMF.1</addressed-by><rationale>This SFR mitigates this threat by ensuring the TSF provides the functions necessary to manage important aspects of the TOE including requests to change and erase the DEK.</rationale>
-        
-        <addressed-by>FMT_SMR.1</addressed-by><rationale>This SFR mitigates this threat by assigning users with the proper account permissions and privileges. This can be used with FMT_MOF.1 to restrict users to be able to modify certain power states covered in FMT_MOF.1.</rationale>
-        <addressed-by>FPT_PWR_EXT.1</addressed-by><rationale>This SFR mitigates this threat by defining what power states are compliant for the TOE.</rationale>
-        <addressed-by>FPT_PWR_EXT.2</addressed-by><rationale>This SFR mitigates this threat by defining conditions in which the TOE will enter a compliant power state. These requirements ensure the device is secure if lost in a compliant power state.</rationale>
-        
-        <addressed-by>FPT_TST.1/AA</addressed-by><rationale>This SFR mitigates this threat by testing the behavior of the cryptographic functions through the use of the self-tests.</rationale>
-
-
-			</threat>
-			<threat id="t-keying_material_compromise" name="T.KEYING_MATERIAL_COMPROMISE">
+				<addressed-by>FCS_AFA_EXT.2</addressed-by><rationale>Mitigates this threat by requiring authentication to be re-entered upon return from a compliant power state. </rationale>
+			  <addressed-by>FCS_VAL_EXT.1</addressed-by><rationale>Mitigates this threat by verifying the correct authentication and limits attempts to decrypt the data.</rationale>
+			  <addressed-by>FMT_MOF.1</addressed-by><rationale>Mitigates this threat by restricting the authorized user's ability to modify compliant power states.</rationale>
+			  <addressed-by>FMT_SMF.1</addressed-by><rationale>Mitigates this threat by ensuring the TSF provides the functions necessary to manage important aspects of the TOE including requests to change and erase the DEK.</rationale>        
+			  <addressed-by>FMT_SMR.1</addressed-by><rationale>Mitigates this threat by assigning users with the proper account permissions and privileges. This can be used with FMT_MOF.1 to restrict users to be able to modify certain power states covered in FMT_MOF.1.</rationale>
+			  <addressed-by>FPT_PWR_EXT.1</addressed-by><rationale>Mitigates this threat by defining what power states are compliant for the TOE.</rationale>
+			  <addressed-by>FPT_PWR_EXT.2</addressed-by><rationale>Mitigates this threat by defining conditions in which the TOE will enter a compliant power state. These requirements ensure the device is secure if lost in a compliant power state.</rationale>        
+			  <addressed-by>FPT_TST.1 (optional)</addressed-by><rationale>Mitigates by testing the behavior of the cryptographic functions through the use of the self-tests.</rationale>
+			            
+      </threat>
+			
+		  <threat id="t-keying_material_compromise" name="T.KEYING_MATERIAL_COMPROMISE">
 				<description>Possession of any of the keys, authorization factors, submasks, and random numbers or any other values that contribute to the creation of keys or authorization factors could allow an unauthorized user to defeat the encryption. The cPP considers possession of key material of equal importance to the data itself. Threat agents may look for key material in unencrypted sectors of the storage device and on other peripherals in the operating environment (OE), e.g. BIOS configuration, SPI flash.
 				</description>
-        <addressed-by>FCS_AFA_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring the authorization factors to be accepted by the TOE.</rationale>
-        <addressed-by>FCS_AFA_EXT.2</addressed-by><rationale>This SFR mitigates this threat by requiring a valid authorization to decrypt the protected material.</rationale>
-        <addressed-by>FCS_CKM.6</addressed-by><rationale>This SFR mitigates this threat by ensuring proper key material destruction.</rationale>
-       <addressed-by>FCS_CKM.6/Power</addressed-by><rationale>This SFR mitigates this threat by ensuring proper key material destruction.</rationale>
-       <addressed-by>FCS_KDF_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-       <addressed-by>FCS_KYC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring chaining of keys to produce a BEV.</rationale>
-       <addressed-by>FCS_PCC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD- Is this a system password or a user password?</comment></rationale>
-       
-       <addressed-by>FCS_RBG.1</addressed-by><rationale>This SFR mitigates this threat by randomizing the generated keys inorder to reduce the likelihood of guessing the future keys.</rationale>
-       <addressed-by>FCS_SMC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by obscuring the submasks via a XOR or hashing operation..</rationale>
-       <addressed-by>FCS_SNI_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring additional obfuscation to the protected key material by introducing IV's and salting.</rationale>
-        
-        <addressed-by>FCS_VAL_EXT.1</addressed-by><rationale>This SFR mitigates this threat by defining defines methods for validation of keying material such as hashing, keyed-hash message authentication, and decrypting a known value with the keying material.<comment>TBD</comment></rationale>
-
-        <addressed-by>FMT_MOF.1</addressed-by><rationale>This SFR mitigates this threat by restricting the ablitiy to modified compliant power states to authorized users.</rationale>
-        <addressed-by>FMT_SMF.1</addressed-by><rationale>This SFR mitigates this threat by ensuring the TSF provides the functions necessary to manage important aspects of the TOE including generating</rationale>
-        <addressed-by>FMT_SMR.1</addressed-by><rationale>This SFR mitigates this threat by assigning users with the proper acount permissions and privileges.</rationale>
-
-        <addressed-by>FPT_KYP_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring unwrapped key material is not stored in non-volatile memory.</rationale>
-        
-        <addressed-by>FPT_PWR_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring the TOE to meet a compliant power saving state that protects and/or destroys key materials.</rationale>
-        <addressed-by>FPT_PWR_EXT.2</addressed-by><rationale>This SFR mitigates this threat by requiring the TOE to enter into a safe state based on each condition. </rationale>
-       
-        <addressed-by>FPT_TST.1/AA</addressed-by><rationale>This SFR mitigates this threat by verify the cryptographic functionality through the self testing functionality.<comment>TBD</comment></rationale>
-
-        <addressed-by>FCS_CKM.1/AKG</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FCS_CKM.1/SKG</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FCS_COP.1/Hash</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FCS_COP.1/KeyedHash</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FCS_COP.1/KeyWrap</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FCS_COP.1/KeyEncap</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FCS_COP.1/SKC</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FCS_COP.1/KeyEnc</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        
-        
-        
-        
-       
-        
-        
-       
-				
-			</threat><threat id="t-auth-guessing" name="T.AUTHORIZATION_GUESSING">
+			  <addressed-by>FCS_AFA_EXT.1</addressed-by><rationale>Mitigates this threat by requiring the authorization factors to be accepted by the TOE.</rationale>
+			  <addressed-by>FCS_AFA_EXT.2</addressed-by><rationale>Mitigates this threat by requiring a valid authorization to decrypt the protected material.</rationale>
+			  <addressed-by>FCS_CKM.6</addressed-by><rationale>Mitigates this threat by ensuring proper key material destruction.</rationale>
+        <addressed-by>FCS_CKM.6/Power</addressed-by><rationale>Mitigates this threat by ensuring proper key material destruction.</rationale>
+        <addressed-by>FCS_KYC_EXT.1</addressed-by><rationale>Mitigates this threat by requiring chaining of keys to produce a BEV.</rationale>
+        <addressed-by>FCS_PCC_EXT.1</addressed-by><rationale>Mitigates this threat by requiring<comment>TBD- Is this a system password or a user password?</comment></rationale>       
+        <addressed-by>FCS_SMC_EXT.1</addressed-by><rationale>Mitigates this threat by obscuring the submasks via a XOR or hashing operation..</rationale>
+        <addressed-by>FCS_SNI_EXT.1</addressed-by><rationale>Mitigates this threat by requiring additional obfuscation to the protected key material by introducing IV's and salting.</rationale>
+        <addressed-by>FCS_VAL_EXT.1</addressed-by><rationale>Mitigates this threat by defining methods for validation of keying material and number of validation attempts.</rationale>
+        <addressed-by>FMT_MOF.1</addressed-by><rationale>Mitigates this threat by restricting the ability to modified compliant power states to authorized users.</rationale>
+        <addressed-by>FMT_SMF.1</addressed-by><rationale>Mitigates this threat by ensuring the TSF provides the functions necessary to manage important aspects of the TOE including generating</rationale>
+        <addressed-by>FMT_SMR.1</addressed-by><rationale>Mitigates this threat by assigning users with the proper account permissions and privileges.</rationale>
+        <addressed-by>FPT_KYP_EXT.1</addressed-by><rationale>Mitigates this threat by requiring unwrapped key material is not stored in non-volatile memory.</rationale>        
+        <addressed-by>FPT_PWR_EXT.1</addressed-by><rationale>Mitigates this threat by requiring the TOE to meet a compliant power saving state that protects and/or destroys key materials.</rationale>
+        <addressed-by>FPT_PWR_EXT.2</addressed-by><rationale>Mitigates this threat by requiring the TOE to enter into a safe state based on each condition. </rationale>
+  		  <addressed-by>FCS_KDF_EXT.1 (selection-based)</addressed-by><rationale>Mitigates this threat by requiring a password that is not subject to a brute force attack.</rationale>
+ 			 <addressed-by>FCS_RBG.1 (selection-based)</addressed-by><rationale>Mitigates this threat by randomizing the generated keys in order to reduce the likelihood of guessing the future keys.</rationale>
+			  <addressed-by>FCS_CKM.1/AKG (selection-based)</addressed-by><rationale>Mitigates this threat by requiring asymmetric key generation.</rationale>
+			  <addressed-by>FCS_CKM.1/SKG (selection-based)</addressed-by><rationale>Mitigates this threat by requiring symmetric cryptographic key generation.</rationale>
+			  <addressed-by>FCS_COP.1/Hash (selection-based)</addressed-by><rationale>Mitigates this threat by performing cryptographic hashing services.</rationale>
+			  <addressed-by>FCS_COP.1/KeyedHash (selection-based)</addressed-by><rationale>Mitigates this threat by performing keyed-hash message authentication.</rationale>
+			  <addressed-by>FCS_COP.1/KeyEnc (selection-based)</addressed-by><rationale>Mitigates this threat by performing key encryption and decryption.</rationale>
+			  <addressed-by>FCS_COP.1/KeyEncap (selection-based)</addressed-by><rationale>Mitigates this threat by performing key transport.</rationale>
+			  <addressed-by>FCS_COP.1/KeyWrap (selection-based)</addressed-by><rationale>TMitigates this threat by performing key wrapping.</rationale>			  
+			  <addressed-by>FCS_COP.1/SKC (selection-based)</addressed-by><rationale>Mitigates this threat by performing data encryption and encryption.</rationale>
+		    <addressed-by>FCS_RBG.2 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
+		    <addressed-by>FCS_RBG.3 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
+		    <addressed-by>FCS_RBG.4 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
+		    <addressed-by>FCS_RBG.5 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
+		    <addressed-by>FPT_TST.1 (selection-based)</addressed-by><rationale>Mitigates this threat by verifying the cryptographic functionality through the self testing functionality.<comment>TBD</comment></rationale>
+			</threat>
+		  
+		  <threat id="t-auth-guessing" name="T.AUTHORIZATION_GUESSING">
 				<description>
           Threat agents may exercise host software to repeatedly guess authorization factors, such as passwords and PINs. Successful guessing of the authorization factors may cause the TOE to release BEV or otherwise put it in a state in which it discloses protected data to unauthorized users. <comment>Please see B.1 of the old PP. B.1 states that this threats need to be included in the ST even though it was already part of the mandatory threat list.</comment>
 				</description>
-        <addressed-by>FCS_AFA_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring a set of authorization factors that will be difficult to guess.</rationale>
-
-        <addressed-by>FCS_PCC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring user provides factors are conditioned to increase the cost of repeatedly guessing a user provided value.</rationale>
-        <addressed-by>FCS_SMC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring multifactor authentication options, further increasing the difficulty of guessing a authentication factor.</rationale>
-        <addressed-by>FCS_SNI_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring  proper salts, which will prevent pre-computed attacks.</rationale>
-        <addressed-by>FCS_VAL_EXT.1</addressed-by><rationale>This SFR mitigates this threat by requiring several options for enforcing validation, such as key sanitization of the DEK or when a configurable number of failed validation attempts is reached within a 24 hour period. This mitigates brute force attacks against authorization factors such as passwords and pins.</rationale>
-       
-				
+        <addressed-by>FCS_AFA_EXT.1</addressed-by><rationale>Mitigates this threat by requiring a set of authorization factors that will be difficult to guess.</rationale>
+        <addressed-by>FCS_PCC_EXT.1</addressed-by><rationale>Mitigates this threat by requiring user provides factors are conditioned to increase the cost of repeatedly guessing a user provided value.</rationale>
+        <addressed-by>FCS_SMC_EXT.1</addressed-by><rationale>TMitigates this threat by requiring multifactor authentication options, further increasing the difficulty of guessing a authentication factor.</rationale>
+        <addressed-by>FCS_SNI_EXT.1</addressed-by><rationale>Mitigates this threat by requiring  proper salts, which will prevent pre-computed attacks.</rationale>
+        <addressed-by>FCS_VAL_EXT.1</addressed-by><rationale>Mitigates this threat by requiring several options for enforcing validation, such as key sanitization of the DEK or when a configurable number of failed validation attempts is reached within a 24 hour period. This mitigates brute force attacks against authorization factors such as passwords and pins.</rationale>
 			</threat>
-      <threat id="t-keyspace-exhaust" name="T.KEYSPACE_EXHAUST">
-				<description>Threat agents may perform a cryptographic exhaust against the  key space. Poorly chosen encryption algorithms and/or parameters allow attackers to exhaust the key space through brute force and give them unauthorized access to the data. 
-				</description>
-				<addressed-by>FCS_KYC_EXT.1</addressed-by><rationale>This SFR mitigates this threat by ensuring ensures all keys protecting the BEV are of the same strength.</rationale>
-        <addressed-by>FCS_RBG.1</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FCS_CKM.1/AKG</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        <addressed-by>FCS_CKM.1/SKG</addressed-by><rationale>This SFR mitigates this threat by requiring<comment>TBD</comment></rationale>
-        
 
-				
+		  <threat id="t-keyspace-exhaust" name="T.KEYSPACE_EXHAUST">
+				<description>Threat agents may perform a cryptographic exhaust against the key space. Poorly chosen encryption algorithms and/or parameters allow attackers to exhaust the key space through brute force and give them unauthorized access to the data.</description>
+				<addressed-by>FCS_KYC_EXT.1</addressed-by><rationale>Mitigates this threat by ensuring ensures all keys protecting the BEV are of the same strength.</rationale>        
+        <addressed-by>FCS_CKM.1/AKG(selection-based)</addressed-by><rationale>Mitigates this threat by requiring asymmetric key generation.</rationale>
+        <addressed-by>FCS_CKM.1/SKG(selection-based)</addressed-by><rationale>Mitigates this threat by requiring symmetric cryptographic key generation.</rationale>
+        <addressed-by>FCS_RBG.1 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that keys used for trusted communications are generated using a secure DRBG. </rationale>
+		    <addressed-by>FCS_RBG.2 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
+		    <addressed-by>FCS_RBG.3 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
+		    <addressed-by>FCS_RBG.4 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
+		    <addressed-by>FCS_RBG.5 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
 			</threat>
-      <threat id="t-unauth_update" name="T.UNAUTHORIZED_UPDATE">
+
+		  <threat id="t-unauth_update" name="T.UNAUTHORIZED_UPDATE">
 				<description>Threat agents may attempt to perform an update of the product which compromises the security features of the TOE. Poorly chosen update protocols, signature generation and verification algorithms, and parameters may allow attackers to install software and/or firmware that bypasses the intended security features and provides them unauthorized access to data.
 				</description>
-        <addressed-by>FMT_SMF.1</addressed-by><rationale>This SFR mitigates this threat by ensuring the TSF provides the functions necessary to manage important behavior of the TOE which includes the initiation of system firmware/software updates.</rationale>
-        <addressed-by>FPT_TUD_EXT.1</addressed-by><rationale>This SFR mitigates this threat by providing authorized users the ability to query the current version of the TOE software/firmware, initiate updates, and verify updates prior to installation using a manufacturer digital signature.</rationale>
-        <addressed-by>FCS_COP.1/SigVer (optional)</addressed-by><rationale>This SFR mitigates this threat by defining the signature function that is used to verify updates.</rationale>
-
-				
+        <addressed-by>FCS_COP.1/SigVer (optional)</addressed-by><rationale>Mitigates this threat by defining the signature function that is used to verify updates.</rationale>
+        <addressed-by>FMT_SMF.1</addressed-by><rationale>Mitigates this threat by ensuring the TSF provides the functions necessary to manage important behavior of the TOE which includes the initiation of system firmware/software updates.</rationale>
+        <addressed-by>FPT_TUD_EXT.1</addressed-by><rationale>Mitigates this threat by providing authorized users the ability to query the current version of the TOE software/firmware, initiate updates, and verify updates prior to installation using a manufacturer digital signature.</rationale>       
 			</threat>
 		</threats>
     </sec:Threats>
@@ -712,7 +697,7 @@
       <h:li>Generate external authorization factors using the TSF DRBG</h:li>
     </h:ul></management>
 	<audit/>
-	<dependencies>No dependencies</dependencies>
+	<dependencies>No dependencies.</dependencies>
           <f-element id="fcs-afa-ext-1-1">
             <title>
               The TSF shall accept the following authorization factors: <selectables linebreak='yes'>
@@ -978,18 +963,14 @@
                     needed</h:i>].            
                 </title>
                 
-                <ext-comp-def-title>
-                  <title>The TSF shall destroy <assignable>list of cryptographic keys (including keying
-                    material)</assignable> when <selectables>
-                      <selectable>no longer needed</selectable>
-                      <selectable><assignable>other circumstances for key or keying material
-                        destruction</assignable></selectable>
-                    </selectables>
-                  </title>
-                </ext-comp-def-title>
-                
-                <note role='application'><h:p>Keys, including intermediate keys and key
-                  material that are no longer needed are destroyed by using an approved method, FCS_CKM.6. Examples of keys are </h:p><h:p>intermediate keys, submasks, and BEV. There may be instances where keys or key material that are contained in persistent storage are no longer needed and require destruction. Based on their implementation, vendors will explain when certain keys are no longer needed. There are multiple situations in which key material is no longer necessary, for example, a wrapped key may need to be destroyed when a password is changed. However, there are instances when keys are allowed to remain in memory, for example, a device identification key. If a PIN was used for a smart card, the TSF should ensure that the PIN was properly destroyed.</h:p></note>
+                <note role="application">Keys, including intermediate keys and key material that are no longer needed are destroyed by
+                  using an approved method, FCS_CKM.6. <h:br/><h:br/>
+                  Examples of keys are intermediate keys, submasks, and BEV. There may be instances where keys or key material that are
+                  contained in persistent storage are no longer needed and require destruction. Based on their implementation, vendors 
+                  will explain when certain keys are no longer needed. There are multiple situations in which key material is no longer
+                  necessary, for example, a wrapped key may need to be destroyed when a password is changed. However, there are 
+                  instances when keys are allowed to remain in memory, for example, a device identification key. If a PIN was used for 
+                  a smart card, the TSF should ensure that the PIN was properly destroyed.</note>
                   <aactivity level="element">
                       <TSS>The evaluator shall verify the TSS provides a high level description of what it means for keys and key material to be no longer needed and when then should be expected to be destroyed.</TSS>
                       <Guidance>There are no AGD evaluation activities for this SFR.</Guidance>
@@ -1038,7 +1019,7 @@
                       </selectables>
                     </selectable>
                   </selectables>
-                  that meets the following: [<h:i>no standard</h:i>]
+                  that meets the following: [<h:i>no standard</h:i>].
                 </title>
                 <note role="application"><h:i>
                   <h:p>This SFR is FCS_CKM.6, to align with the numbering in the FDE EE cPP.</h:p>
@@ -1168,13 +1149,16 @@
               <f-element id="fcs-ckm-6e1-pwr">
                 <!--fcs_ckm-4-1-a -->
                 <title>                  
-                  The TSF shall <selectables>
-                    <selectable>instruct the Operational Environment to clear</selectable>
+                  The TSF shall <h:b><selectables>
+                    <selectable>instruct the operational environment to clear</selectable>
                     <selectable>erase</selectable>
-                  </selectables> [<h:i>cryptographic keys and key material from volatile
-                    memory</h:i>] when [<h:i>transitioning to a compliant power saving state as defined by FPT_PWR_EXT.1 that meets the key destruction method specified in FCS_CKM.6</h:i>].
+                  </selectables></h:b> [<h:i>cryptographic keys and key material from volatile
+                    memory</h:i>] when [<h:i>transitioning to a compliant power saving state as
+                      defined by FPT_PWR_EXT.1</h:i>] that meets the following: [<h:i>a key
+                        destruction method specified in FCS_CKM.6</h:i>].
                 </title>
-                <note role="application"><h:i>In some cases, erasure of keys from volatile memory is only supported by the Operational Environment, in which case the Operational Environment must expose a well26 documented mechanism or interface to invoke the memory clearing operation.</h:i></note>
+                <note role="application"><h:i>In some cases, erasure of keys from volatile memory is
+                  only supported by the operational environment, in which case the operational environment must expose a well26 documented mechanism or interface to invoke the memory clearing operation.</h:i></note>
                 <aactivity level="element">
                   <TSS>
                     The evaluator shall verify the TSS provides a high level description of how keys stored in volatile memory are destroyed. The valuator to verify that TSS outlines: <h:ul>
@@ -1191,10 +1175,13 @@
                 <!-- fcs_ckm-ext-4-1-b-->
                 <title>
                   The TSF shall destroy [<h:i>all key material, BEV, and authentication factors
-                    stored in plaintext</h:i>] when [<h:i>transitioning to a Compliant power saving
+                    stored in plaintext</h:i>] when [<h:i>transitioning to a compliant power saving
                       state as defined by FPT_PWR_EXT.1</h:i>].
                 </title>
-                <note role='application'><h:i>The TOE may end up in a non-Compliant power saving state indistinguishable from a Compliant power state (e.g. as result of sudden and/or unexpected power loss). For those scenarios, the TOE or the Operational Environment guidance documentation must provide procedure(s) to support destruction of key material (e.g. automated reboot with memory clearing in early stages of the system’s power-on sequence).</h:i></note>
+                <note role='application'><h:i>The TOE may end up in a non-compliant power saving
+                  state indistinguishable from a compliant power state (e.g. as result of sudden or
+                  unexpected power loss). For those scenarios, the TOE or the operational
+                  environment guidance documentation must provide procedures to support destruction of key material (e.g., automated reboot with memory clearing in early stages of the system’s power-on sequence).</h:i></note>
                   <aactivity level="element">
                     <TSS>The evaluator shall verify the TSS provides a description of what keys and key material
                       are destroyed when entering any Compliant power saving state.</TSS>
@@ -1339,7 +1326,7 @@
         </f-component>
         
         <f-component cc-id="fcs_cop.1" iteration="KeyEnc" name="Cryptographic Operation (Key Encryption)" id="fcs-cop-1-kE" status="sel-based">
-          <depends on-sel="sel-fcs-kyc-ext-1-1-sel-5"/>
+          <depends on-sel="sel-fcs-kyc-ext-1-1-sel-1"/>
           <f-element id="fcs_cop-1-1-kE">
             <title>
               <h:b>Refinement:</h:b> The TSF shall perform [<h:i>key encryption and decryption</h:i>] in accordance with a specified cryptographic algorithm [<h:i>AES used in <h:b><selectables><selectable>CBC</selectable><selectable>GCM</selectable></selectables></h:b> mode</h:i>] and cryptographic key sizes <h:b><selectables><selectable>128 bits</selectable><selectable>256 bits</selectable></selectables></h:b> that meet the following: [<h:i>AES as specified in ISO /IEC 18033-3,</h:i> <h:b><selectables><selectable>CBC as specified in ISO/IEC 10116</selectable><selectable>GCM as specified in ISO/IEC 19772</selectable></selectables></h:b>].
@@ -1363,7 +1350,7 @@
         </f-component>
         
         <f-component cc-id="fcs_cop.1" iteration="KeyEncap" name="Cryptographic Operation (Key Transport)" id="fcs-cop-1-keyencap" status="sel-based">
-          <depends on-sel="sel-fcs-kyc-ext-1-1-sel-4"/>
+          <depends on-sel="sel-fcs-kyc-ext-1-1-sel-2"/>
           <f-element id="fcs_cop-1-1-keyencap">
             <title>
               The TSF shall perform [<h:i>key transport</h:i>] in accordance with a specified cryptographic algorithm [<h:i>RSA in the following modes [<h:b><selectables><selectable>KTS-OAEP</selectable><selectable>KTS6 KEM-KWS</selectable></selectables></h:b></h:i>] and the cryptographic key size <h:b><h:i><selectables>
@@ -1474,7 +1461,7 @@
         
             
             <f-component cc-id="fcs_cop.1" iteration="KeyWrap" name="Cryptographic Operation (Key Wrapping)" id="fcs-cop-1-keywrap" status="sel-based">
-              <depends on-sel="sel-fcs-kyc-ext-1-1-sel-2"/>
+              <depends on-sel="sel-fcs-kyc-ext-1-1-sel-4"/>
               <f-element id="fcs_cop-1-1-keywrap">
                 
                 <title>
@@ -1508,18 +1495,20 @@
         <f-component cc-id="fcs_cop.1" iteration="SigVer" name="Cryptographic Operation (Signature Verification)" id="fcs-cop-1-sigver">
           
           <f-element id="fcs_cop-1-1-sigver">
-            <title>The TSF shall perform [<h:i>cryptographic signature services (verification)</h:i>] in accordance with a <h:b><selectables linebreak='yes'>
+            <title>The TSF shall perform [<h:i>cryptographic signature services
+              (verification)</h:i>] in accordance with a specified cryptographic
+                algorithm <h:b><selectables linebreak='yes'>
               <selectable>RSA Digital Signature Algorithm with a key size (modulus) of <selectables><selectable>2048-bit</selectable><selectable>3072-bit</selectable><selectable>4096-bit</selectable></selectables></selectable>
               <selectable>Elliptic Curve Digital Signature Algorithm with a key size of 256 bits or greater</selectable>
             </selectables></h:b> 
-              that meet the following: <h:b><selectables linebreak='yes'>
+              that meet the following: <selectables linebreak='yes'>
                 <selectable>FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Section 5.5, using PKCS #1 v2.1 Signature Schemes RSASSA-PSS and/or RSASSA-PKCS1-v1_5; ISO/IEC 9796-2, Digital signature scheme 2 or Digital Signature scheme 3, for RSA schemes</selectable>
                 <selectable>FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Section 6 and Appendix D, Implementing “NIST curves” <selectables>
                   <selectable>P-256</selectable>
                   <selectable>P-384</selectable>
                   <selectable>P-521</selectable></selectables>ISO/IEC 14888-3, Section 6.4, for ECDSA schemes
                 </selectable>
-              </selectables></h:b>.
+              </selectables>.
             </title>
             <note role='application'><h:i>The selection should be consistent with the overall strength of the algorithm used for FCS_COP.1/SigVer and quantum resistant recommendations. For example, SHA-256 should be chosen for 2048-bit RSA or ECC with P-256, SHA-384 should be chosen for 3072-bit RSA, 4096-bit RSA, or ECC with P-384, and SHA-512 should be chosen for ECC with P9 521. The selection of the standard is made based on the algorithms selected.</h:i></note>
             <aactivity>
@@ -1587,7 +1576,7 @@
         
         <f-component cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation (AES Data Encryption/Decryption)" id="fcs-cop-1-skc" status="sel-based">
               <depends on-sel="fcs-val-ext-1-1-decr"/>
-              <depends on-sel="sel-fcs-kyc-ext-1-1-sel-5"/>
+              <depends on-sel="sel-fcs-kyc-ext-1-1-sel-1"/>
 
               <f-element id="fcs_cop-1-1-skc">
                 <title>
@@ -1814,7 +1803,7 @@
                       <selectable>KDF in Double-Pipeline Iteration Mode</selectable>
                     </selectables></selectable>
                     <selectable>NIST SP 800-132</selectable>
-                  </selectables>using the keyed-hash functions specified in FCS_COP.1, such that the output is at least of equivalent security strength (in number of bits) to the BEV.
+                  </selectables> using the keyed-hash functions specified in FCS_COP.1, such that the output is at least of equivalent security strength (in number of bits) to the BEV.
                     
                   </title>
                 </ext-comp-def-title>
@@ -1841,11 +1830,8 @@
               <management/>
               <audit/>
               <dependencies>
-                <h:p>FCS_CKM.1 Cryptographic Key Generation</h:p>
-                <h:p>FCS_COP.1 Cryptographic Operation</h:p>
-                <h:p>FCS_SMC_EXT.1 Submask Combining</h:p>
-                <h:p>FCS_VAL_EXT.1 Validation</h:p>
-              </dependencies>
+                FCS_CKM.1 Cryptographic Key Generation
+                </dependencies>
               <f-element id="fcs-kyc-ext-1-1">
                 <title>
                   The TSF shall maintain a key chain of: 
@@ -1853,11 +1839,13 @@
                       <selectable>one, using a submask as the BEV;</selectable>
                       <selectable>intermediate keys originating from one or more submasks to the BEV using the following methods:
                         <selectables linebreak="yes">
-                          <selectable id="sel-fcs-kyc-ext-1-1-sel-1">key derivation as specified in FCS_KDF_EXT.1</selectable>
-                          <selectable id="sel-fcs-kyc-ext-1-1-sel-2">key wrapping as specified in FCS_COP.1<h:b>/KeyWrap</h:b>,</selectable>
-                          <selectable id="sel-fcs-kyc-ext-1-1-sel-3">key combining as specified in FCS_SMC_EXT.1,</selectable>
-                          <selectable id="sel-fcs-kyc-ext-1-1-sel-4">key transport as specified in FCS_COP.1<h:b>/KeyEncap</h:b>,</selectable>
-                          <selectable id="sel-fcs-kyc-ext-1-1-sel-5">key encryption as specified in FCS_COP.1<h:b>/KeyEnc</h:b></selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-1">key encryption as specified in FCS_COP.1<h:b>/KeyEnc</h:b></selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-2">key transport as specified in FCS_COP.1<h:b>/KeyEncap</h:b>,</selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-3">key wrapping as specified in FCS_COP.1<h:b>/KeyWrap</h:b>,</selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-4">key derivation as specified in FCS_KDF_EXT.1</selectable>                          
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-5">key combining as specified in FCS_SMC_EXT.1,</selectable>
+                          
+                          
                       </selectables></selectable></selectables>
                   while maintaining an effective strength of 
                     <selectables>
@@ -1879,11 +1867,13 @@
                       <selectable>one, using a submask as the BEV;</selectable>
                       <selectable>intermediate keys originating from one or more submasks to the BEV using the following methods:
                         <selectables linebreak="yes">
-                          <selectable id="sel-fcs-kyc-ext-1-1-sel-1">key derivation as specified in FCS_KDF_EXT.1</selectable>
-                          <selectable id="sel-fcs-kyc-ext-1-1-sel-2">key wrapping as specified in FCS_COP.1,</selectable>
-                          <selectable id="sel-fcs-kyc-ext-1-1-sel-3">key combining as specified in FCS_SMC_EXT.1,</selectable>
-                          <selectable id="sel-fcs-kyc-ext-1-1-sel-4">key transport as specified in FCS_COP.1,</selectable>
-                          <selectable id="sel-fcs-kyc-ext-1-1-sel-5">key encryption as specified in FCS_COP.1</selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-1">key encryption as specified in FCS_COP.1</selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-2">key transport as specified in FCS_COP.1,</selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-3">key wrapping as specified in FCS_COP.1,</selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-4">key derivation as specified in FCS_KDF_EXT.1</selectable>                          
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-5">key combining as specified in FCS_SMC_EXT.1,</selectable>
+                          
+                          
                         </selectables></selectable></selectables>
                     while maintaining an effective strength of 
                     <selectables>
@@ -1899,7 +1889,7 @@
                     </selectables> for asymmetric keys.</title>
                 </ext-comp-def-title>
                 
-                <note/>                  
+                <note role="application"/>                  
               </f-element>
               
               <f-element id="fcs-kyc-ext-1-2">
@@ -1947,7 +1937,7 @@
               <audit-event/>
             </f-component>
 
-            <f-component cc-id="fcs_pcc_ext.1" name="Cryptographic Password Construct and Conditioning" id="fcs-pcc-ext-1">
+            <f-component cc-id="fcs_pcc_ext.1" name="Cryptographic Password Construction and Conditioning" id="fcs-pcc-ext-1">
               <consistency-rationale/>
             <comp-lev> requires the TSF to accept passwords of a certain composition and condition them appropriately. </comp-lev>
             <management/>
@@ -2016,7 +2006,9 @@
               </f-element>
               <audit-event/>
             </f-component>
-            <f-component cc-id="fcs_rbg.1" name="Cryptographic Operation (Random Bit Generation)" id="fcs-rbg-1">
+        
+            <f-component cc-id="fcs_rbg.1" name="Cryptographic Operation (Random Bit Generation)"
+              id="fcs-rbg-1" status="sel-based">
               
               <f-element id="fcs-rbg-1-1">
                 <title>
@@ -2027,10 +2019,10 @@
                     <selectable><h:i>CTR_DRBG (AES)</h:i></selectable>
                   </selectables>] in accordance with [<selectables>
                     <selectable><h:i>ISO/IEC 18031:2011</h:i></selectable>
-                    <selectable id='fcs-rbg-1-1-nist'> <h:i>[NIST SP 800-90A]</h:i></selectable>
-                  </selectables> after initialization with a seed.
+                    <selectable id='fcs-rbg-1-1-nist'><h:i>NIST SP 800-90A</h:i></selectable>
+                  </selectables>] after initialization with a seed.
                 </title>
-                
+                <note/>
                 <aactivity level="element">
                   <TSS>The evaluator shall verify that the TSS identifies the DRBGs used by the TOE.</TSS>
                   <Guidance>If the DRBG functionality is configurable, the evaluator shall verify that the operational guidance includes instructions on how to configure this behavior.</Guidance>
@@ -2069,8 +2061,7 @@
                       The following list contains more information on some of the input values to be generated/selected by the evaluator.
                       <h:ul>
                         <h:li> <h:b>Entropy input:</h:b> The length of the entropy input value must equal the seed
-                          length.</h:li>
-                        
+                          length.</h:li>                        
                         <h:li><h:b>Nonce:</h:b> If a nonce is supported (CTR_DRBG with no Derivation Function does
                           not use a nonce), the nonce bit length is one-half the seed length. </h:li>
                         <h:li><h:b>Personalization string:</h:b> The length of the personalization string must be
@@ -2086,80 +2077,79 @@
                   </Tests>
                 </aactivity>  
               </f-element>
-              <f-element id="fcs-rbg-ext-1-2">
+              
+              <f-element id="fcs-rbg-1-2">
                 <title>
-                  The deterministic RBG shall be seeded by at least one entropy source that accumulates entropy from
-                  <selectables linebreak="yes">
-                    <selectable><assignable>number of software-based sources</assignable>software-based noise source(s)</selectable>
-                    <selectable><assignable>number of hardware-based sources</assignable>hardware-based noise source(s)</selectable>
-                  </selectables> with a minimum of <selectables>
-                    <selectable>128 bits</selectable>
-                    <selectable>256 bits</selectable>
-                  </selectables> of entropy at least equal to the greatest security strength, according to ISO/IEC 18031:2011 Table C.1
-                  “Security Strength Table for Hash Functions”, of the keys and hashes that it will generate.
+                  The TSF shall use a <selectables>
+                    <selectable id="internal-seed">TSF noise source <assignable>name of noise source</assignable></selectable>
+                    <selectable id="internal-seeds"><h:b>multiple TSF noise sources <assignable>names of noise sources</assignable></h:b></selectable>
+                    <selectable id="external-seed">TSF interface for seeding</selectable>
+                  </selectables>
+                  for initialized seeding.
                 </title>
-                <note role="application"><h:i>
-                  <h:p>ISO/IEC 18031:2011 contains different methods of generating random numbers; each of these, in turn, depends on underlying cryptographic primitives (hash functions/ciphers). The ST author will select the function used and include the specific underlying cryptographic primitives used in the requirement. While any of the identified hash functions (SHA-256, SHA-384, SHA-512) are allowed for Hash_DRBG or HMAC_DRBG, only AES-based implementations for CTR_DRBG are allowed. Table C.2 in ISO/IEC 18031:2011 provides an identification of Security strengths, Entropy and Seed length requirements for the AES-128 and 256 Block Cipher.</h:p>
-                  <h:p>The CTR_DRBG in ISO/IEC 18031:2011 requires using derivation function, whereas NIST SP 800-90A does not. Either model is acceptable. In the first selection in FCS_RBG.1.1, the ST author choses the standard to which the TSF is compliant.</h:p>
-                  <h:p>In the first selection in FCS_RBG.1.2 the ST author fills in how many entropy sources are used for each type of entropy source they employ. It should be noted that a combination of hardware and software based noise sources is acceptable.</h:p>
-                  <h:p>It should be noted that the entropy source is considered to be a part of the DRBG and if the DRBG is included in the TOE, the developer is required to provide the entropy description outlined in Appendix D. The documentation *and tests* required in the Evaluation Activity for this element necessarily cover each source indicated in FCS_RBG.1.2. Individual contributions to the entropy pool may be combined to provide the minimum amount of entropy as long as the Entropy Documentation demonstrates that entropy from each of these individual sources is generated independently.</h:p>
-                   </h:i></note>
-                  <aactivity>
-                    <TSS>
-                      For any RBG services provided by a third party, the evaluator shall ensure the TSS
-                      includes a statement about the expected amount of entropy received from such a source,
-                      and a full description of the processing of the output of the third-party source. The
-                      evaluator shall verify that this statement is consistent with the selection made in
-                      FCS_RBG.1.2 for the seeding of the DRBG. If the ST specifies more than one
-                      DRBG, the evaluator shall examine the TSS to verify that it identifies the usage of each
-                      DRBG mechanism.</TSS>
-                    <Guidance>
-                      The evaluator shall verify that the AGD guidance instructs the administrator how to
-                      configure the TOE to use the selected DRBG mechanism(s), if necessary, and provides
-                      information regarding how to instantiate/call the DRBG for RBG services needed in
-                      this cPP.</Guidance>
-                    <CustomEA name="KMD">There are no KMD evaluation activities for this SFR.</CustomEA>
-                    <Tests>
-                        <h:p>The evaluator shall perform 15 trials for the RNG implementation. If the RNG is
-                          configurable by the TOE, the evaluator shall perform 15 trials for each configuration.
-                          The evaluator shall verify that the instructions in the operational guidance for
-                          configuration of the RNG are valid.</h:p>
-                        <h:p>If the RNG has prediction resistance enabled, each trial consists of (1) instantiate
-                          DRBG, (2) generate the first block of random bits (3) generate a second block of
-                          random bits (4) uninstantiate. The evaluator verifies that the second block of random
-                          bits is the expected value. The evaluator shall generate eight input values for each trial.
-                          The first is a count (0 – 14). The next three are entropy input, nonce, and personalization
-                          string for the instantiate operation. The next two are additional input and entropy input
-                          for the first call to generate. The final two are additional input and entropy input for the
-                          second call to generate. These values are randomly generated. “Generate one block of
-                          random bits” means to generate random bits with number of returned bits equal to the
-                          Output Block Length (as defined in NIST SP800-90A).</h:p>
-                        <h:p>If the RNG does not have prediction resistance, each trial consists of (1) instantiate
-                          DRBG, (2) generate the first block of random bits (3) reseed, (4) generate a second
-                          block of random bits (5) uninstantiate. The evaluator verifies that the second block of
-                          random bits is the expected value. The evaluator shall generate eight input values for
-                          each trial. The first is a count (0 – 14). The next three are entropy input, nonce, and
-                          personalization string for the instantiate operation. The fifth value is additional input to
-                          the first call to generate. The sixth and seventh are additional input and entropy input
-                          to the call to reseed. The final value is additional input to the second generate call.</h:p>
-                        <h:p>The following paragraphs contain more information on some of the input values to be
-                          generated/selected by the evaluator.</h:p>
-                        <h:p>Entropy input: the length of the entropy input value must equal the seed length.</h:p>
-                        <h:p>Nonce: If a nonce is supported (CTR_DRBG with no Derivation Function does not use
-                          a nonce), the nonce bit length is one-half the seed length.</h:p>
-                        <h:p>Personalization string: The length of the personalization string must be &lt;= seed length.
-                        If the implementation only supports one personalization string length, then the same
-                        length can be used for both values. If more than one string length is support, the
-                        evaluator shall use personalization strings of two different lengths. If the
-                        implementation does not use a personalization string, no value needs to be supplied.</h:p>
-                        <h:p>Additional input: the additional input bit lengths have the same defaults and restrictions
-                          as the personalization string lengths.</h:p>
-                    </Tests>
-                    </aactivity>
+                <note role="application">
+                  <h:p>
+                    For the 
+                    selection in this requirement, the ST author selects "TSF noise source" if
+                    a single noise source is used as input to the DRBG. The ST author selects "multiple TSF noise sources" if a seed is formed from a combination of two or more noise sources within the TOE boundary. If the TSF implements two or more separate DRBGs that are seeded in separate manners, this SFR should be iterated for each DRBG. It multiple distinct noise sources exist such that each DRBG only uses one of them, then each iteration would select "TSF noise source"; "multiple TSF noise sources" is only selected if a single DRBG uses multiple noise sources for its seed. The ST author selects "TSF interface for seeding" if noise source data is generated outside the TOE boundary.
+                  </h:p>
+                  <h:p>
+                    If "TSF noise source" is selected, FCS_RBG.3 must be claimed.
+                  </h:p>
+                  <h:p>
+                    If "multiple TSF noise sources" is selected, FCS_RBG.4 and FCS_RBG.5 must be claimed. 
+                  </h:p>
+                  <h:p>
+                    If "TSF interface for seeding" is selected, FCS_RBG.2 must be claimed. 
+                  </h:p>
+                </note>
+                <aactivity level="element">
+                  <h:p>
+                    Documentation will be produced - and the evaluator shall perform the
+                    activities - in accordance with <xref to="entropyappendix"/> and
+                    the
+                    <h:a href="https://niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf"
+                      >Clarification to the Entropy Documentation and Assessment Annex</h:a>.
+                  </h:p>
+                  <TSS/>
+                  <Guidance/>
+                  <Tests/>
+                  
+                </aactivity>
               </f-element>
-              <audit-event/>
+              
+              <f-element id="fcs-rbg-1-3">
+                <title>
+                  The TSF shall update the RBG state by <selectables>
+                    <selectable>reseeding</selectable>
+                    <selectable>uninstantiating and reinstantiating</selectable>
+                  </selectables> using a <selectables>
+                    <selectable>TSF noise source <assignable>name of noise source</assignable></selectable>
+                    <selectable>TSF interface for seeding</selectable></selectables>
+                  in the following situations: <selectables linebreak="yes">
+                    <selectable>never</selectable>
+                    <selectable>on demand</selectable>
+                    <selectable>on the condition: <assignable>condition</assignable></selectable>
+                    <selectable>after <assignable>time</assignable></selectable>
+                  </selectables>
+                  in accordance with <assignable>list of standards</assignable>.
+                </title>
+                <aactivity level="element">              
+                  <TSS>
+                    The evaluator shall verify that the TSS identifies how the DRBG state is updated, and the situations under which this may occur.
+                  </TSS>
+                  <Guidance>If the ST claims that the DRBG state can be updated on demand, the evaluator shall verify that the operational guidance has instructions for how to perform this operation.</Guidance>
+                  <Tests/>
+                </aactivity>
+              </f-element>
+              <audit-event>
+                <audit-event-descr>Failure of the randomization process.</audit-event-descr>
+                <audit-event-info>None.</audit-event-info>
+              </audit-event>
+              
             </f-component>
             <f-component cc-id="fcs_rbg.2" name="" id="fcs-rbg-2" status="sel-based">
+              <depends on-sel="external-seed"></depends>
               <f-element id="fcs-rbg-2-1">
                 <title>
                   The TSF shall be able to accept a minimum input of <assignable>minimum input length greater than zero</assignable> from a TSF interface for the purpose of seeding.
@@ -2184,10 +2174,13 @@
               
             </f-component>
         <f-component cc-id="fcs_rbg.3" name="" id="fcs-rbg-3" status="sel-based">
-              <f-element id="fcs-rbg-3-1">
+          <depends on-sel="internal-seed"/>    
+          <f-element id="fcs-rbg-3-1">
                 <title>
-                  The TSF shall be able to seed the RBG using a <selectables choose-one-of="yes"><selectable>TSF software-based
-                    noise source</selectable><selectable>TSF hardware-based noise source</selectable></selectables><assignable>name of noise source</assignable> with a minimum of <assignable>number of bits</assignable> bits of min-entropy.
+                  The TSF shall be able to seed the RBG using a <selectables choose-one-of="yes">
+                    <selectable>TSF software-based noise source</selectable>
+                    <selectable>TSF hardware-based noise source</selectable>
+                  </selectables> <assignable>name of noise source</assignable> with a minimum of <assignable>number of bits</assignable> bits of min-entropy.
                 </title>
                 <note role="application">This requirement is claimed when a DRBG is seeded with entropy from a single noise source that is within the TOE boundary. Min-entropy should be expressed as a ratio of entropy bits to sampled bits so that the total amount of data needed to ensure full entropy is known, as well as the conditioning function by which that data is reduced in size to the seed.</note>
                 
@@ -2204,7 +2197,8 @@
             </f-component>
         
         <f-component cc-id="fcs_rbg.4" name="" id="fcs-rbg-4" status="sel-based">
-              <f-element id="fcs-rbg-4-1">
+          <depends on-sel="internal-seeds"/>    
+          <f-element id="fcs-rbg-4-1">
                 <title>
                   The TSF shall be able to seed the RBG using <selectables><selectable><assignable>number</assignable> TSF softwarebased noise source(s)</selectable><selectable><assignable> number</assignable> TSF hardware-based noise source(s)</selectable></selectables>.
                 </title>
@@ -2225,7 +2219,8 @@
               <audit-event/>
             </f-component>
         <f-component cc-id="fcs_rbg.5" name="" id="fcs-rbg-5" status="sel-based">
-              <f-element id="fcs-rbg-5-1">
+          <depends on-sel="internal-seeds"/>    
+          <f-element id="fcs-rbg-5-1">
                 <title>
                   The TSF shall <assignable> combining operation</assignable> <selectables><selectable>output from TSF noise source(s)</selectable><selectable> input from TSF interface(s) for seeding)</selectable></selectables> to create the entropy input into the derivation function as defined in <assignable> list of standards</assignable>, resulting in a minimum of <assignable> number of bits</assignable> bits of min-entropy.
 
@@ -2472,7 +2467,7 @@
         <f-component cc-id="fmt_mof.1" name="Management of Functions Behavior" id="fmt-mof-1-1">
           <f-element id="fmt-mof-1-1">
             <title>
-              The TSF shall restrict the ability to [<h:i>modify the behaviour of</h:i>] the functions [<h:i>use of Compliant power saving state</h:i>] to [<h:i>authorized users</h:i>].
+              The TSF shall restrict the ability to [<h:i>modify the behaviour of</h:i>] the functions [<h:i>use of compliant power saving state</h:i>] to [<h:i>authorized users</h:i>].
             </title>
             <note role='application'><h:i>“Modify the behaviour of” refers to any change in how or when a Compliant power state may occur. Only privileged users are allowed to enable or disable Compliant power saving state(s) via modification of “use of Compliant power saving state” function.</h:i></note>
               <aactivity>

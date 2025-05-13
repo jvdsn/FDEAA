@@ -807,12 +807,12 @@
                     <selectable>2048-bit</selectable>
                     <selectable>3072-bit</selectable>
                     <selectable>4096-bit</selectable>
-                  </selectables>that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.3</selectable>
+                  </selectables> that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.3</selectable>
                   <selectable>ECC schemes using “NIST curves” of <selectables>
                     <selectable>P-256</selectable>
                     <selectable>P-384</selectable>
                     <selectable>P-521</selectable>
-                  </selectables>that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix  B.4</selectable>
+                  </selectables> that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix  B.4</selectable>
                   <selectable>FFC schemes using cryptographic key sizes of 
                     <selectables>
                       <selectable>2048-bit</selectable>
@@ -932,9 +932,13 @@
             </f-component>
         
             <f-component cc-id="fcs_ckm.1" iteration="SKG" name="Cryptographic Key Generation (Symmetric Keys)" id="fcs-ckm-1-b" status="sel-based">
-              <depends on-sel="fpt-kyc-ext-2-2-sel-2"/>
+              <depends on-sel="fcs-kyc-ext-2-2-sel-2"/>
               <f-element id="fcs_ckm-1-1-skg"><title>
-                The TSF shall generate symmetric cryptographic keys <h:b>using a Random Bit Generator as specified in FCS_RBG.1</h:b> and specified cryptographic key sizes <h:b><selectables><selectable>128 bit</selectable><selectable>256 bit</selectable></selectables></h:b> that meet the following: [<h:i>no standard</h:i>].
+                The TSF shall generate <h:b>symmetric</h:b> cryptographic keys <h:b>using a Random Bit Generator as specified in FCS_RBG.1</h:b> and specified cryptographic key
+                sizes <selectables>
+                  <selectable>128 bit</selectable>
+                  <selectable>256 bit</selectable>
+                </selectables> that meet the following: [<h:i>no standard</h:i>].
                 </title>
                 <note role='application'><h:i>
                   Symmetric keys may be used to generate keys along the key chain. Therefore, the ST author should select FCS_CKM.1/SKG, if Symmetric key generation is used.
@@ -1206,11 +1210,11 @@
               <depends on-sel="fcs-val-ext-1-1-hash"/>
               <f-element id="fcs_cop-1-1-hash">
                 <title>
-                  <h:b>Refinement:</h:b> The TSF shall perform [<h:i>cryptographic hashing services</h:i>] in accordance with a specified cryptographic algorithm <h:b><selectables>
+                  The TSF shall perform [<h:i>cryptographic hashing services</h:i>] in accordance with a specified cryptographic algorithm <selectables>
                     <selectable>SHA-256</selectable>
                     <selectable>SHA-384</selectable>
                     <selectable>SHA-512</selectable>
-                  </selectables></h:b> <h:s>and cryptographic key sizes <assignable>cryptographic key sizes</assignable></h:s> that meet the following: [<h:i>ISO/IEC 10118-3:2004</h:i>]
+                  </selectables> <h:s>and cryptographic key sizes <assignable>cryptographic key sizes</assignable></h:s> that meet the following: [<h:i>ISO/IEC 10118-3:2004</h:i>]
                 </title>
                 <note role='application'><h:i>The selection should be consistent with the overall strength of the algorithm used for FCS_COP.1/SigVer and quantum resistant recommendations. For example, SHA-256 should be chosen for 2048-bit RSA or ECC with P-256, SHA-384 should be chosen for 3072-bit RSA, 4096-bit RSA, or ECC with P-384, and SHA-512 should be chosen for ECC with P-521. The selection of the standard is made based on the algorithms selected.</h:i></note>
                 <aactivity>
@@ -1273,16 +1277,20 @@
         
         <f-component cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation (Keyed Hash Algorithm)" id="fcs-cop-1-keyhash" status="sel-based">
           <depends on-sel='fcs-val-ext-1-1-keyhash'/>
+          <depends on-sel='sel-fcs-kyc-ext-1-1-sel-4'/>
           <f-element id="fcs_cop-1-1-keyhash">
             <title>
-              <comment> Justin, App notes do not specify which claim is requires this sfr. made an educated guess.</comment>
-              <h:b>Refinement:</h:b> The TSF shall perform cryptographic [<h:i>keyed-hash message authentication</h:i>] in accordance with a specified cryptographic algorithm <h:b><selectables>
+              The TSF shall perform  [<h:i>cryptographic keyed-hash message authentication</h:i>] in accordance with a specified cryptographic algorithm <selectables>
                 <selectable>HMAC-SHA-256</selectable>
                 <selectable>HMAC-SHA-384</selectable>
                 <selectable>HMAC-SHA-512</selectable>
-              </selectables></h:b> and cryptographic key sizes <assignable>key size (in bits) used in HMAC</assignable> that meet the following: [<h:i>ISO/IEC 9797-2:2011, Section 7 “MAC Algorithm 2”</h:i>].
+              </selectables> and cryptographic key sizes <assignable>key size (in bits) used in HMAC</assignable> that meet the following: [<h:i>ISO/IEC 9797-2:2011, Section 7 “MAC Algorithm 2”</h:i>].
             </title>
-            <note role='application'><h:i>The key size [k] in the assignment falls into a range between L1 and L2 (defined in ISO/IEC 10118 for the appropriate hash function for example for SHA-256 L1 = 512, L2 =256) where L2 ≤ k ≤ L1.</h:i></note>
+            <note role='application'>The key size [k] in the assignment falls into a range between L1 and L2 (defined in ISO/IEC 10118 for the appropriate hash function for
+              example for SHA-256 L1 = 512, L2 =256) where L2 ≤ k ≤ L1.<h:br/><h:br/>
+              This SFR is claimed when either a KDF is used for key chaining in FCS_KYC_ext.1.1 or when it's specifically claimed as a method for
+              validating a submask, intermediate key, or BEV in FCS_VAL_EXT.1.1.
+            </note>
             <aactivity>
               <TSS>
                 <h:p>
@@ -1329,7 +1337,7 @@
           <depends on-sel="sel-fcs-kyc-ext-1-1-sel-1"/>
           <f-element id="fcs_cop-1-1-kE">
             <title>
-              <h:b>Refinement:</h:b> The TSF shall perform [<h:i>key encryption and decryption</h:i>] in accordance with a specified cryptographic algorithm [<h:i>AES used in <h:b><selectables><selectable>CBC</selectable><selectable>GCM</selectable></selectables></h:b> mode</h:i>] and cryptographic key sizes <h:b><selectables><selectable>128 bits</selectable><selectable>256 bits</selectable></selectables></h:b> that meet the following: [<h:i>AES as specified in ISO /IEC 18033-3,</h:i> <h:b><selectables><selectable>CBC as specified in ISO/IEC 10116</selectable><selectable>GCM as specified in ISO/IEC 19772</selectable></selectables></h:b>].
+              The TSF shall perform [<h:i>key encryption and decryption</h:i>] in accordance with a specified cryptographic algorithm [<h:i>AES used in <selectables><selectable>CBC</selectable><selectable>GCM</selectable></selectables> mode</h:i>] and cryptographic key sizes <selectables><selectable>128 bits</selectable><selectable>256 bits</selectable></selectables> that meet the following: [<h:i>AES as specified in ISO /IEC 18033-3,</h:i> <selectables><selectable>CBC as specified in ISO/IEC 10116</selectable><selectable>GCM as specified in ISO/IEC 19772</selectable></selectables>].
             </title>
             <note role='application'><h:i>
               This requirement is used in the body of the ST if the ST author chooses to use AES encryption/decryption for protecting the keys as part of the key chaining approach that is specified in FCS_KYC_EXT.1.
@@ -1353,10 +1361,10 @@
           <depends on-sel="sel-fcs-kyc-ext-1-1-sel-2"/>
           <f-element id="fcs_cop-1-1-keyencap">
             <title>
-              The TSF shall perform [<h:i>key transport</h:i>] in accordance with a specified cryptographic algorithm [<h:i>RSA in the following modes [<h:b><selectables><selectable>KTS-OAEP</selectable><selectable>KTS6 KEM-KWS</selectable></selectables></h:b></h:i>] and the cryptographic key size <h:b><h:i><selectables>
+              The TSF shall perform [<h:i>key transport</h:i>] in accordance with a specified cryptographic algorithm [<h:i>RSA in the following modes <selectables><selectable>KTS-OAEP</selectable><selectable>KTS6 KEM-KWS</selectable></selectables></h:i> and the cryptographic key size <h:i><selectables>
                 <selectable>2048 bits</selectable>
                 <selectable>3072 bits</selectable>
-              </selectables></h:i></h:b> that meet the following: [<h:i>NIST SP 800-56B, Revision 1</h:i>].
+              </selectables></h:i> that meet the following: [<h:i>NIST SP 800-56B, Revision 1</h:i>].
             </title>
             <note role='application'><h:i>This requirement is used in the body of the ST if the ST author chooses to use key transport in the key chaining approach that is specified in FCS_KYC_EXT.1.</h:i></note>
             <aactivity>
@@ -1471,11 +1479,11 @@
                     <selectable>GCM</selectable>
                     <selectable>CCM</selectable>
 
-                  </selectables></h:b> and the cryptographic key size <h:b><selectables><selectable>128 bits</selectable><selectable>256 bits</selectable></selectables></h:b> that meet the following: [<h:i>AES as specified in ISO/IEC 18033-3, <h:b><selectables>
+                  </selectables></h:b> and cryptographic key size <selectables><selectable>128 bits</selectable><selectable>256 bits</selectable></selectables> that meet the following: [<h:i>AES as specified in ISO/IEC 18033-3, <selectables>
                     <selectable>NIST SP 800-38F</selectable>
                     <selectable>ISO/IEC 19772</selectable>
                     <selectable>no other standards</selectable>
-                  </selectables></h:b></h:i>].
+                  </selectables></h:i>].
                 </title>
                 <note role='application'><h:i>This requirement is used in the body of the ST if the ST author chooses to use key wrapping in the key chaining approach that is specified in FCS_KYC_EXT.1.</h:i></note>
                 <aactivity>
@@ -1499,14 +1507,14 @@
               (verification)</h:i>] in accordance with a specified cryptographic
                 algorithm <h:b><selectables linebreak='yes'>
               <selectable>RSA Digital Signature Algorithm with a key size (modulus) of <selectables><selectable>2048-bit</selectable><selectable>3072-bit</selectable><selectable>4096-bit</selectable></selectables></selectable>
-              <selectable>Elliptic Curve Digital Signature Algorithm with a key size of 256 bits or greater</selectable>
+              <selectable>Elliptic Curve Digital Signature Algorithm with a key size of [<h:i>256 bits or greater</h:i>]</selectable>
             </selectables></h:b> 
               that meet the following: <selectables linebreak='yes'>
                 <selectable>FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Section 5.5, using PKCS #1 v2.1 Signature Schemes RSASSA-PSS and/or RSASSA-PKCS1-v1_5; ISO/IEC 9796-2, Digital signature scheme 2 or Digital Signature scheme 3, for RSA schemes</selectable>
                 <selectable>FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Section 6 and Appendix D, Implementing “NIST curves” <selectables>
                   <selectable>P-256</selectable>
                   <selectable>P-384</selectable>
-                  <selectable>P-521</selectable></selectables>ISO/IEC 14888-3, Section 6.4, for ECDSA schemes
+                  <selectable>P-521</selectable></selectables> ISO/IEC 14888-3, Section 6.4, for ECDSA schemes
                 </selectable>
               </selectables>.
             </title>
@@ -1581,22 +1589,22 @@
               <f-element id="fcs_cop-1-1-skc">
                 <title>
                   The TSF shall perform [<h:i>data encryption and decryption</h:i>] in accordance with a specified cryptographic algorithm [<h:i>AES used in 
-                    <h:b>
+                    
                       <selectables>
                         <selectable>CBC</selectable>
                         <selectable>GCM</selectable>
                         <selectable>XTS</selectable>
                       </selectables>
-                    </h:b> mode</h:i>] and cryptographic key sizes <h:b>
+                     mode</h:i>] and cryptographic key sizes 
                       <selectables>
                         <selectable>128 bits</selectable>
                         <selectable>256 bits</selectable>
-                      </selectables></h:b> that meet the following: [<h:i>AES as specified in ISO /IEC 18033-3, <h:b>
+                      </selectables> that meet the following: [<h:i>AES as specified in ISO /IEC 18033-3, 
                         <selectables>
                           <selectable>CBC as specified in ISO/IEC 10116</selectable>
                           <selectable>GCM as specified in ISO/IEC 19772</selectable>
                           <selectable>XTS as specified in IEEE 1619</selectable>
-                        </selectables></h:b></h:i>].
+                        </selectables></h:i>].
                 </title>
                 <note role='application'><h:i>
                   <h:p>The intent of this requirement in the context of this cPP is to provide an
@@ -1772,7 +1780,7 @@
               <comp-lev>requires the TSF to derive intermediate keys from submasks using the specified hash functions.</comp-lev>
               <management/>
               <audit/>
-              <dependencies>FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)</dependencies>
+              <dependencies>FCS_COP.1 Cryptographic Operation (Keyed Hash Algorithm)</dependencies>
               
               <f-element id="fcs-kdf-ext-1">
                 <title>
@@ -1888,8 +1896,7 @@
                       <selectable>256 bits</selectable>
                     </selectables> for asymmetric keys.</title>
                 </ext-comp-def-title>
-                
-                <note role="application"/>                  
+                <note/>                  
               </f-element>
               
               <f-element id="fcs-kyc-ext-1-2">
@@ -1936,6 +1943,39 @@
               </f-element>
               <audit-event/>
             </f-component>
+        
+        <f-component cc-id="fcs_kyc_ext.2" name="Key Chaining (Recipient) " id="fcs-kyc-ext-2" status="invisible">
+          <consistency-rationale/>
+          <comp-lev><h:p>requires the TSF to be able to accept a BEV that is then chained to a DEK used by the TSF through some method.</h:p>
+            <h:p> Note that this cPP does not include FCS_KYC_EXT.2; it is only included here to provide a complete definition of the FCS_KYC_EXT family.</h:p></comp-lev>
+          <management/>
+          <audit/>
+          <dependencies>No dependencies</dependencies>
+          <f-element id="fcs-kyc-ext-2-1">
+            <title>The TSF shall accept a BEV of at least <selectables><selectable>128 bits</selectable><selectable>256 bits</selectable></selectables> from <assignable>one or more external entities</assignable>.</title>
+            
+          </f-element>
+          <f-element id="fcs-kyc-ext-2-2">
+            <title>
+              The TSF shall maintain a chain of intermediary keys originating from the BEV to the DEK using the following method(s): <selectables linebreak="yes">
+                <selectable>asymmetric key generation as specified in FCS_CKM.1/AKG</selectable>
+                <selectable id="fcs-kyc-ext-2-2-sel-2">symmetric key generation as specified in FCS_CKM.1/SKG</selectable>
+                <selectable>key derivation as specified in FCS_KDF_EXT.1,</selectable>
+                <selectable>key wrapping as specified in FCS_COP.1/KeyWrap,</selectable>
+                <selectable>key transport as specified in FCS_COP.1/KeyEncap,</selectable>
+                <selectable>key encryption as specified in FCS_COP.1/KeyEnc</selectable>
+              </selectables> while maintaining an effective strength of <selectables>
+                <selectable>128 bits</selectable>
+                <selectable>256 bits</selectable>
+              </selectables>
+              while maintaining an effective strength of <selectables><selectable>128 bits</selectable>
+                <selectable>256 bits</selectable></selectables> for symmetric keys and an effective strength of <selectables><selectable>not applicable</selectable><selectable>112 bits</selectable><selectable>128 bits</selectable><selectable>192 bits</selectable><selectable>256 bits</selectable></selectables> for asymmetric keys.
+            </title>
+            <note role="application"><h:i>Key Chaining is the method of using multiple layers of encryption keys to ultimately secure the protected data encrypted on the drive. The number of intermediate keys will vary – from one (e.g., using the BEV as a key encrypting key (KEK)) to many. This applies to all keys that contribute to the ultimate wrapping or derivation of the DEK; including those in areas of protected storage (e.g. TPM stored keys, comparison values). </h:i></note>
+            <aactivity><no-tests/></aactivity>
+          </f-element>
+          <audit-event/>
+        </f-component>
 
             <f-component cc-id="fcs_pcc_ext.1" name="Cryptographic Password Construction and Conditioning" id="fcs-pcc-ext-1" status="sel-based">
               <depends on-sel="fcs-cop-1-keyhash"/>
@@ -2015,16 +2055,15 @@
               <f-element id="fcs-rbg-1-1">
                 <title>
                   The TSF shall perform deterministic random bit generation services using
-                  [<selectables>
+                  <selectables>
                     <selectable><h:i>Hash_DRBG (any)</h:i></selectable>
                     <selectable><h:i>HMAC_DRBG (any)</h:i></selectable>
                     <selectable><h:i>CTR_DRBG (AES)</h:i></selectable>
-                  </selectables>] in accordance with [<selectables>
+                  </selectables> in accordance with <selectables>
                     <selectable><h:i>ISO/IEC 18031:2011</h:i></selectable>
                     <selectable id='fcs-rbg-1-1-nist'><h:i>NIST SP 800-90A</h:i></selectable>
-                  </selectables>] after initialization with a seed.
-                </title>
-                <note/>
+                  </selectables> after initialization with a seed.
+                </title>                
                 <aactivity level="element">
                   <TSS>The evaluator shall verify that the TSS identifies the DRBGs used by the TOE.</TSS>
                   <Guidance>If the DRBG functionality is configurable, the evaluator shall verify that the operational guidance includes instructions on how to configure this behavior.</Guidance>
@@ -2150,7 +2189,7 @@
               </audit-event>
               
             </f-component>
-            <f-component cc-id="fcs_rbg.2" name="" id="fcs-rbg-2" status="sel-based">
+        <f-component cc-id="fcs_rbg.2" name="Random Bit Generation (External Seeding)"  status="sel-based">
               <depends on-sel="external-seed"></depends>
               <f-element id="fcs-rbg-2-1">
                 <title>
@@ -2175,7 +2214,7 @@
               <audit-event/>
               
             </f-component>
-        <f-component cc-id="fcs_rbg.3" name="" id="fcs-rbg-3" status="sel-based">
+        <f-component cc-id="fcs_rbg.3" name="Random Bit Generation (Internal Seeding - Single Source)" status="sel-based">
           <depends on-sel="internal-seed"/>    
           <f-element id="fcs-rbg-3-1">
                 <title>
@@ -2198,7 +2237,7 @@
               <audit-event/>
             </f-component>
         
-        <f-component cc-id="fcs_rbg.4" name="" id="fcs-rbg-4" status="sel-based">
+        <f-component cc-id="fcs_rbg.4" name="Random Bit Generation (Internal Seeding - Multiple Sources)" status="sel-based">
           <depends on-sel="internal-seeds"/>    
           <f-element id="fcs-rbg-4-1">
                 <title>
@@ -2220,7 +2259,7 @@
               </f-element>
               <audit-event/>
             </f-component>
-        <f-component cc-id="fcs_rbg.5" name="" id="fcs-rbg-5" status="sel-based">
+        <f-component cc-id="fcs_rbg.5" name="Random Bit Generation (Combining Noise Sources)" status="sel-based">
           <depends on-sel="internal-seeds"/>    
           <f-element id="fcs-rbg-5-1">
                 <title>
@@ -2307,8 +2346,17 @@
                     <selectable>no nonces</selectable>
                     <selectable>unique nonces with a minimum size of [<h:i>64</h:i>] bits</selectable>
                   </selectables>.</title>
-               
+                
+              <ext-comp-def-title>
+                <title>The TSF shall use 
+                  <selectables>
+                    <selectable>no nonces</selectable>
+                    <selectable>unique nonces with a minimum size of <assignable>number of bits</assignable> bits</selectable>
+                  </selectables>.</title>
+              </ext-comp-def-title>
+                
               </f-element>
+              
               <f-element id="fcs-sni-ext-1-3">
                 <title>The TSF shall 
                   <selectables>
@@ -2379,10 +2427,7 @@
                         <selectable>intermediate key</selectable>
                         <selectable>BEV</selectable>
                       </selectables>
-                        as specified in <selectables>
-                          <selectable id="fcs-val-ext-1-1-hash">FCS_COP.1</selectable>
-                          <selectable id="fcs-val-ext-1-1-keyhash">FCS_COP.1</selectable>
-                        </selectables> and compare it to a stored hashed <selectables><selectable>submask</selectable><selectable> intermediate key</selectable><selectable>BEV</selectable></selectables>;</selectable>
+                        as specified in <assignable>cryptographic operation requirement</assignable> and compare it to a stored hashed <selectables><selectable>submask</selectable><selectable> intermediate key</selectable><selectable>BEV</selectable></selectables>;</selectable>
                       <selectable id="fcs-val-ext-1-1-decr">decrypt a known value using the <selectables><selectable>submask</selectable><selectable>intermediate key</selectable><selectable>BEV</selectable></selectables> specified in FCS_COP.1 and compare it against a stored known value </selectable>
                     </selectables>.
                   </title>
@@ -2656,6 +2701,7 @@
         </ext-comp-def>
         
         <f-component cc-id="fpt_fls.1" name="Failure with Preservation of Secure State" status="sel-based">
+          <depends on-sel="external-seed"></depends>
           <f-element id="fel-pres-sec-state">
             <title>
               The TSF shall preserve a secure state when the following types of failures occur: [<h:i>DRBG self-test failure</h:i>].              
@@ -2674,57 +2720,23 @@
           <audit-event/>
         </f-component>
         
-        <f-component cc-id="fpt_kyc_ext.2" name="Key Chaining (Recipient) " id="fpt-kyc-ext-2" status="invisible">
-          <consistency-rationale/>
-          <comp-lev><h:p>requires the TSF to be able to accept a BEV that is then chained to a DEK used by the TSF through some method.</h:p>
-          <h:p> Note that this cPP does not include FCS_KYC_EXT.2; it is only included here to provide a complete definition of the FCS_KYC_EXT family.</h:p></comp-lev>
-          <management/>
-          <audit/>
-          <dependencies>No dependencies</dependencies>
-          <f-element id="fpt-kyc-ext-2-1">
-            <title>The TSF shall accept a BEV of at least <selectables><selectable>128 bits</selectable><selectable>256 bits</selectable></selectables> from <assignable>one or more external entities</assignable>.</title>
-            
-          </f-element>
-          <f-element id="fpt-kyc-ext-2-2">
-            <title>
-              The TSF shall maintain a chain of intermediary keys originating from the BEV to the DEK using the following method(s): <selectables linebreak="yes">
-                <selectable>asymmetric key generation as specified in FCS_CKM.1/AKG</selectable>
-                <selectable id="fpt-kyc-ext-2-2-sel-2">symmetric key generation as specified in FCS_CKM.1/SKG</selectable>
-                <selectable>key derivation as specified in FCS_KDF_EXT.1,</selectable>
-                <selectable>key wrapping as specified in FCS_COP.1/KeyWrap,</selectable>
-                <selectable>key transport as specified in FCS_COP.1/KeyEncap,</selectable>
-                <selectable>key encryption as specified in FCS_COP.1/KeyEnc</selectable>
-              </selectables> while maintaining an effective strength of <selectables>
-                <selectable>128 bits</selectable>
-                <selectable>256 bits</selectable>
-              </selectables>
-              while maintaining an effective strength of <selectables><selectable>128 bits</selectable>
-                <selectable>256 bits</selectable></selectables> for symmetric keys and an effective strength of <selectables><selectable>not applicable</selectable><selectable>112 bits</selectable><selectable>128 bits</selectable><selectable>192 bits</selectable><selectable>256 bits</selectable></selectables> for asymmetric keys.
-            </title>
-            <note role="application"><h:i>Key Chaining is the method of using multiple layers of encryption keys to ultimately secure the protected data encrypted on the drive. The number of intermediate keys will vary – from one (e.g., using the BEV as a key encrypting key (KEK)) to many. This applies to all keys that contribute to the ultimate wrapping or derivation of the DEK; including those in areas of protected storage (e.g. TPM stored keys, comparison values). </h:i></note>
-            <aactivity><no-tests/></aactivity>
-          </f-element>
-          <audit-event/>
-        </f-component>
-        
         <f-component cc-id="fpt_kyp_ext.1" name="Protection of Key and Key Material " id="fpt-kyp-ext-1">
           <consistency-rationale/>
           <comp-lev>requires the TSF to ensure that no plaintext key or key material are written to non-volatile storage.</comp-lev>
           <management/>
           <audit/>
           <dependencies>
-            <h:p>FCS_COP.1 Cryptographic Operation,</h:p>
-            <h:p>FCS_KYC_EXT.1 Key Chaining (Initiator),</h:p>
+            <h:p>FCS_COP.1 Cryptographic Operation</h:p>
+            <h:p>FCS_KYC_EXT.1 Key Chaining (Initiator)</h:p>
             <h:p>FCS_KYC_EXT.2 Key Chaining (Recipient)</h:p>
-            <h:p>FCS_SMC_EXT.1 Submask Combining</h:p>
-            <comment> FCS_KYC_EXT.2 needs to be listed within the ECD but it does not seem to show up properly even thought the invisible status is being used. </comment>
+            <h:p>FCS_SMC_EXT.1 Submask Combining</h:p>            
           </dependencies>
           
           <f-element id="fpt-kyp-ext-1-1">
             <title>
               The TSF shall <selectables linebreak="yes">
                 <selectable>not store keys in non-volatile memory</selectable>
-                <selectable>only store keys in non-volatile memory when wrapped, as specified in <h:b>FCS_COP.1/KeyWrap</h:b>, or encrypted, as specified in FCS_COP.1<h:b>/KeyEnc</h:b> or FCS_COP.1<h:b>/KeyEncap</h:b></selectable>
+                <selectable>only store keys in non-volatile memory when wrapped, as specified in FCS_COP.1<h:b>/KeyWrap</h:b>, or encrypted, as specified in FCS_COP.1<h:b>/KeyEnc</h:b> or FCS_COP.1<h:b>/KeyEncap</h:b></selectable>
                 <selectable>only store plaintext keys that meet any one of the following criteria <selectables>
                   <selectable>the plaintext key is not part of the key chain as specified in FCS_KYC_EXT.1</selectable>
                   <selectable>the plaintext key will no longer provide access to the encrypted data after initial provisioning</selectable>
@@ -2866,6 +2878,7 @@
         </f-component>
         
         <f-component cc-id="fpt_tst.1" name="TSF Self-Testing" status="sel-based">
+          <depends on-sel="external-seed"></depends>
           <f-element id="fel-tsf-self-test">
             <title>
               The TSF shall run a suite of the following self-tests <selectables>
@@ -2932,10 +2945,9 @@
           </h:ul></management>
           <audit>The following actions should be auditable if FAU_GEN Security audit data generation is included in the PP/ST: <h:ul>
             <h:li>Initiation of the update process</h:li>
-            <h:li></h:li>
-          </h:ul>Any failure to verify the integrity of the update</audit>
-          <dependencies><h:p>FCS_COP.1/SigVer Cryptographic Operation (Signature Verification),</h:p>
-          <h:p>FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm)</h:p></dependencies>
+            <h:li>Any failure to verify the integrity of the update</h:li>
+          </h:ul></audit>
+          <dependencies>FCS_COP.1 Cryptographic Operation</dependencies>
           
           <f-element id="fpt-tud-ext-1-1">
             <title>

@@ -763,7 +763,7 @@
               </Tests>
             </aactivity>
           </f-element>
-              <audit-event table="t-audit-mandatory"/>          
+              <audit-event/>          
             </f-component>
         
             <f-component cc-id="fcs_afa_ext.2" name="Timing of Authorization Factor Acquisition" id="fcs-afa-ext-2">
@@ -793,7 +793,7 @@
                     </Tests>
                 </aactivity>
               </f-element>
-              <audit-event table="t-audit-mandatory"/>
+              <audit-event/>
             </f-component>
             
             
@@ -1145,7 +1145,7 @@
                     </Tests>
                 </aactivity>
               </f-element>
-          <audit-event table="t-audit-mandatory"/>
+          <audit-event/>
             </f-component>
         
             <f-component cc-id="fcs_ckm.6" iteration="Power" name="Cryptographic Key and Key Material Destruction (Power Management)" id="fcs-ckm-6-power">
@@ -1202,7 +1202,7 @@
                       <Tests>There are no test evaluation activities for this SFR.</Tests>
                   </aactivity>
               </f-element>
-              <audit-event table="t-audit-mandatory"/>
+              <audit-event/>
             </f-component>
         
             <f-component cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hash Algorithm)" id="fcs-cop-1-hash" status="sel-based">
@@ -1578,7 +1578,7 @@
               </Tests>
             </aactivity>
           </f-element>
-          <audit-event table="t-audit-mandatory"/>
+          <audit-event/>
         </f-component>
         
         <f-component cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation (AES Data Encryption/Decryption)" id="fcs-cop-1-skc" status="sel-based">
@@ -1941,7 +1941,7 @@
                       <Tests>There are no test evaluation activities for this SFR.</Tests>
                   </aactivity>
               </f-element>
-              <audit-event table="t-audit-mandatory"/>
+              <audit-event/>
             </f-component>
         
         <f-component cc-id="fcs_kyc_ext.2" name="Key Chaining (Recipient) " id="fcs-kyc-ext-2" status="invisible">
@@ -2212,7 +2212,7 @@
                   <Tests/>
                 </aactivity>
               </f-element>
-          <audit-event table="t-audit-mandatory"/>              
+          <audit-event/>              
             </f-component>
         
         <f-component cc-id="fcs_rbg.3" name="Random Bit Generation (Internal Seeding - Single Source)" status="sel-based">
@@ -2235,7 +2235,7 @@
                   <Tests/>
                 </aactivity>                  
               </f-element>
-          <audit-event table="t-audit-mandatory"/>
+          <audit-event/>
             </f-component>
         
         <f-component cc-id="fcs_rbg.4" name="Random Bit Generation (Internal Seeding - Multiple Sources)" status="sel-based">
@@ -2257,7 +2257,7 @@
                   <Tests/>
                 </aactivity>
               </f-element>
-          <audit-event table="t-audit-mandatory"/>
+          <audit-event/>
             </f-component>
         
         <f-component cc-id="fcs_rbg.5" name="Random Bit Generation (Combining Noise Sources)" status="sel-based">
@@ -2279,7 +2279,7 @@
                   <Tests/>
                 </aactivity>
               </f-element>
-          <audit-event table="t-audit-mandatory"/>
+          <audit-event/>
             </f-component>
         
             <f-component cc-id="fcs_smc_ext.1" name="Submask Combining " id="fcs-smc-ext-1" status="sel-based">
@@ -2381,7 +2381,7 @@
                     <Tests>There are no test evaluation activities for this SFR.</Tests>
                 </aactivity>
               </f-element>
-              <audit-event table="t-audit-mandatory"/>
+              <audit-event/>
             </f-component>
         
             <f-component cc-id="fcs_val_ext.1" name="Validation " id="fcs-val-ext-1" status="sel-based">
@@ -2539,7 +2539,7 @@
                     </testlist></Tests>
               </aactivity>
           </f-element>
-          <audit-event table="t-audit-mandatory"/>
+          <audit-event/>
         </f-component>
         
         <f-component cc-id="fmt_smf.1" name="Specification of Management Functions" id="fmt-smf-1">
@@ -2661,7 +2661,7 @@
                 </Tests>
             </aactivity>
         </f-element>
-          <audit-event table="t-audit-mandatory"/>
+          <audit-event/>
       </f-component>
         
       <f-component cc-id="fmt_smr.1" name="Security Roles" id="fmt-smr-1">
@@ -2684,7 +2684,7 @@
                 as part of evaluating FMT_MOF.1 and FMT_SMF.1.</Tests>   
             </aactivity>
         </f-element>
-        <audit-event table="t-audit-mandatory"/>
+        <audit-event/>
       </f-component>        
       </section>
     
@@ -2813,7 +2813,7 @@
                   There are no test evaluation activities for this SFR.</Tests>
                 </aactivity>
           </f-element>
-          <audit-event table="t-audit-mandatory"/>
+          <audit-event/>
         </f-component>
         
         <f-component cc-id="fpt_pwr_ext.1" name="Power Saving States" id="fpt-pwr-ext-1">
@@ -2846,7 +2846,7 @@
               <Tests>The evaluator shall confirm that for each listed compliant state all key/key materials
                 are removed from volatile memory by using the test defined in FCS_CKM.6.</Tests> 
               </aactivity></f-element>
-          <audit-event table="t-audit-mandatory"/>
+          <audit-event/>
         </f-component>
         
         <f-component cc-id="fpt_pwr_ext.2" name="Timing of Power Saving States" id="fpt-pwr-ext-2-1">
@@ -2884,7 +2884,7 @@
                     FCS_CKM.6.</Tests>
               </aactivity>
           </f-element>
-          <audit-event table="t-audit-mandatory">
+          <audit-event>
             <audit-event-descr>Transition of the TSF into different power saving states.</audit-event-descr>
             <audit-event-info>None.</audit-event-info>
           </audit-event>
@@ -3052,7 +3052,7 @@
                     </testlist> </Tests>
               </aactivity>
           </f-element>
-          <audit-event table="t-audit-mandatory">
+          <audit-event>
             <audit-event-descr>Initiation of the update process.</audit-event-descr>
             <audit-event-info>None.</audit-event-info>            
           </audit-event>

@@ -137,7 +137,8 @@
         that these values may or may not be used to establish the particular
         identity of the user. </term>
         
-      <term abbr='BEV' full="Border Encryption Valu">A value passed from the AA to the EE intended to link the key chains
+      <term abbr='BEV' full="Border Encryption Valu">A value passed from the FDE Authorization
+        Acquisition (AA) to the FDE Encryption Engine (EE) intended to link the key chains
         of the two components.</term>
       <term abbr='BIOS' full="Basic Input Output System"></term>
       
@@ -643,19 +644,17 @@
   </section>
 	
   
-</sec:Security_Objectives>
-
-
-  
+</sec:Security_Objectives>  
 <sec:Security_Requirements>  
 	  
 	<!--   5.1 Security Functional Requirements -->
   <sec:SFRs title="Security Functional Requirements">
-    <h:p>The individual security functional requirements are specified in the sections below.</h:p>
+    The individual security functional requirements are specified in the sections below.
     
     <section id="ss-audit-table" title="Auditable Events for Mandatory SFRs">
-			<!-- <audit-table id="t-audit-mandatory" table="mandatory"/>-->
-		</section>
+      <audit-table id="t-audit-mandatory" table="mandatory"/>
+    </section>
+    
       <section title="Cryptographic Support (FCS)" id="fcs">
 	  
 
@@ -764,9 +763,9 @@
               </Tests>
             </aactivity>
           </f-element>
-          <audit-event/>
-          <audit-event/>
+              <audit-event table="t-audit-mandatory"/>          
             </f-component>
+        
             <f-component cc-id="fcs_afa_ext.2" name="Timing of Authorization Factor Acquisition" id="fcs-afa-ext-2">
               <consistency-rationale/>
               <comp-lev>defines situations in which the TOE is to accept authorization factors.</comp-lev>
@@ -794,7 +793,7 @@
                     </Tests>
                 </aactivity>
               </f-element>
-              <audit-event/>
+              <audit-event table="t-audit-mandatory"/>
             </f-component>
             
             
@@ -1146,7 +1145,7 @@
                     </Tests>
                 </aactivity>
               </f-element>
-              <audit-event/>
+          <audit-event table="t-audit-mandatory"/>
             </f-component>
         
             <f-component cc-id="fcs_ckm.6" iteration="Power" name="Cryptographic Key and Key Material Destruction (Power Management)" id="fcs-ckm-6-power">
@@ -1203,7 +1202,7 @@
                       <Tests>There are no test evaluation activities for this SFR.</Tests>
                   </aactivity>
               </f-element>
-              <audit-event/>
+              <audit-event table="t-audit-mandatory"/>
             </f-component>
         
             <f-component cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hash Algorithm)" id="fcs-cop-1-hash" status="sel-based">
@@ -1579,7 +1578,7 @@
               </Tests>
             </aactivity>
           </f-element>
-          <audit-event/>
+          <audit-event table="t-audit-mandatory"/>
         </f-component>
         
         <f-component cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation (AES Data Encryption/Decryption)" id="fcs-cop-1-skc" status="sel-based">
@@ -1727,7 +1726,7 @@
                         running 1000 iterations with the same values using a known good implementation.</h:p>
                       <h:p>The evaluator shall test the decrypt functionality using the same test as above,
                         exchanging CT and PT, and replacing AES-CBC-Encrypt with AES-CBC-Decrypt.</h:p>
-                      <h:p><h:u><h:b>AES-GCM Test</h:b></h:u></h:p>
+                      <h:p><h:b>AES-GCM Test</h:b></h:p>
                      
                       <h:p>The evaluator shall test the authenticated encrypt functionality of AES-GCM for each
                         combination of the following input parameter lengths:</h:p>
@@ -1751,7 +1750,7 @@
                         supplying the inputs to the implementer and receiving the results in response. To
                         determine correctness, the evaluator shall compare the resulting values to those
                         obtained by submitting the same inputs to a known good implementation.</h:p>
-                      <h:p><h:b><h:u>XTS-AES Test</h:u></h:b></h:p>
+                      <h:p><h:b>XTS-AES Test</h:b></h:p>
                       <h:p>The evaluator shall test the encrypt functionality of XTS-AES for each combination of
                         the following input parameter lengths:</h:p>
                       <h:p><h:b>   256 bit (for AES-128) and 512 bit (for AES-256) keys</h:b></h:p>
@@ -1770,7 +1769,7 @@
                     </Tests>
                 </aactivity>
               </f-element>
-              <audit-event/>
+          <audit-event/>
             </f-component>
             
 
@@ -1832,6 +1831,7 @@
               </f-element>
               <audit-event/>
             </f-component>
+        
             <f-component cc-id="fcs_kyc_ext.1" name="Key Chaining (Initiator)" id="fcs-kyc-ext-1">
               <consistency-rationale/>
               <comp-lev>requires the TSF to maintain a key chain for a BEV that is provided to a component external to the TOE.</comp-lev>
@@ -1941,13 +1941,14 @@
                       <Tests>There are no test evaluation activities for this SFR.</Tests>
                   </aactivity>
               </f-element>
-              <audit-event/>
+              <audit-event table="t-audit-mandatory"/>
             </f-component>
         
         <f-component cc-id="fcs_kyc_ext.2" name="Key Chaining (Recipient) " id="fcs-kyc-ext-2" status="invisible">
           <consistency-rationale/>
-          <comp-lev><h:p>requires the TSF to be able to accept a BEV that is then chained to a DEK used by the TSF through some method.</h:p>
-            <h:p> Note that this cPP does not include FCS_KYC_EXT.2; it is only included here to provide a complete definition of the FCS_KYC_EXT family.</h:p></comp-lev>
+          <comp-lev>requires the TSF to be able to accept a BEV that is then chained to a DEK used
+            by the TSF through some method. <h:br/><h:br/>
+            Note that this cPP does not include FCS_KYC_EXT.2; it is only included here to provide a complete definition of the FCS_KYC_EXT family.</comp-lev>
           <management/>
           <audit/>
           <dependencies>No dependencies</dependencies>
@@ -2147,10 +2148,10 @@
                 <aactivity level="element">
                   <h:p>
                     Documentation will be produced - and the evaluator shall perform the
-                    activities - in accordance with <xref to="entropyappendix"/> and
-                    the
-                    <h:a href="https://niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf"
-                      >Clarification to the Entropy Documentation and Assessment Annex</h:a>.
+                    activities - in accordance with <xref to="apndx-entropy"/> and the 
+                    <h:a
+                      href="https://niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf">,
+                      Clarification to the Entropy Documentation and Assessment Annex</h:a>.
                   </h:p>
                   <TSS/>
                   <Guidance/>
@@ -2186,9 +2187,9 @@
               <audit-event>
                 <audit-event-descr>Failure of the randomization process.</audit-event-descr>
                 <audit-event-info>None.</audit-event-info>
-              </audit-event>
-              
+              </audit-event>              
             </f-component>
+        
         <f-component cc-id="fcs_rbg.2" name="Random Bit Generation (External Seeding)"  status="sel-based">
               <depends on-sel="external-seed"></depends>
               <f-element id="fcs-rbg-2-1">
@@ -2211,9 +2212,9 @@
                   <Tests/>
                 </aactivity>
               </f-element>
-              <audit-event/>
-              
+          <audit-event table="t-audit-mandatory"/>              
             </f-component>
+        
         <f-component cc-id="fcs_rbg.3" name="Random Bit Generation (Internal Seeding - Single Source)" status="sel-based">
           <depends on-sel="internal-seed"/>    
           <f-element id="fcs-rbg-3-1">
@@ -2234,7 +2235,7 @@
                   <Tests/>
                 </aactivity>                  
               </f-element>
-              <audit-event/>
+          <audit-event table="t-audit-mandatory"/>
             </f-component>
         
         <f-component cc-id="fcs_rbg.4" name="Random Bit Generation (Internal Seeding - Multiple Sources)" status="sel-based">
@@ -2254,11 +2255,11 @@
                   <TSS/>
                   <Guidance/>
                   <Tests/>
-                </aactivity>                    
-                  
+                </aactivity>
               </f-element>
-              <audit-event/>
+          <audit-event table="t-audit-mandatory"/>
             </f-component>
+        
         <f-component cc-id="fcs_rbg.5" name="Random Bit Generation (Combining Noise Sources)" status="sel-based">
           <depends on-sel="internal-seeds"/>    
           <f-element id="fcs-rbg-5-1">
@@ -2277,10 +2278,10 @@
                   <Guidance/>
                   <Tests/>
                 </aactivity>
-                
               </f-element>
-              <audit-event/>
+          <audit-event table="t-audit-mandatory"/>
             </f-component>
+        
             <f-component cc-id="fcs_smc_ext.1" name="Submask Combining " id="fcs-smc-ext-1" status="sel-based">
               <depends on-sel="fcs-cop-1-hash"/>
               <consistency-rationale/>
@@ -2320,6 +2321,7 @@
               </f-element>
               <audit-event/>
             </f-component>
+        
             <f-component cc-id="fcs_sni_ext.1" name="Cryptographic Operation (Salt, Nonce, and Initialization Vector Generation)" id="fcs_sni_ext.1">
               <consistency-rationale/>
               <comp-lev>requires the generation of salts, nonces, and IVs to be used by the cryptographic components of the TOE to be performed in the specified manner. </comp-lev>
@@ -2379,7 +2381,7 @@
                     <Tests>There are no test evaluation activities for this SFR.</Tests>
                 </aactivity>
               </f-element>
-              <audit-event/>
+              <audit-event table="t-audit-mandatory"/>
             </f-component>
         
             <f-component cc-id="fcs_val_ext.1" name="Validation " id="fcs-val-ext-1" status="sel-based">
@@ -2510,8 +2512,8 @@
               </f-element>
               <audit-event/>
             </f-component>
-
       </section>
+    
       <section title="Security Management (FMT)" id="FMT">
         <f-component cc-id="fmt_mof.1" name="Management of Functions Behavior" id="fmt-mof-1-1">
           <f-element id="fmt-mof-1-1">
@@ -2537,9 +2539,9 @@
                     </testlist></Tests>
               </aactivity>
           </f-element>
-
-          <audit-event/>
+          <audit-event table="t-audit-mandatory"/>
         </f-component>
+        
         <f-component cc-id="fmt_smf.1" name="Specification of Management Functions" id="fmt-smf-1">
         <f-element id="fmt-smf-1">
           <title>
@@ -2656,12 +2658,12 @@
                       and observe each time that when a power saving state is configured to no longer be
                       used, none of the behavior causes the disabled state to be entered.</test>
                   </testlist></h:p>
-
                 </Tests>
             </aactivity>
         </f-element>
-        <audit-event/>
+          <audit-event table="t-audit-mandatory"/>
       </f-component>
+        
       <f-component cc-id="fmt_smr.1" name="Security Roles" id="fmt-smr-1">
         <f-element id="fmt-smr-1-1">
           <title>
@@ -2682,9 +2684,10 @@
                 as part of evaluating FMT_MOF.1 and FMT_SMF.1.</Tests>   
             </aactivity>
         </f-element>
-        <audit-event/>
-      </f-component>
+        <audit-event table="t-audit-mandatory"/>
+      </f-component>        
       </section>
+    
       <section title="Protection of the TSF (FPT)" id="fpt">
         <ext-comp-def title="Key and Key Material Protection" fam-id="FPT_KYP_EXT">
           <fam-behavior>This family requires that key and key material be protected if and when written to non-volatile storage.
@@ -2717,7 +2720,12 @@
               <Tests/>
             </aactivity>
           </f-element>
-          <audit-event/>
+          <audit-event>
+            <audit-event-descr>
+              Failure of the TSF.
+            </audit-event-descr>
+            <audit-event-info>None.</audit-event-info>
+          </audit-event>
         </f-component>
         
         <f-component cc-id="fpt_kyp_ext.1" name="Protection of Key and Key Material " id="fpt-kyp-ext-1">
@@ -2805,8 +2813,9 @@
                   There are no test evaluation activities for this SFR.</Tests>
                 </aactivity>
           </f-element>
-          <audit-event/>
+          <audit-event table="t-audit-mandatory"/>
         </f-component>
+        
         <f-component cc-id="fpt_pwr_ext.1" name="Power Saving States" id="fpt-pwr-ext-1">
           <consistency-rationale/>
           <comp-lev>defines the Compliant power saving states that are implemented by the TSF.</comp-lev>
@@ -2837,8 +2846,9 @@
               <Tests>The evaluator shall confirm that for each listed compliant state all key/key materials
                 are removed from volatile memory by using the test defined in FCS_CKM.6.</Tests> 
               </aactivity></f-element>
-          <audit-event/>
+          <audit-event table="t-audit-mandatory"/>
         </f-component>
+        
         <f-component cc-id="fpt_pwr_ext.2" name="Timing of Power Saving States" id="fpt-pwr-ext-2-1">
           <consistency-rationale/>
           <comp-lev>describes the situations that cause compliant power saving states to be entered.</comp-lev>
@@ -2874,7 +2884,10 @@
                     FCS_CKM.6.</Tests>
               </aactivity>
           </f-element>
-          <audit-event/>
+          <audit-event table="t-audit-mandatory">
+            <audit-event-descr>Transition of the TSF into different power saving states.</audit-event-descr>
+            <audit-event-info>None.</audit-event-info>
+          </audit-event>
         </f-component>
         
         <f-component cc-id="fpt_tst.1" name="TSF Self-Testing" status="sel-based">
@@ -2934,7 +2947,10 @@
               </Tests>
             </aactivity>
           </f-element>
-          <audit-event/>
+          <audit-event>
+            <audit-event-descr>Execution of self-tests.</audit-event-descr>
+            <audit-event-info>None.</audit-event-info>
+          </audit-event>
         </f-component>
 
         <f-component cc-id="fpt_tud_ext.1" name="Trusted Update" id="fpt-tud-ext-1">
@@ -3036,7 +3052,14 @@
                     </testlist> </Tests>
               </aactivity>
           </f-element>
-          <audit-event/>
+          <audit-event table="t-audit-mandatory">
+            <audit-event-descr>Initiation of the update process.</audit-event-descr>
+            <audit-event-info>None.</audit-event-info>            
+          </audit-event>
+          <audit-event>
+            <audit-event-descr>Any failure to verify the integrity of the update.</audit-event-descr>
+            <audit-event-info>None.</audit-event-info>
+          </audit-event>
         </f-component>
 
       </section>

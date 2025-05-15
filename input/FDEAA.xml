@@ -420,7 +420,6 @@
 		    <addressed-by>FCS_CKM.6/Power</addressed-by><rationale>Mitigates this threat by ensuring proper key material destruction.</rationale>
 		    <addressed-by>FCS_KYC_EXT.1</addressed-by><rationale>Mitigates this threat by requiring chaining of keys to produce a BEV.</rationale>
 		    <addressed-by>FCS_SNI_EXT.1</addressed-by><rationale>Mitigates this threat by requiring additional obfuscation to the protected key material by introducing IV's and salting.</rationale>
-		    <addressed-by>FCS_VAL_EXT.1</addressed-by><rationale>Mitigates this threat by defining methods for validation of keying material and number of validation attempts.</rationale>
 		    <addressed-by>FMT_MOF.1</addressed-by><rationale>Mitigates this threat by restricting the ability to modified compliant power states to authorized users.</rationale>
 		    <addressed-by>FMT_SMF.1</addressed-by><rationale>Mitigates this threat by ensuring the TSF provides the functions necessary to manage important aspects of the TOE including generating</rationale>
 		    <addressed-by>FMT_SMR.1</addressed-by><rationale>Mitigates this threat by assigning users with the proper account permissions and privileges.</rationale>
@@ -429,7 +428,6 @@
 		    <addressed-by>FPT_PWR_EXT.2</addressed-by><rationale>Mitigates this threat by requiring the TOE to enter into a safe state based on each condition. </rationale>
 		    <addressed-by>FCS_KDF_EXT.1 (selection-based)</addressed-by><rationale>Mitigates this threat by requiring a password that is not subject to a brute force attack.</rationale>
 		    <addressed-by>FCS_PCC_EXT.1 (selection-based)</addressed-by><rationale>Mitigates this threat by requiring user-provided-factors are conditioned to increase the cost of repeatedly guessing a user provided value.</rationale>
-		    <addressed-by>FCS_RBG.1 (selection-based)</addressed-by><rationale>Mitigates this threat by randomizing the generated keys in order to reduce the likelihood of guessing the future keys.</rationale>
 		    <addressed-by>FCS_CKM.1/AKG (selection-based)</addressed-by><rationale>Mitigates this threat by requiring asymmetric key generation.</rationale>
 		    <addressed-by>FCS_CKM.1/SKG (selection-based)</addressed-by><rationale>Mitigates this threat by requiring symmetric cryptographic key generation.</rationale>
 		    <addressed-by>FCS_COP.1/Hash (selection-based)</addressed-by><rationale>Mitigates this threat by performing cryptographic hashing services.</rationale>
@@ -438,11 +436,13 @@
 		    <addressed-by>FCS_COP.1/KeyEncap (selection-based)</addressed-by><rationale>Mitigates this threat by performing key transport.</rationale>
 		    <addressed-by>FCS_COP.1/KeyWrap (selection-based)</addressed-by><rationale>Mitigates this threat by performing key wrapping.</rationale>			  
 		    <addressed-by>FCS_COP.1/SKC (selection-based)</addressed-by><rationale>Mitigates this threat by performing data encryption and encryption.</rationale>
+		    <addressed-by>FCS_RBG.1 (selection-based)</addressed-by><rationale>Mitigates this threat by randomizing the generated keys in order to reduce the likelihood of guessing the future keys.</rationale>
 		    <addressed-by>FCS_RBG.2 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
 		    <addressed-by>FCS_RBG.3 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
 		    <addressed-by>FCS_RBG.4 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
 		    <addressed-by>FCS_RBG.5 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
 		    <addressed-by>FCS_SMC_EXT.1 (selection-based)</addressed-by><rationale>Mitigates this threat by obscuring the submasks via a XOR or hashing operation..</rationale>
+		    <addressed-by>FCS_VAL_EXT.1 (selection-based</addressed-by><rationale>Mitigates this threat by defining methods for validation of keying material and number of validation attempts.</rationale>
 		    <addressed-by>FPT_FLS.1 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that a malfunctioning DRBG function cannot be used to generate potentially insecure keys.</rationale>
 		    <addressed-by>FPT_TST.1 (selection-based)</addressed-by><rationale>Mitigates this threat by verifying the cryptographic functionality through the self testing functionality.</rationale>
 		  </threat>
@@ -477,9 +477,10 @@
 		  <threat id="t-unauth_update" name="T.UNAUTHORIZED_UPDATE">
 				<description>Threat agents may attempt to perform an update of the product which compromises the security features of the TOE. Poorly chosen update protocols, signature generation and verification algorithms, and parameters may allow attackers to install software or firmware that bypasses the intended security features and provides them unauthorized access to data.
 				</description>        
-        <addressed-by>FMT_SMF.1</addressed-by><rationale>Mitigates this threat by ensuring the TSF provides the functions necessary to manage important behavior of the TOE which includes the initiation of system firmware/software updates.</rationale>
+		    <addressed-by>FCS_COP.1/SigVer</addressed-by><rationale>Mitigates this threat by defining the signature function that is used to verify updates.</rationale>        
+		    <addressed-by>FMT_SMF.1</addressed-by><rationale>Mitigates this threat by ensuring the TSF provides the functions necessary to manage important behavior of the TOE which includes the initiation of system firmware/software updates.</rationale>
         <addressed-by>FPT_TUD_EXT.1</addressed-by><rationale>Mitigates this threat by providing authorized users the ability to query the current version of the TOE software/firmware, initiate updates, and verify updates prior to installation using a manufacturer digital signature.</rationale>       
-		    <addressed-by>FCS_COP.1/SigVer (optional)</addressed-by><rationale>Mitigates this threat by defining the signature function that is used to verify updates.</rationale>		
+		
 		  </threat>
 		</threats>
     </sec:Threats>
@@ -662,7 +663,7 @@
 		  </SOE>
 	  </SOEs>
   </section>
-	
+	<sec:Security_Objectives_Rationale/>
   
 </sec:Security_Objectives>  
 <sec:Security_Requirements>  

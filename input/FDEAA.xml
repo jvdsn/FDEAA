@@ -388,7 +388,8 @@
 
 
     <sec:Threats>
-      <h:p>This section provides a narrative that describes how the requirements mitigate the mapped threats. A requirement may mitigate aspects of multiple threats. A requirement may only mitigate a threat in a limited way. Some requirements are optional, either because the TSF fully mitigates the threat without the additional requirement(s) being claimed or because the TSF relies on its Operational Environment to provide the functionality that is described by the optional requirement(s).</h:p>
+      <h:p>This section provides a narrative that describes how the requirements mitigate the mapped
+        threats. A requirement may mitigate aspects of multiple threats. A requirement may only mitigate a threat in a limited way. Some requirements are optional, either because the TSF fully mitigates the threat without the additional requirements being claimed or because the TSF relies on its Operational Environment to provide the functionality that is described by the optional requirements.</h:p>
       <h:p>A threat consists of a threat agent, an asset and an adverse action of that threat agent on that asset. The threat agents are the entities that put the assets at risk if an adversary obtains a lost or stolen storage device. Threats drive the functional requirements for the target of evaluation (TOE). For instance, one threat below is T.UNAUTHORIZED_DATA_ACCESS. The threat agent is the possessor (unauthorized user) of a lost or stolen storage device. The asset is the data on the storage device, while the adverse action is to attempt to obtain those data from the storage device. This threat drives the functional requirements for the storage device encryption (TOE) to authorize who can use the TOE to access the hard disk and encrypt/decrypt the data. Since possession of the KEK, DEK, intermediate keys, authorization factors, submasks, and random numbers or any other values that contribute to the creation of keys or authorization factors could allow an unauthorized user to defeat the encryption, this SPD considers key material equivalent to the data in importance and they appear among the other assets addressed below.</h:p>
       <h:p>It is important to reemphasize at this point that this collaborative Protection Profile does not expect the product (TOE) to defend against the possessor of the lost or stolen hard disk who can introduce malicious code or exploitable hardware components into the Target of Evaluation (TOE) or the Operational Environment. It assumes that the user physically protects the TOE and that the Operational Environment provides sufficient protection against logical attacks. One specific area where a conformant TOE offers some protection is in providing updates to the TOE; other than this area, though, this cPP mandates no other countermeasures. Similarly, these requirements do not address the “lost and found” hard disk problem, where an adversary may have taken the hard disk, compromised the unencrypted portions of the boot device (e.g., MBR, boot partition), and then made it available to be recovered by the original user so that they would execute the compromised code.</h:p>
 
@@ -396,13 +397,13 @@
 		
 		  <threat id="t-auth-guessing" name="T.AUTHORIZATION_GUESSING">
 		    <description>
-		      Threat agents may exercise host software to repeatedly guess authorization factors, such as passwords and PINs. Successful guessing of the authorization factors may cause the TOE to release BEV or otherwise put it in a state in which it discloses protected data to unauthorized users. <comment>Please see B.1 of the old PP. B.1 states that this threats need to be included in the ST even though it was already part of the mandatory threat list.</comment>
+		      Threat agents may exercise host software to repeatedly guess authorization factors, such as passwords and PINs. Successful guessing of the authorization factors may cause the TOE to release BEV or otherwise put it in a state in which it discloses protected data to unauthorized users. 
 		    </description>
 		    <addressed-by>FCS_AFA_EXT.1</addressed-by><rationale>Mitigates this threat by requiring a set of authorization factors that will be difficult to guess.</rationale>
-		    <addressed-by>FCS_PCC_EXT.1</addressed-by><rationale>Mitigates this threat by requiring user provides factors are conditioned to increase the cost of repeatedly guessing a user provided value.</rationale>
-		    <addressed-by>FCS_SMC_EXT.1</addressed-by><rationale>TMitigates this threat by requiring multifactor authentication options, further increasing the difficulty of guessing a authentication factor.</rationale>
 		    <addressed-by>FCS_SNI_EXT.1</addressed-by><rationale>Mitigates this threat by requiring  proper salts, which will prevent pre-computed attacks.</rationale>
-		    <addressed-by>FCS_VAL_EXT.1</addressed-by><rationale>Mitigates this threat by requiring several options for enforcing validation, such as key sanitization of the DEK or when a configurable number of failed validation attempts is reached within a 24 hour period. This mitigates brute force attacks against authorization factors such as passwords and pins.</rationale>
+		    <addressed-by>FCS_PCC_EXT.1 (selection-based)</addressed-by><rationale>Mitigates this threat by requiring user-provided-factors are conditioned to increase the cost of repeatedly guessing a user provided value.</rationale>
+		    <addressed-by>FCS_SMC_EXT.1 (selection-based)</addressed-by><rationale>Mitigates this threat by requiring multifactor authentication options, further increasing the difficulty of guessing a authentication factor.</rationale>
+		    <addressed-by>FCS_VAL_EXT.1 (selection-based)</addressed-by><rationale>Mitigates this threat by requiring several options for enforcing validation, such as key sanitization of the DEK or when a configurable number of failed validation attempts is reached within a 24 hour period. This mitigates brute force attacks against authorization factors such as passwords and pins.</rationale>
 		  </threat>
 		  
 		  <threat id="t-keying_material_compromise" name="T.KEYING_MATERIAL_COMPROMISE">
@@ -422,7 +423,7 @@
 		    <addressed-by>FPT_PWR_EXT.1</addressed-by><rationale>Mitigates this threat by requiring the TOE to meet a compliant power saving state that protects and/or destroys key materials.</rationale>
 		    <addressed-by>FPT_PWR_EXT.2</addressed-by><rationale>Mitigates this threat by requiring the TOE to enter into a safe state based on each condition. </rationale>
 		    <addressed-by>FCS_KDF_EXT.1 (selection-based)</addressed-by><rationale>Mitigates this threat by requiring a password that is not subject to a brute force attack.</rationale>
-		    <addressed-by>FCS_PCC_EXT.1 (selection-based)</addressed-by><rationale>Mitigates this threat by requiring<comment>TBD- Is this a system password or a user password?</comment></rationale>
+		    <addressed-by>FCS_PCC_EXT.1 (selection-based)</addressed-by><rationale>Mitigates this threat by requiring user-provided-factors are conditioned to increase the cost of repeatedly guessing a user provided value.</rationale>
 		    <addressed-by>FCS_RBG.1 (selection-based)</addressed-by><rationale>Mitigates this threat by randomizing the generated keys in order to reduce the likelihood of guessing the future keys.</rationale>
 		    <addressed-by>FCS_CKM.1/AKG (selection-based)</addressed-by><rationale>Mitigates this threat by requiring asymmetric key generation.</rationale>
 		    <addressed-by>FCS_CKM.1/SKG (selection-based)</addressed-by><rationale>Mitigates this threat by requiring symmetric cryptographic key generation.</rationale>
@@ -430,7 +431,7 @@
 		    <addressed-by>FCS_COP.1/KeyedHash (selection-based)</addressed-by><rationale>Mitigates this threat by performing keyed-hash message authentication.</rationale>
 		    <addressed-by>FCS_COP.1/KeyEnc (selection-based)</addressed-by><rationale>Mitigates this threat by performing key encryption and decryption.</rationale>
 		    <addressed-by>FCS_COP.1/KeyEncap (selection-based)</addressed-by><rationale>Mitigates this threat by performing key transport.</rationale>
-		    <addressed-by>FCS_COP.1/KeyWrap (selection-based)</addressed-by><rationale>TMitigates this threat by performing key wrapping.</rationale>			  
+		    <addressed-by>FCS_COP.1/KeyWrap (selection-based)</addressed-by><rationale>Mitigates this threat by performing key wrapping.</rationale>			  
 		    <addressed-by>FCS_COP.1/SKC (selection-based)</addressed-by><rationale>Mitigates this threat by performing data encryption and encryption.</rationale>
 		    <addressed-by>FCS_RBG.2 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
 		    <addressed-by>FCS_RBG.3 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
@@ -470,11 +471,11 @@
 
 		  <threat id="t-unauth_update" name="T.UNAUTHORIZED_UPDATE">
 				<description>Threat agents may attempt to perform an update of the product which compromises the security features of the TOE. Poorly chosen update protocols, signature generation and verification algorithms, and parameters may allow attackers to install software and/or firmware that bypasses the intended security features and provides them unauthorized access to data.
-				</description>
-        <addressed-by>FCS_COP.1/SigVer (optional)</addressed-by><rationale>Mitigates this threat by defining the signature function that is used to verify updates.</rationale>
+				</description>        
         <addressed-by>FMT_SMF.1</addressed-by><rationale>Mitigates this threat by ensuring the TSF provides the functions necessary to manage important behavior of the TOE which includes the initiation of system firmware/software updates.</rationale>
         <addressed-by>FPT_TUD_EXT.1</addressed-by><rationale>Mitigates this threat by providing authorized users the ability to query the current version of the TOE software/firmware, initiate updates, and verify updates prior to installation using a manufacturer digital signature.</rationale>       
-			</threat>
+		    <addressed-by>FCS_COP.1/SigVer (optional)</addressed-by><rationale>Mitigates this threat by defining the signature function that is used to verify updates.</rationale>		
+		  </threat>
 		</threats>
     </sec:Threats>
 	
@@ -509,7 +510,7 @@
           </objective-refer>
         </assumption>
         <assumption name="A.TRAINED_USER">
-          <description> Authorized users follow all provided user guidance, including keeping password/passphrases and external tokens securely stored separately from the storage device and/or platform.</description>
+          <description> Authorized users follow all provided user guidance, including keeping passwords and passphrases and external tokens securely stored separately from the storage device and/or platform.</description>
             <objective-refer ref="OE.PASSPHRASE_STRENGTH">
               <rationale>The operational environment objective OE.PASSPHRASE_STRENGTH is realized through A.TRAINED_USER.</rationale>
             </objective-refer>
@@ -542,7 +543,7 @@
       </objective-refer>
     </assumption>
   <assumption name="A.PASSWORD_STRENGTH">
-    <description>Authorized administrators ensure password/passphrase authorization factors have sufficient strength and entropy to reflect the sensitivity of the data being protected.</description>
+    <description>Authorized administrators ensure passwords and passphrase authorization factors have sufficient strength and entropy to reflect the sensitivity of the data being protected.</description>
     <objective-refer ref="OE.PASSPHRASE_STRENGTH">
       <rationale>The operational environment objective OE.PASSPHRASE_STRENGTH is realized through A.PASSWORD_STRENGTH.</rationale>
     </objective-refer>
@@ -743,14 +744,14 @@
                 TSS section is performed as part of FCS_PCC_EXT.1 Evaluation Activities.
                 Additionally in this case, the evaluator shall verify that the operational guidance
                 discusses the characteristics of external authorization factors (e.g., how the
-                authorization factor must be generated; format(s) or standards that the authorization
+                authorization factor must be generated; formats or standards that the authorization
                 factor must meet) that are able to be used by the TOE.</h:p>
               <h:p>If other authorization factors are specified, then for each factor, the TSS specifies how
                 the factors are input into the TOE.</h:p>
             </TSS>
             <Guidance>The evaluator shall verify that the AGD guidance includes instructions for all of the
               authorization factors. The AGD will discuss the characteristics of external
-              authorization factors (e.g., how the authorization factor is generated; format(s) or
+              authorization factors (e.g., how the authorization factor is generated; formats or
               standards that the authorization factor must meet, configuration of the TPM device
               used) that are able to be used by the TOE.</Guidance>
               <CustomEA name="KMD">
@@ -782,14 +783,14 @@
                   upon transition from any compliant power saving state specified in FPT_PWR_EXT.1 prior to permitting access to plaintext data.</title>
                 <note role='application'><h:i>This should be accomplished by clearing keys that are no longer needed so that keys must be derived or decrypted again.</h:i></note>
                 <aactivity>
-                  <TSS>The evaluator shall examine the TSS for a description of authorization factors and which of the factors are used to gain access to user data after the TOE entered a Compliant power saving state. The TSS is inspected to ensure it describes that each authorization factor satisfies the requirements of FCS_AFA_EXT.1.1.</TSS>
-                    <Guidance>The evaluator shall examine the guidance documentation for a description of authorization factors used to access plaintext data when resuming from a Compliant power saving state.</Guidance>
+                  <TSS>The evaluator shall examine the TSS for a description of authorization factors and which of the factors are used to gain access to user data after the TOE entered a compliant power saving state. The TSS is inspected to ensure it describes that each authorization factor satisfies the requirements of FCS_AFA_EXT.1.1.</TSS>
+                    <Guidance>The evaluator shall examine the guidance documentation for a description of authorization factors used to access plaintext data when resuming from a compliant power saving state.</Guidance>
                     <CustomEA name="KMD">There are no KMD evaluation activities for this SFR.</CustomEA>
                     <Tests>
                       <h:p>The evaluator shall perform the following test:</h:p>
                       <h:ul>
-                        <h:li>Enter the TOE into a Compliant power saving state</h:li>
-                        <h:li>Force the TOE to resume from a Compliant power saving state</h:li>
+                        <h:li>Enter the TOE into a compliant power saving state</h:li>
+                        <h:li>Force the TOE to resume from a compliant power saving state</h:li>
                         <h:li>Release an invalid authorization factor and verify that access to decrypted plaintext data is denied</h:li>
                         <h:li>Release a valid authorization factor and verify that access to decrypted plaintext data is granted.</h:li>
                       </h:ul>
@@ -799,11 +800,11 @@
               <audit-event/>
             </f-component>
             
-            
-
             <f-component cc-id="fcs_ckm.1" iteration="AKG" name="Cryptographic Key Generation (Asymmetric Keys)" id="fcs-ckm-1-akg" status="sel-based">
-              <depends on-sel="fcs-cop-1-keywrap"/>
-              <f-element id="fcs_ckm-1-1-akg"><title>
+              <depends on-sel="fcs-cop-1-keywrap"/>              
+              <f-element id="fcs_ckm-1-1-akg">
+                <title>
+                  <comment>Reminder - Update all crypto SFRs with the crypto catalog versions when available.</comment>
                 The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a specified cryptographic key generation algorithm: <h:b><selectables linebreak='yes'>
                   <selectable>RSA schemes using cryptographic key sizes of <selectables>
                     <selectable>2048-bit</selectable>
@@ -831,14 +832,15 @@
                   <h:p>Asymmetric keys may be used to “wrap” a key or submask. This SFR should be included by the ST author when making the appropriate selection in FCS_COP.</h:p>
                   <h:p>Asymmetric Keys may also be used for the key chain. Therefore, the ST author should select FCS_CKM.1/AKG, if Asymmetric key generation is used.</h:p>
                   <h:p>If the TOE acts as a receiver in the RSA key establishment scheme, the TOE does not need to implement RSA key generation.</h:p>
-                  <h:p>For all schemes (RSA schemes, ECC schemes, FFC schemes), an RBG is needed to a) generate seeds for RSA and to b) generate private keys directly for ECC and FFC. So FCS_RBG.1 is used together with this SFR. A hash algorithm is also required when the key pair generation algorithm is selected based on either Appendix B.3.2 or B.3.5<comment>Should we get rid of the referenced Appendix since it does not exist?</comment> of FIPS 186-4. So in such case, FCS_COP.1/KeyWrap is used together with this SFR.</h:p>                  
+                  <h:p>For all schemes (RSA schemes, ECC schemes, FFC schemes), an RBG is needed to
+                    a) generate seeds for RSA and to b) generate private keys directly for ECC and FFC. So FCS_RBG.1 is used together with this SFR. A hash algorithm is also required when the key pair generation algorithm is selected based on either Appendix B of FIPS 186-4. So in such case, FCS_COP.1/KeyWrap is used together with this SFR.</h:p>                  
                 </h:i></note>
                 <aactivity>
                     <TSS>The evaluator shall ensure that the TSS identifies the key sizes supported by the TOE.
                       If the ST specifies more than one scheme, the evaluator shall examine the TSS to verify
                       that it identifies the usage for each scheme.</TSS>
                     <Guidance>The evaluator shall verify that the AGD guidance instructs the administrator how to
-                      configure the TOE to use the selected key generation scheme(s) and key size(s) for all
+                      configure the TOE to use the selected key generation schemes and key sizes for all
                       uses specified by the AGD documentation and defined in this cPP.</Guidance>
                     <CustomEA name="KMD">If the TOE uses an asymmetric key as part of the key chain, the KMD should detail
                       how the asymmetric key is used as part of the key chain.</CustomEA>
@@ -867,12 +869,12 @@
                           <h:p>To test the key generation method for the Random Provable primes method and for all
                             the Primes with Conditions methods, the evaluator must seed the TSF key generation
                             routine with sufficient data to deterministically generate the RSA key pair. This
-                            includes the random seed(s), the public exponent of the RSA key, and the desired key
+                            includes the random seeds, the public exponent of the RSA key, and the desired key
                             length. For each key length supported, the evaluator shall have the TSF generate 25
                             key pairs. The evaluator shall verify the correctness of the TSF’s implementation by
                             comparing values generated by the TSF with those generated from a known good
                             implementation.</h:p>
-                            <h:p><h:b><h:i>Key Generation for FIPS PUB 186-4 RSA Schemes</h:i></h:b></h:p>
+                      <h:p><h:b><h:i>Key Generation for FIPS PUB 186-4 RSA Schemes</h:i></h:b></h:p>
                             <h:p><h:i>FIPS 186-4 ECC Key Generation Test</h:i></h:p>
                             <h:p>For each supported NIST curve, i.e., P-256, P-384 and P-521, the evaluator shall
                               require the implementation under test (IUT) to generate 10 private/public key pairs.
@@ -951,7 +953,7 @@
                     product for this key. The evaluator shall ensure that the TSS identifies the key sizes
                     supported by the TOE.</TSS>
                     <Guidance>The evaluator shall verify that the AGD guidance instructs the administrator how to
-                      configure the TOE to use the selected key size(s) for all uses specified by the AGD
+                      configure the TOE to use the selected key sizes for all uses specified by the AGD
                       documentation and defined in this cPP.</Guidance>
                     <CustomEA name="KMD">If the TOE uses a symmetric key as part of the key chain, the KMD should detail how
                       the symmetric key is used as part of the key chain.</CustomEA>
@@ -1039,14 +1041,14 @@
                         volatile memory. This description includes details of how each identified key is
                         introduced into volatile memory (e.g. by derivation from user input, or by unwrapping
                         a wrapped key stored in non-volatile memory) and how they are overwritten.</h:p>
-                      <h:p>The evaluator shall check to ensure the TSS lists each type of key that is stored in in
+                      <h:p>The evaluator shall check to ensure the TSS lists each type of key that is stored in
                         non-volatile memory, and identifies how the TOE interacts with the underlying
                         platform to manage keys (e.g., store, retrieve, destroy). The description includes details
                         on the method of how the TOE interacts with the platform, including an identification
                         and description of the interfaces it uses to manage keys (e.g., file system APIs, platform
                         key store APIs). </h:p>
                       <h:p>The evaluator examines the interface description for each different media type to ensure
-                        that the interface supports the selection(s) and description in the TSS.</h:p>
+                        that the interface supports the selections and description in the TSS.</h:p>
                       <h:p>The evaluator shall check that the TSS identifies any configurations or circumstances
                         that may not strictly conform to the key destruction requirement. If the ST makes use
                         of the open assignment and fills in the type of pattern that is used, the evaluator
@@ -1164,7 +1166,8 @@
                         destruction method specified in FCS_CKM.6</h:i>].
                 </title>
                 <note role="application"><h:i>In some cases, erasure of keys from volatile memory is
-                  only supported by the operational environment, in which case the operational environment must expose a well26 documented mechanism or interface to invoke the memory clearing operation.</h:i></note>
+                  only supported by the operational environment, in which case the operational
+                  environment must expose a well-documented mechanism or interface to invoke the memory clearing operation.</h:i></note>
                 <aactivity level="element">
                   <TSS>
                     The evaluator shall verify the TSS provides a high level description of how keys stored in volatile memory are destroyed. The valuator to verify that TSS outlines: <h:ul>
@@ -1190,10 +1193,10 @@
                   environment guidance documentation must provide procedures to support destruction of key material (e.g., automated reboot with memory clearing in early stages of the system’s power-on sequence).</h:i></note>
                   <aactivity level="element">
                     <TSS>The evaluator shall verify the TSS provides a description of what keys and key material
-                      are destroyed when entering any Compliant power saving state.</TSS>
+                      are destroyed when entering any compliant power saving state.</TSS>
                       <Guidance>The evaluator shall validate that guidance documentation contains clear warnings and
-                        information on conditions in which the TOE may end up in a non-Compliant power
-                        saving state indistinguishable from a Compliant power saving state. In that case it must
+                        information on conditions in which the TOE may end up in a non-compliant power
+                        saving state indistinguishable from a compliant power saving state. In that case it must
                         contain mitigation instructions on what to do in such scenarios.</Guidance>
                       <CustomEA name="KMD">
                         <h:p>The evaluator shall verify the KMD includes a description of the areas where keys and
@@ -1489,7 +1492,7 @@
                 </title>
                 <note role='application'><h:i>This requirement is used in the body of the ST if the ST author chooses to use key wrapping in the key chaining approach that is specified in FCS_KYC_EXT.1.</h:i></note>
                 <aactivity>
-                    <TSS>The evaluator shall verify the TSS includes a description of the key wrap function(s)
+                    <TSS>The evaluator shall verify the TSS includes a description of the key wrap functions
                       and shall verify the key wrap uses an approved key wrap algorithm according to the
                       appropriate specification.</TSS>
                     <Guidance>There are no AGD evaluation activities for this SFR.</Guidance>
@@ -1504,7 +1507,7 @@
            
         <f-component cc-id="fcs_cop.1" iteration="SigVer" name="Cryptographic Operation (Signature Verification)" id="fcs-cop-1-sigver">
           
-          <f-element id="fcs_cop-1-1-sigver">
+          <f-element id="fcs_cop-1-1-sigver">            
             <title>The TSF shall perform [<h:i>cryptographic signature services
               (verification)</h:i>] in accordance with a specified cryptographic
                 algorithm <h:b><selectables linebreak='yes'>
@@ -1527,7 +1530,7 @@
                 be used in the update function, additional Evaluation Activities to those listed below
                 are covered in other evaluation activities sections in this document. The following
                 activities deal only with the implementation for the digital signature algorithm; the
-                evaluator performs the testing appropriate for the algorithm(s) selected in the
+                evaluator performs the testing appropriate for the algorithms selected in the
                 component.
               </h:p>
               <h:p>Hash functions and/or random number generation required by these algorithms must
@@ -1700,7 +1703,7 @@
                         key size. This 3-tuple of plaintext, IV, and key is provided as input to the below
                         algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000
                         iterations of AES-CBC encryption.</h:p>
-                      <h:p># Input: PT, IV, Key <comment> May need to revisit </comment>
+                      <h:p># Input: PT, IV, Key 
                         <h:br/>Key[0] = Key
                         <h:br/>IV[0] = IV
                         <h:br/>PT[0] = PT</h:p>
@@ -1961,7 +1964,7 @@
           </f-element>
           <f-element id="fcs-kyc-ext-2-2">
             <title>
-              The TSF shall maintain a chain of intermediary keys originating from the BEV to the DEK using the following method(s): <selectables linebreak="yes">
+              The TSF shall maintain a chain of intermediary keys originating from the BEV to the DEK using the following methods: <selectables linebreak="yes">
                 <selectable>asymmetric key generation as specified in FCS_CKM.1/AKG</selectable>
                 <selectable id="fcs-kyc-ext-2-2-sel-2">symmetric key generation as specified in FCS_CKM.1/SKG</selectable>
                 <selectable>key derivation as specified in FCS_KDF_EXT.1,</selectable>
@@ -2029,7 +2032,7 @@
                     <CustomEA name="KMD"><h:p>The evaluator shall examine the KMD to ensure that the formation of the BEV and
                       intermediary keys is described and that the key sizes match that selected by the ST
                       author.</h:p><h:p>The evaluator shall check that the KMD describes the method by which the
-                        password/passphrase is first encoded and then fed to the SHA algorithm. The settings
+                        passwords and passphrase is first encoded and then fed to the SHA algorithm. The settings
                         for the algorithm (padding, blocking, etc.) shall be described, and the evaluator shall
                         verify that these are supported by the selections in this component as well as the
                         selections concerning the hash function itself. The evaluator shall verify that the KMD
@@ -2041,7 +2044,7 @@
                       <testlist>
                         <test>Ensure that the TOE supports passwords/passphrases of a minimum
                           length of 64 characters.</test>
-                        <test>If the TOE supports a password/passphrase length up to a maximum
+                        <test>If the TOE supports a passwords and passphrase length up to a maximum
                           number of characters, n (which would be greater than 64), then ensure that the
                           TOE will not accept more than n characters.</test>
                         <test>Ensure that the TOE supports passwords consisting of all characters
@@ -2245,7 +2248,7 @@
           <depends on-sel="internal-seeds"/>    
           <f-element id="fcs-rbg-4-1">
                 <title>
-                  The TSF shall be able to seed the RBG using <selectables><selectable><assignable>number</assignable> TSF softwarebased noise source(s)</selectable><selectable><assignable> number</assignable> TSF hardware-based noise source(s)</selectable></selectables>.
+                  The TSF shall be able to seed the RBG using <selectables><selectable><assignable>number</assignable> TSF software-based noise sources</selectable><selectable><assignable> number</assignable> TSF hardware-based noise sources</selectable></selectables>.
                 </title>
                 <note role="application">
                   This requirement is claimed when a DRBG is seeded with entropy from multiple noise sources that are within the TOE boundary. 
@@ -2267,7 +2270,7 @@
           <depends on-sel="internal-seeds"/>    
           <f-element id="fcs-rbg-5-1">
                 <title>
-                  The TSF shall <assignable> combining operation</assignable> <selectables><selectable>output from TSF noise source(s)</selectable><selectable> input from TSF interface(s) for seeding)</selectable></selectables> to create the entropy input into the derivation function as defined in <assignable> list of standards</assignable>, resulting in a minimum of <assignable> number of bits</assignable> bits of min-entropy.
+                  The TSF shall <assignable> combining operation</assignable> <selectables><selectable>output from TSF noise sources</selectable><selectable> input from TSF interfaces for seeding)</selectable></selectables> to create the entropy input into the derivation function as defined in <assignable> list of standards</assignable>, resulting in a minimum of <assignable> number of bits</assignable> bits of min-entropy.
 
                 </title>
                 <note role="application">
@@ -2458,7 +2461,7 @@
                         <h:p>The evaluator shall examine the vendor’s KMD to ensure it describes how validation
                           is performed. The description of the validation process in the KMD provides detailed
                           information how the TOE validates the submasks. The KMD describes how the process
-                          works, such that it does not expose any material that might compromise the submask(s).</h:p></CustomEA>
+                          works, such that it does not expose any material that might compromise the submasks.</h:p></CustomEA>
                       <Tests>
                         The evaluator shall perform the following tests:
                         <testlist>
@@ -2505,9 +2508,9 @@
                   </selectables></title>
                 <note role="application"><h:i>
                   <h:p>
-                    The purpose of performing secure validation is to not expose any material that might compromise the submask(s). For the selections in FCS_VAL_EXT.1.1, the ST author must clarify in the KMD which specific entities are referred to in this SFR if multiple entities of a type exist.
+                    The purpose of performing secure validation is to not expose any material that might compromise the submasks. For the selections in FCS_VAL_EXT.1.1, the ST author must clarify in the KMD which specific entities are referred to in this SFR if multiple entities of a type exist.
                   </h:p>
-                  <h:p>The TOE validates the submask(s) (e.g., authorization factor(s)) prior to presenting the BEV to the EE. When a password is used as an authorization factor, it is conditioned before any attempts to validate. In cases where validation of the authorization factor(s) fails, the product will not forward a BEV to EE. </h:p>
+                  <h:p>The TOE validates the submasks (e.g., authorization factors) prior to presenting the BEV to the EE. When a password is used as an authorization factor, it is conditioned before any attempts to validate. In cases where validation of the authorization factors fails, the product will not forward a BEV to EE. </h:p>
                   <h:p>When the key wrap in FCS_COP.1/KeyWrap is used, the validation is performed inherently.</h:p>
                   <h:p>The delay must be enforced by the TOE, but this requirement is not intended to address attacks that bypass the product (e.g. attacker obtains hash value or “known” crypto value and mounts attacks outside of the TOE, such as a third party password crackers). The cryptographic functions (i.e., hash, decryption) performed are those specified in FCS_COP.1/Hash, FCS_COP.1/KeyedHash, and FCS_COP.1/SKC.</h:p>
                   <h:p>The ST author may need to iterate this requirement if multiple authentication factors are used, and either different methods are used to validate, or in some cases one or more authentication factors may be validated, and one or more are not validated.</h:p>
@@ -2523,21 +2526,21 @@
             <title>
               The TSF shall restrict the ability to [<h:i>modify the behaviour of</h:i>] the functions [<h:i>use of compliant power saving state</h:i>] to [<h:i>authorized users</h:i>].
             </title>
-            <note role='application'><h:i>“Modify the behaviour of” refers to any change in how or when a Compliant power state may occur. Only privileged users are allowed to enable or disable Compliant power saving state(s) via modification of “use of Compliant power saving state” function.</h:i></note>
+            <note role='application'><h:i>“Modify the behaviour of” refers to any change in how or when a compliant power state may occur. Only privileged users are allowed to enable or disable compliant power saving states via modification of “use of compliant power saving state” function.</h:i></note>
               <aactivity>
-                  <TSS>If support for Compliant power saving state(s) are claimed in the ST, the evaluator shall
+                  <TSS>If support for compliant power saving states are claimed in the ST, the evaluator shall
                     ensure the TSS describes how these are managed and shall ensure that TSS describes
                     how only privileged users (administrators) are allowed to manage the states.</TSS>
                   <Guidance>The evaluator to check if guidance documentation describes which authorization
-                    factors are required to change Compliant power saving state behavior and properties.</Guidance>
+                    factors are required to change compliant power saving state behavior and properties.</Guidance>
                   <CustomEA name="KMD">There are no KMD evaluation activities for this SFR.</CustomEA>
                   <Tests>The evaluator shall perform the following tests:
                     <testlist>
                       <test>(conditional): If the product supports changes to compliant power saving
-                        states, the evaluator shall present a privileged authorization credential to the TSF and validates that changes to Compliant power saving state behavior and properties are
+                        states, the evaluator shall present a privileged authorization credential to the TSF and validates that changes to compliant power saving state behavior and properties are
                         allowed.</test>
                         <test>(conditional): If the product supports changes to compliant power
-                          saving states, the evaluator shall present a non-privileged authorization credential to the TSF and validates that changes to Compliant power saving state behavior are not allowed.
+                          saving states, the evaluator shall present a non-privileged authorization credential to the TSF and validates that changes to compliant power saving state behavior are not allowed.
                           </test>
                     </testlist></Tests>
               </aactivity>
@@ -2697,7 +2700,7 @@
             </fam-behavior>
         </ext-comp-def>
         <ext-comp-def title="Power Management" fam-id="FPT_PWR_EXT">
-          <fam-behavior>This family defines secure behavior of the TSF when the TOE supports multiple power saving states. The use of Compliant power saving states (i.e. power saving states that purge security relevant data upon entry) is essential for ensuring that state transitions cannot be used as attack vectors to bypass TOE self-protection mechanisms.
+          <fam-behavior>This family defines secure behavior of the TSF when the TOE supports multiple power saving states. The use of compliant power saving states (i.e. power saving states that purge security relevant data upon entry) is essential for ensuring that state transitions cannot be used as attack vectors to bypass TOE self-protection mechanisms.
             </fam-behavior>
         </ext-comp-def>
         
@@ -2821,7 +2824,7 @@
         
         <f-component cc-id="fpt_pwr_ext.1" name="Power Saving States" id="fpt-pwr-ext-1">
           <consistency-rationale/>
-          <comp-lev>defines the Compliant power saving states that are implemented by the TSF.</comp-lev>
+          <comp-lev>defines the compliant power saving states that are implemented by the TSF.</comp-lev>
           <management>The following actions could be considered for the management functions in FMT:<h:ul>
             <h:li>Enable or disable the use of individual power saving states</h:li>
             <h:li>Specify one or more power saving state configurations</h:li>
@@ -2840,10 +2843,10 @@
             </title>
             <note role='application'><h:i>Power saving states S3, S4, G2(S5), G3 are defined by the Advanced Configuration and Power Interface (ACPI) standard.</h:i></note>
             <aactivity>
-            <TSS>The evaluator shall validate the TSS contains a list of Compliant power saving states.</TSS>
-              <Guidance>The evaluator shall ensure that guidance documentation contains a list of Compliant
+            <TSS>The evaluator shall validate the TSS contains a list of compliant power saving states.</TSS>
+              <Guidance>The evaluator shall ensure that guidance documentation contains a list of compliant
                 power saving states. If additional power saving states are supported, then the evaluator
-                shall validate that the guidance documentation states how non-Compliant power states
+                shall validate that the guidance documentation states how non-compliant power states
                 are disabled.</Guidance>
               <CustomEA name="KMD">There are no KMD evaluation activities for this SFR.</CustomEA>
               <Tests>The evaluator shall confirm that for each listed compliant state all key/key materials
@@ -2875,11 +2878,11 @@
             <note role='application'><h:i>If volatile memory is not cleared as part of an unexpected power shutdown sequence then guidance documentation must define mitigation activities (e.g. how long users should wait after an unexpected power-down before volatile memory can be considered cleared).</h:i></note>
               <aactivity>
                 <TSS>The evaluator shall validate that the TSS contains a list of conditions under which the
-                  TOE enters a Compliant power saving state. </TSS>
+                  TOE enters a compliant power saving state. </TSS>
                   <Guidance>The evaluator shall check that the guidance contains a list of conditions under which
-                    the TOE enters a Compliant power saving state. Additionally, the evaluator shall verify
+                    the TOE enters a compliant power saving state. Additionally, the evaluator shall verify
                     that the guidance documentation states whether unexpected power-loss events may
-                    result in entry to a non-Compliant power saving state and, if that is the case, validate
+                    result in entry to a non-compliant power saving state and, if that is the case, validate
                     that the documentation contains information on mitigation measures.</Guidance>
                   <CustomEA name="KMD">There are no KMD evaluation activities for this SFR.</CustomEA>
                   <Tests>The evaluator shall trigger each condition in the list of identified conditions and ensure
@@ -3030,7 +3033,7 @@
                     details on the protection and maintenance of the TOE update credentials.</h:p>
                     <h:p>If the Operational Environment performs the signature verification, then the evaluator
                       shall examine the TSS to ensure it describes, for each platform identified in the ST, the
-                      interface(s) used by the TOE to invoke this cryptographic functionality.</h:p></TSS>
+                      interfaces used by the TOE to invoke this cryptographic functionality.</h:p></TSS>
                   <Guidance>
                     <h:p>The evaluator ensures that the operational guidance describes how the TOE obtains
                       vendor updates to the TOE; the processing associated with verifying the digital
@@ -3070,7 +3073,10 @@
 	</sec:SFRs>
   
   <section title="Security Assurance Requirements" id="SARs">
-    <h:p>This cPP identifies the Security Assurance Requirements (SARs) to frame the extent to which the evaluator assesses the documentation applicable for the evaluation and performs independent testing. Individual Evaluation Activities to be performed are specified in <h:i>Supporting Document (Mandatory Technical Document) Full Drive Encryption: Authorization Acquisition, February 2019</h:i>.
+    <h:p>This cPP identifies the Security Assurance Requirements (SARs) to frame the extent to which
+      the evaluator assesses the documentation applicable for the evaluation and performs
+      independent testing. Individual evaluation activities to be performed are specified within
+      each SFR.
   </h:p><h:p>
     <h:b>Note to ST authors: There is a selection in the ASE_TSS that must be completed. One cannot simply reference the SARs in this cPP.</h:b>
   </h:p><h:p>
@@ -3141,51 +3147,833 @@
     <section title="ASE: Security Target" id="ase">
       <h:p>The ST is evaluated as per ASE activities defined in the CEM. In addition, there may be Evaluation Activities specified within the SD that call for necessary descriptions to be included in the TSS that are specific to the TOE technology type.</h:p>
       <h:p>The SFRs in this cPP allow for conformant implementations to incorporate a wide range of acceptable key management approaches as long as basic principles are satisfied. Given the criticality of the key management scheme, this cPP requires the developer to provide a detailed description of their key management implementation. This information can be submitted as an appendix to the ST and marked proprietary, as this level of detailed information is not expected to be made publicly available. See Appendix E for details on the expectation of the developer’s Key Management Description</h:p><h:p>In addition, if the TOE includes a random bit generator Appendix D provides a description of the information expected to be provided regarding the quality of the entropy.</h:p>
-      <h:p><h:b>ASE_TSS.1.1C Refinement:</h:b> The TOE summary specification shall describe how the TOE meets each SFR, <h:b>including a proprietary Key Management Description (Appendix E), and <h:i>[selection: Entropy Essay, list of all of 3rd 9 party software libraries (including version numbers), 3rd 10 party hardware components (including model/version numbers), no other cPP specified proprietary documentation]</h:i>.</h:b></h:p>
+      <h:p><h:b>ASE_TSS.1.1C </h:b> The TOE summary specification shall describe how the TOE meets each SFR, <h:b>including a proprietary Key Management Description (Appendix E), and <h:i>[selection: Entropy Essay, list of all of 3rd 9 party software libraries (including version numbers), 3rd 10 party hardware components (including model/version numbers), no other cPP specified proprietary documentation]</h:i>.</h:b></h:p>
     </section>
 
     <section title="ADV: Development" id="adv">
       <h:p>The design information about the TOE is contained in the guidance documentation available to the end user as well as the TSS portion of the ST, and any additional information required by this cPP that is not to be made public (e.g., Entropy Essay).</h:p>
    
       <a-component cc-id="adv_fsp.1" name="Basic Functional Specification (ADV_FSP.1)">
-      <h:p>The functional specification describes the TOE Security Functions Interfaces (TSFIs). It is not necessary to have a formal or complete specification of these interfaces. Additionally, because TOEs conforming to this cPP will may interfaces to the Operational Environment that are not directly invoked by TOE users, there is little point specifying that such interfaces be described in and of themselves since only indirect testing of such interfaces may be possible. For this cPP, the Evaluation Activities for this family focus on understanding the interfaces presented in the TSS in response to the functional requirements and the interfaces presented in the AGD documentation. No additional “functional specification” documentation is necessary to satisfy the Evaluation Activities specified in the SD.</h:p>
-      <h:p>The Evaluation Activities in the SD are associated with the applicable SFRs; since these are directly associated with the SFRs, the tracing in element ADV_FSP.1.2D is implicitly already done and no additional documentation is necessary.</h:p>
-    </a-component>
+      <h:p>The functional specification describes the TOE Security Functions Interfaces (TSFIs). It is not necessary to have a formal or complete specification of these interfaces.
+        Additionally, because TOEs conforming to this cPP may have interfaces to the Operational Environment that are not directly invoked by TOE users, there is little point 
+        specifying that such interfaces be described in and of themselves since only indirect testing of such interfaces may be possible. For this cPP, the evaluation activities
+        for this family focus on understanding the interfaces presented in the TSS in response to the functional requirements and the interfaces presented in the AGD documentation.
+        No additional “functional specification” documentation is necessary to satisfy the evaluation activities specified.</h:p>
+      <h:p>The evaluation activities are associated with the applicable SFRs. Since these are directly associated with the SFRs, the tracing in element ADV_FSP.1.2D is implicitly 
+        already done and no additional documentation is necessary.</h:p>
+        <a-element type="D">
+          <title>The developer shall provide a functional specification.</title>
+        </a-element>
+        <a-element type="D">
+          <title>The developer shall provide a tracing from the functional specification to the
+            SFRs.</title>
+          <note role="application">As indicated in the introduction to this section, the
+            functional specification is comprised of the information contained in the AGD_OPE and
+            AGD_PRE documentation. The developer may reference a website accessible to application
+            developers and the evaluator. The evaluation activities in the functional requirements
+            point to evidence that should exist in the documentation and TSS
+            section; since these are directly associated with the SFRs, the tracing in element
+            ADV_FSP.1.2D is implicitly already done and no additional documentation is
+            necessary.
+          </note>
+        </a-element>   
+        <a-element type="C">
+          <title>The functional specification shall describe the purpose and method of use for
+            each SFR-enforcing and SFR-supporting TSFI.</title>
+        </a-element>
+        <a-element type="C">
+          <title>The functional specification shall identify all parameters associated with each
+            SFR-enforcing and SFR-supporting TSFI.</title>
+        </a-element>
+        <a-element type="C">
+          <title>The functional specification shall provide rationale for the implicit
+            categorization of interfaces as SFR-non-interfering.</title>
+        </a-element>
+        <a-element type="C">
+          <title>The tracing shall demonstrate that the SFRs trace to TSFIs in the functional specification.</title>
+        </a-element>    
+        <a-element type="E">
+          <title>The evaluator shall confirm that the information provided meets all requirements
+            for content and presentation of evidence.</title>
+        </a-element>
+        <a-element type="E">
+          <title>The evaluator shall determine that the functional specification is an accurate
+            and complete instantiation of the SFRs.</title>
+          <aactivity>
+            <!-- <TSS>-->
+            There are no specific evaluation activities associated with these SARs, except
+            ensuring the information is provided. The functional specification documentation is
+            provided to support the evaluation activities described in <xref to="SFRs"/>, and
+            other activities described for AGD, ATE, and AVA SARs. The requirements on the content
+            of the functional specification information is implicitly assessed by virtue of the
+            other evaluation activities being performed; if the evaluator is unable to perform an
+            activity because there is insufficient interface information, then an adequate
+            functional specification has not been provided.
+            <!-- </TSS> -->
+          </aactivity>
+        </a-element>
+      </a-component>
+      
   </section>
     
   <section title="AGD: Guidance Documentation" id="agd">
-    <h:p>The guidance documents will be provided with the ST. Guidance must include a description of how the IT personnel verifies that the Operational Environment can fulfill its role for the security functionality. The documentation should be in an informal style and readable by the IT personnel.</h:p>
-    <h:p>Guidance must be provided for every operational environment that the product supports as claimed in the ST. This guidance includes: <h:ul>
-      <h:li>instructions to successfully install the TSF in that environment; and</h:li>
-      <h:li>instructions to manage the security of the TSF as a product and as a component of the larger operational environment; and</h:li>
+    <h:p>The guidance documents will be provided with the ST. Guidance must include a description of how the IT personnel verifies that
+      the Operational Environment can fulfill its role for the security functionality. The documentation should be in an informal style 
+      and readable by the IT personnel.</h:p>
+    <h:p>Guidance must be provided for every operational environment that the product supports as claimed in the ST. This guidance
+      includes: <h:ul>
+      <h:li>Instructions to successfully install the TSF in that environment; and</h:li>
+      <h:li>Instructions to manage the security of the TSF as a product and as a component of the larger operational environment</h:li>
       <h:li>Instructions to provide a protected administrative capability.</h:li>
-    </h:ul></h:p><h:p>Guidance pertaining to particular security functionality must also be provided; requirements on such guidance are contained in the Evaluation Activities specified in the SD.</h:p>
+    </h:ul></h:p>
+    <h:p>Guidance pertaining to particular security functionality must also be provided; requirements on such guidance are contained in
+      the evaluation activities</h:p>
     <a-component cc-id="agd_ope.1" name="Operational User Guidance (AGD_OPE.1)">
-      <h:p>The operational user guidance does not have to be contained in a single document. Guidance to users, administrators, and integrators can be spread among documents or web pages.</h:p>
-      <h:p>The developer should review the Evaluation Activities contained in the SD to ascertain the specifics of the guidance that the evaluator will be checking for. This will provide the necessary information for the preparation of acceptable guidance.</h:p>
+      <h:p>The operational user guidance does not have to be contained in a single document. Guidance to users, administrators, and 
+        integrators can be spread among documents or web pages.</h:p>
+      <h:p>The developer should review the evaluation activities to ascertain the specifics of the guidance that the evaluator will be
+        checking for. This will provide the necessary information for the preparation of acceptable guidance.</h:p>
+      <a-element type="D">
+        <title>The developer shall provide operational user guidance.</title>
+        <note role="application">The operational user guidance does not have to be contained in a
+          single document. Guidance to users, administrators and application developers can be
+          spread among documents or web pages. Where appropriate, the guidance documentation is
+          expressed in the eXtensible Configuration Checklist Description Format (XCCDF) to
+          support security automation. Rather than repeat information here, the developer should
+          review the evaluation activities for this component to ascertain the specifics of the
+          guidance that the evaluator will be checking for. This will provide the necessary
+          information for the preparation of acceptable guidance.
+        </note>
+      </a-element>  
+      <a-element type="C">
+        <title>The operational user guidance shall describe, for each user role, the
+          user-accessible functions and privileges that should be controlled in a secure
+          processing environment, including appropriate warnings.</title>
+        <note role="application">User and administrator are to be considered in the definition
+          of user role.</note>
+      </a-element>
+      <a-element type="C">
+        <title>The operational user guidance shall describe, for each user role, how to use the
+          available interfaces provided by the TOE in a secure manner.</title>
+      </a-element>
+      <a-element type="C">
+        <title>The operational user guidance shall describe, for each user role, the available
+          functions and interfaces, in particular all security parameters under the control of
+          the user, indicating secure values as appropriate.</title>
+      </a-element>
+      <a-element type="C">
+        <title>The operational user guidance shall, for each user role, clearly present each
+          type of security-relevant event relative to the user-accessible functions that need to
+          be performed, including changing the security characteristics of entities under the
+          control of the TSF.</title>
+      </a-element>
+      <a-element type="C">
+        <title>The operational user guidance shall identify all possible modes of operation of
+          the TOE (including operation following failure or operational
+          error), their consequences, and implications for maintaining secure operation.</title>
+      </a-element>
+      <a-element type="C">
+        <title>The operational user guidance shall, for each user role, describe the security
+          measures to be followed in order to fulfill the security objectives for the
+          operational environment as described in the ST.</title>
+      </a-element>
+      <a-element type="C">
+        <title>The operational user guidance shall be clear and reasonable.</title>
+      </a-element>     
+      <a-element type="E">
+        <title>The evaluator shall confirm that the information provided meets all requirements
+          for content and presentation of evidence.</title>
+        <aactivity>
+          <!--<Guidance>-->
+          <h:p>
+            Some of the contents of the operational guidance will be verified by the
+            evaluation activities in <xref to="SFRs"/> and evaluation of the TOE
+            according to the <xref to="bibCEM"/>. The following additional
+            information is also required.
+          </h:p><h:p>
+            If cryptographic functions are provided by the 
+            TOE, the operational guidance shall contain instructions for 
+            configuring the cryptographic engine associated with the evaluated configuration of 
+            the TOE. It shall provide a warning to the administrator that use of 
+            other cryptographic engines was not evaluated nor tested during the CC evaluation of 
+            the TOE.
+          </h:p><h:p>
+            The documentation must describe the process for verifying 
+            updates to the TOE by verifying a digital signature – this may
+            be done by the TOE or the underlying platform. 
+          </h:p><h:p>
+            The evaluator shall verify that this process includes the following steps: </h:p>
+          <h:ul>      
+            <h:li>Instructions for obtaining the 
+              update itself. This should include instructions for making the update accessible to 
+              the TOE (e.g., placement in a specific directory).</h:li>    
+            <h:li>Instructions for initiating the update process, as well as discerning whether the process was 
+              successful or unsuccessful. This includes generation of the digital signature. 
+              The TOE will likely contain security functionality that does not 
+              fall in the scope of evaluation under this PP. The operational guidance shall make it 
+              clear to an administrator which security functionality is covered by the evaluation 
+              activities.</h:li></h:ul>
+          <!--	      </Guidance> -->
+        </aactivity>
+      </a-element>
     </a-component>
-    <a-component cc-id="agd_pre.1" name="Preparative Procedures (AGD_PRE.1)">As with the operational guidance, the developer should look to the Evaluation Activities to determine the required content with respect to preparative procedures.</a-component>
+    
+    <a-component cc-id="agd_pre.1" name="Preparative Procedures (AGD_PRE.1)">As with the operational guidance, the developer should look to the Evaluation Activities to determine the required content with respect to preparative procedures.
+      <a-element type="D">
+        <title>The developer shall provide the TOE, including its preparative procedures.</title>
+        <note role="application">
+          As with the operational guidance, the developer should look to
+          the evaluation activities to determine the required content with respect to preparative
+          procedures.</note>
+      </a-element>     
+      <a-element type="C">
+        <title>The preparative procedures shall describe all the steps necessary for secure
+          acceptance of the delivered TOE in accordance with the developer's
+          delivery procedures.</title>
+      </a-element>
+      <a-element type="C">
+        <title>The preparative procedures shall describe all the steps necessary for secure
+          installation of the TOE and for the secure preparation of the
+          operational environment in accordance with the security objectives for the operational
+          environment as described in the ST.</title>
+      </a-element>    
+      <a-element type="E">
+        <title>The evaluator shall confirm that the information provided meets all requirements
+          for content and presentation of evidence.</title>
+      </a-element>
+      <a-element type="E">
+        <title>The evaluator shall apply the preparative procedures to confirm that the TOE
+          can be prepared securely for operation.</title>
+        <aactivity>
+          <!-- <Guidance> -->
+          As indicated in the introduction above, there are significant expectations
+          with respect to the documentation—especially when configuring the operational
+          environment to support TOE functional requirements. The evaluator 
+          shall check to ensure that the guidance provided for the TOE 
+          adequately addresses all platforms claimed for the TOE in the ST.
+          <!--</Guidance> -->
+        </aactivity>
+      </a-element>
+    </a-component>
+    
   </section>
   <section title="Class ALC: Life-cycle Support" id="alc">
     At the assurance level provided for TOEs conformant to this cPP, life-cycle support is limited to end-user-visible aspects of the life-cycle, rather than an examination of the TOE vendor’s development and configuration management process. This is not meant to diminish the critical role that a developer’s practices play in contributing to the overall trustworthiness of a product; rather, it is a reflection on the information to be made available for evaluation at this assurance level.
     <a-component cc-id="alc_cmc.1" name="Labelling of the TOE (ALC_CMC.1)">
       This component is targeted at identifying the TOE such that it can be distinguished from other products or versions from the same vendor and can be easily specified when being procured by an end user. The evaluator performs the CEM work units associated with ALC_CMC.1.
+      <a-element type="D">
+        <title>The developer shall provide the TOE and a reference for the TOE.</title>
+      </a-element>
+      <a-element type="C">
+        <title>The application shall be labeled with a unique reference.</title>
+        <note role="application">
+          Unique reference information includes:
+          <h:ul>
+            <h:li>Application Name</h:li>
+            <h:li>Application Version</h:li>
+            <h:li>Application Description</h:li>
+            <h:li>Platform on which Application Runs</h:li>
+            <h:li>Software Identification (SWID) tags, if available</h:li>
+          </h:ul>
+        </note>
+      </a-element>
+      <a-element type="E">
+        <title>The evaluator shall confirm that the information provided meets all
+          requirements for content and presentation of evidence.</title>
+        <aactivity>
+          <!-- <TSS>--> 
+          The evaluator shall check the ST to ensure that it contains an identifier
+          (such as a product name/version number) that specifically identifies the version that
+          meets the requirements of the ST. Further, the evaluator shall check the operational guidance
+          and TOE samples received for testing to ensure that the version
+          number is consistent with that in the ST. If the vendor maintains a website
+          advertising the TOE, the evaluator shall examine the information on 
+          the website to ensure that the information in the ST is sufficient to distinguish the
+          product.
+          <!--	    </TSS> -->
+        </aactivity>
+      </a-element>
     </a-component>
+    
     <a-component cc-id="alc_cms.1" name="TOE CMS Coverage (ALC_CMS.1)">
       Given the scope of the TOE and its associated evaluation evidence requirements, the evaluator performs the CEM work units associated with ALC_CMS.1.
+      <a-element type="D">
+        <title>The developer shall provide a configuration list for the TOE.</title>
+      </a-element>
+      <a-element type="C">
+        <title>The configuration list shall include the following: the TOE
+          itself; and the evaluation evidence required by the SARs.</title>
+      </a-element>
+      <a-element type="C">
+        <title>The configuration list shall uniquely identify the configuration items.</title>
+      </a-element>
+      <a-element type="E">
+        <title>The evaluator shall confirm that the information provided meets all requirements
+          for content and presentation of evidence.</title>
+        <aactivity>
+          <!-- <TSS> -->
+          The "evaluation evidence required by the SARs" in this PP is limited to the
+          information in the ST coupled with the guidance provided to administrators and users
+          under the AGD requirements. By ensuring that the TOE is specifically
+          identified and that this identification is consistent in the ST and in the AGD
+          guidance (as done in the evaluation activity for ALC_CMC.1), the evaluator implicitly
+          confirms the information required by this component. Life-cycle support is targeted
+          aspects of the developer’s life-cycle and instructions to providers of applications
+          for the developer’s devices, rather than an in-depth examination of the TSF
+          manufacturer’s development and configuration management process.
+          This is not meant to diminish the critical role that a developer’s practices play in
+          contributing to the overall trustworthiness of a product; rather, it’s a reflection on
+          the information to be made available for evaluation.
+          <!--	      </TSS>
+				<Guidance> -->
+          <h:p>
+            The evaluator shall ensure that the developer has identified (in guidance documentation for application
+            developers concerning the targeted platform) one or more development environments
+            appropriate for use in developing applications for the developer’s platform. For each
+            of these development environments, the developer shall provide information on how to
+            configure the environment to ensure that buffer overflow protection mechanisms in the
+            environment(s) are invoked (e.g., compiler flags). The evaluator shall ensure that
+            this documentation also includes an indication of whether such protections are on by
+            default, or have to be specifically enabled. The evaluator shall ensure that the 
+            TSF is uniquely identified (with respect to other products from the 
+            TSF vendor), and that documentation provided by the developer in 
+            association with the requirements in the ST is associated with the 
+            TSF using this unique identification. </h:p> 
+          <!-- </Guidance>--> 
+        </aactivity>
+      </a-element>
+    </a-component>
+    
+    <a-component cc-id="alc_flr.1" name="Basic Flaw Remediation (ALC_FLR.1)" status="optional">
+      <a-element type="D">
+        <title>The developer shall document and provide flaw remediation procedures addressed to TOE
+          developers.</title>
+      </a-element>
+      <a-element type="C">
+        <title>The flaw remediation procedures documentation shall describe the procedures used to
+          track all reported security flaws in each release of the TOE.</title>
+      </a-element>
+      <a-element type="C">
+        <title>The flaw remediation procedures shall require that a description of the nature and effect
+          of each security flaw be provided, as well as the status of finding a correction to that flaw.</title>
+      </a-element>
+      <a-element type="C">
+        <title>The flaw remediation procedures shall require that corrective actions be identified for
+          each of the security flaws.</title>
+      </a-element>
+      <a-element type="C">
+        <title>The flaw remediation procedures documentation shall describe the methods used to
+          provide flaw information, corrections and guidance on corrective actions to TOE users.</title>
+      </a-element>
+      <a-element type="E">
+        <title>The evaluator shall confirm that the information provided meets all requirements for
+          content and presentation of evidence.</title>
+        <aactivity>
+          <!-- <TSS> --> 
+          The evaluator shall inspect the TSS and verify it identifies how to access the flaw remediation procedures.
+          <!--</TSS>
+				<Guidance> 
+					<h:p>
+						None.
+					 </Guidance>--> 
+        </aactivity> 
+      </a-element>  
+    </a-component>
+    
+    <a-component cc-id="alc_flr.2" name="Flaw Reporting Procedures (ALC_FLR.2)" status="optional">
+      <a-element type="D">
+        <title>
+          The developer shall document and provide flaw remediation procedures addressed to TOE
+          developers.</title>
+      </a-element>
+      <a-element type="D">
+        <title>
+          The developer shall establish a procedure for accepting and acting upon all reports of
+          security flaws and requests for corrections to those flaws.
+        </title>
+      </a-element>
+      <a-element type="D">
+        <title>
+          The developer shall provide flaw remediation guidance addressed to TOE users.
+        </title>
+      </a-element>
+      <a-element type="C">
+        <title>
+          The flaw remediation procedures documentation shall describe the procedures used to track all
+          reported security flaws in each release of the TOE.</title>
+      </a-element>
+      <a-element type="C">
+        <title>
+          The flaw remediation procedures shall require that a description of the nature and effect of each
+          security flaw be provided, as well as the status of finding a correction to that flaw.</title>
+      </a-element>
+      <a-element type="C">
+        <title>
+          The flaw remediation procedures shall require that corrective actions be identified for each of the
+          security flaws.</title>
+      </a-element>
+      <a-element type="C">
+        <title>
+          The flaw remediation procedures documentation shall describe the methods used to provide flaw
+          information, corrections and guidance on corrective actions to TOE users.
+        </title>
+      </a-element>
+      <a-element type="C">
+        <title>
+          The flaw remediation procedures shall describe a means by which the developer receives
+          from TOE users reports and enquiries of suspected security flaws in the TOE.
+        </title>
+      </a-element>
+      <a-element type="C">
+        <title>
+          The procedures for processing reported security flaws shall ensure that any reported
+          flaws are remediated and the remediation procedures issued to TOE users.
+        </title>
+      </a-element>
+      <a-element type="C">
+        <title>
+          The procedures for processing reported security flaws shall provide safeguards that any
+          corrections to these security flaws do not introduce any new flaws.
+        </title>
+      </a-element>
+      <a-element type="C">
+        <title>
+          The flaw remediation guidance shall describe a means by which TOE users report to the
+          developer any suspected security flaws in the TOE.
+        </title>
+      </a-element>
+      <a-element type="E">
+        <title>
+          The evaluator shall confirm that the information provided meets all requirements for content and
+          presentation of evidence.</title>
+        <aactivity>
+          <!-- <TSS> -->
+          The evaluator shall inspect the TSS and verify it identifies how to access the flaw remediation procedures.
+          <!-- </TSS>
+				<Guidance> -->
+          <h:p>
+            The evaluator shall inspect the guidance document and verify it describes how to access the flaw remediation guidance.</h:p>
+          <!-- </Guidance>--> 
+        </aactivity> 
+      </a-element>  
+    </a-component>
+    
+    <a-component cc-id="alc_flr.3" name="Systematic Flaw Remediation (ALC_FLR.3)" status="optional">
+      <a-element type="D">
+        <title>
+          The developer shall document and provide flaw remediation procedures addressed to TOE
+          developers.
+        </title>
+      </a-element>
+      <a-element type="D">
+        <title>
+          The developer shall establish a procedure for accepting and acting upon all reports of security
+          flaws and requests for corrections to those flaws.
+        </title>
+      </a-element>
+      <a-element type="D">
+        <title>
+          The developer shall provide flaw remediation guidance addressed to TOE users.
+        </title>
+      </a-element>
+      <a-element type="C">
+        <title>
+          The flaw remediation procedures documentation shall describe the procedures used to track all
+          reported security flaws in each release of the TOE.
+        </title>
+      </a-element>
+      <a-element type="C">
+        <title>
+          The flaw remediation procedures shall require that a description of the nature and effect of each
+          security flaw be provided, as well as the status of finding a correction to that flaw.
+        </title>
+      </a-element>
+      <a-element type="C">
+        <title>
+          The flaw remediation procedures shall require that corrective actions be identified for each of the
+          security flaws.
+        </title>
+      </a-element>
+      <a-element type="C">
+        <title>
+          The flaw remediation procedures documentation shall describe the methods used to provide flaw
+          information, corrections and guidance on corrective actions to TOE users.
+        </title>
+      </a-element>
+      <a-element type="C">
+        <title>
+          The flaw remediation procedures shall describe a means by which the developer receives from
+          TOE users reports and enquiries of suspected security flaws in the TOE.
+        </title>
+      </a-element>
+      <a-element type="C">
+        <title>
+          The flaw remediation procedures shall include a procedure requiring timely response and
+          the automatic distribution of security flaw reports and the associated corrections to
+          registered users who might be affected by the security flaw.
+        </title>
+      </a-element>
+      <a-element type="C">
+        <title>
+          The procedures for processing reported security flaws shall ensure that any reported flaws are
+          remediated and the remediation procedures issued to TOE users.
+        </title>
+      </a-element>
+      <a-element type="C">
+        <title>
+          The procedures for processing reported security flaws shall provide safeguards that any
+          corrections to these security flaws do not introduce any new flaws.
+        </title>
+      </a-element>
+      <a-element type="C">
+        <title>
+          The flaw remediation guidance shall describe a means by which TOE users report to the
+          developer any suspected security flaws in the TOE.
+        </title>
+      </a-element>
+      <a-element type="C">
+        <title>
+          The flaw remediation guidance shall describe a means by which TOE users may register
+          with the developer, to be eligible to receive security flaw reports and corrections.
+        </title>
+      </a-element>
+      <a-element type="C">
+        <title>
+          The flaw remediation guidance shall identify the specific points of contact for all reports
+          and enquiries about security issues involving the TOE.
+        </title>
+      </a-element>
+      <a-element type="E">
+        <title>
+          The evaluator shall confirm that the information provided meets all requirements for content and
+          presentation of evidence.</title>
+        <aactivity>
+          <!-- <TSS> -->
+          The evaluator shall inspect the TSS and verify it identifies how to access the flaw remediation procedures.
+          <!--</TSS>
+				<Guidance> -->
+          <h:p>
+            The evaluator shall inspect the guidance document and verify it describes how to access the flaw remediation guidance.
+          </h:p>
+          <!-- </Guidance>--> 
+        </aactivity> 
+      </a-element>  
     </a-component>
   </section>
+
   <section id="class-ate" title="Class ATE: Tests">
     Testing is specified for functional aspects of the system as well as aspects that take advantage of design or implementation weaknesses. The former is done through the ATE_IND family, while the latter is through the AVA_VAN family. For this cPP, testing is based on advertised functionality and interfaces with dependency on the availability of design information. One of the primary outputs of the evaluation process is the test report as specified in the following requirements.
     <a-component cc-id="ate_ind.1" name="Independent Testing – Conformance (ATE_IND.1)">
       Testing is performed to confirm the functionality described in the TSS as well as the operational guidance (includes “evaluated configuration” instructions). The focus of the testing is to confirm that the requirements specified in Section 5 are being met. The Evaluation Activities in the SD identify the specific testing activities necessary to verify compliance with the SFRs. The evaluator produces a test report documenting the plan for and results of testing, as well as coverage arguments focused on the platform/TOE combinations that are claiming conformance to this cPP.
+      <a-element type="D">
+        <title>The developer shall provide the TOE for testing.</title>
+        <note role="application">The developer must provide at least one product instance of the TOE for complete testing on at least one
+          platform regardless of equivalency. See the Equivalency Appendix for more details.
+        </note>
+      </a-element>         
+      <a-element type="C">
+        <title>The TOE shall be suitable for testing.</title>
+      </a-element>  
+      <a-element type="E">
+        <title>The evaluator <h:i>shall confirm</h:i> that the information provided meets all
+          requirements for content and presentation of evidence.</title>
+      </a-element>
+      <a-element type="E">
+        <title>The evaluator shall test a subset of the TSF to confirm
+          that the TSF operates as specified.</title>
+        <note role="application">The evaluator should test the application on the most current
+          fully patched version of the platform.</note>
+        <aactivity>
+          <h:p>
+            The evaluator shall prepare a test plan and report documenting the testing
+            aspects of the system, including any application crashes during testing. The evaluator
+            shall determine the root cause of any application crashes and include that information
+            in the report. The test plan covers all of the testing actions contained in
+            the <xref to="bibCEM"/> and the body of this PP’s evaluation activities.
+          </h:p><h:p>
+            While it is not necessary to have one test case per test listed in an evaluation activity, the
+            evaluator must document in the test plan that each applicable testing requirement in
+            the ST is covered. The test plan identifies the platforms to be tested, and for those
+            platforms not included in the test plan but included in the ST, the test plan provides
+            a justification for not testing the platforms. This justification must address the
+            differences between the tested platforms and the untested platforms, and make an
+            argument that the differences do not affect the testing to be performed. It is not
+            sufficient to merely assert that the differences have no effect; rationale must be
+            provided. If all platforms claimed in the ST are tested, then no rationale is
+            necessary. The test plan describes the composition of each platform to be tested, and
+            any setup that is necessary beyond what is contained in the AGD documentation. It
+            should be noted that the evaluator is expected to follow the AGD documentation for
+            installation and setup of each platform either as part of a test or as a standard
+            pre-test condition. This may include special test drivers or tools. For each driver or
+            tool, an argument (not just an assertion) should be provided that the driver or tool
+            will not adversely affect the performance of the functionality by the TOE and its platform.
+          </h:p><h:p>
+            This also includes the configuration of the
+            cryptographic engine to be used. The cryptographic algorithms implemented by this
+            engine are those specified by this PP and used by the cryptographic protocols being
+            evaluated (e.g SSH). The test plan identifies high-level test objectives
+            as well as the test procedures to be followed to achieve those objectives. These
+            procedures include expected results. 
+          </h:p><h:p>
+            The test report (which could just be an annotated
+            version of the test plan) details the activities that took place when the test
+            procedures were executed, and includes the actual results of the tests. This shall be
+            a cumulative account, so if there was a test run that resulted in a failure; a fix
+            installed; and then a successful re-run of the test, the report would show a “fail”
+            and “pass” result (and the supporting details), and not just the “pass” result.
+          </h:p>
+        </aactivity>
+      </a-element>
     </a-component>
 
   </section>
   <section id="class-ava" title="Class AVA: Vulnerability Assessment">
-    For the current generation of this cPP, the iTC is expected to survey open sources to discover what vulnerabilities have been discovered in these types of products and provide that content into the AVA_VAN discussion. In most cases, these vulnerabilities will require sophistication beyond that of a basic attacker. This information will be used in the development of future Protection Profiles.
+    For the current generation of this cPP, the iTC is expected to survey open sources to discover what vulnerabilities have been 
+    discovered in these types of products and provide that content into the AVA_VAN discussion. In most cases, these vulnerabilities
+    will require sophistication beyond that of a basic attacker. This information will be used in the development of future Protection
+    Profiles.
     <a-component cc-id="ava_van.1" name="Vulnerability Survey (AVA_VAN.1)">
-      Appendix A<comment>Should we get rid of the referenced Appendix since it does not exist?</comment> in the companion Supporting Document provides a guide to the evaluator in performing a vulnerability analysis.
+      <h:b>Vulnerability Analysis</h:b>
+      <h:b>Sources of Vulnerability Information</h:b>
+        CEM Work Unit AVA_VAN.1-3 is supplemented here to provide a better-defined set of flaws to 
+        investigate and procedures to follow based on this particular technology. Terminology used is based on the flaw hypothesis
+        methodology, where the evaluation team hypothesizes flaws and then either proves or disproves those flaws (a flaw is equivalent
+        to a “potential vulnerability” as used in the CEM). Flaws are categorized into four “types” depending on how they are 
+        formulated: <h:ul>
+          <h:li>
+            A list of flaw hypotheses applicable to the technology described by the cPP derived from public sources as documented in 
+            the Type 1 Hypotheses section—this fixed set has been agreed to by the iTC. Additionally, this will be supplemented with entries for a set
+            of public sources (as indicated below) that are directly applicable to the TOE or its identified components (as defined by 
+            the process in the Type 1 Hypotheses section below); this is to ensure that the evaluators include in their assessment applicable entries 
+            that have been discovered since the cPP was published;
+          </h:li>
+          <h:li>
+            A list of flaw hypotheses contained in this document that are derived from lessons learned specific to that technology and
+            other iTC input (that might be derived from other open sources and vulnerability databases, for example) as documented in 
+            the Type 2 Hypotheses section;
+          </h:li>
+          <h:li>
+            A list of flaw hypotheses derived from information available to the evaluators; this includes the baseline evidence 
+            provided by the vendor described in this document (documentation associated with EAs, documentation described in
+            the Vulnerability Survey section), as well as other information (public and/or based on evaluator experience) as documented in the Type 3 Hypotheses
+            section; and
+          </h:li>
+          <h:li>
+            A list of flaw hypotheses that are generated through the use of iTC-defined tools (e.g., nmap, protocol testers) and their
+            application is specified in the Type 4 Hypotheses section.
+          </h:li>
+        </h:ul>
+      <h:b><h:i>Type 1 Hypotheses-Public-Vulnerability-Based</h:i></h:b>
+        The following list of public sources of vulnerability information was selected by the iTC:
+        <h:ol type="a">
+          <h:li>Search Common Vulnerabilities and Exposures: http://cve.mitre.org/cve/</h:li>
+          <h:li>Search the National Vulnerability Database: https://nvd.nist.gov/</h:li>
+          <h:li>Search US-CERT: http://www.kb.cert.org/vuls/html/search</h:li>
+        </h:ol>
+        The list of sources above was searched with the following search terms:
+        <h:ul>
+          <h:li>General (for all) <h:ul>
+            <h:li>Product name</h:li>
+            <h:li>Underlying components (e.g., OS, software libraries (crypto libraries), chipsets)</h:li>
+            <h:li>Drive encryption, disk encryption</h:li>
+            <h:li>Key destruction and sanitization</h:li>
+          </h:ul></h:li> 
+          <h:li>EE <h:ul>
+            <h:li>Underlying components (e.g., chipsets, firmware)</h:li>
+          </h:ul></h:li>
+          <h:li>For SEDs (for EE) <h:ul>
+            <h:li>Self Encrypting Drive (SED), OPAL</h:li>
+          </h:ul></h:li>
+          <h:li>For Software FDE (AA or EE) <h:ul>
+            <h:li>Key caching</h:li>
+          </h:ul></h:li></h:ul>
+      In order to successfully complete this activity, the evaluator will use the developer provided list of all of third party library
+      information that is used as part of their product, along with the version and any other identifying information (this is required
+      in the cPP as part of the ASE_TSS.1.1C requirement). This applies to hardware (including chipsets, etc.) that a vendor utilizes 
+      as part of their TOE. This TOE-unique information will be used in the search terms the evaluator uses in addition to those listed
+      above.<h:br/><h:br/>
+      The evaluator will also consider the requirements that are chosen and the appropriate guidance that is tied to each requirement.<h:br/><h:br/>
+      In order to supplement this list, the evaluators shall also perform a search on the sources listed above to determine a list of 
+      potential flaw hypotheses that are more recent that the publication date of the cPP, and those that are specific to the TOE and
+      its components as specified by the additional documentation mentioned above. Any duplicates – either in a specific entry, or in
+      the flaw hypothesis that is generated from an entry from the same or a different source – can be noted and removed from 
+      consideration by the evaluation team.<h:br/><h:br/>
+      As part of type 1 flaw hypothesis generation for the specific components of the TOE, the evaluator shall also search the 
+      component manufacturer’s websites to determine if flaw hypotheses can be generated on this basis (for instance, if security 
+      patches have been released for the version of the component being evaluated, the subject of those patches may form the basis 
+      for a flaw hypothesis).
+      <h:b><h:i>Type 2 Hypotheses-iTC-Sourced</h:i></h:b>
+      The following list of flaw hypothesis generated by the iTC for this technology must be considered by the evaluation team as 
+      flaw hypotheses in performing the vulnerability assessment:
+      <h:ul>
+        <h:li>EE <h:ul>
+        <h:li>Software FDE <h:ul>
+        <h:li>
+          During the software encryption installation process, it is possible that that encryption is interrupted (e.g., power is
+          removed, etc.). The evaluator should verify that when the software encryption resumes and completes, that all of the user
+          data is encrypted.
+        </h:li></h:ul></h:li></h:ul></h:li></h:ul>
+          If the evaluators discover a Type 3 or Type 4 flaw that they believe should be considered as a Type 2 flaw in future versions
+          of this cPP, they should work with their Certification Body to determine the appropriate means of submitting the flaw for 
+          consideration by the iTC.
+      <h:b><h:i>Type e Hypotheses-Evaluation-Team-Generated</h:i></h:b>
+          The iTC has leveraged the expertise of the developers and the evaluation labs to diligently develop the appropriate search
+          terms and vulnerability databases. They have also thoughtfully considered the iTC-sourced hypotheses the evaluators should
+          use based upon the applicable use case and the threats to be mitigated by the SFRs. Therefore, it is the intent of the iTC,
+          for the evaluation to focus all effort on the Type 1 and Type 2 Hypotheses and has decided that Type 3 Hypotheses are not 
+          necessary.<h:br/><h:br/>
+          However, if the evaluators discover a Type 3 potential flaw that they believe should be considered, they should work with 
+          their Certification Body to determine the feasibility of pursuing the hypothesis. The Certification Body may determine 
+          whether the potential flaw hypotheses is worth submitting to the iTC for consideration as Type 2 hypotheses in future drafts 
+          of the cPP/SD.
+      <h:b><h:i>Type e Hypotheses-Evaluation-Team-Generated</h:i></h:b>
+          The iTC has called out several tools that should be used during the Type 2 hypotheses process. Therefore, the use of any tools
+          is covered within the Type 2 construct and the iTC does not see any additional tools that are necessary. The use case for 
+          Version 2 of this cPP is rather straightforward – the device is found in a powered down state and has not been subjected to
+          revisit/evil maid attacks. Since that is the use case, the iTC has also assumed there is a trusted channel between the AA and
+          EE. Since the use case is so narrow, and is not a typical model for penetration or fuzzing testing, the normal types of 
+          testing do not apply. Therefore, the relevant types of tools are referenced in Type 2.
+      <h:b>Process for Evaluator Vulnerability Analysis</h:b>
+          As flaw hypotheses are generated from the activities described above, the evaluation team will disposition them; that is, 
+          attempt to prove, disprove, or determine the non-applicability of the hypotheses. This process is as follows.
+          The evaluator will refine each flaw hypothesis for the TOE and attempt to disprove it using the information provided by the
+          developer or through penetration testing. During this process, the evaluator is free to interact directly with the developer
+          to determine if the flaw exists, including requests to the developer for additional evidence (e.g., detailed design 
+          information, consultation with engineering staff); however, the CB should be included in these discussions. Should the
+          developer object to the information being requested as being not compatible with the overall level of the evaluation 
+          activity/cPP and cannot provide evidence otherwise that the flaw is disproved, the evaluator prepares an appropriate set of
+          materials as follows:
+          <h:ul>
+            <h:li>The source documents used in formulating the hypothesis, and why it represents a potential compromise against a 
+              specific TOE function;</h:li>
+            <h:li>An argument why the flaw hypothesis could not be proven or disproved by the evidence provided so far; and</h:li>
+            <h:li>The type of information required to investigate the flaw hypothesis further.</h:li>
+          </h:ul>
+          The Certification Body (CB) will then either approve or disapprove the request for additional information. If approved, the
+          developer provides the requested evidence to disprove the flaw hypothesis (or, of course, acknowledge the flaw).<h:br/><h:br/>
+          For each hypothesis, the evaluator will note whether the flaw hypothesis has been successfully disproved, successfully proven
+          to have identified a flaw, or requires further investigation. It is important to have the results documented as outlined in 
+          the Reporting section below.
+          If the evaluator finds a flaw, the evaluator must report these flaws to the developer. All reported flaws must be addressed 
+          as follows:<h:br/><h:br/>
+          If the developer confirms that the flaw exists and that it is exploitable at Basic Attack Potential, then a change is made by
+          the developer, and the resulting resolution is agreed by the evaluator and noted as part of the evaluation report.<h:br/><h:br/>
+          If the developer, the evaluator, and the CB agree that the flaw is exploitable only above Basic Attack Potential and does not 
+          require resolution for any other reason, then no change is made and the flaw is noted as a residual vulnerability in the 
+          CB-internal report (ETR).<h:br/><h:br/>
+          If the developer and evaluator agree that the flaw is exploitable only above Basic Attack Potential, but it is deemed critical
+          to fix because of technology-specific or cPP-specific aspects such as typical use cases or operational environments, then a 
+          change is made by the developer, and the resulting resolution is agreed by the evaluator and noted as part of the evaluation
+          report.<h:br/><h:br/>
+          Disagreements between evaluator and vendor regarding questions of the existence of a flaw, its attack potential, or whether
+          it should be deemed critical to fix are resolved by the CB.<h:br/><h:br/>
+          Any testing performed by the evaluator shall be documented in the test report as outlined
+          in the Reporting section below.<h:br/><h:br/>
+          As indicated in the Reporting section, the public statement with respect to vulnerability analysis that is performed on TOEs 
+          conformant to the cPP is constrained to coverage of flaws associated with Types 1 and 2 (defined in the Sources of 
+          Vulnerability Information section) flaw hypotheses only. The fact that the iTC generates these candidate hypotheses indicates 
+          these must be addressed.<h:br/><h:br/>
+          <h:b>A.3 Reporting</h:b>
+          The evaluators shall produce two reports on the testing effort; one that is public-facing (that is, included in the 
+          non-proprietary evaluation report, which is a subset of the Evaluation Technical Report (ETR)), and the complete ETR that is 
+          delivered to the overseeing CB.<h:br/><h:br/>
+          The public-facing report contains:<h:ul>
+          <h:li>The flaw identifiers returned when the procedures for searching public sources were followed according to instructions in
+            the Type 1 Hypotheses section;</h:li>
+            <h:li>A statement that the evaluators have examined the Type 1 flaw hypotheses specified
+              in this document in the 
+              Type 1 Hypotheses section (i.e. the flaws listed in the previous bullet) and the Type 2 flaw hypotheses specified in the 
+              the Type 2 Hypotheses section</h:li>
+          </h:ul>
+          No other information is provided in the public-facing report.<h:br/><h:br/>
+          The internal CB report contains, in addition to the information in the public-facing report:<h:ul>
+            <h:li>a list of all of the flaw hypotheses generated (cf. AVA_VAN.1-4);</h:li>
+            <h:li>the evaluator penetration testing effort, outlining the testing approach, configuration, depth and results (cf. 
+              AVA_VAN.1-9);</h:li>
+            <h:li>all documentation used to generate the flaw hypotheses (in identifying the documentation used in coming up with the
+              flaw hypotheses, the evaluation team must characterize the documentation so that a reader can determine whether it is 
+              strictly required in this document, and the nature of the documentation (design information, developer 
+              engineering notebooks, etc.));</h:li>
+            <h:li>the evaluator shall report all exploitable vulnerabilities and residual vulnerabilities, detailing for each:
+              <h:ol type="a">
+              <h:li>its source (e.g. CEM activity being undertaken when it was conceived, known to the evaluator, read in a publication)</h:li>;
+              <h:li>the SFR(s) not met;</h:li>
+              <h:li>a description;</h:li>
+              <h:li>whether it is exploitable in its operational environment or not (i.e. exploitable or residual).</h:li>
+              <h:li>the amount of time, level of expertise, level of knowledge of the TOE, level of opportunity and the equipment 
+                required to perform the identified vulnerabilities (cf. AVA_VAN.1-11);</h:li>
+              <h:li>how each flaw hypothesis was resolved (this includes whether the original flaw hypothesis was confirmed or 
+                disproved, and any analysis relating to whether a residual vulnerability is exploitable by an attacker with Basic
+                Attack Potential) (cf. AVA_VAN1-10); and</h:li>
+              <h:li>in the case that actual testing was performed in the investigation (either as part of flaw hypothesis generation
+                using tools specified by the iTC in the Type 4 Hypotheses section, or in proving or disproving a particular flaw) the steps followed in
+                setting up the TOE (and any required test equipment); executing the test; post-test procedures; and the actual results
+                (to a level of detail that allow repetition of the test, including the following:<h:ul>
+              <h:li>identification of the potential vulnerability the TOE is being tested for;</h:li>
+              <h:li>instructions to connect and setup all required test equipment as required to conduct the penetration test;</h:li>
+              <h:li>instructions to establish all penetration test prerequisite initial conditions;</h:li>
+              <h:li>instructions to stimulate the TSF;</h:li>
+              <h:li>instructions for observing the behaviour of the TSF;</h:li>
+              <h:li>descriptions of all expected results and the necessary analysis to be performed on the observed behaviour for comparison against expected results;</h:li>
+              <h:li>instructions to conclude the test and establish the necessary post-test state for the TOE. (cf. AVA_VAN.1-6, AVA_VAN.1-8).</h:li>
+                </h:ul>
+              </h:li>
+              </h:ol>
+            </h:li>
+          </h:ul>
+          
+      <a-element type="D">
+        <title>The developer shall provide the TOE for testing.</title>
+      </a-element>	
+      <a-element type="C">
+        <title>The application shall be suitable for testing.</title>
+        <note role="application">Suitability for testing means not being obfuscated or
+          packaged in such a way as to disrupt either static or dynamic analysis by the
+          evaluator.</note>
+      </a-element>  
+      <a-element type="E">
+        <title>The evaluator shall confirm that the information provided meets all requirements
+          for content and presentation of evidence.</title>
+      </a-element>
+      <a-element type="E">
+        <title>The evaluator shall perform a search of public domain sources to identify
+          potential vulnerabilities in the TOE.</title>
+        <note role="application">Public domain sources include the Common Vulnerabilities 
+          and Exposures (CVE) dictionary for publicly known vulnerabilities.  Public domain
+          sources also include sites which provide free checking of files for viruses.</note>
+        <!-- their Usage statement does not permit us to mention VirusTotal by name without permission -->
+      </a-element>
+      <a-element type="E">
+        <title>The evaluator shall conduct penetration testing, based on the identified
+          potential vulnerabilities, to determine that the TOE is resistant to
+          attacks performed by an attacker possessing Basic attack potential.</title>
+        <aactivity>
+          <h:p>
+            The evaluator shall generate a report to document their findings with respect to this 
+            requirement. This report could physically be part of the overall test report mentioned in
+            ATE_IND, or a separate document. The evaluator performs a search of public information to find
+            vulnerabilities that have been found in similar applications with a particular focus on network 
+            protocols the application uses and document formats it parses.
+          </h:p><h:p>
+            The evaluator documents the sources consulted and the vulnerabilities found in the report.
+          </h:p><h:p>
+            For each vulnerability found, the evaluator either provides a rationale with respect to its 
+            non-applicability, or the evaluator formulates a test (using the guidelines provided in ATE_IND)
+            to confirm the vulnerability, if suitable. Suitability is determined by assessing the attack 
+            vector needed to take advantage of the vulnerability. If exploiting the vulnerability requires
+            expert skills and an electron microscope, for instance, then a test would not be suitable and 
+            an appropriate justification would be formulated.
+          </h:p>
+          <h:div>
+            <depends ref="windows"/>
+            <depends ref="linux"/>
+            <depends ref="mac"/>
+            <depends ref="Solaris"/>	
+            The evaluator shall also run a virus scanner with the most current virus definitions against the 
+            application files and verify that no files are flagged as malicious.
+          </h:div>
+        </aactivity>
+      </a-element>     
     </a-component>
   </section>
   </section>
@@ -3197,7 +3985,7 @@
 <appendix id="apndx-entropy" title="Entropy Documentation and Assessment">
   <h:p><h:i>This is an optional appendix in the cPP, and only applies if the TOE is providing deterministic random bit generation services, e.g. the ST claims FCS_RBG.1.</h:i></h:p>
   <h:p>This appendix describes the required supplementary information for each entropy source used by the TOE.</h:p>
-  <h:p>The documentation of the entropy source(s) should be detailed enough that, after reading, the evaluator will thoroughly understand the entropy source and why it can be relied upon to provide sufficient entropy. This documentation should include multiple detailed sections: design description, entropy justification, operating conditions, and health testing. This documentation is not required to be part of the TSS in the public facing ST. 
+  <h:p>The documentation of the entropy sources should be detailed enough that, after reading, the evaluator will thoroughly understand the entropy source and why it can be relied upon to provide sufficient entropy. This documentation should include multiple detailed sections: design description, entropy justification, operating conditions, and health testing. This documentation is not required to be part of the TSS in the public facing ST. 
     </h:p>
     <section id="sec-ent-design" title="Design Description">
       <h:p>Documentation shall include the design of each entropy source as a whole, including the interaction of all entropy source components. Any information that can be shared regarding the design should also be included for any third-party entropy sources that are included in the product. </h:p>
@@ -3217,7 +4005,7 @@
     <section id="s-ent-health" title="Health Testing">More specifically, all entropy source health tests and their rationale will be documented. This will include a description of the health tests, the rate and conditions under which each health test is performed (e.g., at startup, continuously, or on-demand), the expected results for each health test, TOE behavior upon entropy source failure, and rationale indicating why each test is believed to be appropriate for detecting one or more failures in the entropy source.</section>
 </appendix>
 <appendix id="apndx-keyMan" title="Key Management Description">
-  <h:p>The documentation of the product’s encryption key management should be detailed enough that, after reading, the evaluator will thoroughly understand the product’s key management and how it meets the requirements to ensure the keys are adequately protected. This documentation should include an essay and diagram(s). This documentation is not required to be part of the TSS - it can be submitted as a separate document and marked as developer proprietary.</h:p>
+  <h:p>The documentation of the product’s encryption key management should be detailed enough that, after reading, the evaluator will thoroughly understand the product’s key management and how it meets the requirements to ensure the keys are adequately protected. This documentation should include an essay and diagrams. This documentation is not required to be part of the TSS - it can be submitted as a separate document and marked as developer proprietary.</h:p>
   <h:p>Essay:</h:p>
   <h:p>The essay will provide the following information for all keys in the key chain:</h:p>
   <h:p><h:ul>
@@ -3242,7 +4030,7 @@
   </h:p>
   <h:p>
     <h:ul>
-      <h:li>The diagram will include all keys from the initial authorization factor(s) to the BEV and any keys or values that contribute into the chain. It must list the cryptographic strength of each key and indicate how each key along the chain is protected with either Key Derivation or Key Wrapping (from the allowed options). The diagram should indicate the input used to derive or unwrap each key in the chain.</h:li>
+      <h:li>The diagram will include all keys from the initial authorization factors to the BEV and any keys or values that contribute into the chain. It must list the cryptographic strength of each key and indicate how each key along the chain is protected with either Key Derivation or Key Wrapping (from the allowed options). The diagram should indicate the input used to derive or unwrap each key in the chain.</h:li>
       <h:li>A functional (block) diagram showing the main components (such as memories and processors) and the data path between, for hardware, the device’s host interface and the device’s persistent media storing the data, or for software, the initial steps needed for the activities the TOE performs to ensure it encrypts the storage device entirely when a user or administrator first provisions the product. The hardware encryption diagram shall show the location of the data encryption engine within the data path.</h:li>
       <h:li>The hardware encryption diagram shall show the location of the data encryption engine within the data path. The evaluator shall validate that the hardware encryption diagram contains enough detail showing the main components within the data path and that it clearly identifies the data encryption engine. </h:li>
     </h:ul>
@@ -3263,7 +4051,7 @@
     <description>
         <!-- todo: update hyperlink when PP published -->
         <h:a href="https://commoncriteria.github.io/FDEEE/master/FDEEE-release.html">collaborative Protection Profile for Full Drive Encryption – Encryption Engine, Version 2.1 , MMMM DD, 2025
-        <comment>URL/Date needs to be updated. Also, fde-ee was reference as "ee" throughout this document. further input is needed on how the PP should be referenced. </comment></h:a>
+        <comment>URL/Date needs to be updated. Also, fde-ee was reference as "ee" throughout this document. Further input is needed on how the PP should be referenced. </comment></h:a>
     </description>
 </entry>
  </bibliography>

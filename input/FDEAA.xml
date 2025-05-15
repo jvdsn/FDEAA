@@ -47,7 +47,7 @@
       <PPTitle>collaborative Protection Profile for Full Drive Encryption – Authorization Acquisition</PPTitle>
       <PPVersion>3.0</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2025-05-23</PPPubDate>
+      <PPPubDate>2025-05-30</PPPubDate>
       <Keywords>Full Drive Encryption – Authorization Acquisition</Keywords>               <!-- This field is unused and optional -->
     </ReferenceTable>
   </PPReference>
@@ -71,7 +71,7 @@
     </entry>
     <entry>
         <version>3.0</version>
-        <date>2025-05-23</date>
+        <date>2025-05-30</date>
         <subject>Updated for CC:2022, reviewing and applying modifications to the PP</subject>
       </entry>
   </RevisionHistory>
@@ -407,7 +407,12 @@
 		  </threat>
 		  
 		  <threat id="t-keying_material_compromise" name="T.KEYING_MATERIAL_COMPROMISE">
-		    <description>Possession of any of the keys, authorization factors, submasks, and random numbers or any other values that contribute to the creation of keys or authorization factors could allow an unauthorized user to defeat the encryption. The cPP considers possession of key material of equal importance to the data itself. Threat agents may look for key material in unencrypted sectors of the storage device and on other peripherals in the operating environment (OE), e.g. BIOS configuration, SPI flash.
+		    <description>Possession of any of the keys, authorization factors, submasks, and random
+		      numbers or any other values that contribute to the creation of keys or authorization factors
+		      could allow an unauthorized user to defeat the encryption. The cPP considers possession of
+		      key material of equal importance to the data itself. Threat agents may look for key material
+		      in unencrypted sectors of the storage device and on other peripherals in the operating environment
+		      (OE), (e.g., BIOS configuration, SPI flash).
 		    </description>
 		    <addressed-by>FCS_AFA_EXT.1</addressed-by><rationale>Mitigates this threat by requiring the authorization factors to be accepted by the TOE.</rationale>
 		    <addressed-by>FCS_AFA_EXT.2</addressed-by><rationale>Mitigates this threat by requiring a valid authorization to decrypt the protected material.</rationale>
@@ -443,7 +448,7 @@
 		  </threat>
 		  
 		  <threat id="t-keyspace-exhaust" name="T.KEYSPACE_EXHAUST">
-		    <description>Threat agents may perform a cryptographic exhaust against the key space. Poorly chosen encryption algorithms and/or parameters allow attackers to exhaust the key space through brute force and give them unauthorized access to the data.</description>
+		    <description>Threat agents may perform a cryptographic exhaust against the key space. Poorly chosen encryption algorithms and parameters allow attackers to exhaust the key space through brute force and give them unauthorized access to the data.</description>
 		    <addressed-by>FCS_KYC_EXT.1</addressed-by><rationale>Mitigates this threat by ensuring ensures all keys protecting the BEV are of the same strength.</rationale>        
 		    <addressed-by>FCS_CKM.1/AKG(selection-based)</addressed-by><rationale>Mitigates this threat by requiring asymmetric key generation.</rationale>
 		    <addressed-by>FCS_CKM.1/SKG(selection-based)</addressed-by><rationale>Mitigates this threat by requiring symmetric cryptographic key generation.</rationale>
@@ -470,7 +475,7 @@
       </threat>
 
 		  <threat id="t-unauth_update" name="T.UNAUTHORIZED_UPDATE">
-				<description>Threat agents may attempt to perform an update of the product which compromises the security features of the TOE. Poorly chosen update protocols, signature generation and verification algorithms, and parameters may allow attackers to install software and/or firmware that bypasses the intended security features and provides them unauthorized access to data.
+				<description>Threat agents may attempt to perform an update of the product which compromises the security features of the TOE. Poorly chosen update protocols, signature generation and verification algorithms, and parameters may allow attackers to install software or firmware that bypasses the intended security features and provides them unauthorized access to data.
 				</description>        
         <addressed-by>FMT_SMF.1</addressed-by><rationale>Mitigates this threat by ensuring the TSF provides the functions necessary to manage important behavior of the TOE which includes the initiation of system firmware/software updates.</rationale>
         <addressed-by>FPT_TUD_EXT.1</addressed-by><rationale>Mitigates this threat by providing authorized users the ability to query the current version of the TOE software/firmware, initiate updates, and verify updates prior to installation using a manufacturer digital signature.</rationale>       
@@ -495,21 +500,61 @@
               <rationale>The operational environment objective OE.INITIAL_DRIVE_STATE is realized through A.INITIAL_DRIVE_STATE.</rationale>
             </objective-refer>
         </assumption>
-
+        
+   <assumption name="A.PASSWORD_STRENGTH">
+    <description>Authorized administrators ensure passwords and passphrase authorization factors have sufficient strength and entropy to reflect the sensitivity of the data being protected.</description>
+    <objective-refer ref="OE.PASSPHRASE_STRENGTH">
+      <rationale>The operational environment objective OE.PASSPHRASE_STRENGTH is realized through A.PASSWORD_STRENGTH.</rationale>
+    </objective-refer>
+  </assumption>   
+        
+    <assumption name="A.PHYSICAL">
+    <description>The platform is assumed to be physically protected in its Operational Environment and not subject to physical attacks that compromise the security and/or interfere with the platform’s correct operation.</description>
+    <objective-refer ref="OE.PHYSICAL">
+      <rationale>The operational environment objective OE.PHYSICAL is realized through A.PHYSICAL.</rationale>
+    </objective-refer>
+      
+  </assumption><assumption name="A.PLATFORM_IA">
+    <description>The product does not interfere with or change the normal platform identification and authentication functionality such as the operating system login. It may provide authorization factors to the operating system's login interface, but it will not change or degrade the functionality of the actual interface.</description>
+    <objective-refer ref="OE.PLATFORM_IA">
+      <rationale>The operational environment objective OE.PLATFORM_I&amp;A is realized through A.PLATFORM_I&amp;A.</rationale>
+    </objective-refer>
+  </assumption>   
+        
+        <assumption name="A.PLATFORM_STATE">
+          <description>The platform in which the storage device resides (or an external storage device is connected) is free of malware that could interfere with the correct operation of the product.</description>
+          <objective-refer ref="OE.PLATFORM_STATE">
+            <rationale>The operational environment objective OE.PLATFORM_STATE is realized through A.PLATFORM_STATE.</rationale>
+          </objective-refer>
+        </assumption>
+        
+      <assumption name="A.POWER_DOWN">
+      <description><h:p>The user does not leave the platform and/or storage device unattended until all volatile memory is cleared after a power-off, so memory remnant attacks are infeasible.</h:p><h:p>Authorized users do not leave the platform and/or storage device in a mode where sensitive information persists in non-volatile storage (e.g., lock screen). Users power the platform and/or storage device down or place it into a power managed state, such as a “hibernation mode”.</h:p></description>
+      <objective-refer ref="OE.POWER_DOWN">
+        <rationale>The operational environment objective OE.POWER_DOWN is realized through A.POWER_DOWN.</rationale>
+      </objective-refer>
+    </assumption>
         <assumption name="A.SECURE_STATE">
           <description>Upon the completion of proper provisioning, the drive is only assumed secure when in a powered off state up until it is powered on and receives initial authorization.</description>
             <objective-refer ref="OE.POWER_DOWN">
               <rationale>The operational environment objective OE.POWER_DOWN is realized through A.SECURE_STATE.</rationale>
             </objective-refer>
         </assumption>
-
-        <assumption name="A.TRUSTED_CHANNEL">
-          <description>Communication among and between product components (e.g., AA and EE) is sufficiently protected to prevent information disclosure. In cases in which a single product fulfils both cPPs, then the communication between the components does not extend beyond the boundary of the TOE (e.g., communication path is within the TOE boundary). In cases in which independent products satisfy the requirements of the AA and EE, the physically close proximity of the two products during their operation means that the threat agent has very little opportunity to interpose itself in the channel between the two without the user noticing and taking appropriate actions.</description>
-          <objective-refer ref="OE.TRUSTED_CHANNEL">
-            <rationale>The operational environment objective OE.TRUSTED_CHANNEL is realized through A.TRUSTED_CHANNEL.</rationale>
-          </objective-refer>
-        </assumption>
-        <assumption name="A.TRAINED_USER">
+        
+        <assumption name="A.SINGLE_USE_ET">
+        <description>External tokens that contain authorization factors are used for no other purpose than to store the external token authorization factors.</description>
+        <objective-refer ref="OE.SINGLE_USE_ET">
+          <rationale>The operational environment objective OE.SINGLE_USE_ET is realized through A.SINGLE_USE_ET.</rationale>
+        </objective-refer>
+      </assumption>
+  
+  <assumption name="A.STRONG_CRYPTO">
+    <description>All cryptography implemented in the Operational Environment and used by the product meets the requirements listed in the cPP. This includes generation of external token authorization factors by a RBG. </description>
+    <objective-refer ref="OE.STRONG_ENVIRONMENT_CRYPTO">
+      <rationale>The operational environment objective OE.STRONG_ENVIRONMENT_CRYPTO is realized through A.STRONG_CRYPTO.</rationale>
+    </objective-refer>
+  </assumption>
+    <assumption name="A.TRAINED_USER">
           <description> Authorized users follow all provided user guidance, including keeping passwords and passphrases and external tokens securely stored separately from the storage device and/or platform.</description>
             <objective-refer ref="OE.PASSPHRASE_STRENGTH">
               <rationale>The operational environment objective OE.PASSPHRASE_STRENGTH is realized through A.TRAINED_USER.</rationale>
@@ -524,48 +569,12 @@
               <rationale>The operational environment objective OE.TRAINED_USERS is realized through A.TRAINED_USER.</rationale>
             </objective-refer>
         </assumption>
-        <assumption name="A.PLATFORM_STATE">
-          <description>The platform in which the storage device resides (or an external storage device is connected) is free of malware that could interfere with the correct operation of the product.</description>
-          <objective-refer ref="OE.PLATFORM_STATE">
-            <rationale>The operational environment objective OE.PLATFORM_STATE is realized through A.PLATFORM_STATE.</rationale>
+        <assumption name="A.TRUSTED_CHANNEL">
+          <description>Communication among and between product components (e.g., AA and EE) is sufficiently protected to prevent information disclosure. In cases in which a single product fulfils both cPPs, then the communication between the components does not extend beyond the boundary of the TOE (e.g., communication path is within the TOE boundary). In cases in which independent products satisfy the requirements of the AA and EE, the physically close proximity of the two products during their operation means that the threat agent has very little opportunity to interpose itself in the channel between the two without the user noticing and taking appropriate actions.</description>
+          <objective-refer ref="OE.TRUSTED_CHANNEL">
+            <rationale>The operational environment objective OE.TRUSTED_CHANNEL is realized through A.TRUSTED_CHANNEL.</rationale>
           </objective-refer>
         </assumption>
-      <assumption name="A.SINGLE_USE_ET">
-        <description>External tokens that contain authorization factors are used for no other purpose than to store the external token authorization factors.</description>
-        <objective-refer ref="OE.SINGLE_USE_ET">
-          <rationale>The operational environment objective OE.SINGLE_USE_ET is realized through A.SINGLE_USE_ET.</rationale>
-        </objective-refer>
-      </assumption>
-    <assumption name="A.POWER_DOWN">
-      <description><h:p>The user does not leave the platform and/or storage device unattended until all volatile memory is cleared after a power-off, so memory remnant attacks are infeasible.</h:p><h:p>Authorized users do not leave the platform and/or storage device in a mode where sensitive information persists in non-volatile storage (e.g., lock screen). Users power the platform and/or storage device down or place it into a power managed state, such as a “hibernation mode”.</h:p></description>
-      <objective-refer ref="OE.POWER_DOWN">
-        <rationale>The operational environment objective OE.POWER_DOWN is realized through A.POWER_DOWN.</rationale>
-      </objective-refer>
-    </assumption>
-  <assumption name="A.PASSWORD_STRENGTH">
-    <description>Authorized administrators ensure passwords and passphrase authorization factors have sufficient strength and entropy to reflect the sensitivity of the data being protected.</description>
-    <objective-refer ref="OE.PASSPHRASE_STRENGTH">
-      <rationale>The operational environment objective OE.PASSPHRASE_STRENGTH is realized through A.PASSWORD_STRENGTH.</rationale>
-    </objective-refer>
-  </assumption>
-  <assumption name="A.PLATFORM_IA">
-    <description>The product does not interfere with or change the normal platform identification and authentication functionality such as the operating system login. It may provide authorization factors to the operating system's login interface, but it will not change or degrade the functionality of the actual interface.</description>
-    <objective-refer ref="OE.PLATFORM_IA">
-      <rationale>The operational environment objective OE.PLATFORM_I&amp;A is realized through A.PLATFORM_I&amp;A.</rationale>
-    </objective-refer>
-  </assumption>
-  <assumption name="A.STRONG_CRYPTO">
-    <description>All cryptography implemented in the Operational Environment and used by the product meets the requirements listed in the cPP. This includes generation of external token authorization factors by a RBG. </description>
-    <objective-refer ref="OE.STRONG_ENVIRONMENT_CRYPTO">
-      <rationale>The operational environment objective OE.STRONG_ENVIRONMENT_CRYPTO is realized through A.STRONG_CRYPTO.</rationale>
-    </objective-refer>
-  </assumption>
-  <assumption name="A.PHYSICAL">
-    <description>The platform is assumed to be physically protected in its Operational Environment and not subject to physical attacks that compromise the security and/or interfere with the platform’s correct operation.</description>
-    <objective-refer ref="OE.PHYSICAL">
-      <rationale>The operational environment objective OE.PHYSICAL is realized through A.PHYSICAL.</rationale>
-    </objective-refer>
-  </assumption>
       </assumptions>
     </section>   <!-- Assumptions -->
 	
@@ -603,25 +612,37 @@
 	  id="SecurityObjectivesTOEorEnvironment">
 	  The Operational Environment of the TOE implements technical and procedural measures to assist the TOE in correctly providing its security functionality. This part wise solution forms the security objectives for the Operational Environment and consists of a set of statements describing the goals that the Operational Environment should achieve.
 	  <SOEs>
-		
-		  <SOE name="OE.TRUSTED_CHANNEL">
-			  <description><h:p>Communication among and between product components (i.e., AA and EE) is sufficiently protected to prevent information disclosure.</h:p><h:p>Rationale: In situations where there is an opportunity for an adversary to interpose
-          themselves in the channel between the AA and the EE a trusted channel must be established to prevent exploitation. [A.TRUSTED_CHANNEL] assumes the existence of a trusted channel between the AA and EE, except for when the boundary is within and does not breach the TOE or is in such close proximity that a breach is not possible without detection.</h:p> </description>
-		  </SOE>
-      <SOE name="OE.INITIAL_DRIVE_STATE">
+		<SOE name="OE.INITIAL_DRIVE_STATE">
 			  <description><h:p>The OE provides a newly provisioned or initialized storage device free of protected data in areas not targeted for encryption.</h:p><h:p>
           Rationale: Since the cPP requires all protected data to encrypted A.INITIAL_DRIVE_STATE assumes that the initial state of the device targeted for FDE is free of protected data in those areas of the drive where encryption will not be invoked (e.g., MBR and AA/EE pre-authentication software). Given this known start state, the product (once installed and operational) ensures partitions of logical blocks of user accessible data is protected.
         </h:p> </description>
 		  </SOE>
-      <SOE name="OE.PASSPHRASE_STRENGTH">
+	    
+		 <SOE name="OE.PASSPHRASE_STRENGTH">
 			  <description><h:p>An authorized administrator will be responsible for ensuring that the passphrase authorization factor conforms to guidance from the Enterprise using the TOE.</h:p><h:p>Rationale: Users are properly trained [A.TRAINED_USER] to create authorization
           27 factors that conform to administrative guidance.</h:p>
            </description>
 		  </SOE>
-      <SOE name="OE.POWER_DOWN">
+	    
+	    <SOE name="OE.PHYSICAL">
+			  <description><h:p>The Operational Environment will provide a secure physical computing space such than an adversary is not able to make modifications to the environment or to the TOE itself.</h:p><h:p>Rationale: As stated in section 1.6, the use case for this cPP is to protect data at rest on a device where the adversary receives it in a powered off state and has no prior access.</h:p> </description>
+		  </SOE>
+	    
+	    <SOE name="OE.PLATFORM_IA">
+			  <description><h:p>The Operational Environment will provide individual user identification and authentication mechanisms that operate independently of the authorization factors used by the TOE.</h:p><h:p>Rationale: While the product may provide authorization factors to the Operating system's login interface, it must not change or degrade the functionality of the actual interface. A.PLATFORM_I&amp;A requires that the product not interfere or change the normal platform I&amp;A functionality.</h:p></description>
+		  </SOE>
+	    
+	     <SOE name="OE.PLATFORM_STATE">
+			  <description><h:p>The platform in which the storage device resides (or an external
+          18 storage device is connected) is free of malware that could interfere with the correct operation
+          19 of the product.</h:p><h:p>Rationale: A platform free of malware [A.PLATFORM_STATE] prevents an attack vector that could potentially interfere with the correct operation of the product.</h:p> </description>
+		  </SOE>
+	    
+	    <SOE name="OE.POWER_DOWN">
 			  <description><h:p>Volatile memory is cleared after power-off so memory remnant attacks are infeasible.</h:p><h:p>Rationale: Users are properly trained [A.TRAINED_USER] to not leave the storage device unattended until powered down or placed in a managed power state such as “hibernation mode”. A.POWER_DOWN stipulates that such memory remnant attacks are infeasible given the device is in a powered-down or “hibernation mode” state.</h:p></description>
 		  </SOE>
-      <SOE name="OE.SINGLE_USE_ET">
+	    
+	    <SOE name="OE.SINGLE_USE_ET">
 			  <description><h:p>External tokens that contain authorization factors will be used for no
           35 other purpose than to store the external token authorization factor.</h:p><h:p>Rationale: Users are properly trained [A.TRAINED_USER] to use external token authorization factors as intended and for no other purpose.</h:p> </description>
 		  </SOE>
@@ -629,20 +650,15 @@
 			  <description><h:p>The Operating Environment will provide a cryptographic function capability that is commensurate with the requirements and capabilities of the TOE and Appendix A.</h:p><h:p>Rationale: All cryptography implemented in the Operational Environment and used by
           7 the product meets the requirements listed in this cPP [A.STRONG_CRYPTO].</h:p> </description>
 		  </SOE>
-      <SOE name="OE.TRAINED_USERS">
+	    
+	    <SOE name="OE.TRAINED_USERS">
 			  <description><h:p>Authorized users will be properly trained and follow all guidance for securing the TOE and authorization factors. </h:p><h:p>Rationale: Users are properly trained [A.TRAINED_USER] to create authorization factors that conform to guidance, not store external token authorization factors with the device, and power down the TOE when required (OE.PLATFORM_STATE) The platform in which the storage device resides (or an external storage device is connected) is free of malware that could interfere with the correct operation of the product.</h:p>
         <h:p>A platform free of malware [A.PLATFORM_STATE] prevents an attack vector that could potentially interfere with the correct operation of the product.</h:p></description>
 		  </SOE>
-      <SOE name="OE.PLATFORM_STATE">
-			  <description><h:p>The platform in which the storage device resides (or an external
-          18 storage device is connected) is free of malware that could interfere with the correct operation
-          19 of the product.</h:p><h:p>Rationale: A platform free of malware [A.PLATFORM_STATE] prevents an attack vector that could potentially interfere with the correct operation of the product.</h:p> </description>
-		  </SOE>
-      <SOE name="OE.PLATFORM_IA">
-			  <description><h:p>The Operational Environment will provide individual user identification and authentication mechanisms that operate independently of the authorization factors used by the TOE.</h:p><h:p>Rationale: While the product may provide authorization factors to the Operating system's login interface, it must not change or degrade the functionality of the actual interface. A.PLATFORM_I&amp;A requires that the product not interfere or change the normal platform I&amp;A functionality.</h:p></description>
-		  </SOE>
-      <SOE name="OE.PHYSICAL">
-			  <description><h:p>The Operational Environment will provide a secure physical computing space such than an adversary is not able to make modifications to the environment or to the TOE itself.</h:p><h:p>Rationale: As stated in section 1.6, the use case for this cPP is to protect data at rest on a device where the adversary receives it in a powered off state and has no prior access.</h:p> </description>
+	    	    
+	    <SOE name="OE.TRUSTED_CHANNEL">
+			  <description><h:p>Communication among and between product components (i.e., AA and EE) is sufficiently protected to prevent information disclosure.</h:p><h:p>Rationale: In situations where there is an opportunity for an adversary to interpose
+          themselves in the channel between the AA and the EE a trusted channel must be established to prevent exploitation. [A.TRUSTED_CHANNEL] assumes the existence of a trusted channel between the AA and EE, except for when the boundary is within and does not breach the TOE or is in such close proximity that a breach is not possible without detection.</h:p> </description>
 		  </SOE>
 	  </SOEs>
   </section>
@@ -3731,10 +3747,14 @@
     For the current generation of this cPP, the iTC is expected to survey open sources to discover what vulnerabilities have been 
     discovered in these types of products and provide that content into the AVA_VAN discussion. In most cases, these vulnerabilities
     will require sophistication beyond that of a basic attacker. This information will be used in the development of future Protection
-    Profiles.
+    Profiles.<h:br/><h:br/>
+    <comment>Added to address TD0606.</comment><h:br/><h:br/>
+    If the TOE is a Network Attached Storage (NAS) device, the evaluator shall verify as part of the vulnerability assessment that 
+    remote management services are either not present or can be fully disabled.<h:br/><h:br/>
+    
     <a-component cc-id="ava_van.1" name="Vulnerability Survey (AVA_VAN.1)">
       <h:b>Vulnerability Analysis</h:b><h:br/><h:br/>
-      <h:b>Sources of Vulnerability Information</h:b>
+      <h:b>Sources of Vulnerability Information</h:b><h:br/><h:br/>
         CEM Work Unit AVA_VAN.1-3 is supplemented here to provide a better-defined set of flaws to 
         investigate and procedures to follow based on this particular technology. Terminology used is based on the flaw hypothesis
         methodology, where the evaluation team hypothesizes flaws and then either proves or disproves those flaws (a flaw is equivalent

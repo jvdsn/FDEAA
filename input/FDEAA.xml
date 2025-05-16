@@ -497,7 +497,7 @@
             While inadvertent exposure to data contained in bad sectors or un-partitioned space is unlikely, one may use forensics tools to recover data from such areas of the storage device. Consequently, the cPP assumes bad sectors, un-partitioned space, and areas that must contain unencrypted code (e.g., MBR and AA/EE pre-authentication software) contain no protected data.
           </h:p>
           </description>
-            <objective-refer ref="OE.INITIAL_DRIVE_STATE">
+          <objective-refer ref="OE.INITIAL_DRIVE_STATE">            
               <rationale>The operational environment objective OE.INITIAL_DRIVE_STATE is realized through A.INITIAL_DRIVE_STATE.</rationale>
             </objective-refer>
         </assumption>
@@ -818,7 +818,7 @@
             </f-component>
             
             <f-component cc-id="fcs_ckm.1" iteration="AKG" name="Cryptographic Key Generation (Asymmetric Keys)" id="fcs-ckm-1-akg" status="sel-based">
-              <depends on-sel="fcs-cop-1-keywrap"/>              
+              <depends on-sel="fcs_cop-1-1-keywrap"/>              
               <f-element id="fcs_ckm-1-1-akg">
                 <title>
                   <comment>Reminder - Update all crypto SFRs with the crypto catalog versions when available.</comment>
@@ -1802,7 +1802,7 @@
               <comp-lev>requires the TSF to derive intermediate keys from submasks using the specified hash functions.</comp-lev>
               <management/>
               <audit/>
-              <dependencies>FCS_COP.1 Cryptographic Operation (Keyed Hash Algorithm)</dependencies>
+              <dependencies>FCS_COP.1 Cryptographic Operation</dependencies>
               
               <f-element id="fcs-kdf-ext-1">
                 <title>
@@ -1918,8 +1918,7 @@
                       <selectable>192 bits</selectable>
                       <selectable>256 bits</selectable>
                     </selectables> for asymmetric keys.</title>
-                </ext-comp-def-title>
-                <note/>                  
+                </ext-comp-def-title>                                  
               </f-element>
               
               <f-element id="fcs-kyc-ext-1-2">
@@ -2002,7 +2001,7 @@
         </f-component>
 
             <f-component cc-id="fcs_pcc_ext.1" name="Cryptographic Password Construction and Conditioning" id="fcs-pcc-ext-1" status="sel-based">
-              <depends on-sel="fcs-cop-1-keyhash"/>
+              <depends on-sel="fcs_cop-1-1-keyhash"/>
               <consistency-rationale/>
             <comp-lev> requires the TSF to accept passwords of a certain composition and condition them appropriately. </comp-lev>
             <management/>
@@ -2074,7 +2073,7 @@
         
             <f-component cc-id="fcs_rbg.1" name="Cryptographic Operation (Random Bit Generation)"
               id="fcs-rbg-1" status="sel-based">
-              <depends on-sel="fcs-cop-1-hash"/>
+              <depends on-sel="fcs_cop-1-1-hash"/>
               
               <f-element id="fcs-rbg-1-1">
                 <title>

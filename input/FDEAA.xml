@@ -1124,7 +1124,7 @@
                           <h:p>Steps 1-6 ensure that the complete key does not exist anywhere in volatile memory. If
                             a copy is found, then the test fails. </h:p>
                             <h:p>Step 7 ensures that partial key fragments do not remain in memory. If a fragment is
-                              found, there is a miniscule chance that it is not within the context of a key (e.g., some
+                              found, there is a minuscule chance that it is not within the context of a key (e.g., some
                               random bits that happen to match). If this is the case the test should be repeated with a
                               different key in Step #1. If a fragment is found the test fails.</h:p>
                               <h:p>The following tests apply only for the selection of “logically addresses the storage location…”, since the TOE in this instance has more
@@ -1468,7 +1468,8 @@
                       examples where the cipher text is created with a secret value Z = n – 1 and make
                       sure the RSA-KEM-KWS decryption process detects the error.</test>
                     <test>The evaluator shall attempt to successfully recover the secret value Z, derive the
-                      key wrapping key, KWK, and unwrap the KWA-cipher text following the RSAKEM-KWS decryption process given in NISP SP 800-56B section 7.2.3.4. If the
+                      key wrapping key, KWK, and unwrap the KWA-cipher text following the RSAKEM-KWS
+                      decryption process given in NIST SP 800-56B section 7.2.3.4. If the
                       key-wrapping algorithm is AES-CCM, the evaluator shall verify that the value of
                       any (unwrapped) associated data, A, that was passed with the wrapped keying
                       material is correct The evaluator shall feed into the TOE’s RSA-KEM-KWS

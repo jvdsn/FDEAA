@@ -418,6 +418,7 @@
 		    <addressed-by>FCS_AFA_EXT.2</addressed-by><rationale>Mitigates this threat by requiring a valid authorization to decrypt the protected material.</rationale>
 		    <addressed-by>FCS_CKM.6</addressed-by><rationale>Mitigates this threat by ensuring proper key material destruction.</rationale>
 		    <addressed-by>FCS_CKM.6/Power</addressed-by><rationale>Mitigates this threat by ensuring proper key material destruction.</rationale>
+		    <addressed-by>FCS_COP.1/Hash</addressed-by><rationale>Mitigates this threat by performing cryptographic hashing services.</rationale>
 		    <addressed-by>FCS_KYC_EXT.1</addressed-by><rationale>Mitigates this threat by requiring chaining of keys to produce a BEV.</rationale>
 		    <addressed-by>FCS_SNI_EXT.1</addressed-by><rationale>Mitigates this threat by requiring additional obfuscation to the protected key material by introducing IV's and salting.</rationale>
 		    <addressed-by>FMT_MOF.1</addressed-by><rationale>Mitigates this threat by restricting the ability to modified compliant power states to authorized users.</rationale>
@@ -426,11 +427,10 @@
 		    <addressed-by>FPT_KYP_EXT.1</addressed-by><rationale>Mitigates this threat by requiring unwrapped key material is not stored in non-volatile memory.</rationale>        
 		    <addressed-by>FPT_PWR_EXT.1</addressed-by><rationale>Mitigates this threat by requiring the TOE to meet a compliant power saving state that protects and/or destroys key materials.</rationale>
 		    <addressed-by>FPT_PWR_EXT.2</addressed-by><rationale>Mitigates this threat by requiring the TOE to enter into a safe state based on each condition. </rationale>
+		    <addressed-by>FCS_CKM.1/AKG (optional)</addressed-by><rationale>Mitigates this threat by requiring asymmetric key generation.</rationale>
 		    <addressed-by>FCS_KDF_EXT.1 (selection-based)</addressed-by><rationale>Mitigates this threat by requiring a password that is not subject to a brute force attack.</rationale>
 		    <addressed-by>FCS_PCC_EXT.1 (selection-based)</addressed-by><rationale>Mitigates this threat by requiring user-provided-factors are conditioned to increase the cost of repeatedly guessing a user provided value.</rationale>
-		    <addressed-by>FCS_CKM.1/AKG (selection-based)</addressed-by><rationale>Mitigates this threat by requiring asymmetric key generation.</rationale>
-		    <addressed-by>FCS_CKM.1/SKG (selection-based)</addressed-by><rationale>Mitigates this threat by requiring symmetric cryptographic key generation.</rationale>
-		    <addressed-by>FCS_COP.1/Hash (selection-based)</addressed-by><rationale>Mitigates this threat by performing cryptographic hashing services.</rationale>
+		    <addressed-by>FCS_CKM.1/SKG (selection-based)</addressed-by><rationale>Mitigates this threat by requiring symmetric cryptographic key generation.</rationale>		    
 		    <addressed-by>FCS_COP.1/KeyedHash (selection-based)</addressed-by><rationale>Mitigates this threat by performing keyed-hash message authentication.</rationale>
 		    <addressed-by>FCS_COP.1/KeyEnc (selection-based)</addressed-by><rationale>Mitigates this threat by performing key encryption and decryption.</rationale>
 		    <addressed-by>FCS_COP.1/KeyEncap (selection-based)</addressed-by><rationale>Mitigates this threat by performing key transport.</rationale>
@@ -450,7 +450,7 @@
 		  <threat id="t-keyspace-exhaust" name="T.KEYSPACE_EXHAUST">
 		    <description>Threat agents may perform a cryptographic exhaust against the key space. Poorly chosen encryption algorithms and parameters allow attackers to exhaust the key space through brute force and give them unauthorized access to the data.</description>
 		    <addressed-by>FCS_KYC_EXT.1</addressed-by><rationale>Mitigates this threat by ensuring ensures all keys protecting the BEV are of the same strength.</rationale>        
-		    <addressed-by>FCS_CKM.1/AKG(selection-based)</addressed-by><rationale>Mitigates this threat by requiring asymmetric key generation.</rationale>
+		    <addressed-by>FCS_CKM.1/AKG(optional)</addressed-by><rationale>Mitigates this threat by requiring asymmetric key generation.</rationale>
 		    <addressed-by>FCS_CKM.1/SKG(selection-based)</addressed-by><rationale>Mitigates this threat by requiring symmetric cryptographic key generation.</rationale>
 		    <addressed-by>FCS_RBG.1 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that keys used for trusted communications are generated using a secure DRBG. </rationale>
 		    <addressed-by>FCS_RBG.2 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
@@ -3837,7 +3837,7 @@
             This also includes the configuration of the
             cryptographic engine to be used. The cryptographic algorithms implemented by this
             engine are those specified by this PP and used by the cryptographic protocols being
-            evaluated (e.g SSH). The test plan identifies high-level test objectives
+            evaluated (e.g., SSH). The test plan identifies high-level test objectives
             as well as the test procedures to be followed to achieve those objectives. These
             procedures include expected results. 
           </h:p><h:p>

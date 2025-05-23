@@ -621,7 +621,7 @@
 	    
 		 <SOE name="OE.PASSPHRASE_STRENGTH">
 			  <description><h:p>An authorized administrator will be responsible for ensuring that the passphrase authorization factor conforms to guidance from the Enterprise using the TOE.</h:p><h:p>Rationale: Users are properly trained [A.TRAINED_USER] to create authorization
-          27 factors that conform to administrative guidance.</h:p>
+          factors that conform to administrative guidance.</h:p>
            </description>
 		  </SOE>
 	    
@@ -635,8 +635,8 @@
 	    
 	     <SOE name="OE.PLATFORM_STATE">
 			  <description><h:p>The platform in which the storage device resides (or an external
-          18 storage device is connected) is free of malware that could interfere with the correct operation
-          19 of the product.</h:p><h:p>Rationale: A platform free of malware [A.PLATFORM_STATE] prevents an attack vector that could potentially interfere with the correct operation of the product.</h:p> </description>
+          storage device is connected) is free of malware that could interfere with the correct operation
+          of the product.</h:p><h:p>Rationale: A platform free of malware [A.PLATFORM_STATE] prevents an attack vector that could potentially interfere with the correct operation of the product.</h:p> </description>
 		  </SOE>
 	    
 	    <SOE name="OE.POWER_DOWN">
@@ -645,11 +645,11 @@
 	    
 	    <SOE name="OE.SINGLE_USE_ET">
 			  <description><h:p>External tokens that contain authorization factors will be used for no
-          35 other purpose than to store the external token authorization factor.</h:p><h:p>Rationale: Users are properly trained [A.TRAINED_USER] to use external token authorization factors as intended and for no other purpose.</h:p> </description>
+          other purpose than to store the external token authorization factor.</h:p><h:p>Rationale: Users are properly trained [A.TRAINED_USER] to use external token authorization factors as intended and for no other purpose.</h:p> </description>
 		  </SOE>
       <SOE name="OE.STRONG_ENVIRONMENT_CRYPTO">
 			  <description><h:p>The Operating Environment will provide a cryptographic function capability that is commensurate with the requirements and capabilities of the TOE and Appendix A.</h:p><h:p>Rationale: All cryptography implemented in the Operational Environment and used by
-          7 the product meets the requirements listed in this cPP [A.STRONG_CRYPTO].</h:p> </description>
+          the product meets the requirements listed in this cPP [A.STRONG_CRYPTO].</h:p> </description>
 		  </SOE>
 	    
 	    <SOE name="OE.TRAINED_USERS">

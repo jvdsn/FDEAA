@@ -8,7 +8,7 @@
 [cols="1,1,1,1,1,1,1,1"]
 |===
 8+|FDEAA
-| https://github.com/commoncriteria/FDEAAA/tree/master[master] 
+| https://github.com/commoncriteria/FDEAA/tree/master[master] 
 a| https://commoncriteria.github.io/pp-template/master/FDEAA-release.html[📄]
 a|[link=https://github.com/commoncriteria/FDEAA/blob/gh-pages/master/ValidationReport.txt]
 image::https://raw.githubusercontent.com/commoncriteria/FDEAA/gh-pages/master/validation.svg[Validation]

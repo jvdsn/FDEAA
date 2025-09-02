@@ -2842,7 +2842,10 @@
         </ext-comp-def>
         
         <f-component cc-id="fpt_fls.1" name="Failure with Preservation of Secure State" status="sel-based">
-          <depends on-sel="external-seed"></depends>
+          <depends on-sel="sel-fcs-afa-ext-1-1-sel-1b"/>
+          <depends on-sel="sel-fcs-afa-ext-1-1-sel-6a"/>
+          <depends on-sel="sel-fcs-sni-ext-1-1-sel-2"/>
+          <depends on-sel="sel-fcs-kdf-ext-1-1-sel-1a"/>
           <f-element id="fel-pres-sec-state">
             <title>
               The TSF shall preserve a secure state when the following types of failures occur: [<h:i>DRBG self-test failure</h:i>].              
@@ -3029,7 +3032,10 @@
         </f-component>
         
         <f-component cc-id="fpt_tst.1" name="TSF Self-Testing" status="sel-based">
-          <depends on-sel="external-seed"></depends>
+          <depends on-sel="sel-fcs-afa-ext-1-1-sel-1b"/>
+          <depends on-sel="sel-fcs-afa-ext-1-1-sel-6a"/>
+          <depends on-sel="sel-fcs-sni-ext-1-1-sel-2"/>
+          <depends on-sel="sel-fcs-kdf-ext-1-1-sel-1a"/>
           <f-element id="fel-tsf-self-test">
             <title>
               The TSF shall run a suite of the following self-tests <selectables>

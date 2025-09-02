@@ -2095,13 +2095,12 @@
             <audit/>
             <dependencies>FCS_COP.1 Cryptographic Operation</dependencies>
               <f-element id="fcs-pcc-ext-1-1">
-                <title>
-                  A password used by the TSF to generate a password authorization factor shall
-                  enable at least <assignable>positive integer of 64 or more</assignable> characters in the set of {upper case characters, lower case characters, numbers, and <assignable> other supported special characters</assignable>} and shall perform Password-based Key Derivation Functions in accordance with a specified cryptographic algorithm HMAC-<selectables><selectable>SHA-256</selectable><selectable>SHA384</selectable><selectable>SHA-512</selectable></selectables>, with 
+                <title>The TSF shall be capable of accepting a password of at least
+                  <assignable>64 or more</assignable> characters in the set of {upper case characters, lower case characters, numbers, and <assignable>other supported special characters</assignable>} and shall perform Password-based Key Derivation Functions in accordance with a specified cryptographic algorithm HMAC-<selectables><selectable>SHA-256</selectable><selectable>SHA384</selectable><selectable>SHA-512</selectable></selectables>, with 
                   <selectables>
-                    <selectable id="fcs-pcc-ext-1-2-sel-1"><assignable>positive integer of 1000 or more</assignable> iterations</selectable>
-                    <selectable id="fcs-pcc-ext-1-2-sel-2"><assignable>positive integer of one or more</assignable> and
-                      <assignable>positive integer of 10000 or more</assignable> subsequent rounds
+                    <selectable id="fcs-pcc-ext-1-2-sel-1"><assignable>10000 or more</assignable> iterations</selectable>
+                    <selectable id="fcs-pcc-ext-1-2-sel-2"><assignable>1 or more</assignable>iterations and
+                      <assignable>10000 or more</assignable> subsequent rounds
                       of AES operations with a device key and PBKDF2 output per FCS_COP.1<h:b>/KeyEnc</h:b> or
                       FCS_COP.1<h:b>/KeyEncap</h:b></selectable>
                   </selectables> and output cryptographic key sizes 
@@ -2112,11 +2111,10 @@
                 </title>
                 
                 <ext-comp-def-title>
-                  <title>A password used by the TSF to generate a password authorization factor shall
-                    enable at least <assignable>positive integer of 64 or more</assignable> characters in the set of {upper case characters, lower case characters, numbers, and <assignable> other supported special characters</assignable>} and shall perform Password-based Key Derivation Functions in accordance with a specified cryptographic algorithm HMAC-<selectables><selectable>SHA-256</selectable><selectable>SHA384</selectable><selectable>SHA-512</selectable></selectables>, with 
+                  <title>The TSF shall be capable of accepting a password of at least <assignable>64 or more</assignable> characters in the set of {upper case characters, lower case characters, numbers, and <assignable> other supported special characters</assignable>} and shall perform Password-based Key Derivation Functions in accordance with a specified cryptographic algorithm HMAC-<selectables><selectable>SHA-256</selectable><selectable>SHA384</selectable><selectable>SHA-512</selectable></selectables>, with 
                     <selectables>
-                      <selectable><assignable>positive integer of 1000 or more</assignable> iterations</selectable>
-                      <selectable><assignable>positive integer of one or more</assignable> and <assignable>positive integer of 10000 or more</assignable> subsequent rounds of AES operations with a device key and PBKDF2 output per FCS_COP.1 or FCS_COP.1</selectable>
+                      <selectable><assignable>10000 or more</assignable> iterations</selectable>
+                      <selectable><assignable>1 or more</assignable> iterations and <assignable>10000 or more</assignable> subsequent rounds of AES operations with a device key and PBKDF2 output per FCS_COP.1 or FCS_COP.1</selectable>
                     </selectables> and output cryptographic key sizes 
                     <selectables>
                       <selectable>128 bits</selectable>

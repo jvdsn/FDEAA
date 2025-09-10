@@ -1835,7 +1835,7 @@ for i = 1 to 1000:
                           
                           
                       </selectables></selectable></selectables>
-                  while maintaining an effective strength of <h:i>256 bits</h:i> for symmetric keys and an effective strength of 
+                  while maintaining an effective strength of [<h:i>256 bits</h:i>] for symmetric keys and an effective strength of 
                       <selectables>
                       <selectable>not applicable</selectable>
                       <selectable>128 bits</selectable>
@@ -1858,7 +1858,7 @@ for i = 1 to 1000:
                           
                           
                         </selectables></selectable></selectables>
-                     while maintaining an effective strength of <h:i>256 bits</h:i> for symmetric keys and an effective strength of 
+                     while maintaining an effective strength of [<h:i>256 bits</h:i>] for symmetric keys and an effective strength of 
                       <selectables>
                       <selectable>not applicable</selectable>
                       <selectable>128 bits</selectable>
@@ -1870,7 +1870,7 @@ for i = 1 to 1000:
               
               <f-element id="fcs-kyc-ext-1-2">
                 <title>
-                  The TSF shall provide at least a <h:i>256 bit</h:i> BEV to <assignable>one or more external entities</assignable>
+                  The TSF shall provide at least a [<h:i>256 bit</h:i>] BEV to <assignable>one or more external entities</assignable>
                     <selectables linebreak='yes'>
                       <selectable id="fcs-kyc-ext-1-2-sel-2a">after the TSF has successfully performed the validation process as specified in FCS_VAL_EXT.1.</selectable>
                       <selectable id="fcs-kyc-ext-1-2-sel-2b">without validation taking place.</selectable>

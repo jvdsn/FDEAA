@@ -1673,7 +1673,7 @@
                         <selectable>GCM</selectable>
                         <selectable>XTS</selectable>
                       </selectables>
-                     mode</h:i>] and cryptographic key sizes <h:i>256 bits</h:i> that meet the following: [<h:i>AES as specified in ISO /IEC 18033-3, 
+                     mode</h:i>] and cryptographic key sizes [<h:i>256 bits</h:i>] that meet the following: [<h:i>AES as specified in ISO /IEC 18033-3, 
                         <selectables>
                           <selectable>CBC as specified in ISO/IEC 10116</selectable>
                           <selectable>GCM as specified in ISO/IEC 19772</selectable>
@@ -1698,7 +1698,7 @@
                     encryption and the mode used for encryption.
 					Conditional: If AES-GCM is selected, the evaluator shall verify the tag length is described in the TSS and that a tag length of at 
 					least 128 is used unless the following "Appendix C: Requirements and Guidelines for Using Short Tags" is being followed from NIST SP 800-38D.</h:p></TSS>
-              </TSS>
+              
                     <Guidance>If multiple encryption modes are supported, the evaluator examines the guidance
                       documentation to determine that the method of choosing a specific mode/key size by
                       the end user is described.</Guidance>

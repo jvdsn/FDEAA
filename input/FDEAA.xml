@@ -248,7 +248,7 @@
         independently evaluate solutions tailored to one cPP or the other. When a customer acquires
         an FDE solution, they will either obtain a single vendor product that meets the AA + EE cPPs
         or two products, one of which meets the AA and the other of which meets the EE cPPs.</h:p>
-        <h:p>The table below illustrates a few examples for certification</h:p>
+        <h:p>The table below illustrates a few examples for certification.</h:p>
         
         <h:head><h:b><ctr ctr-type="Table" pre="Table" id="atref-mandatory">: Examples of cPP Implementations</ctr></h:b></h:head>			
         <h:tr class="header"><h:td>Event</h:td><h:td/></h:tr>    	

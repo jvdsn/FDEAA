@@ -854,30 +854,7 @@
 				</selectables>.</title>
            
 			  
-                <title>
-                The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a specified cryptographic key generation algorithm: <h:b><selectables linebreak='yes'>
-                  <selectable>RSA schemes using cryptographic key sizes of <selectables>
-                    <selectable>2048-bit</selectable>
-                    <selectable>3072-bit</selectable>
-                    <selectable>4096-bit</selectable>
-                  </selectables> that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.3</selectable>
-                  <selectable>ECC schemes using “NIST curves” of <selectables>
-                    <selectable>P-256</selectable>
-                    <selectable>P-384</selectable>
-                    <selectable>P-521</selectable>
-                  </selectables> that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix  B.4</selectable>
-                  <selectable>FFC schemes using cryptographic key sizes of 
-                    <selectables>
-                      <selectable>2048-bit</selectable>
-                      <selectable>3072-bit</selectable>
-                      <selectable>4096-bit</selectable>
-                    </selectables> that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.1</selectable>
-                  </selectables></h:b> 
-                  <h:s>and specified cryptographic key sizes 
-                    <assignable>cryptographic key sizes</assignable> 
-                    that meet the following: 
-                    <assignable>list of standards</assignable>.</h:s>
-                </title>
+                
                 <note role="application">
                   Asymmetric keys may be used to “wrap” a key or submask. This SFR should be included by the ST author when making the appropriate selection in FCS_COP.
 <h:p>Note that ML-DSA and ML-KEM are not usable in any functions at the time of initial publication, they are added to this requirement in support of future protocol updates. As support is expanded for CNSA 2.0, CNSA 1.0 will be removed as an selection in a future update.</h:p>				  

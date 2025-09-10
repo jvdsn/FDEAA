@@ -3863,7 +3863,6 @@
     discovered in these types of products and provide that content into the AVA_VAN discussion. In most cases, these vulnerabilities
     will require sophistication beyond that of a basic attacker. This information will be used in the development of future Protection
     Profiles.<h:br/><h:br/>
-    <comment>Added to address TD0606.</comment><h:br/><h:br/>
     If the TOE is a Network Attached Storage (NAS) device, the evaluator shall verify as part of the vulnerability assessment that 
     remote management services are either not present or can be fully disabled.<h:br/><h:br/>
     

@@ -893,10 +893,7 @@
               
               <f-element id="fcs_ckm-1-1-skg"><title>
                 The TSF shall generate <h:b>symmetric</h:b> cryptographic keys <h:b>using a Random Bit Generator as specified in FCS_RBG.1</h:b> and specified cryptographic key
-                sizes <selectables>
-                  <selectable>128 bit</selectable>
-                  <selectable>256 bit</selectable>
-                </selectables> that meet the following: [<h:i>no standard</h:i>].
+                sizes <h:i>256 bit</h:i> that meet the following: [<h:i>no standard</h:i>].
                 </title>
                 <note role="application">
                   Symmetric keys may be used to generate keys along the key chain. This applies to any instance in where the TSF DRBG is referenced for key generation (as in FCS_AFA_EXT.1, 

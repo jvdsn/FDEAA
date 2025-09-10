@@ -1221,11 +1221,17 @@
             <f-component cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hash Algorithm)" id="fcs-cop-1-hash">
               <f-element id="fcs_cop-1-1-hash">
                 <title>
-                  The TSF shall perform [<h:i>cryptographic hashing services</h:i>] in accordance with a specified cryptographic algorithm <selectables>
-                    <selectable>SHA-256</selectable>
-                    <selectable>SHA-384</selectable>
-                    <selectable>SHA-512</selectable>
-                  </selectables> <h:s>and cryptographic key sizes <assignable>cryptographic key sizes</assignable></h:s> that meet the following: [<h:i>ISO/IEC 10118-3:2004</h:i>]
+                  <title>The <h:b>application</h:b>  shall perform [<h:i>cryptographic hashing services</h:i>] in accordance with a specified cryptographic algorithm  
+					<selectables linebreak="yes">
+						<selectable id="fcs_cop.1.1_Hash_1" >SHA-256</selectable>
+						<selectable id="fcs_cop.1.1_Hash_2" >SHA-384</selectable>
+						<selectable id="fcs_cop.1.1_Hash_3" >SHA-512</selectable> 
+					</selectables>  and <h:b>message digest</h:b>  sizes  
+					<selectables linebreak="yes">
+						<selectable id="fcs_cop.1.1_Hash_4" >256</selectable>
+						<selectable id="fcs_cop.1.1_Hash_5" >384</selectable>
+						<selectable id="fcs_cop.1.1_Hash_6" >512</selectable> 
+					</selectables> <h:b>bits</h:b>  that meet the following: [<h:i>ISO/IEC 10118-3:2004</h:i>]
                 </title>
                 <note role="application">
                   The selection should be consistent with the overall strength of the algorithm used for FCS_COP.1/SigVer and quantum resistant recommendations. For example,

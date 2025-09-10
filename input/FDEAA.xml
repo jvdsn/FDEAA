@@ -1220,8 +1220,7 @@
         
             <f-component cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation (Hash Algorithm)" id="fcs-cop-1-hash">
               <f-element id="fcs_cop-1-1-hash">
-                <title>
-                  <title>The <h:b>application</h:b>  shall perform [<h:i>cryptographic hashing services</h:i>] in accordance with a specified cryptographic algorithm  
+                <title>The <h:b>application</h:b>  shall perform [<h:i>cryptographic hashing services</h:i>] in accordance with a specified cryptographic algorithm  
 					<selectables linebreak="yes">
 						<selectable id="fcs_cop.1.1_Hash_1" >SHA-256</selectable>
 						<selectable id="fcs_cop.1.1_Hash_2" >SHA-384</selectable>

@@ -1696,7 +1696,7 @@
                 <aactivity>
                   <TSS>The evaluator shall verify the TSS includes a description of the key size used for
                     encryption and the mode used for encryption.
-					Conditional: If AES-GCM is selected, the evaluator shall verify the tag length is described in the TSS and that a tag length of at 
+					<h:p style="text-align: left">Conditional: If AES-GCM is selected, the evaluator shall verify the tag length is described in the TSS and that a tag length of at 
 					least 128 is used unless the following "Appendix C: Requirements and Guidelines for Using Short Tags" is being followed from NIST SP 800-38D.</h:p></TSS>
               
                     <Guidance>If multiple encryption modes are supported, the evaluator examines the guidance

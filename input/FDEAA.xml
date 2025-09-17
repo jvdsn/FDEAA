@@ -2894,7 +2894,7 @@
                     <selectable id="sel-fpt-kyp-ext-1-1-sel-3ciii">derived and not stored in non-volatile memory</selectable>
                   </selectables></selectable>
                   <selectable id="sel-fpt-kyp-ext-1-1-sel-3d">the non-volatile memory the key is stored on is located in an external storage device for use as an authorization factor</selectable>
-                  <selectable id="sel-fpt-kyp-ext-1-1-sel-3e">the plaintext key is only used to provide redundant cryptographic protection to other keys, such that disclosure of the plaintext key would not compromise the security of the keys being protected</selectable>
+                  <selectable id="sel-fpt-kyp-ext-1-1-sel-3e">the plaintext key is only used to provide additional cryptographic protection to other keys, such that disclosure of the plaintext key would not compromise the security of the keys being protected</selectable>
                  </selectable>                  
                 </selectables>
                 </selectable>

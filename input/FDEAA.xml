@@ -523,7 +523,7 @@
         </assumption>
         
       <assumption name="A.POWER_DOWN">
-      <description><h:p>The user does not leave the platform and/or storage device unattended until all volatile memory is cleared after a power-off, so memory remnant attacks are infeasible.</h:p><h:p>Authorized users do not leave the platform and/or storage device in a mode where sensitive information persists in non-volatile storage (e.g., lock screen). Users power the platform and/or storage device down or place it into a power managed state, such as a “hibernation mode”.</h:p></description>
+      <description><h:p>The user does not leave the platform and/or storage device unattended until all volatile memory is erased after a power-off, so memory remnant attacks are infeasible.</h:p><h:p>Authorized users do not leave the platform and/or storage device in a mode where sensitive information persists in non-volatile storage (e.g., lock screen). Users power the platform and/or storage device down or place it into a power managed state, such as a “hibernation mode”.</h:p></description>
       <objective-refer ref="OE.POWER_DOWN">
         <rationale>The operational environment objective OE.POWER_DOWN is realized through A.POWER_DOWN.</rationale>
       </objective-refer>
@@ -633,7 +633,7 @@
 		  </SOE>
 	    
 	    <SOE name="OE.POWER_DOWN">
-			  <description><h:p>Volatile memory is cleared after power-off so memory remnant attacks are infeasible.</h:p><h:p>Rationale: Users are properly trained [A.TRAINED_USER] to not leave the storage device unattended until powered down or placed in a managed power state such as “hibernation mode”. A.POWER_DOWN stipulates that such memory remnant attacks are infeasible given the device is in a powered-down or “hibernation mode” state.</h:p></description>
+			  <description><h:p>Volatile memory is erased after power-off so memory remnant attacks are infeasible.</h:p><h:p>Rationale: Users are properly trained [A.TRAINED_USER] to not leave the storage device unattended until powered down or placed in a managed power state such as “hibernation mode”. A.POWER_DOWN stipulates that such memory remnant attacks are infeasible given the device is in a powered-down or “hibernation mode” state.</h:p></description>
 		  </SOE>
 	    
 	    <SOE name="OE.SINGLE_USE_ET">
@@ -777,7 +777,7 @@
               <f-element id="fcs-afa-ext-2-1">
                 <title>The TSF shall reacquire the authorization factors specified in FCS_AFA_EXT.1
                   upon transition from any compliant power saving state specified in FPT_PWR_EXT.1 prior to permitting access to plaintext data.</title>
-                <note role="application">This should be accomplished by clearing keys that are no longer needed so that keys must be derived or decrypted again.</note>
+                <note role="application">This should be accomplished by erasing keys that are no longer needed so that keys must be derived or decrypted again.</note>
                 <aactivity>
                   <TSS>The evaluator shall examine the TSS for a description of authorization factors and which of the factors are used to gain access to user data after the TOE entered a compliant power saving state. The TSS is inspected to ensure it describes that each authorization factor satisfies the requirements of FCS_AFA_EXT.1.1.</TSS>
                     <Guidance>The evaluator shall examine the guidance documentation for a description of authorization factors used to access plaintext data when resuming from a compliant power saving state.</Guidance>
@@ -1046,10 +1046,10 @@
                           encrypted for storage in volatile or non-volatile memory). In the case where the only
                           selection made for the destruction method key was removal of power, then this test is
                           unnecessary. The evaluator shall:<h:ol type="1">
-                            <h:li>Record the value of the key in the TOE subject to clearing.</h:li>
+                            <h:li>Record the value of the key in the TOE subject to erasure.</h:li>
                             <h:li>Cause the TOE to perform a normal cryptographic processing with the key
                               from Step #1.</h:li>
-                            <h:li>Cause the TOE to clear the key.</h:li>
+                            <h:li>Cause the TOE to erase the key.</h:li>
                             <h:li>Cause the TOE to stop the execution but not exit.</h:li>
                             <h:li>Cause the TOE to dump the entire memory of the TOE into a binary file.</h:li>
                             <h:li>Search the content of the binary file created in Step #5 for instances of the
@@ -1073,9 +1073,9 @@
                           </test>
                           <test>
                             Applied to each key held in non-volatile memory and subject to destruction by overwrite by the TOE. The evaluator shall use a tool that provides a logical view of the media (e.g., MBR file system):<h:ol type="1">
-                              <h:li>Record the value of the key in the TOE subject to clearing.</h:li>
+                              <h:li>Record the value of the key in the TOE subject to erasure.</h:li>
                               <h:li>Cause the TOE to perform a normal cryptographic processing with the key from Step #1.</h:li>
-                              <h:li>Cause the TOE to clear the key.</h:li>
+                              <h:li>Cause the TOE to erase the key.</h:li>
                               <h:li>Search the logical view that the key was stored in for instances of the known
                                 key value from Step #1. If a copy is found, then the test fails.</h:li>
                               <h:li>Break the key value from Step #1 into 3 similar sized pieces and perform a
@@ -1088,10 +1088,10 @@
                           </test>
                           <test>
                             Applied to each key held as non-volatile memory and subject to destruction by overwrite by the TOE. The evaluator shall use a tool that provides a logical view of the media:<h:ol type="1">
-                              <h:li>Record the logical storage location of the key in the TOE subject to clearing</h:li>
+                              <h:li>Record the logical storage location of the key in the TOE subject to erasure</h:li>
                               <h:li>Cause the TOE to perform a normal cryptographic processing with the key
                                 from Step #1.</h:li>
-                              <h:li>Cause the TOE to clear the key.</h:li>
+                              <h:li>Cause the TOE to erase the key.</h:li>
                               <h:li>Read the logical storage location in Step #1 of non-volatile memory to ensure
                                 the appropriate pattern is utilized.</h:li>
                             </h:ol>
@@ -1116,7 +1116,7 @@
                 <note role="application">The TOE may end up in a non-compliant power saving
                   state indistinguishable from a compliant power state (e.g. as result of sudden or
                   unexpected power loss). For those scenarios, the TOE or the operational
-                  environment guidance documentation must provide procedures to support destruction of key material (e.g., automated reboot with memory clearing in early stages of the system’s power-on sequence).</note>
+                  environment guidance documentation must provide procedures to support destruction of key material (e.g., automated reboot with memory erasure in early stages of the system’s power-on sequence).</note>
                   <aactivity level="element">
                     <TSS>The evaluator shall verify the TSS provides a description of what keys and key material
                       are destroyed when entering any compliant power saving state.</TSS>
@@ -1138,22 +1138,22 @@
                 <title>
                   The TSF shall destroy cryptographic keys and keying material specified by FCS_CKM.6.1/Power in
                   accordance with a specified cryptographic key destruction method <h:b><selectables>
-                    <selectable>instruct the operational environment to clear</selectable>
+                    <selectable>instruct the operational environment to erase</selectable>
                     <selectable>erase</selectable>
                   </selectables></h:b> that meets the following: [<h:i>a key
                         destruction method specified in FCS_CKM.6</h:i>].
                 </title>
                 <note role="application">In some cases, erasure of keys from volatile memory is
                   only supported by the operational environment, in which case the operational
-                  environment must expose a well-documented mechanism or interface to invoke the memory clearing operation.</note>
+                  environment must expose a well-documented mechanism or interface to invoke the memory erase operation.</note>
                 <aactivity level="element">
                   <TSS>
                     The evaluator shall verify the TSS provides a high level description of how keys stored in volatile memory are destroyed. The valuator to verify that TSS outlines: <h:ul>
                       <h:li>if and when the TSF or the Operational Environment is used to destroy keys from volatile memory;</h:li>
                       <h:li>if and how memory locations for (temporary) keys are tracked;</h:li>
-                      <h:li>details of the interface used for key erasure when relying on the OE for memory clearing.</h:li></h:ul></TSS>
+                      <h:li>details of the interface used for key erasure when relying on the OE for memory erasure.</h:li></h:ul></TSS>
                   <Guidance>The evaluator shall check the guidance documentation if the TOE depends on the
-                    Operational Environment for memory clearing and how that is achieved.</Guidance>
+                    Operational Environment for memory erasure and how that is achieved.</Guidance>
                   <CustomEA name="KMD">The evaluator shall check to ensure the KMD lists each type of key, its origin, possible memory locations in volatile memory.</CustomEA>
                   <Tests>There are no test evaluation activities for this SFR.</Tests>
                 </aactivity>
@@ -2821,7 +2821,7 @@ for i = 1 to 1000:
 
               </selectables>.
             </title>
-            <note role="application">If volatile memory is not cleared as part of an unexpected power shutdown sequence then guidance documentation must define mitigation activities (e.g. how long users should wait after an unexpected power-down before volatile memory can be considered cleared).</note>
+            <note role="application">If volatile memory is not erased as part of an unexpected power shutdown sequence then guidance documentation must define mitigation activities (e.g. how long users should wait after an unexpected power-down before volatile memory can be considered erased).</note>
               <aactivity>
                 <TSS>The evaluator shall validate that the TSS contains a list of conditions under which the
                   TOE enters a compliant power saving state. </TSS>

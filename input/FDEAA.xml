@@ -675,10 +675,7 @@
         </ext-comp-def>
         
         
-        <ext-comp-def title="Cryptographic Key Derivation" fam-id="FCS_CKM.5">
-          <fam-behavior>This family specifies the means by which an intermediate key is derived from a specified set of submasks.
-            </fam-behavior>
-        </ext-comp-def>
+        
         <ext-comp-def title="Key Chaining" fam-id="FCS_KYC_EXT">
           <fam-behavior>This family provides the specification to be used for using multiple layers of encryption keys to ultimately secure the protected data encrypted on the drive.</fam-behavior>
         </ext-comp-def>

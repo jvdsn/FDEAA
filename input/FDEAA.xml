@@ -675,7 +675,7 @@
         </ext-comp-def>
         
         
-        <ext-comp-def title="Cryptographic Key Derivation" fam-id="FCS_KDF_EXT">
+        <ext-comp-def title="Cryptographic Key Derivation" fam-id="FCS_CKM.5">
           <fam-behavior>This family specifies the means by which an intermediate key is derived from a specified set of submasks.
             </fam-behavior>
         </ext-comp-def>
@@ -878,7 +878,6 @@
             <f-component cc-id="fcs_ckm.1" iteration="SKG" name="Cryptographic Key Generation (Symmetric Keys)" id="fcs-ckm-1-b" status="sel-based">
               <depends on-sel="sel-fcs-afa-ext-1-1-sel-1b"/>
               <depends on-sel="sel-fcs-afa-ext-1-1-sel-6a"/>
-              <depends on-sel="sel-fcs-kdf-ext-1-1-sel-1a"/>
               <depends on-sel="sel-fcs-kyc-ext-1-1-sel-1"/>
               <depends on-sel="sel-fcs-kyc-ext-1-1-sel-3"/>
               <depends on-sel="sel-fcs-sni-ext-1-1-sel-2"/>
@@ -3100,7 +3099,6 @@ for i = 1 to 1000:
         <f-component cc-id="fpt_fls.1" name="Failure with Preservation of Secure State" status="sel-based">
           <depends on-sel="sel-fcs-afa-ext-1-1-sel-1b"/>
           <depends on-sel="sel-fcs-afa-ext-1-1-sel-6a"/>
-          <depends on-sel="sel-fcs-kdf-ext-1-1-sel-1a"/>
           <depends on-sel="sel-fcs-kyc-ext-1-1-sel-1"/>
           <depends on-sel="sel-fcs-kyc-ext-1-1-sel-3"/>
           <depends on-sel="sel-fcs-sni-ext-1-1-sel-2"/>
@@ -3280,7 +3278,6 @@ for i = 1 to 1000:
         <f-component cc-id="fpt_tst.1" name="TSF Self-Testing" status="sel-based">
           <depends on-sel="sel-fcs-afa-ext-1-1-sel-1b"/>
           <depends on-sel="sel-fcs-afa-ext-1-1-sel-6a"/>
-          <depends on-sel="sel-fcs-kdf-ext-1-1-sel-1a"/>
           <depends on-sel="sel-fcs-kyc-ext-1-1-sel-1"/>
           <depends on-sel="sel-fcs-kyc-ext-1-1-sel-3"/>
           <depends on-sel="sel-fcs-sni-ext-1-1-sel-2"/>

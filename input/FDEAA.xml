@@ -1674,12 +1674,13 @@ for i = 1 to 1000:
             
 
             <!-- FCS_CKM.5 Cryptographic Key Derivation -->
-		<f-component id="sfr-fcs-ckm-5" cc-id="fcs_ckm.5" name="Cryptographic Key Derivation" status="optional">
+		<f-component id="sfr-fcs-ckm-5" cc-id="fcs_ckm.5" name="Cryptographic Key Derivation" status="sel-based">
+		<depends on="sel-fcs-kyc-ext-1-1-sel-1"/>
 			<f-element id="fcs-ckm-5e1">
 				<title>
 					The TSF shall derive cryptographic keys
 					<selectables>
-						<tabularize id="fcs-ckm-keydrv-sels" title="Recommended choices for FCS_CKM.5">
+						<tabularize id="fcs-ckm-keydrv-sels" title="Allowed choices for FCS_CKM.5">
 							<selectcol>Key type</selectcol>
 							<reqtext>from</reqtext>
 							<selectcol>Input parameters</selectcol>
@@ -1689,7 +1690,7 @@ for i = 1 to 1000:
 							<selectcol>Key sizes</selectcol>
 							<reqtext>that meet the following:</reqtext>
 							<selectcol>List of standards</selectcol>
-							<reqtext><h:p/><h:p/>The following table provides the recommended choices for
+							<reqtext><h:p/><h:p/>The following table provides the allowed choices for
 										completion of the selection operations of FCS_CKM.5.</reqtext>
 						</tabularize>
 
@@ -2174,7 +2175,6 @@ for i = 1 to 1000:
 			<audit-event/>
 		</f-component>
             
-            </f-component>
         
             <f-component cc-id="fcs_kyc_ext.1" name="Key Chaining (Initiator)" id="fcs-kyc-ext-1">
               <consistency-rationale/>

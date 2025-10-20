@@ -528,7 +528,7 @@
       </objective-refer>
     </assumption>
         <assumption name="A.SECURE_STATE">
-          <description>Upon the completion of proper provisioning, the drive is only assumed secure when in a powered off state up until it is powered on and receives initial authorization.</description>
+          <description>Upon the completion of proper provisioning, the TOE is only assumed secure when in a powered off state up until it is powered on and receives initial authorization.</description>
             <objective-refer ref="OE.POWER_DOWN">
               <rationale>The operational environment objective OE.POWER_DOWN is realized through A.SECURE_STATE.</rationale>
             </objective-refer>

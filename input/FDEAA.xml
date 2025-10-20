@@ -395,7 +395,7 @@
 		    <addressed-by>FCS_AFA_EXT.1</addressed-by><rationale>Mitigates this threat by requiring a set of authorization factors that will be difficult to guess.</rationale>
 		    <addressed-by>FCS_SNI_EXT.1</addressed-by><rationale>Mitigates this threat by requiring  proper salts, which will prevent pre-computed attacks.</rationale>
 		    <addressed-by>FCS_PCC_EXT.1 (selection-based)</addressed-by><rationale>Mitigates this threat by requiring user-provided-factors are conditioned to increase the cost of repeatedly guessing a user provided value.</rationale>
-		    <addressed-by>FCS_SMC_EXT.1 (selection-based)</addressed-by><rationale>Mitigates this threat by requiring multifactor authentication options, further increasing the difficulty of guessing a authentication factor.</rationale>
+		    <addressed-by>FCS_CKM.5.1 (selection-based)</addressed-by><rationale>Mitigates this threat by requiring multifactor authentication options, further increasing the difficulty of guessing a authentication factor.</rationale>
 		    <addressed-by>FCS_VAL_EXT.1 (selection-based)</addressed-by><rationale>Mitigates this threat by requiring several options for enforcing validation, such as key sanitization of the DEK or when a configurable number of failed validation attempts is reached within a 24 hour period. This mitigates brute force attacks against authorization factors such as passwords and pins.</rationale>
 		  </threat>
 		  
@@ -434,7 +434,6 @@
 		    <addressed-by>FCS_RBG.3 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
 		    <addressed-by>FCS_RBG.4 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
 		    <addressed-by>FCS_RBG.5 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
-		    <addressed-by>FCS_SMC_EXT.1 (selection-based)</addressed-by><rationale>Mitigates this threat by obscuring the submasks via a XOR or hashing operation..</rationale>
 		    <addressed-by>FCS_VAL_EXT.1 (selection-based</addressed-by><rationale>Mitigates this threat by defining methods for validation of keying material and number of validation attempts.</rationale>
 		    <addressed-by>FPT_FLS.1 (selection-based)</addressed-by><rationale>Mitigates this threat by ensuring that a malfunctioning DRBG function cannot be used to generate potentially insecure keys.</rationale>
 		    <addressed-by>FPT_TST.1 (selection-based)</addressed-by><rationale>Mitigates this threat by verifying the cryptographic functionality through the self testing functionality.</rationale>
@@ -683,9 +682,7 @@
           <fam-behavior>This family ensures that passwords used to produce the BEV are robust (in terms of their composition) and are conditioned to provide an appropriate-length bit string.</fam-behavior>
         </ext-comp-def>
         
-        <ext-comp-def title="Submask Combining" fam-id="FCS_SMC_EXT">
-          <fam-behavior>This family specifies the means by which submasks are combined, if the TOE supports more than one submask being used to derive or protect the BEV.</fam-behavior>
-        </ext-comp-def>
+        
         <ext-comp-def title="Cryptographic Operation (Salt, Nonce, and Initialization Vector Generation)" fam-id="FCS_SNI_EXT">
           <fam-behavior>This family ensures that salts, nonces, and IVs are well formed.</fam-behavior>
         </ext-comp-def>
@@ -728,7 +725,7 @@
               the TOE accepts from the user. A password entered by the user is one authorization factor that the TOE must be able to condition, as specified in FCS_PCC_EXT.1. Another option is a smart card authorization factor, with the differentiating feature being how the value is generated – either by the TOE’s RBG or by the platform. An external USB token may also be used, with the submask value generated either by the TOE’s RBG or by the platform.</h:p>
               <h:p>The TOE may accept any number of authorization factors, and these are categorized as “submasks”. The ST author selects the authorization factors they support, and there may be multiple methods for a selection. </h:p>
               <h:p>
-                Use of multiple authorization factors is preferable; if more than one authorization factor is used, the submasks produced must be combined using FCS_SMC_EXT.1 specified in Appendix A.</h:p>
+                Use of multiple authorization factors is preferable; if more than one authorization factor is used, the submasks produced must be combined using FCS_CKM.5.1 specified in Appendix A.</h:p>
               <h:p>The TOE’s use of symmetric key generation (i.e., deterministic random bit generation) and symmetric encryption determines whether the selection-based requirements FCS_CKM.1/SKG, FCS_RBG.1, and FCS_COP.1/SKC are claimed.</h:p>
             </note>
             <aactivity >
@@ -2118,8 +2115,7 @@ for i = 1 to 1000:
                           <selectable id="sel-fcs-kyc-ext-1-1-sel-1">key encryption as specified in FCS_COP.1/KeyEnc</selectable>
                           <selectable id="sel-fcs-kyc-ext-1-1-sel-2">key transport as specified in FCS_COP.1/KeyEncap</selectable>
                           <selectable id="sel-fcs-kyc-ext-1-1-sel-3">key wrapping as specified in FCS_COP.1/KeyWrap</selectable>
-                          <selectable id="sel-fcs-kyc-ext-1-1-sel-4">key derivation as specified in FCS_CKM.5.1</selectable>                          
-                          <selectable id="sel-fcs-kyc-ext-1-1-sel-5">key combining as specified in FCS_SMC_EXT.1</selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-4">key derivation as specified in FCS_CKM.5.1</selectable>       
                           
                           
                       </selectables></selectable></selectables>
@@ -2141,8 +2137,7 @@ for i = 1 to 1000:
                           <selectable id="sel-fcs-kyc-ext-1-1-sel-1">key encryption as specified in FCS_COP.1</selectable>
                           <selectable id="sel-fcs-kyc-ext-1-1-sel-2">key transport as specified in FCS_COP.1</selectable>
                           <selectable id="sel-fcs-kyc-ext-1-1-sel-3">key wrapping as specified in FCS_COP.1</selectable>
-                          <selectable id="sel-fcs-kyc-ext-1-1-sel-4">key derivation as specified in FCS_CKM.5.1</selectable>                          
-                          <selectable id="sel-fcs-kyc-ext-1-1-sel-5">key combining as specified in FCS_SMC_EXT.1</selectable>
+                          <selectable id="sel-fcs-kyc-ext-1-1-sel-4">key derivation as specified in FCS_CKM.5.1</selectable>       
                           
                           
                         </selectables></selectable></selectables>
@@ -2183,7 +2178,7 @@ for i = 1 to 1000:
                   The method the TOE uses to chain keys and manage/protect them is described in the Key Management Description; see Appendix E for more information.<h:br/><h:br/>
                 
                   The TOE’s use of key encryption, key encapsulation, key wrapping, key derivation, or submask combining determines whether the selection-based requirements 
-                  FCS_COP.1/KeyEnc, FCS_COP.1/KeyEncap, FCS_COP.1/KeyWrap, FCS_CKM.5.1, and FCS_SMC_EXT.1 are claimed. Additionally, the TOE’s use of key encryption or key
+                  FCS_COP.1/KeyEnc, FCS_COP.1/KeyEncap, FCS_COP.1/KeyWrap, and FCS_CKM.5.1 are claimed. Additionally, the TOE’s use of key encryption or key
                   wrapping for key chaining requires FCS_CKM.1/SKG and FCS_RBG.1 (for key generation) and FCS_COP.1/SKC (for symmetric encryption) to be claimed.
                   
                 </note>
@@ -2583,49 +2578,6 @@ for i = 1 to 1000:
               </f-element>
           
             </f-component>
-        
-            <f-component cc-id="fcs_smc_ext.1" name="Submask Combining " id="fcs-smc-ext-1" status="sel-based">
-              <depends on-sel="sel-fcs-kyc-ext-1-1-sel-5"/>
-              <depends on-sel="sel-fpt-kyp-ext-1-1-sel-3c"></depends>
-              <consistency-rationale/>
-              <comp-lev>requires the TSF to combine the submasks in a predictable fashion.</comp-lev>
-              <management/>
-              <audit/>
-              <dependencies>FCS_COP.1 Cryptographic Operation</dependencies>
-              <f-element id="fcs-smc-ext-1-1">
-                <title>
-                  The TSF shall combine submasks using the following method <selectables><selectable>exclusive OR (XOR)</selectable><selectable>SHA-256</selectable><selectable>SHA-384</selectable><selectable>SHA-521</selectable></selectables> to generate an [<h:i>intermediary key or BEV</h:i>].
-                </title>
-                <ext-comp-def-title>
-                  <title>The TSF shall combine submasks using the following method <selectables>
-                    <selectable>exclusive OR (XOR)</selectable>
-                    <selectable>SHA-256</selectable>
-                    <selectable>SHA-384</selectable>
-                    <selectable>SHA-521</selectable>
-                  </selectables> to generate an <assignable>types of keys</assignable>.</title>
-                </ext-comp-def-title>
-                <note role="application">
-                  This requirement specifies the way that a product may combine the various submasks by using either an XOR or an 
-                  approved SHA-hash. The approved hash functions are captured in
-                  FCS_COP.1/Hash.<h:br/><h:br/>
-                  
-                  This SFR is claimed when the TSF requires the use of submask combining as part of maintaining or deriving a key chain.
-                </note>
-                  <aactivity>
-                    <TSS>If the submasks produced from the authorization factors are XORed together to form
-                      the BEV or intermediate key, the TSS section shall identify how this is performed (e.g.,
-                      if there are ordering requirements, checks performed, etc.). The evaluator shall also
-                      confirm that the TSS describes how the length of the output produced is at least the
-                      same as that of the BEV.</TSS>
-                      <Guidance>There are no AGD evaluation activities for this SFR.</Guidance>
-                      <CustomEA name="KMD">The evaluator shall review the KMD to ensure that an approved combination is used
-                        and does not result in the weakening or exposure of key material.</CustomEA>
-                      <Tests>The evaluator shall perform the following test:<testlist>
-                        <test>(conditional): If there is more than one authorization factor, ensure that failure
-                          to supply a required authorization factor does not result in access to the encrypted data.</test>
-                      </testlist></Tests>
-                  </aactivity>
-              </f-element>
               
             </f-component>
         
@@ -3054,7 +3006,7 @@ for i = 1 to 1000:
             <h:p>FCS_COP.1 Cryptographic Operation</h:p>
             <h:p>FCS_KYC_EXT.1 Key Chaining (Initiator)</h:p>
             <h:p>FCS_KYC_EXT.2 Key Chaining (Recipient)</h:p>
-            <h:p>FCS_SMC_EXT.1 Submask Combining</h:p>            
+            <h:p>FCS_CKM.5.1 Cryptographic Key Derivation</h:p>            
           </dependencies>
           
           <f-element id="fpt-kyp-ext-1-1">
@@ -3066,7 +3018,7 @@ for i = 1 to 1000:
 					<selectables>
 	                  <selectable id="sel-fpt-kyp-ext-1-1-sel-3a">the plaintext key is not part of the key chain as specified in FCS_KYC_EXT.1</selectable>
 	                  <selectable id="sel-fpt-kyp-ext-1-1-sel-3b">the plaintext key will no longer provide access to the encrypted data after initial provisioning</selectable>
-	                  <selectable id="sel-fpt-kyp-ext-1-1-sel-3c">the plaintext key is a key split that is combined as specified in FCS_SMC_EXT.1, and the other half of the key split is 
+	                  <selectable id="sel-fpt-kyp-ext-1-1-sel-3c">the plaintext key is a key split that is combined as specified in FCS_CKM.5.1, and the other half of the key split is 
 						  <selectables linebreak="yes">
 		                    <selectable id="sel-fpt-kyp-ext-1-1-sel3ci-">wrapped as specified in FCS_COP.1/KeyWrap</selectable>
 		                    <selectable id="sel-fpt-kyp-ext-1-1-sel-3cii">encrypted as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyEncap</selectable>
@@ -3087,7 +3039,7 @@ for i = 1 to 1000:
                 <selectable>only store plaintext keys that meet any one of the following criteria <selectables>
                   <selectable>the plaintext key is not part of the key chain as specified in FCS_KYC_EXT.1</selectable>
                   <selectable>the plaintext key will no longer provide access to the encrypted data after initial provisioning</selectable>
-                  <selectable>the plaintext key is a key split that is combined as specified in FCS_SMC_EXT.1, and the other half of the key split is <selectables linebreak="yes">
+                  <selectable>the plaintext key is a key split that is combined as specified in FCS_CKM.5.1, and the other half of the key split is <selectables linebreak="yes">
                     <selectable>wrapped as specified in FCS_COP.1</selectable>
                     <selectable>encrypted as specified in FCS_COP.1 or FCS_COP.1</selectable>
                     <selectable>derived and not stored in non-volatile memory</selectable>
@@ -3110,7 +3062,7 @@ for i = 1 to 1000:
               If the TSF implements key wrapping, key encryption, or key encapsulation to maintain protected cryptographic key storage, then FCS_COP.1/KeyWrap, FCS_COP.1/KeyEnc,
               or FCS_COP.1/KeyEncap must be claimed. Additionally, if key wrapping or key encryption is used, then FCS_CKM.1/SKG, FCS_RBG.1, and FCS_COP.1/SKC must be claimed to
               support generation, encryption, and decryption of symmetric keys used in support of these operations. If the TSF implements submask combining to maintain protected
-              cryptographic key storage, then FCS_SMC_EXT.1 must be claimed.
+              cryptographic key storage, then FCS_CKM.5.1 must be claimed.
             </note>
              
               <aactivity>

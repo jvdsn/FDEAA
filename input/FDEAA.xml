@@ -1897,7 +1897,8 @@ for i = 1 to 1000:
 						parameters, such as context strings, salts, and IVs.<h:p/>
 						The evaluator shall verify that the Guidance instructs the administrator how to configure the TOE to
 						choose specific PRFs, modes, and parameters.
-					</Guidance>		
+					</Guidance>
+					<CustomEA name="KMD">There are no KMD evaluation activities for this SFR.</CustomEA>
 					<Tests>
 						The evaluator shall perform the following test or witness respective tests 
 						executed by the developer. The tests must be executed on a platform that is as 

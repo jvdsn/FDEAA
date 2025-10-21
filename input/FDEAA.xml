@@ -1574,7 +1574,7 @@
           
         </f-component>
         
-        <f-component cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation (AES Data Encryption/Decryption)" id="fcs-cop-1-skc" status="sel-based">
+        <f-component cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation - Symmetric Key Cryptography" id="fcs-cop-1-skc" status="sel-based">
               <depends on-sel="fcs-val-ext-1-1-decr"/>
               <depends on-sel="sel-fcs-kyc-ext-1-1-sel-1"/>
               <depends on-sel="submask-derived"/>

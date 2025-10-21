@@ -2879,7 +2879,6 @@ for i = 1 to 1000:
 							<col>Mask for padding shall be randomly generated.</col>
 						</selectable>
 						</selectables>
-						</title>
 				</ext-comp-def-title>
                 <aactivity>
                     <TSS>

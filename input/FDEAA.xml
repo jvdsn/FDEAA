@@ -2663,7 +2663,7 @@ for i = 1 to 1000:
 										completion of the selection operations of FCS_OTV_EXT.1.</reqtext>
 						</tabularize>
 
-						<!-- KDF-HMAC -->
+						<!-- HMAC -->
 						<selectable id="sel-fcs-ckm-5-kdf-ctr">
 							<col>HMAC</col>  <!-- formerly KeyDrv1 -->
 							
@@ -2672,6 +2672,18 @@ for i = 1 to 1000:
 								<selectable>NIST SP 800-56C Revision 2</selectable>
 							</selectables></col>
 						</selectable>
+						
+						<!-- KDF -->
+						<selectable id="sel-fcs-ckm-5-kdf-ctr">
+							<col>KDF</col>  <!-- formerly KeyDrv1 -->
+							
+							<col><selectables>
+								<selectable>NIST SP 800-108 Revision 1</selectable>
+								<selectable>NIST SP 800-135 Revision 1</selectable>
+								<selectable>ISO/IEC 11770-6:2016 (Subclause 7.3.2)</selectable>
+							</selectables></col>
+						</selectable>
+						</selectables
 				  
 				  
                 </title>

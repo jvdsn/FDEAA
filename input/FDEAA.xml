@@ -1269,34 +1269,96 @@
           
         </f-component>
         
-        <f-component cc-id="fcs_cop.1" iteration="KeyEnc" name="Cryptographic Operation (Key Encryption)" id="fcs-cop-1-kE" status="sel-based">
+        <f-component cc-id="fcs_cop.1" iteration="KeyEnc" name="Cryptographic Operation - Key Encryption" id="fcs-cop-1-keyenc" status="sel-based">
           <depends on-sel="sel-fcs-kyc-ext-1-1-sel-1"/>
           <depends on-sel="fcs-pcc-ext-1-2-sel-2"/>
           <depends on-sel="sel-fpt-kyp-ext-1-1-sel-2"/>
           <depends on-sel="sel-fpt-kyp-ext-1-1-sel-3cii"/>
           <depends on-sel="sel-fpt-kyp-ext-1-1-sel-3eii"/>
           <depends on-sel="sel-fpt-kyp-ext-1-1-sel-3eiv"/>
-          <f-element id="fcs_cop-1-1-kE">
-            <title>
-              The TSF shall perform [<h:i>key encryption and decryption</h:i>] in accordance with a specified cryptographic algorithm [<h:i>AES used in <selectables><selectable>CBC</selectable><selectable>GCM</selectable></selectables> mode</h:i>] and cryptographic key sizes <selectables><selectable>128 bits</selectable><selectable>256 bits</selectable></selectables> that meet the following: [<h:i>AES as specified in ISO /IEC 18033-3,</h:i> <selectables><selectable>CBC as specified in ISO/IEC 10116</selectable><selectable>GCM as specified in ISO/IEC 19772</selectable></selectables>].
-            </title>
+          <f-element id="fcs_cop-1-1-keyenc">
+				<title>
+					The TSF shall perform [symmetric-key encryption/decryption] in accordance with a
+					specified cryptographic algorithm
+					<selectables>
+						<tabularize id="fcs-cop-keyenc-sels" title="Allowed choices for FCS_COP.1/SKC">
+							<textcol>Identifier</textcol>
+							<reqtext></reqtext>
+							<selectcol>Cryptographic algorithm</selectcol>
+							<reqtext>and cryptographic key sizes</reqtext>
+							<selectcol>Cryptographic key sizes</selectcol>
+							<reqtext>that meet the following:</reqtext>
+							<selectcol>List of standards</selectcol>
+							<reqtext><h:p/><h:p/>The following table provides the allowed choices for
+								completion of the selection operations of FCS_COP.1/SKC.</reqtext>
+						</tabularize>
+
+						<!-- AES-CBC -->
+						<selectable id="sel-fcs-cop-keyenc-aes-cbc">
+							<col>AES-CBC</col>
+							<col>AES in CBC mode with non-repeating and unpredictable IVs</col>
+							<col>256 bits</col>
+							<col><selectables>
+								<selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable>
+								<selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/><selectables>
+								<selectable>ISO/IEC 10116:2017 (Clause 7)</selectable>
+								<selectable>NIST SP 800-38A</selectable></selectables> [CBC]
+							</col>
+						</selectable>
+
+						<!-- AES-GCM -->
+						<selectable id="sel-fcs-cop-keyenc-aes-gcm">
+						<col>AES-GCM</col>
+						<col>AES in GCM mode with non-repeating IVs using <selectables>
+							<selectable>deterministic</selectable>
+							<selectable>RBG-based</selectable></selectables>,
+							IV construction; the tag must be of length
+							<selectables>
+								<selectable>96</selectable>
+								<selectable>104</selectable>
+								<selectable>112</selectable>
+								<selectable>120</selectable>
+								<selectable>128</selectable>
+							</selectables> bits.
+						</col>
+						<col>256 bits</col>
+						<col><selectables>
+							<selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable>
+							<selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/>
+							<selectables>
+							<selectable>ISO/IEC 19772:2020 (Clause 10)</selectable>
+							<selectable>NIST SP 800-38D</selectable></selectables> [GCM]
+						</col></selectable>
+					</selectables>
+				</title>
             <note role="application">
               This requirement is used in the body of the ST if the ST author chooses to use AES encryption/decryption for protecting the keys as part of the key chaining
               approach that is specified in FCS_KYC_EXT.1.<h:br/><h:br/>
-              
+
               This SFR is required when the TSF performs key encryption as part of maintaining and deriving a key chain (FCS_CKM.5.1, FCS_KYC_EXT.1) or when the TSF
               uses key encryption as part of password conditioning.
             </note>
-            <aactivity>
-              <TSS>The evaluator shall verify the TSS includes a description of the key size used for
-                encryption and the mode used for the key encryption.</TSS>
-              <Guidance>If multiple key encryption modes are supported, the evaluator examines the guidance
-                documentation to determine that the method of choosing a specific mode/key size by
-                the end user is described.</Guidance>
-              <CustomEA name="KMD">The evaluator shall examine the vendor’s KMD to verify that it includes a description
-                of how key encryption will be used as part of the key chain.</CustomEA>
-              <Tests>The AES test should be followed in FCS_COP.1/SKC Cryptographic Operation (AES
-                Data Encryption/Decryption.</Tests>
+                <aactivity>
+					<TSS>
+						The evaluator shall examine the TSS to ensure that it describes the construction of any IVs,
+						tweak values, and counters in conformance with the relevant specifications.<h:p/>
+						If a GCM mode algorithm is selected, then the evaluator shall examine the TOE summary
+						specification to confirm that it describes how the IV is generated and that the same IV is never
+						reused to encrypt different plaintext pairs under the same key. The evaluator shall also confirm
+						that for each invocation of GCM, the length of the plaintext is at most (2<h:sup>32</h:sup>)-2 blocks.
+					</TSS>
+					<Guidance>
+						If multiple key encryption modes are supported, the evaluator examines the guidance
+						documentation to determine that the method of choosing a specific mode/key size by
+						the end user is described.
+					</Guidance>
+					<KMD>
+						The evaluator shall examine the vendor's KMD to verify that it includes a description
+						of how key encryption will be used as part of the key chain.
+					</KMD>
+					<Tests>
+						The AES test should be followed in FCS_COP.1/SKC Cryptographic Operation - Symmetric Key Cryptography
+					</Tests>
             </aactivity>
           </f-element>
           

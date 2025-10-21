@@ -1332,9 +1332,6 @@
 					</selectables>
 				</title>
             <note role="application">
-              This requirement is used in the body of the ST if the ST author chooses to use AES encryption/decryption for protecting the keys as part of the key chaining
-              approach that is specified in FCS_KYC_EXT.1.<h:br/><h:br/>
-
               This SFR is required when the TSF performs key encryption as part of maintaining and deriving a key chain (FCS_CKM.5.1, FCS_KYC_EXT.1) or when the TSF
               uses key encryption as part of password conditioning.
             </note>

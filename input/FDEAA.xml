@@ -1695,7 +1695,7 @@
 				</title>
                 <note role="application">
                   This SFR is required when the TSF performs key wrapping as part of maintaining and deriving a key chain (FCS_KYC_EXT.1) or
-                  when the TSF performs validation of a submask, intermediate key, or BEV using a key wrap operation (FCS_VAL_EXT.1).<h:br><h:br>
+                  when the TSF performs validation of a submask, intermediate key, or BEV using a key wrap operation (FCS_VAL_EXT.1).<h:br/><h:br/>
                   NIST 800-57p1rev5 sec. 5.6.2 specifies that the size of key used to protect the key being
                   transported should be at least the security strength of the key it is protecting.
                 </note>

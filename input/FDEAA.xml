@@ -1673,7 +1673,7 @@
 						reused to encrypt different plaintext pairs under the same key. The evaluator shall also confirm
 						that for each invocation of GCM, the length of the plaintext is at most (2<h:sup>32</h:sup>)-2 blocks.
 					</TSS>
-					<Guidance/>
+					</Guidance>
 					</KMD>
 					<Tests>
 						The following tests require the developer to provide access to a test platform that
@@ -1729,36 +1729,36 @@
 						Monte Carlo tests are intended to test the implementation under strenuous conditions. The TOE
 						must process the test cases according to the following algorithm once for each combination of
 						direction and key size:<h:p/>
-		<h:pre>
-		Key[0] = Key
-		IV[0] = IV
-		PT[0] = PT
-		for i = 0 to 99 {
-			Output Key[i], IV[i], PT[0]
-			for j = 0 to 999 {
-				if (j == 0) {
-					CT[j] = AES-CBC-Encrypt(Key[i], IV[i], PT[j])
-					PT[j+1] = IV[i]
-				} else {
-					CT[j] = AES-CBC-Encrypt(Key[i], PT[j])
-					PT[j+1] = CT[j-1]
-				}
-			}
-			Output CT[j]
-			AES_KEY_SHUFFLE(Key, CT)
-			IV[i+1] = CT[j]
-			PT[0] = CT[j-1]
-		}
-		</h:pre><h:p/>
-		where <h:pre>AES_KEY_SHUFFLE</h:pre> is defined as: <h:p/>
-		<h:pre>
-		If ( keylen = 128 )
-			Key[i+1] = Key[i] xor MSB(CT[j], 128)
-		If ( keylen = 192 )
-			Key[i+1] = Key[i] xor (LSB(CT[j-1], 64) || MSB(CT[j], 128))
-		If ( keylen = 256 )
-			Key[i+1] = Key[i] xor (MSB(CT[j-1], 128) || MSB(CT[j], 128))
-		</h:pre><h:p/>
+						<h:pre>
+						Key[0] = Key
+						IV[0] = IV
+						PT[0] = PT
+						for i = 0 to 99 {
+							Output Key[i], IV[i], PT[0]
+							for j = 0 to 999 {
+								if (j == 0) {
+									CT[j] = AES-CBC-Encrypt(Key[i], IV[i], PT[j])
+									PT[j+1] = IV[i]
+								} else {
+									CT[j] = AES-CBC-Encrypt(Key[i], PT[j])
+									PT[j+1] = CT[j-1]
+								}
+							}
+							Output CT[j]
+							AES_KEY_SHUFFLE(Key, CT)
+							IV[i+1] = CT[j]
+							PT[0] = CT[j-1]
+						}
+						</h:pre><h:p/>
+						where <h:pre>AES_KEY_SHUFFLE</h:pre> is defined as: <h:p/>
+						<h:pre>
+						If ( keylen = 128 )
+							Key[i+1] = Key[i] xor MSB(CT[j], 128)
+						If ( keylen = 192 )
+							Key[i+1] = Key[i] xor (LSB(CT[j-1], 64) || MSB(CT[j], 128))
+						If ( keylen = 256 )
+							Key[i+1] = Key[i] xor (MSB(CT[j-1], 128) || MSB(CT[j], 128))
+						</h:pre><h:p/>
 						The above pseudocode is for encryption. For decryption, swap all instances of CT and PT.<h:p/>
 						The initial IV, key, and plaintext/ciphertext should be random.<h:p/>
 						The evaluator shall test the decrypt functionality using the same test as above,

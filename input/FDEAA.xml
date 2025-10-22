@@ -1673,7 +1673,7 @@
 						reused to encrypt different plaintext pairs under the same key. The evaluator shall also confirm
 						that for each invocation of GCM, the length of the plaintext is at most (2<h:sup>32</h:sup>)-2 blocks.
 					</TSS>
-					<guidance>There is no AGD for this activity.</guidance>
+					<Guidance>There is no AGD for this activity.</Guidance>
 					<KMD>There is no KMD for this activity.</KMD>
 					<Tests>
 						The following tests require the developer to provide access to a test platform that
